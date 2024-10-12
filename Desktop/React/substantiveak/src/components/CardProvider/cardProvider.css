@@ -1,0 +1,7 @@
+.cardProvider {
+    display: flex;
+    flex-direction: row;
+    border-bottom: 2px solid black;
+    justify-content: center;
+    padding: 40px;
+}
