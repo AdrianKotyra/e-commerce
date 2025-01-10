@@ -1,3 +1,29 @@
+
+// -------------BASKET SHOW--------------------
+
+function showBasket(){
+  const basketTrigger = document.querySelector(".backet-container");
+  const basketContainer = document.querySelector(".basket-user");
+  const crossBasket = document.querySelector(".cross-basket")
+  basketTrigger.addEventListener("click", ()=>{
+    basketContainer.classList.remove("inactive-basket")
+    basketContainer.classList.add("active-basket")
+
+
+
+
+
+    crossBasket.addEventListener("click", ()=>{
+      basketContainer.classList.remove("active-basket")
+      basketContainer.classList.add("inactive-basket")
+
+    })
+  })
+}
+
+
+showBasket()
+
 // ----------------BFOR HORIZONTAL SCROLLING AND VERTICAL ---------------
 
 function verticalScrollActive() {

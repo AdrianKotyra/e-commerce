@@ -14,6 +14,7 @@
     <?php include("includes/sections/video-section.php") ?>
     <?php include("includes/sections/slider-prod-section.php") ?>
     <?php include("includes/sections/slider-prod-section.php") ?>
+    <?php include("includes/sections/news-section.php") ?>
 </div>
 
 

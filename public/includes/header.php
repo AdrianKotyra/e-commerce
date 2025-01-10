@@ -23,6 +23,7 @@
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css"
     />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 
 <!-- Minified UMD bundle -->
   <script src="https://unpkg.com/split-type"></script>
@@ -31,7 +32,16 @@
 
 </head>
 <body>
-    <?php include("includes/nav.php") ?>
+
+
+
+
+
+  <div class="body-mask">
+  </div>
+  <?php include("includes/basket-user.php") ?>
+  <?php include("includes/nav.php") ?>
+
 
 </body>
 </html>

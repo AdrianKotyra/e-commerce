@@ -21,13 +21,20 @@
         </div>
 
         <div class="logo-nav nav-col">
-            <span>ecommerce</span>
+            <a href="index.php">
+                <p class="logo-name">ecommerce</p>
+            </a>
+
         </div>
 
         <div class="login-container nav-col flex-row">
-            <span class="login">
-                LOG IN
-            </span>
+            <a class="login-nav-link" href="login.php">
+                <span class="login-nav">
+                    LOG IN
+                </span>
+
+            </a>
+
             <div class="backet-container">
                 <i class="fa-solid fa-basket-shopping"></i>
             </div>
