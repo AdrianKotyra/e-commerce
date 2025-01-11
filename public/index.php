@@ -1,5 +1,4 @@
 <?php include("includes/header.php") ?>
-
 <div class="sections wrapper">
     <?php include("includes/sections/hero-section.php") ?>
     <?php include("includes/sections/slider-prod-section.php") ?>
@@ -20,6 +19,6 @@
 
 
 
-
+<script src="js/pages/index.js"></script>
 
 <?php include("includes/footer.php") ?>

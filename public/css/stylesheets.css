@@ -4,11 +4,18 @@
     --header-section: 2rem;
     --extra-small : 0.9rem;
 }
+.header-title {
+    font-size: var(--header-section) !important
+}
+.user-info-header {
+    background-color: var(--light-gray);
+}
 .desc-main p{
     font-weight: 800;
     color: white;
 
 }
+.alert
 .desc-video button {
     width: 160px;
     border:none;
@@ -113,6 +120,8 @@
 
 }
 .card-prod-link {
+    -webkit-user-drag: none;
+    user-select: none;
     color: black;
     text-decoration: none;
 }
@@ -176,6 +185,7 @@
     text-decoration: none;
 }
 .event-section-container {
+    padding: 0 2%;
     height: 80vh;
 }
 .event-desc-container {
@@ -251,6 +261,9 @@ color: black;
     color: white;
     background-color: black;
 }
+.user-account-header {
+    padding-top: 50px;
+}
 .button-custom-img {
     border: none;
     background-color: rgba(0, 0, 0, 0);
@@ -258,13 +271,38 @@ color: black;
     color: white;
     border: 2px solid white;
 }
+.user-info-header h2{
+    margin: 60px 0 0 2%;
+    width: 80%;
+    text-transform: uppercase;
+}
+.user-account-header-container > * {
+    flex:1;
+    max-width: 50%;
+}
+.user-account-header-container >* {
+    height: 100%;
+}
 .hero-section {
     height: 40vw;
+}
+.user-account-header-container {
+    display: flex;
+    flex-direction: row;
+    height: 30vw;
+}
+.user-info-img img{
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
 }
 .section-header {
     text-align: center;
     font-size: var(--header-section);
     padding: 20px;
+}
+.alert {
+    animation: fadein 0.4s forwards;
 }
 .login >* {
     display: block;
@@ -347,7 +385,7 @@ body{
     align-items: center;
 }
 .product-section-container {
-    padding: 0 5%;
+    padding: 0 2%;
     height: 90vh;
     width: 100%;
 }
@@ -463,7 +501,7 @@ body{
     width: 100%;
 }
 .nav_container {
-    padding: 0 5%;
+    padding: 0 2%;
     align-items: center;
     height: 100%;
     color: black;
@@ -598,9 +636,9 @@ height: 100%;
   h1, h2, h3 {
       font-family: 'Montserrat', sans-serif;
       font-size: clamp(2.5rem, 8vw, 12rem);
-      line-height: 1.2;
+
       position: relative;
-        top: -20px;
+
   }
 
   header{
@@ -833,7 +871,13 @@ height: 100%;
     border-top: 1px solid #333;
     position: relative;
 }
-
+.settings-section{
+    display: flex;
+    justify-content: center;
+}
+.settings_link hr{
+    opacity: 15% !important;
+}
 .back-to-top {
     position: absolute;
     right: 20px;
@@ -846,10 +890,82 @@ height: 100%;
     line-height: 40px;
     border-radius: 50%;
     transition: background-color 0.3s ease;
+}.settings_link a {
+    font-weight: 600;
+    text-decoration: none;
+    color: black;
+    display: block;
 }
+.grid-link-col a{
+    color: black;
+    text-decoration: none;
+}
+.grid-link-col{
 
+    position: relative;
+    background-color: var(--light-gray);
+    height: 200px;
+}
+.grid-link-col a {
+    position: absolute;
+    text-align: center;
+    transform: translate(-50%,-50%);
+    left: 50%;
+    top: 50%;
+}
+.grid-setting-links {
+    width: 70%;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+}
+.settion-section-container {
+    min-width: 72rem;
+
+}
+.grid-setting-links {
+    width: 100%;
+}
+.settings_link {
+    margin-right: 10px;
+    width: 30%
+}
 .back-to-top:hover {
     background-color: #2980b9;
+}
+@media screen and (max-width: 1024px) {
+:root{
+    --light-gray: #f1eeee;
+    --very-small : 1rem;
+    --header-section: 1.2rem;
+    --extra-small : 0.9rem;
+}
+.user-info-header{
+    padding: 20px 0;
+}
+.user-info-header h2 {
+    width: 100%;
+    margin: 0;
+    text-align: center;
+}
+.user-info-img img {
+    height: 50vw;
+}
+.user-account-header-container > * {
+flex:none;
+}
+.user-account-header-container{
+    flex-direction: column;
+    height: auto;
+
+}
+
+.user-account-header-container >* {
+    width: 100%;
+    max-width: 100%;
+
+}
+
 }
 
 /* Responsive design */
