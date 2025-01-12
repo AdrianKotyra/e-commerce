@@ -1,6 +1,9 @@
 <?php session_start();
 ob_start();
+
 include "php/init.php"?>
+<?php log_out()?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>

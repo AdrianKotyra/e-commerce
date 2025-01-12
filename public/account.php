@@ -1,4 +1,5 @@
 <?php include("includes/header.php") ?>
+<?php //Redirect_Not_Logged_User()?>
 <section class="user-account-header">
     <div class="user-account-header-container ">
         <div class="user-info-header">
@@ -22,55 +23,71 @@
     <div class="settion-section-container flex-row">
         <div class="settings_link">
 
-            <a href="">View Account</a>
+            <a href="account.php">View Account</a>
             <hr>
-            <a href="">My Orders</a>
+            <a href="account.php?show=orders">My Orders</a>
             <hr>
-            <a href="">My Details</a>
+            <a href="account.php?show=details">My Details</a>
             <hr>
-            <a href="">Contact us</a>
+            <a href="account.php?show=contact">Contact us</a>
             <hr>
-            <a href="">FAQ</a>
+            <a href="account.php?show=faq">FAQ</a>
             <hr>
-            <a href="">Log Out</a>
+            <a href="account.php?logout">Log Out</a>
             <hr>
 
         </div>
 
-        <div class="grid-setting-links">
-            <div class="grid-link-col">
+        <div class="content-account-user">
+        <?php
 
-                <a href="">
-                    <div class="grid-link-icon">
-                        <i class="fa-solid fa-cart-shopping"></i>
-                    </div>
+            if(isset($_GET["show"])) {
+                $show = $_GET["show"];
 
-                    <span> My Orders</span>
+            }
+            else {
+                $show = "";
+            }
+            switch($show) {
 
-                </a>
-            </div>
-            <div class="grid-link-col">
-                <a href="">My Details</a>
-            </div>
-            <div class="grid-link-col">
-                <a href="">Contact us</a>
-            </div>
-            <div class="grid-link-col">
-                <a href="">FAQ</a>
-            </div>
-            <div class="grid-link-col">
-                <a href="">Log Out</a>
-            </div>
+                case 'orders';
+                include "includes/account/orders.php";
+                break;
 
+                case 'details';
+                include "includes/account/details.php";
+                break;
+
+                case 'contact';
+                include "includes/account/contact.php";
+                break;
+
+                case 'faq';
+                include "includes/account/faq.php";
+                break;
+
+                default: include("includes/account/view_account.php");
+                break;
+
+
+            }
+
+
+
+        ?>
 
         </div>
+
+
 
     </div>
 
 
 
 
-</section>
 
+</section>
+<script src="js/countries.js"></script>
+<script src="js/pages/account.js"></script>
 <?php include("includes/sections/slider-prod-section.php") ?>
 <?php include("includes/footer.php") ?>

@@ -1,3 +1,41 @@
+// ---------------hover prod carts label-------------------
+
+
+function hoverProdCart(){
+  const carts = document.querySelectorAll(".layout-card")
+  carts && carts.forEach(cart=>{
+
+    cart.addEventListener("mouseover", ()=>{
+      const label = cart.querySelector(".hidden-prod-label");
+      if(label.classList.contains("detailed-grid")) {
+        label.classList.remove("hidden-prod-label-detailed-inactive");
+        label.classList.add("hidden-prod-label-detailed-active");
+      }else {
+        label.classList.remove("hidden-prod-label-inactive");
+        label.classList.add("hidden-prod-label-active");
+      }
+
+    })
+    cart.addEventListener("mouseleave", ()=>{
+      const label = cart.querySelector(".hidden-prod-label");
+      if(label.classList.contains("detailed-grid")) {
+        label.classList.remove("hidden-prod-label-detailed-active");
+        label.classList.add("hidden-prod-label-detailed-inactive");
+      }
+      else {
+        label.classList.remove("hidden-prod-label-active");
+        label.classList.add("hidden-prod-label-inactive");
+      }
+
+    })
+
+
+  })
+}
+
+hoverProdCart()
+
+
 
 
 // -------------------------AJAX--------------------------------
@@ -11,7 +49,6 @@ function SendDataAjax(sendData, file) {
       });
   });
 }
-
 
 
 
@@ -124,15 +161,7 @@ function verticalScrollActive() {
     });
   }
 
-  function calculateUserAge() {
-    const birthdateInput = document.querySelector('.reg_user_date').value;
-    if (birthdateInput) {
-      const birthDate = new Date(birthdateInput);
-      const today = new Date();
-      let age = today.getFullYear() - birthDate.getFullYear();
-      return age;
-    }
-  }
+
   verticalScrollActive()
 
 

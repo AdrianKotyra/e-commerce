@@ -1,6 +1,13 @@
 <?php  require_once("init.php");
 
 
+function log_out(){
+if(isset($_GET["logout"])) {
+    global $session;
+    $session ->log_out();
+}
+
+}
 function Redirect_Not_Logged_User() {
     global $session;
     if ($session->signed_in===false) {
@@ -13,6 +20,109 @@ function Redirect_Not_Logged_User() {
 }
 
 
+function account_update_details(){
+
+
+
+if (isset($_POST["update-account"])) {
+
+    global $connection;
+    global $user;
+
+    $errors = [];
+    $min = 3;
+    $max = 26;
+
+    $user_id       =  4;
+    $user_password =  $_POST['user_password'];
+    $user_firstname = $_POST['first_name'];
+    $user_lastname =  $_POST['last_name'];
+    $user_email    =  $_POST['email'];
+
+
+    $user_postal =  $_POST['postal'];
+    $user_city =  $_POST['city'];
+    $user_address =  $_POST['address'];
+    $user_country =  $_POST['country'];
+
+
+    if (strpbrk($user_firstname, '0123456789')) {
+
+        $errors[] = "Username can not include numbers";
+    }
+    if (strpbrk($user_lastname, '0123456789')) {
+
+        $errors[] = "Lastname can not include numbers";
+    }
+    if(strlen($user_address)<=$min) {
+
+        $errors[] = "Users address is too short, should be longer than $min characters";
+    }
+    if(strlen($user_firstname)<=$min) {
+
+        $errors[] = "Users username is too short, should be longer than $min characters";
+    }
+    if(strlen($user_firstname)>=$max) {
+
+        $errors[] = "Users username is too long, should be shorter than $max characters";
+    }
+
+    if(strlen($user_lastname)<=$min) {
+
+        $errors[] = "Users lastname is too short, should be longer than $min characters";
+    }
+    if(strlen($user_lastname)>=$max) {
+
+        $errors[] = "Users lastname is too long, should be shorter than $max characters";
+    }
+    if(strlen($user_email)>=$max) {
+
+        $errors[] = "Users email is too long, should be shorter than $max characters";
+    }
+    if(strlen($user_email)<=$min) {
+
+        $errors[] = "Users email is too short, should be longer than $min characters";
+    }
+
+
+    if(!empty($errors)) {
+
+        foreach ($errors as $error) {
+             echo '<div class="alert alert-danger text-center" role="alert">
+            '.$error.'
+            </div>';
+        }
+    } else {
+
+        // Now update the database
+        $query_update = "UPDATE users SET ";
+        $query_update .= "user_email = '{$user_email}', ";
+        $query_update .= "user_lastname = '{$user_lastname}', ";
+        $query_update .= "user_firstname = '{$user_firstname}', ";
+        $query_update .= "user_password = '{$user_password}', ";
+        $query_update .= "user_address = '{$user_address}', ";
+        $query_update .= "user_country = '{$user_country}', ";
+        $query_update .= "user_postcode = '{$user_postal}', ";
+        $query_update .= "user_city = '{$user_city}' ";
+        $query_update .= "WHERE user_id = {$user_id}";
+
+
+        $update_user = mysqli_query($connection, $query_update);
+
+        echo '<div class="alert alert-success text-center" role="alert">
+            Details Updated
+            </div>';
+        if (!$update_user) {
+            die("Query Failed " . mysqli_error($connection));
+        }
+    }
+
+
+
+}
+
+
+}
 
 
 
