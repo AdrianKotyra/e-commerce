@@ -2,7 +2,7 @@
     Free standard UK shipping on orders over £70
 </div>
 <nav>
-    <div class="nav_container flex-row">
+    <div class="nav_container flex-row wrapper">
         <div class="nav-categories nav-col flex-row">
             <div class="cat">mens</div>
             <div class="cat">women</div>

@@ -1,5 +1,5 @@
 <?php include("includes/header.php") ?>
-<div class="sections wrapper">
+<div class="sections">
     <?php include("includes/sections/hero-section.php") ?>
     <?php include("includes/sections/slider-prod-section.php") ?>
     <?php include("includes/sections/newsletter-section.php") ?>
