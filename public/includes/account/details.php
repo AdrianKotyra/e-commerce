@@ -1,3 +1,9 @@
+<?php
+if (isset($_POST["update-account"])) {
+    $message = account_update_details();
+}
+?>
+
 
 <?php
 
@@ -28,7 +34,7 @@
 
 <section class="account-details account-info">
     <h1 class="header-title-small" >MY DETAILS</h1>
-    <form action="" id="update-account-form" method="POST">
+    <form action="account.php?show=details" id="update-account-form" method="POST">
     <div class="grid-account-details">
         <div class="details-account-col">
             <label   for="first_name">Email </label>
@@ -89,6 +95,8 @@
     </div>
     <button type="submit" name="update-account"class="button-custom update-account">UPDATE</button>
     </form>
-    <?php account_update_details()?>
+    <?php if(!empty($message)) {
+        echo $message;
+    }?>
 
 </section>

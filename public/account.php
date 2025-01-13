@@ -1,5 +1,5 @@
 <?php include("includes/header.php") ?>
-<?php //Redirect_Not_Logged_User()?>
+<?php Redirect_Not_Logged_User()?>
 <section class="user-account-header">
     <div class="user-account-header-container ">
         <div class="user-info-header">

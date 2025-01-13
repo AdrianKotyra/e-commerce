@@ -4,16 +4,19 @@
 <nav>
     <div class="nav_container flex-row wrapper">
         <div class="nav-categories nav-col flex-row">
-            <div class="cat">mens</div>
-            <div class="cat">women</div>
+            <a href="index.php?category=category1" class="cat">category 1</a>
+            <a href="index.php?category=category2" class="cat">category 2</a>
             <div class="cat">
 
-            <form class="search-box-nav">
+            <div class="search-box-nav">
 
                 <span class="material-symbols-outlined search-trigger">search</span>
+                <form action="search.php" method="GET">
+                    <input type="search" name="search" placeholder="Search" id="search-input" >
 
-                <input type="search" name="focus" placeholder="Search" id="search-input" value="">
-            </form>
+                </form>
+
+            </div>
 
 
 
@@ -28,13 +31,9 @@
         </div>
 
         <div class="login-container nav-col flex-row">
-            <a class="login-nav-link" href="login.php">
-                <span class="login-nav">
-                    LOG IN
-                </span>
 
-            </a>
 
+            <?php login_User_link()?>
             <div class="backet-container">
                 <i class="fa-solid fa-basket-shopping"></i>
             </div>

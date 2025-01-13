@@ -19,21 +19,42 @@ function Redirect_Not_Logged_User() {
 
 }
 
+function login_User_link(){
+    global $session;
+    if ($session->signed_in===false) {
+        echo '
+            <a class="login-nav-link" href="login.php">
+                <span class="login-nav">
+                    LOG IN
+                </span>
+
+            </a>';
+    } else {
+        echo '
+        <a class="login-nav-link" href="account.php">
+            <span class="login-nav">
+                MY ACCOUNT
+            </span>
+
+        </a>';
+    }
+}
+
 
 function account_update_details(){
 
 
 
-if (isset($_POST["update-account"])) {
+
 
     global $connection;
     global $user;
-
+    $message = '';
     $errors = [];
     $min = 3;
     $max = 26;
 
-    $user_id       =  4;
+    $user_id       =  $user->user_id;
     $user_password =  $_POST['user_password'];
     $user_firstname = $_POST['first_name'];
     $user_lastname =  $_POST['last_name'];
@@ -88,7 +109,7 @@ if (isset($_POST["update-account"])) {
     if(!empty($errors)) {
 
         foreach ($errors as $error) {
-             echo '<div class="alert alert-danger text-center" role="alert">
+             $message .='<div class="alert alert-danger text-center" role="alert">
             '.$error.'
             </div>';
         }
@@ -108,21 +129,24 @@ if (isset($_POST["update-account"])) {
 
 
         $update_user = mysqli_query($connection, $query_update);
-
-        echo '<div class="alert alert-success text-center" role="alert">
+        if ($update_user) {
+            $message = '<div class="alert alert-success text-center" role="alert">
             Details Updated
             </div>';
-        if (!$update_user) {
-            die("Query Failed " . mysqli_error($connection));
+
+        } else {
+            $message = "Error updating details: " . mysqli_error($connection);
         }
+
+
     }
 
-
-
-}
-
+    return $message;
 
 }
+
+
+
 
 
 

@@ -18,7 +18,7 @@
 				<div class="image_bg tesla"></div>
 
 				<div class="content">
-					<h2>Scroll Down</h2>
+					<h2>random text 1</h2>
 				</div>
 
 			</div>
@@ -42,7 +42,7 @@
 				<div class="image_bg bmw"></div>
 
 				<div class="content">
-					<h2>BMW Série 3</h2>
+				<h2>random text 2</h2>
 				</div>
 
 			</div>
@@ -66,7 +66,7 @@
 				<div class="image_bg toyota"></div>
 
 				<div class="content">
-					<h2>Toyota</h2>
+				<h2>random text 3</h2>
 				</div>
 
 			</div>
@@ -90,7 +90,7 @@
 				<div class="image_bg supra"></div>
 
 				<div class="content">
-					<h2>Supra</h2>
+				<h2>random text 4</h2>
 				</div>
 
 			</div>
