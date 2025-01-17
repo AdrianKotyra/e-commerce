@@ -39,6 +39,26 @@ function hoverProdCart(){
 hoverProdCart()
 
 
+// function hoverOnPlusProdCart(){
+//   const carts = document.querySelectorAll(".card-product")
+//   carts && carts.forEach(cart=>{
+//     const iconSelected = cart.querySelector(".add-prod-img");
+//     iconSelected.addEventListener("click", ()=>{
+
+//       const hiddenCartLabel = document.querySelector(".hidden-prod-label");
+//       if(hiddenCartLabel.classList.contains("hidden-prod-label-detailed-inactive")) {
+//         hiddenCartLabel.classList.remove("hidden-prod-label-detailed-inactive");
+//         hiddenCartLabel.classList.add("hidden-prod-label-detailed-active");
+//       }else {
+//         hiddenCartLabel.classList.add("hidden-prod-label-active");
+//         hiddenCartLabel.classList.remove("hidden-prod-label-inactive");
+//       }
+//     })
+//   })
+
+// }
+
+// hoverOnPlusProdCart()
 
 
 // -------------------------AJAX--------------------------------

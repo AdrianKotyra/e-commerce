@@ -9,7 +9,7 @@
           const userEmailForm = document.querySelector(".email").value;
           const userPasswordForm = document.querySelector(".password").value;
 
-            console.log*(userEmailForm)
+
          // Create a FormData object
           const formData = new FormData();
           formData.append('userName', userNameForm);
@@ -49,8 +49,10 @@
            // initialise function on enter
         document.addEventListener("keydown", (event)=>{
         if(event.key==="Enter") {
+            const inactiveSearch = document.querySelector(".inactive-search-bar");
+            if(inactiveSearch) {
             sendRegisterAjax()(event)
-        }
+        }}
 
     })
 

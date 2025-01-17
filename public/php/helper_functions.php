@@ -43,10 +43,6 @@ function login_User_link(){
 
 function account_update_details(){
 
-
-
-
-
     global $connection;
     global $user;
     $message = '';
@@ -115,7 +111,6 @@ function account_update_details(){
         }
     } else {
 
-        // Now update the database
         $query_update = "UPDATE users SET ";
         $query_update .= "user_email = '{$user_email}', ";
         $query_update .= "user_lastname = '{$user_lastname}', ";
