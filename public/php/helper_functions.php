@@ -21,6 +21,7 @@ function Redirect_Not_Logged_User() {
 
 function login_User_link(){
     global $session;
+    global $user;
     if ($session->signed_in===false) {
         echo '
             <a class="login-nav-link" href="login.php">
@@ -29,7 +30,19 @@ function login_User_link(){
                 </span>
 
             </a>';
-    } else {
+    }
+    if ($session->signed_in===true && $user-> user_status=="admin") {
+        echo '
+        <a class="login-nav-link" href="../admin/index.php">
+            <span class="login-nav">
+                ADMIN
+            </span>
+
+        </a>';
+    }
+
+
+    if ($session->signed_in===true && $user-> user_status=="member") {
         echo '
         <a class="login-nav-link" href="account.php">
             <span class="login-nav">
@@ -62,6 +75,10 @@ function account_update_details(){
     $user_address =  $_POST['address'];
     $user_country =  $_POST['country'];
 
+
+    if (!filter_var($user_email, FILTER_VALIDATE_EMAIL)) {
+        $errors[] = "invalid email format";
+    }
 
     if (strpbrk($user_firstname, '0123456789')) {
 

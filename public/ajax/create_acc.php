@@ -14,10 +14,15 @@
     $max = 26;
 
 
-
     $query_email = "SELECT * from users where user_email = '$user_email'";
 
     $query_email_check = mysqli_query($connection, $query_email);
+
+
+    if (!filter_var($user_email, FILTER_VALIDATE_EMAIL)) {
+        $errors[] = "invalid email format";
+    }
+
 
     if(mysqli_num_rows($query_email_check)>0) {
         $errors[] = "Account with this email already exists";

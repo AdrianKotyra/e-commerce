@@ -1,7 +1,9 @@
 <?php session_start(); ?>
 <?php ob_start()?>
+
 <?php include("./php/functions_admin.php")?>
 <?php include("../public/php/init.php")?>
+<?php log_out()?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -29,7 +31,9 @@
 <div class="modal-window-container">
 
 </div>
+
 <!-- Redirect if user not admin -->
-<?php //if($session->signed_in!=true || $user->user_role!="Admin") {
-   // header("Location: ../public/index.php");
+<?php if($session->signed_in!=true || $user->user_status!="admin") {
+   header("Location: ../public/index.php");
+  }
  ?>

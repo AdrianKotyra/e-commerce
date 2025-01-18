@@ -20,12 +20,18 @@
         .then(data => {
           if(data.trim()==="success-logged") {
 
-            console.log(data)
             window.location.href = `account.php`;
+            return;
+          }
+          if(data.trim()==="admin") {
+
+            window.location.href = `../admin/index.php`;
+            return;
           }
           else {
-            console
+
             alertContainer.innerHTML=data;
+            return;
           }
 
 

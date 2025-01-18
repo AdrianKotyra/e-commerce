@@ -37,18 +37,21 @@
     }
     while($row = mysqli_fetch_assoc($select_users_query)) {
 
-
+        $user_email = $row["user_email"];
         $user_id = $row["user_id"];
+        // DONT DISPLAY ADMIN details IN USERS
+        if( $user_email!="admin") {
+            echo "<tr>";
 
-        echo "<tr>";
-
-        // Loop through each column in the row
-        foreach ($row as $key => $value) {
-            echo "<td>" . htmlspecialchars($value) . "</td>";
+            // Loop through each column in the row
+            foreach ($row as $key => $value) {
+                echo "<td>" . htmlspecialchars($value) . "</td>";
+            }
+            echo "<td><a href='users.php?source=edit_user&user_id={$user_id}'>EDIT</a></td>";
+            echo "<td > <span class='delete_button' data-link='users.php?delete_user=$user_id'> Delete </span></td>";
+            echo "</tr>";
         }
-        echo "<td><a href='users.php?source=edit_user&user_id={$user_id}'>EDIT</a></td>";
-        echo "<td > <span class='delete_button' data-link='users.php?delete_user=$user_id'> Delete </span></td>";
-        echo "</tr>";
+
     }
 
 
@@ -790,12 +793,14 @@ function select_and_display_forum_posts() {
 
 
 }
+
 function get_row_count($col_name){
     global $connection;
     $query = "SELECT * FROM $col_name";
     $select_all_records = mysqli_query($connection, $query);
     $row_counts = mysqli_num_rows( $select_all_records);
-    echo $row_counts;
+    // decrement by 1 dont include admin account
+    echo $row_counts-1;
 }
 function select_and_display_comments() {
     global $connection;
