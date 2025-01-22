@@ -1,5 +1,5 @@
 <section class="event-section">
-    <div class="event-section-container flex-row wrapper">
+    <div class="event-section-container wrapper">
         <div class="img-container-event">
             <img src="https://images.pexels.com/photos/27639777/pexels-photo-27639777/free-photo-of-voiture-de-sport-blanche-toyota-garee-dans-un-parking-souterrain.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" />
         </div>

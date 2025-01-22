@@ -19,11 +19,15 @@ function Redirect_Not_Logged_User() {
 
 }
 
+
 function login_User_link(){
     global $session;
     global $user;
     if ($session->signed_in===false) {
         echo '
+            <a href="login.php" class="user-container-profile login-icon">
+                <i class="fa-regular fa-user"></i>
+            </a>
             <a class="login-nav-link" href="login.php">
                 <span class="login-nav">
                     LOG IN
@@ -33,6 +37,9 @@ function login_User_link(){
     }
     if ($session->signed_in===true && $user-> user_status=="admin") {
         echo '
+         <a href="../admin/index.php" class="user-container-profile login-icon">
+            <i class="fa-regular fa-user"></i>
+        </a>
         <a class="login-nav-link" href="../admin/index.php">
             <span class="login-nav">
                 ADMIN
@@ -44,6 +51,9 @@ function login_User_link(){
 
     if ($session->signed_in===true && $user-> user_status=="member") {
         echo '
+        <a href="account.php" class="user-container-profile login-icon">
+            <i class="fa-regular fa-user"></i>
+        </a>
         <a class="login-nav-link" href="account.php">
             <span class="login-nav">
                 MY ACCOUNT
