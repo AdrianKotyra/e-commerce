@@ -1,4 +1,12 @@
 
+// ---------------mobile quick add product-------------------
+function addProductWindowMobile(){
+ const mobileQuickAddWindow = `
+
+
+ `
+}
+
 
 
 // ---------------hover prod carts label-------------------
@@ -9,17 +17,21 @@ function hoverProdCart(){
   carts && carts.forEach(cart=>{
 
     cart.addEventListener("mouseover", ()=>{
-      const label = cart.querySelector(".hidden-prod-label");
-      if(label.classList.contains("detailed-grid")) {
-        label.classList.remove("hidden-prod-label-detailed-inactive");
-        label.classList.add("hidden-prod-label-detailed-active");
-      }else {
-        label.classList.remove("hidden-prod-label-inactive");
-        label.classList.add("hidden-prod-label-active");
+      if (window.innerWidth > 1024) {
+        const label = cart.querySelector(".hidden-prod-label");
+        if(label.classList.contains("detailed-grid")) {
+          label.classList.remove("clicked-inactive-label");
+          label.classList.remove("hidden-prod-label-detailed-inactive");
+          label.classList.add("hidden-prod-label-detailed-active");
+        }else {
+          label.classList.remove("clicked-inactive-label");
+          label.classList.remove("hidden-prod-label-inactive");
+          label.classList.add("hidden-prod-label-active");
+        }
       }
-
     })
     cart.addEventListener("mouseleave", ()=>{
+      if (window.innerWidth > 1024) {
       const label = cart.querySelector(".hidden-prod-label");
       if(label.classList.contains("detailed-grid")) {
         label.classList.remove("hidden-prod-label-detailed-active");
@@ -28,6 +40,7 @@ function hoverProdCart(){
       else {
         label.classList.remove("hidden-prod-label-active");
         label.classList.add("hidden-prod-label-inactive");
+      }
       }
 
     })
@@ -39,26 +52,40 @@ function hoverProdCart(){
 hoverProdCart()
 
 
-// function hoverOnPlusProdCart(){
-//   const carts = document.querySelectorAll(".card-product")
-//   carts && carts.forEach(cart=>{
-//     const iconSelected = cart.querySelector(".add-prod-img");
-//     iconSelected.addEventListener("click", ()=>{
+function clickOnPlusProdCart(){
+  const carts = document.querySelectorAll(".card-product")
+  carts && carts.forEach(cart=>{
+    const iconSelected = cart.querySelector(".add-prod-img");
+    const iconSelectedImg = cart.querySelector(".add-prod-img i");
+    iconSelected.addEventListener("click", ()=>{
 
-//       const hiddenCartLabel = document.querySelector(".hidden-prod-label");
-//       if(hiddenCartLabel.classList.contains("hidden-prod-label-detailed-inactive")) {
-//         hiddenCartLabel.classList.remove("hidden-prod-label-detailed-inactive");
-//         hiddenCartLabel.classList.add("hidden-prod-label-detailed-active");
-//       }else {
-//         hiddenCartLabel.classList.add("hidden-prod-label-active");
-//         hiddenCartLabel.classList.remove("hidden-prod-label-inactive");
-//       }
-//     })
-//   })
 
-// }
+      const label = cart.querySelector(".hidden-prod-label");
 
-// hoverOnPlusProdCart()
+
+      if(label.classList.contains("clicked-active-label")) {
+        label.classList.add("clicked-inactive-label");
+        label.classList.remove("clicked-active-label");
+
+        iconSelectedImg.classList.add("clicked-inactive-icon");
+        iconSelectedImg.classList.remove("clicked-active-icon");
+
+      }
+      else {
+        label.classList.remove("clicked-inactive-label");
+        label.classList.add("clicked-active-label");
+
+
+        iconSelectedImg.classList.add("clicked-active-icon");
+        iconSelectedImg.classList.remove("clicked-inactive-icon");
+      }
+
+    })
+  })
+
+}
+
+clickOnPlusProdCart()
 
 
 // -------------------------AJAX--------------------------------

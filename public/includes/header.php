@@ -10,7 +10,7 @@ include "php/init.php"?>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ecommerce</title>
-    <link rel="stylesheet" href="css/stylesheets.css">
+    <link rel="stylesheet" href="css/stylesheets/stylesheets.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="./css/styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -39,13 +39,12 @@ include "php/init.php"?>
 <body>
 
 
+<div class="body-mask"></div>
+<?php include("includes/basket-user.php") ?>
+<?php include("includes/nav.php") ?>
+<div class="mobile-quick-add">
 
-
-
-  <div class="body-mask">
-  </div>
-  <?php include("includes/basket-user.php") ?>
-  <?php include("includes/nav.php") ?>
+</div>
 
 
 </body>

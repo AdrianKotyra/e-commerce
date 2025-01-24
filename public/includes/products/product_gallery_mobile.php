@@ -16,22 +16,28 @@
     </section>
     <nav class="slider-navigation">
         <button class="nav-button" aria-selected="true">
-            <img class="thumbnail" src="https://picsum.photos/800/400?random=1" alt="Thumbnail 1" />
+            <img class="thumbnail" src="https://images.pexels.com/photos/27639777/pexels-photo-27639777/free-photo-of-voiture-de-sport-blanche-toyota-garee-dans-un-parking-souterrain.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" />
+
         </button>
-        <button class="nav-button" aria-selected="false">
-            <img class="thumbnail" src="https://picsum.photos/800/400?random=2" alt="Thumbnail 2" />
+        <button class="nav-button" aria-selected="true">
+            <img class="thumbnail" src="https://images.pexels.com/photos/27639777/pexels-photo-27639777/free-photo-of-voiture-de-sport-blanche-toyota-garee-dans-un-parking-souterrain.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" />
+
         </button>
-        <button class="nav-button" aria-selected="false">
-            <img class="thumbnail" src="https://picsum.photos/800/400?random=3" alt="Thumbnail 3" />
+        <button class="nav-button" aria-selected="true">
+            <img class="thumbnail" src="https://images.pexels.com/photos/27639777/pexels-photo-27639777/free-photo-of-voiture-de-sport-blanche-toyota-garee-dans-un-parking-souterrain.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" />
+
         </button>
-        <button class="nav-button" aria-selected="false">
-            <img class="thumbnail" src="https://picsum.photos/800/400?random=4" alt="Thumbnail 4" />
+        <button class="nav-button" aria-selected="true">
+            <img class="thumbnail" src="https://images.pexels.com/photos/27639777/pexels-photo-27639777/free-photo-of-voiture-de-sport-blanche-toyota-garee-dans-un-parking-souterrain.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" />
+
         </button>
-        <button class="nav-button" aria-selected="false">
-            <img class="thumbnail" src="https://picsum.photos/800/400?random=5" alt="Thumbnail 5" />
+        <button class="nav-button" aria-selected="true">
+            <img class="thumbnail" src="https://images.pexels.com/photos/27639777/pexels-photo-27639777/free-photo-of-voiture-de-sport-blanche-toyota-garee-dans-un-parking-souterrain.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" />
+
         </button>
-        <button class="nav-button" aria-selected="false">
-            <img class="thumbnail" src="https://picsum.photos/800/400?random=6" alt="Thumbnail 6" />
+        <button class="nav-button" aria-selected="true">
+            <img class="thumbnail" src="https://images.pexels.com/photos/27639777/pexels-photo-27639777/free-photo-of-voiture-de-sport-blanche-toyota-garee-dans-un-parking-souterrain.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" />
+
         </button>
     </nav>
 </div>

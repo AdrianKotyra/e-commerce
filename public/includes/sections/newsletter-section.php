@@ -1,5 +1,5 @@
 <section class="newsletter">
-    <div class="newsletter-container flex-row">
+    <div class="newsletter-container ">
         <div class="newsletter-desc">
             <p> <b>Keep up to date and save 10% on your first orderp </b> </p>
             <span>T&C Apply. View our Privacy Policy to find our how your data is handled.</span>
