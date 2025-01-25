@@ -6,7 +6,16 @@
       </div>
 
     </div>
+    <?php
+    global $session;
+    global $user;
+      if($session->signed_in == true) {
+        $basket->processUserBasket($user->user_id);
+      }
 
+
+
+    ?>
     <div class="body-basket">
     <hr>
       <div class="product-basket-container flex-row">

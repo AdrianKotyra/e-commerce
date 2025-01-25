@@ -10,7 +10,7 @@ let mainSliderOptions = {
       autoplay:{
         delay:3000
       },
-      loopAdditionalSlides: 0,
+      loopAdditionalSlides: 5,
       grabCursor: true,
       watchSlidesProgress: true,
       navigation: {
@@ -72,7 +72,7 @@ let navSliderOptions = {
       centeredSlides : true,
       touchRatio: 0.2,
       slideToClickedSlide: true,
-      direction: 'vertical',
+      direction: 'horizontal',
       on: {
         imagesReady: function(){
           this.el.classList.remove('loading');

@@ -414,10 +414,6 @@
   height: 100%;
 }
 
-.hero-section {
-  height: 40vw;
-}
-
 .user-info-img img {
   -o-object-fit: cover;
   object-fit: cover;
@@ -1286,6 +1282,10 @@ footer {
   width: 30%;
 }
 
+.hero-section {
+  height: 40vw;
+}
+
 .back-to-top:hover {
   background-color: #2980b9;
 }
@@ -1293,15 +1293,16 @@ footer {
 .swiper-container {
   overflow: hidden;
   width: 100%;
-  height: 100vh;
+  height: 100%;
   float: left;
   transition: opacity 0.6s ease, transform 0.3s ease;
 }
 .swiper-container.nav-slider {
-  right: 0;
-  top: 0;
+  left: 0;
+  height: 20%;
+  bottom: 2%;
   position: absolute;
-  width: 20%;
+  width: 100%;
   padding-left: 5px;
 }
 .swiper-container.nav-slider .swiper-slide {
@@ -1323,6 +1324,7 @@ footer {
   transform: translateX(0);
   opacity: 1;
   visibility: visible;
+  color: white !important;
 }
 .swiper-container.loading {
   opacity: 1;
@@ -1421,11 +1423,11 @@ footer {
   .trending_section .shopping-column {
     width: 33vw;
   }
-  .hero-section {
-    height: 400px;
-  }
 }
 @media screen and (max-width: 1024px) {
+  .hero-section {
+    height: 70vh;
+  }
   .layout-card {
     position: unset;
   }

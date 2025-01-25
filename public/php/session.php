@@ -5,8 +5,8 @@ class Session{
     public $user_id;
 
     function __construct() {
-     
-   
+
+
         $this->check_login();
 
 
@@ -15,13 +15,13 @@ class Session{
         return $this->signed_in;
     }
     public function login($id) {
-        
-    
+
+
         $_SESSION["user_id"] = $id;
-       
+
         $this->user_id = $_SESSION["user_id"];
         $this->signed_in = true;
-    
+
 
     }
     public function log_out() {
@@ -33,20 +33,22 @@ class Session{
         if(isset($_SESSION["user_id"])) {
             $this->user_id =$_SESSION["user_id"];
             $this->signed_in = true;
-      
+
         } else {
             unset($this->user_id);
             $this->signed_in = false;
         }
     }
-    
-    
+
+
 }
 
 $session = new Session();
 if ($session->signed_in===true) {
     $user = new User();
     $user->create_user($session->user_id);
-   
+
+    $basket = new Basket();
+    $basket->addItem($session->user_id, 200, 3, 1.00);
 }
 ?>
