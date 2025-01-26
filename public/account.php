@@ -1,6 +1,6 @@
 <?php include("includes/header.php") ?>
 <?php Redirect_Not_Logged_User()?>
-<section class="user-account-header">
+<section class="user-account-header wrapper">
     <div class="user-account-header-container ">
         <div class="user-info-header">
             <h2 class="desc-user header-title">
@@ -19,7 +19,7 @@
 
 </section>
 
-<section class="settings-section">
+<section class="settings-section wrapper">
     <div class="settion-section-container flex-row">
         <div class="settings_link">
 
@@ -89,5 +89,5 @@
 </section>
 <script src="js/countries.js"></script>
 <script src="js/pages/account.js"></script>
-<?php include("includes/sections/slider-prod-section.php") ?>
+<?php slider_section_category_products("men") ?>
 <?php include("includes/footer.php") ?>

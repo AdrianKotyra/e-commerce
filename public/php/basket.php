@@ -1,62 +1,56 @@
 <?php
 
+class Basket {
 
-    class Basket {
-        private $baskets = []; // Array to store items for each user
 
-        // Add an item to a user's basket
-        public function addItem($user_id, $item_id, $quantity, $price) {
-            if (!isset($this->baskets[$user_id])) {
-                $this->baskets[$user_id] = []; // Initialize basket for the user
-            }
-
-            if (isset($this->baskets[$user_id][$item_id])) {
-                $this->baskets[$user_id][$item_id]['quantity'] += $quantity;
-            } else {
-                $this->baskets[$user_id][$item_id] = [
-                    'quantity' => $quantity,
-                    'price' => $price
-                ];
-            }
+    // Add an item to a user's basket
+    public function addItem($item_id, $quantity, $price) {
+        if (!isset($_SESSION['baskets'])) {
+            $_SESSION['baskets'] = []; // Initialize basket for the user
         }
 
-        // Remove an item from a user's basket
-        public function removeItem($user_id, $item_id) {
-            if (isset($this->baskets[$user_id][$item_id])) {
-                unset($this->baskets[$user_id][$item_id]);
-            }
-        }
-
-        // Get the total cost of all items in a user's basket
-        public function getTotal($user_id) {
-            $total = 0;
-            if (isset($this->baskets[$user_id])) {
-                foreach ($this->baskets[$user_id] as $item_id => $details) {
-                    $total += $details['quantity'] * $details['price'];
-                }
-            }
-            return $total;
-        }
-
-        public function processUserBasket($user_id) {
-            if (isset($this->baskets[$user_id])) {
-
-                // Loop through items in the user's basket
-                foreach ($this->baskets[$user_id] as $item_id => $details) {
-                   echo 'item id: '.$item_id. " quantity: ". $details['quantity']." price: ". $details['price'];
-
-                }
-            } else {
-                echo "No basket found for user ID: $user_id<br>";
-            }
+        if (isset($_SESSION['baskets'][$item_id])) {
+            $_SESSION['baskets'][$item_id]['quantity'] += $quantity;
+        } else {
+            $_SESSION['baskets'][$item_id] = [
+                'quantity' => $quantity,
+                'price' => $price
+            ];
         }
     }
 
+    // Remove an item from a user's basket
+    public function removeItem($item_id) {
+        if (isset($_SESSION['baskets'][$item_id])) {
+            unset($_SESSION['baskets'][$item_id]);
+        }
+    }
 
+    // Get the total cost of all items in a user's basket
+    public function getTotal() {
+        $total = 0;
+        if (isset($_SESSION['baskets'])) {
+            foreach ($_SESSION['baskets']as $item_id => $details) {
+                $total += $details['quantity'] * $details['price'];
+            }
+        }
+        return $total;
+    }
 
+    public function processUserBasket() {
+        if (isset($_SESSION['baskets'])) {
+            // Loop through items in the user's basket
+            foreach ($_SESSION['baskets'] as $item_id => $details) {
+                $product_new = new Product();
+                $product_new ->create_product($item_id);
+                echo $product_new->product_basket_Template($details['quantity']);
 
+            }
+        } else {
+            echo "No basket found for user ID: <br>";
+        }
+    }
 
-
-
-
+}
+$basket = new Basket();
 ?>

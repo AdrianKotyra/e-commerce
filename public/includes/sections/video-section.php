@@ -1,7 +1,7 @@
 <section class="video-section">
     <div class="video-section-container">
 
-        <video src="videos/245061_small.mp4" type="video/mp4" autoplay loop muted width="100%"height="100%" >
+        <video src="videos/107337-678173574_medium.mp4" type="video/mp4" autoplay loop muted width="100%"height="100%" >
 
         </video>
         <div class="desc-video">

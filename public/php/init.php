@@ -6,6 +6,7 @@ require_once("data_base.php");
 
 require_once("user_db.php");
 require_once("basket.php");
+require_once("product.php");
 require_once("session.php");
 
 require_once("helper_functions.php");

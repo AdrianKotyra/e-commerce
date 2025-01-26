@@ -5,6 +5,7 @@ function log_out(){
 if(isset($_GET["logout"])) {
     global $session;
     $session ->log_out();
+
 }
 
 }
@@ -18,7 +19,59 @@ function Redirect_Not_Logged_User() {
 
 
 }
+function slider_section_category_products($category_products) {
+    $section =
+    '<section class="trending_section">
+        <h3 class="section-header">
+            '.$category_products.'
+        </h3>
+        <div class="container-section vetical-scroll-grab-class flex-row shopping-row">'
+            . displaySliderProducts($category_products) . '
+        </div>
+    </section>';
+    echo $section;
+}
 
+function displaySliderProducts($cat_name) {
+    global $connection;
+    $output = '';
+    // Sanitize and escape the category name to prevent SQL injection
+    $cat_name = mysqli_real_escape_string($connection, $cat_name);
+
+    // Retrieve the category ID
+    $query = "SELECT cat_id FROM categories WHERE cat_name = '$cat_name'";
+    $select_categories = mysqli_query($connection, $query);
+
+    if (!$select_categories) {
+        die("Query failed: " . mysqli_error($connection));
+    }
+
+    // Fetch category ID if it exists
+    if ($row = mysqli_fetch_assoc($select_categories)) {
+        $cat_id = $row["cat_id"];
+
+        // Retrieve related product IDs
+        $query2 = "SELECT prod_id FROM rel_categories_products WHERE cat_id = $cat_id";
+        $select_products = mysqli_query($connection, $query2);
+
+        if (!$select_products) {
+            die("Query failed: " . mysqli_error($connection));
+        }
+
+
+        while ($product_row = mysqli_fetch_assoc($select_products)) {
+            $prod_id = $product_row["prod_id"];
+
+            $product_new = new Product();
+            $product_new->create_product($prod_id);
+
+            $output.= $product_new->product_slider_Template();
+
+        }
+    }
+    return $output;
+
+}
 
 function login_User_link(){
     global $session;

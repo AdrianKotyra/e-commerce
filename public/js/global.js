@@ -1,4 +1,51 @@
 
+
+// ---------------reloado basket ajax-------------------
+function ReloadBasketAjax(){
+  const basketContainer = document.querySelector(".body-basket")
+  const dummydata= "";
+  SendDataAjax(dummydata, "ajax/reload_basket.php")
+  .then(data => {
+    basketContainer.innerHTML=data;
+
+
+  })
+  .catch(error => {
+      console.error('Error:', error);
+  })
+
+}
+
+
+
+// ---------------add product to basket ajax-------------------
+
+function addProduct(){
+
+      const allLabels = document.querySelectorAll(".hidden-prod-label");
+      allLabels.forEach(label=>{
+        label.addEventListener("click", ()=>{
+          const productId = label.getAttribute("data-prod-id");
+          SendDataAjax(productId, "ajax/add_to_basket.php")
+          .then(data => {
+
+            onBasket()
+
+          })
+          .catch(error => {
+              console.error('Error:', error);
+          })
+        })
+      })
+
+}
+addProduct()
+
+
+
+
+
+
 // ---------------mobile quick add product-------------------
 function addProductWindowMobile(){
  const mobileQuickAddWindow = `
@@ -140,24 +187,40 @@ disableLinksSliderOnDrag()
 
 // -------------BASKET SHOW--------------------
 
+
+function onBasket(){
+  const basketContainer = document.querySelector(".basket-user");
+  const bodymask = document.querySelector(".body-mask");
+  bodymask.style.display="block";
+  basketContainer.classList.remove("inactive-basket")
+  basketContainer.classList.add("active-basket")
+  ReloadBasketAjax()
+}
+
+function offBasket(){
+  const basketContainer = document.querySelector(".basket-user");
+  const bodymask = document.querySelector(".body-mask");
+
+  bodymask.style.display="none";
+  basketContainer.classList.remove("active-basket")
+  basketContainer.classList.add("inactive-basket")
+}
+
 function showBasket(){
   const basketTrigger = document.querySelector(".backet-container");
-  const basketContainer = document.querySelector(".basket-user");
   const crossBasket = document.querySelector(".cross-basket")
+
   basketTrigger.addEventListener("click", ()=>{
-    basketContainer.classList.remove("inactive-basket")
-    basketContainer.classList.add("active-basket")
-
-
-
-
-
-    crossBasket.addEventListener("click", ()=>{
-      basketContainer.classList.remove("active-basket")
-      basketContainer.classList.add("inactive-basket")
-
-    })
+    onBasket()
   })
+
+
+
+  crossBasket.addEventListener("click", ()=>{
+      offBasket()
+
+  })
+
 }
 
 

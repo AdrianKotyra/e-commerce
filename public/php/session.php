@@ -28,6 +28,7 @@ class Session{
         unset($_SESSION["user_id"]);
         unset($this->user_id);
         $this->signed_in = false;
+        session_destroy();
     }
     private function check_login() {
         if(isset($_SESSION["user_id"])) {
@@ -48,7 +49,8 @@ if ($session->signed_in===true) {
     $user = new User();
     $user->create_user($session->user_id);
 
-    $basket = new Basket();
-    $basket->addItem($session->user_id, 200, 3, 1.00);
+
+
+
 }
 ?>
