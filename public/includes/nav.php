@@ -1,5 +1,6 @@
 <div class="banner">
-    Free standard UK shipping on orders over £70
+    <span> Free standard UK shipping on orders over £70</span>
+
 </div>
 <nav>
     <div class="nav_container flex-row wrapper">
@@ -7,8 +8,8 @@
             <div class="hamb-container">
                 <i class="fa-solid fa-bars"></i>
             </div>
-            <a href="index.php?category=category1" class="cat">category 1</a>
-            <a href="index.php?category=category2" class="cat">category 2</a>
+            <a href="index.php?category=male" class="cat">MENS</a>
+            <a href="index.php?category=female" class="cat">WOMENS</a>
             <div class="cat">
 
                 <div class="search-box-nav">
@@ -28,7 +29,7 @@
 
         <div class="logo-nav nav-col">
             <a href="index.php">
-                <p class="logo-name">ecommerce</p>
+                <p class="logo-name">Hi-Top Sneakers </p>
             </a>
 
         </div>

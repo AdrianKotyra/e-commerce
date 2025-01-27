@@ -9,15 +9,18 @@
         global $basket;
         global $user;
         global $session;
-
+        global $product;
         $product_id = $_POST["data"];
-        // check if product with this id exists
-        $query = "SELECT * FROM products where product_id= $product_id";
-        $query_check = mysqli_query($connection,  $query);
 
-        if(mysqli_num_rows($query_check)>0) {
-            $basket->addItem($product_id, 6, 11.00);
-        }
+        $new_product = New Product();
+
+        // check if product with this id exists
+        $new_product->create_product($product_id);
+
+        $product_price = $new_product->product_price;
+
+        $basket->addItem($product_id, 1, $product_price);
+
 
 
     }

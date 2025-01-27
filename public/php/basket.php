@@ -39,13 +39,15 @@ class Basket {
 
     public function processUserBasket() {
         if (isset($_SESSION['baskets'])) {
-            // Loop through items in the user's basket
-            foreach ($_SESSION['baskets'] as $item_id => $details) {
-                $product_new = new Product();
-                $product_new ->create_product($item_id);
-                echo $product_new->product_basket_Template($details['quantity']);
+            $reversed_baskets = array_reverse($_SESSION['baskets'], true);
 
+            foreach ($reversed_baskets as $item_id => $details) {
+                $product_new = new Product();
+                $product_new->create_product($item_id);
+                echo $product_new->product_basket_Template($details['quantity']);
             }
+
+
         } else {
             echo "No basket found for user ID: <br>";
         }

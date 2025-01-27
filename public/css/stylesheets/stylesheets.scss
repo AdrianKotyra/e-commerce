@@ -29,6 +29,19 @@
 	color: black;
 	font-size: var(--very-small);
 }
+.logo-nav {
+	a{
+		color: black;
+		text-decoration: none;
+	}
+}
+.logo-name {
+	margin: auto;
+	font-weight: 600;
+	letter-spacing: 0.3rem;
+	font-size: var(--header-section-small);
+	font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
 .account-info {
 	.header-title-small {
 		padding: 16px;
@@ -181,6 +194,12 @@
 	background-color: white !important;
 	color: black !important;
 }
+.trending_section {
+
+	.shopping-column {
+		height: 300px;
+	}
+}
 .prod-title-basket {
 	font-weight: 400;
 }
@@ -271,6 +290,10 @@
 .search-section {
 	margin-top: 50px;
 }
+.login-nav {
+	font-weight: 500;
+	font-size: var(--extra-small);
+}
 .login-nav-link {
 	margin-right: 10px;
 	color: black;
@@ -358,6 +381,7 @@
 		background-color: rgba(0, 0, 0, 0) !important;
 	}
 }
+
 .button-custom {
 	border: none;
 	padding: 10px 20px;
@@ -414,6 +438,13 @@
 	background-color: black;
 	height: 30px;
 	text-align: center;
+	span {
+		line-height: 2;
+		justify-content: center;
+		align-items: center;
+		display: flex;
+		margin: auto;
+	}
 }
 .login-container {
 	justify-content: right;
@@ -553,6 +584,8 @@ body {
 	width: 275px;
 	align-items: center;
 	.cat {
+		font-weight: 500;
+		font-size: var(--extra-small);
 		margin-right: 10px;
 	}
 }
@@ -822,6 +855,7 @@ body {
 	color: black;
 	background-color: WHITE;
 	justify-content: space-between;
+
 }
 .shopping-row {
 	touch-action: pan-y;
@@ -1283,7 +1317,8 @@ footer {
 	  left:0;
 	  width:100%;
 	  height:100%;
-	  background-position:center;
+
+	  background-position: center;
 	  background-size:cover;
 	}
 	.entity-img{
@@ -1335,9 +1370,7 @@ footer {
   }
 }
 @media screen and (min-width: 1200px) {
-	.trending_section .shopping-column {
-		width: 18vw;
-	  }
+
   .wrapper {
     padding-left: 5%;
     padding-right: 5%;
@@ -1352,6 +1385,7 @@ footer {
 @media (max-width: 1200px) {
   .trending_section .shopping-column {
     width: 25vw;
+
   }
 }
 @media (max-width: 1000px) {

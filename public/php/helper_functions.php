@@ -19,40 +19,65 @@ function Redirect_Not_Logged_User() {
 
 
 }
-function slider_section_category_products($category_products) {
+function slider_section_category_products($type_products) {
     $section =
     '<section class="trending_section">
         <h3 class="section-header">
-            '.$category_products.'
+            '.$type_products.'
         </h3>
         <div class="container-section vetical-scroll-grab-class flex-row shopping-row">'
-            . displaySliderProducts($category_products) . '
+            . displaySliderProducts($type_products) . '
         </div>
     </section>';
     echo $section;
 }
 
-function displaySliderProducts($cat_name) {
+// create list of products ids based on GET category
+function listenCategory(){
+
+    if(isset($_GET["category"])){
+        global $connection;
+        $cat_name = $_GET["category"];
+        $prod_list_category = [];
+        $query_select_cat = "SELECT * FROM categories WHERE cat_name = '$cat_name '";
+        $select_cat = mysqli_query($connection, $query_select_cat);
+        while ($row = mysqli_fetch_assoc($select_cat)) {
+            $cat_id = $row["cat_id"];
+            $query_cat_id = "SELECT * FROM rel_categories_products WHERE cat_id = '$cat_id'";
+            $select_product_id = mysqli_query($connection, $query_cat_id);
+            while ($row = mysqli_fetch_assoc($select_product_id)) {
+                $prod_id = $row["prod_id"];
+                $prod_list_category[]= $prod_id;
+            }
+
+        }
+
+    }
+    return  $prod_list_category;
+}
+function displaySliderProducts($type_products) {
     global $connection;
     $output = '';
     // Sanitize and escape the category name to prevent SQL injection
-    $cat_name = mysqli_real_escape_string($connection, $cat_name);
+    $type_products = mysqli_real_escape_string($connection, $type_products);
 
-    // Retrieve the category ID
-    $query = "SELECT cat_id FROM categories WHERE cat_name = '$cat_name'";
-    $select_categories = mysqli_query($connection, $query);
 
-    if (!$select_categories) {
+    // Retrieve the type ID
+    $query = "SELECT * FROM types WHERE type_name = '$type_products'";
+    $select_product_types = mysqli_query($connection, $query);
+
+    if (!$select_product_types) {
         die("Query failed: " . mysqli_error($connection));
     }
 
     // Fetch category ID if it exists
-    if ($row = mysqli_fetch_assoc($select_categories)) {
-        $cat_id = $row["cat_id"];
+    if ($row = mysqli_fetch_assoc($select_product_types)) {
+        $type_id = $row["id"];
 
         // Retrieve related product IDs
-        $query2 = "SELECT prod_id FROM rel_categories_products WHERE cat_id = $cat_id";
+        $query2 = "SELECT * FROM rel_types_products WHERE type_id = $type_id";
         $select_products = mysqli_query($connection, $query2);
+
 
         if (!$select_products) {
             die("Query failed: " . mysqli_error($connection));
@@ -60,18 +85,27 @@ function displaySliderProducts($cat_name) {
 
 
         while ($product_row = mysqli_fetch_assoc($select_products)) {
-            $prod_id = $product_row["prod_id"];
+            $prod_id = $product_row["product_id"];
 
-            $product_new = new Product();
-            $product_new->create_product($prod_id);
+            if(isset($_GET["category"])){
+                $category_products_ids = listenCategory();
 
-            $output.= $product_new->product_slider_Template();
+                if (in_array($prod_id, $category_products_ids)) {
+                    $product_new = new Product();
+                    $product_new->create_product($prod_id);
 
-        }
+                    $output.= $product_new->product_slider_Template();
+                }
+
+            } else {
+                $product_new = new Product();
+                $product_new->create_product($prod_id);
+                $output.= $product_new->product_slider_Template();
+            }
     }
     return $output;
 
-}
+}}
 
 function login_User_link(){
     global $session;
