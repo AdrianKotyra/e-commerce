@@ -1,0 +1,1 @@
+-name the img the same as the name of the type of the shoes in sql database 

@@ -1,5 +1,22 @@
 <?php include("includes/header.php") ?>
+<?php
+    global $product;
+    if(isset($_GET["show"])) {
+        $product_id = $_GET["show"];
+        $serch_product = new Product();
+        $serch_product->create_product($product_id);
 
+        $product_name = $serch_product->product_name;
+        $product_price= $serch_product->product_price;
+        $product_img1 = $serch_product->product_img;
+        $product_img2 = $serch_product->product_img_2;
+        $product_img3 = $serch_product->product_img_3;
+        $product_img4 = $serch_product->product_img_4;
+
+    }
+
+
+?>
 <section class="products wrapper">
     <div class="products-container ">
         <div class="product-gallery-container">
@@ -9,28 +26,24 @@
         </div>
 
         <div class="product-info ">
-            <p  class="prod-category">category</p>
-            <h1  class="prod-name">product name</h1>
-            <span class="prod-price"><b>33£</b></span>
+            <p  class="prod-category"></p>
+            <h1  class="prod-name"><?php echo  $product_name;?></h1>
+            <span class="prod-price"><b>£<?php echo  $product_price;?></b></span>
             <span class="prod-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat laborum minima earum eligendi pariatur beatae odit!</span>
             <div class="product-categories flex-row">
-                <a href="">
-                    <img src="https://images.pexels.com/photos/27639777/pexels-photo-27639777/free-photo-of-voiture-de-sport-blanche-toyota-garee-dans-un-parking-souterrain.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" />
+                <a  href="<?php echo htmlspecialchars('imgs/products/'.$product_name . '/' . $product_img1); ?> "data-fancybox="<?php echo $product_id;?>" data-caption="<?php echo $product_name;?>" data-fancybox-index=<?php echo $product_id;?>>
+                    <img  src="<?php echo htmlspecialchars('imgs/products/'.$product_name . '/' . $product_img1); ?> "/>
                 </a>
 
-                <a href="">
-                    <img src="https://images.pexels.com/photos/27639777/pexels-photo-27639777/free-photo-of-voiture-de-sport-blanche-toyota-garee-dans-un-parking-souterrain.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" />
+                <a  href="<?php echo htmlspecialchars('imgs/products/'.$product_name . '/' . $product_img2); ?>"data-fancybox="<?php echo $product_id;?>" data-caption="<?php echo $product_name;?>" data-fancybox-index=<?php echo $product_id;?>>
+                    <img  src="<?php echo htmlspecialchars('imgs/products/'.$product_name . '/' . $product_img2); ?> "/>
                 </a>
-
-                <a href="">
-                    <img src="https://images.pexels.com/photos/27639777/pexels-photo-27639777/free-photo-of-voiture-de-sport-blanche-toyota-garee-dans-un-parking-souterrain.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" />
+                <a  href="<?php echo htmlspecialchars('imgs/products/'.$product_name . '/' . $product_img3); ?> "data-fancybox="<?php echo $product_id;?>" data-caption="<?php echo $product_name;?>" data-fancybox-index=<?php echo $product_id;?>>
+                    <img  src="<?php echo htmlspecialchars('imgs/products/'.$product_name . '/' . $product_img3); ?> "/>
                 </a>
-
-                <a href="">
-                    <img src="https://images.pexels.com/photos/27639777/pexels-photo-27639777/free-photo-of-voiture-de-sport-blanche-toyota-garee-dans-un-parking-souterrain.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" />
+                <a  href="<?php echo htmlspecialchars('imgs/products/'.$product_name . '/' . $product_img4); ?> "data-fancybox="<?php echo $product_id;?>" data-caption="<?php echo $product_name;?>" data-fancybox-index=<?php echo $product_id;?>>
+                    <img  src="<?php echo htmlspecialchars('imgs/products/'.$product_name . '/' . $product_img4); ?> "/>
                 </a>
-
-
             </div>
 
             <div class="hover-prod-cat-info">

@@ -5,10 +5,10 @@
 
         </video>
         <div class="desc-video">
-            <h3>Lorem ipsum dolor sit amet.</h3>
+            <h3>Retro/Classic Sneakers</h3>
             <div class="flex-row">
-                <button>CAT ONE</button>
-                <button>CAT TWO</button>
+                <button>SHOP MENS</button>
+                <button>SHOP WOMENS</button>
             </div>
         </div>
     </div>

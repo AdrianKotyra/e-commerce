@@ -1,4 +1,8 @@
 
+// ---------------fancybox-------------------
+Fancybox.bind("[data-fancybox]", {
+
+});
 
 // ---------------reloado basket ajax-------------------
 function ReloadBasketAjax(){
