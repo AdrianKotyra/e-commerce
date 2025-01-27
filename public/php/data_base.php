@@ -30,7 +30,9 @@
             return $test;
         }
 
-
+        public function prepare($query) {
+            return $this->connection->prepare($query);
+        }
 
 
     }

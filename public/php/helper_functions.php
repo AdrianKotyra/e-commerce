@@ -1,5 +1,14 @@
 <?php  require_once("init.php");
 
+function secure_query_fetch_data($query, $param){
+    global $database;
+    $category = $database->escape_string(trim($param));
+    $stmt = $database->prepare("$query = ?");
+    $stmt->bind_param("s", $category); // Bind the category as a string
+    $stmt->execute();
+    $result_product_type = $stmt->get_result();
+    return $result_product_type;
+}
 
 function log_out(){
 if(isset($_GET["logout"])) {
@@ -19,8 +28,52 @@ function Redirect_Not_Logged_User() {
 
 
 }
+// ------------------DISPLAY PRODUCTS CATEGORY-----------------------------
+function displayCategoryProducts($type_products) {
+    global $connection;
+    $output = '';
+    // Sanitize and escape the category name to prevent SQL injection
+    $type_products = mysqli_real_escape_string($connection, $type_products);
+    // Retrieve the type ID
+    $query = "SELECT * FROM types WHERE type_name = '$type_products'";
+    $select_product_types = mysqli_query($connection, $query);
+    if (!$select_product_types) {
+        die("Query failed: " . mysqli_error($connection));
+    }
+    // Fetch category ID if it exists
+    if ($row = mysqli_fetch_assoc($select_product_types)) {
+        $type_id = $row["id"];
+        // Retrieve related product IDs
+        $query2 = "SELECT * FROM rel_types_products WHERE type_id = $type_id ";
 
-// ------------------GET 5 PRODUCTS OF DETAILED SECTION---------------------
+        $select_products = mysqli_query($connection, $query2);
+        if (!$select_products) {
+            die("Query failed: " . mysqli_error($connection));
+        }
+        while ($product_row = mysqli_fetch_assoc($select_products)) {
+            $prod_id = $product_row["product_id"];
+
+            if(isset($_GET["category"])){
+                $category_products_ids = listenCategory();
+                if (in_array($prod_id, $category_products_ids)) {
+                    $product_new = new Product();
+                    $product_new->create_product($prod_id);
+                    $output.= $product_new->product_category_card();
+                }
+            } else {
+                $product_new = new Product();
+                $product_new->create_product($prod_id);
+                $output.= $product_new->product_category_card();
+            }
+    }
+    return $output;
+
+}}
+
+
+
+
+// ------------------GET 4 PRODUCTS OF DETAILED SECTION---------------------
 function displayDetailedProducts($type_products) {
     global $connection;
     $output = '';
@@ -70,8 +123,11 @@ function section_detailed_products($type_products) {
             <div class="prod-main-img">
                 <img src="./imgs/detailed_section/'.$type_products.'.jpg" />
                 <span class="desc-main">
-                    <p>'.$type_products.'</p>
-                    <button class="button-custom-img">SHOP NOW</button>
+                    <a href="category.php?show='.$type_products.'">
+                        <p>'.$type_products.'</p>
+
+                        <button class="button-custom-img">SHOP NOW</button>
+                    </a>
                 </span>
             </div>
 
@@ -93,9 +149,11 @@ function section_detailed_products($type_products) {
 function section_slider_products($type_products) {
     $section =
     '<section class="trending_section">
-        <h3 class="section-header">
-            '.$type_products.'
-        </h3>
+        <a href="category.php?show='.$type_products.'">
+            <h3 class="section-header">
+                '.$type_products.'
+            </h3>
+        </a>
         <div class="container-section vetical-scroll-grab-class flex-row shopping-row">'
             . displaySliderProducts($type_products) . '
         </div>

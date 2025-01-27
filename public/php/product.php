@@ -9,6 +9,40 @@ class Product {
     public $product_img_2;
     public $product_img_3;
     public $product_img_4;
+    public $product_type;
+
+    public function product_category_card(){
+        $product_template = '
+            <div class="flex-col card-product">
+                <div class="layout-card">
+                   <a class="prod-link" href="products.php?show='.$this->product_id.'">
+                        <div class="shopping-column">
+                            <img src="./imgs/products/'.$this->product_name.'/'.$this->product_img.'" />
+                        </div>
+                    </a>
+                    <div class="hidden-prod-label">
+                            <span class="content-label">
+                                Lorem ipsum dolor sit amet consectetur.
+                            </span>
+
+                    </div>
+                </div>
+
+                <div class="shopping-card-desc ">
+
+                    <span class="item-name item-desc">
+                        '.$this->product_name.'
+                    </span>
+                    <span class="item-price item-desc">
+                        £'.$this->product_price.'
+                    </span>
+                    <div class="add-prod-img">
+                        <i class="fa-solid fa-plus"></i>
+                    </div>
+                </div>
+        </div>';
+        return  $product_template;
+    }
     public function product_detailed_section_Template(){
         $product_template = '
                <div class="grid-prod">
@@ -99,10 +133,19 @@ class Product {
     // Function to fetch product details from the database
     public function create_product($id) {
         if ($id) {
-            global $database; // Assumes $database is a global variable handling DB connection
+            global $database;
 
+            // get product category name
+            $result_product_type = $database->query_array("SELECT * FROM rel_types_products WHERE product_id = $id");
+            while ($row = mysqli_fetch_array($result_product_type)) {
+                $type_id = $row['type_id'];
+                $type_name = $database->query_array("SELECT * FROM types WHERE id = $type_id");
+                while ($row = mysqli_fetch_array($type_name)) {
+                    $this->product_type = $row['type_name'];
+                }
+            }
+            // get product info
             $result = $database->query_array("SELECT * FROM products WHERE product_id = $id");
-
             while ($row = mysqli_fetch_array($result)) {
                 $this->product_id = $row['product_id'];
                 $this->product_name = $row['product_name'];

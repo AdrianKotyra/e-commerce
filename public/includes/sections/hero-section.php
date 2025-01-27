@@ -10,11 +10,11 @@
         }
         switch($category) {
             case 'male';
-            include "includes//slider-hero/slider-men.php";
+            include "includes/slider-hero/slider-men.php";
             break;
 
             case 'female';
-            include "includes//slider-hero/slider-female.php";
+            include "includes/slider-hero/slider-female.php";
             break;
 
 

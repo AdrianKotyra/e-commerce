@@ -89,5 +89,5 @@
 </section>
 <script src="js/countries.js"></script>
 <script src="js/pages/account.js"></script>
-<?php slider_section_category_products("men") ?>
+<?php section_slider_products("Trending") ?>
 <?php include("includes/footer.php") ?>

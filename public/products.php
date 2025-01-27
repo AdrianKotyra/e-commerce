@@ -5,14 +5,13 @@
         $product_id = $_GET["show"];
         $serch_product = new Product();
         $serch_product->create_product($product_id);
-
         $product_name = $serch_product->product_name;
         $product_price= $serch_product->product_price;
         $product_img1 = $serch_product->product_img;
         $product_img2 = $serch_product->product_img_2;
         $product_img3 = $serch_product->product_img_3;
         $product_img4 = $serch_product->product_img_4;
-
+        $product_type = $serch_product->product_type;
     }
 
 
@@ -26,7 +25,7 @@
         </div>
 
         <div class="product-info ">
-            <p  class="prod-category"></p>
+            <p  class="prod-category">Category > <a href="category.php?show=<?php echo $product_type;?>"> <?php echo  $product_type;?> </a></p>
             <h1  class="prod-name"><?php echo  $product_name;?></h1>
             <span class="prod-price"><b>£<?php echo  $product_price;?></b></span>
             <span class="prod-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat laborum minima earum eligendi pariatur beatae odit!</span>
