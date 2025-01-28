@@ -53,14 +53,15 @@ function displayCategoryProducts($type_products) {
         while ($product_row = mysqli_fetch_assoc($select_products)) {
             $prod_id = $product_row["product_id"];
 
-            if(isset($_GET["category"])){
+            if(isset($_GET["category"]) && $_GET["category"]!="mixed"){
                 $category_products_ids = listenCategory();
                 if (in_array($prod_id, $category_products_ids)) {
                     $product_new = new Product();
                     $product_new->create_product($prod_id);
                     $output.= $product_new->product_category_card();
                 }
-            } else {
+            }
+            else {
                 $product_new = new Product();
                 $product_new->create_product($prod_id);
                 $output.= $product_new->product_category_card();
@@ -98,7 +99,7 @@ function displayDetailedProducts($type_products) {
         while ($product_row = mysqli_fetch_assoc($select_products)) {
             $prod_id = $product_row["product_id"];
 
-            if(isset($_GET["category"])){
+            if(isset($_GET["category"]) && $_GET["category"]!="mixed"){
                 $category_products_ids = listenCategory();
                 if (in_array($prod_id, $category_products_ids)) {
                     $product_new = new Product();
@@ -222,7 +223,7 @@ function displaySliderProducts($type_products) {
         while ($product_row = mysqli_fetch_assoc($select_products)) {
             $prod_id = $product_row["product_id"];
 
-            if(isset($_GET["category"])){
+            if(isset($_GET["category"]) && $_GET["category"]!="mixed"){
                 $category_products_ids = listenCategory();
 
                 if (in_array($prod_id, $category_products_ids)) {

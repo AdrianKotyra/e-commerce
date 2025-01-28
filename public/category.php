@@ -33,21 +33,7 @@
 
 </section>
 
-<section class="search-section">
-    <div class="search-msg-container">
-        Your search for "city" revealed the following
-    </div>
-    <div class="search-container">
-        <div class="search-input-container flex-row">
-            <input type="text" placeholder="Search">
-            <div class="search-icon-container flex-col">
-                <i class="fa-solid fa-magnifying-glass"></i>
-            </div>
-        </div>
-    </div>
 
-
-</section>
 
 <section class="search-grid-products">
     <div class="filter-container flex-row wrapper">
@@ -60,17 +46,29 @@
 
             <div class="filter-col flex-row ">
                 <div class="container-cat-filter flex-row">
-                    <span>cat1</span>
+                    <span>Sex</span>
                     <i class="fa-solid fa-angle-down"></i>
                 </div>
 
                 <div class="filter-dropdown inactive-dropdown-filter">
-                    <div class="dropdown-content">
-                        <p>dsdsa</p>
-                        <p>dsdsa</p>
-                        <p>dsdsa</p>
-                        <button class="button-custom">APPLY</button>
-                    </div>
+                    <?php $_GET["show"];
+                        $type = $_GET["show"];
+                    ?>
+                    <form action="category.php" method="GET">
+                        <input type="hidden" name="show" value="<?php echo htmlspecialchars($type); ?>">
+                        <div class="dropdown-content">
+
+                            <p class="flex-row"><input name="category"type="radio" value="female">Womens</p>
+                            <p class="flex-row"><input name="category"type="radio" value="male">Mens</p>
+                            <p class="flex-row"><input name="category"type="radio" value="mixed">Both</p>
+
+
+
+
+                            <button type="submit" class="button-custom">APPLY</button>
+                        </div>
+                    </form>
+
                 </div>
 
             </div>

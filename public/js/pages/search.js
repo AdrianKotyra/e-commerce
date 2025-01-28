@@ -1,28 +1,26 @@
-
-// ---------------FILTER DROPDOWNS-------------------
 function DropDownFilters() {
     const allDropdowns = document.querySelectorAll(".filter-dropdown");
     const dropDowns = document.querySelectorAll(".filter-col");
 
-    // Attach click event to each dropdown
+    // Handle opening/closing dropdowns
     dropDowns.forEach((dropdown) => {
         dropdown.addEventListener("click", (event) => {
-            // Prevent click event from propagating to document
+            // Prevent click from propagating to the document
             event.stopPropagation();
 
             const dropDownContentSelected = dropdown.querySelector(".filter-dropdown");
 
             // Toggle the active state for the clicked dropdown
-            if (dropDownContentSelected.classList.contains("active-dropdown-filter")) {
-                dropDownContentSelected.classList.remove("active-dropdown-filter");
-                dropDownContentSelected.classList.add("inactive-dropdown-filter");
-            } else {
-                // Close all dropdowns first
-                allDropdowns.forEach((generaldropdown) => {
-                    generaldropdown.classList.remove("active-dropdown-filter");
-                    generaldropdown.classList.add("inactive-dropdown-filter");
-                });
-                // Activate the clicked dropdown
+            const isActive = dropDownContentSelected.classList.contains("active-dropdown-filter");
+
+            // Close all dropdowns first
+            allDropdowns.forEach((generaldropdown) => {
+                generaldropdown.classList.remove("active-dropdown-filter");
+                generaldropdown.classList.add("inactive-dropdown-filter");
+            });
+
+            // Open the clicked dropdown if it wasn't active
+            if (!isActive) {
                 dropDownContentSelected.classList.remove("inactive-dropdown-filter");
                 dropDownContentSelected.classList.add("active-dropdown-filter");
             }
@@ -31,10 +29,20 @@ function DropDownFilters() {
 
     // Close all dropdowns when clicking outside
     document.addEventListener("click", () => {
+        // Close all dropdowns
         allDropdowns.forEach((generaldropdown) => {
             generaldropdown.classList.remove("active-dropdown-filter");
             generaldropdown.classList.add("inactive-dropdown-filter");
         });
     });
+
+    // Prevent the dropdown itself from closing when clicking inside
+    allDropdowns.forEach((dropdownContent) => {
+        dropdownContent.addEventListener("click", (event) => {
+            event.stopPropagation();
+        });
+    });
 }
+
+
 DropDownFilters()
