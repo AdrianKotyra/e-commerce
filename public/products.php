@@ -12,6 +12,8 @@
         $product_img3 = $serch_product->product_img_3;
         $product_img4 = $serch_product->product_img_4;
         $product_type = $serch_product->product_type;
+        $product_category = $serch_product->product_category;
+
     }
 
 
@@ -25,7 +27,7 @@
         </div>
 
         <div class="product-info ">
-            <p  class="prod-category">Category > <a href="category.php?show=<?php echo $product_type;?>"> <?php echo  $product_type;?> </a></p>
+            <p  class="prod-category"><a href="index.php?category=<?php echo $product_category;?>"> <?php echo  $product_category;?> </a> > <a href="category.php?show=<?php echo $product_type;?>&category=<?php echo $product_category;?>"> <?php echo  $product_type;?> </a></p>
             <h1  class="prod-name"><?php echo  $product_name;?></h1>
             <span class="prod-price"><b>£<?php echo  $product_price;?></b></span>
             <span class="prod-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat laborum minima earum eligendi pariatur beatae odit!</span>

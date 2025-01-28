@@ -10,12 +10,13 @@ class Product {
     public $product_img_3;
     public $product_img_4;
     public $product_type;
+    public $product_category;
 
     public function product_category_card(){
         $product_template = '
             <div class="flex-col card-product">
                 <div class="layout-card">
-                   <a class="prod-link" href="products.php?show='.$this->product_id.'">
+                   <a class="prod-link" href="products.php?show='.$this->product_id.'&category='.$this->product_category.'">
                         <div class="shopping-column">
                             <img src="./imgs/products/'.$this->product_name.'/'.$this->product_img.'" />
                         </div>
@@ -48,7 +49,7 @@ class Product {
                <div class="grid-prod">
                 <div class="flex-col card-product">
                     <div class="layout-card">
-                            <a class="prod-link" href="products.php?show='.$this->product_id.'">
+                            <a class="prod-link" href="products.php?show='.$this->product_id.'&category='.$this->product_category.'">
                                 <div class="shopping-column">
                                     <img src="./imgs/products/'.$this->product_name.'/'.$this->product_img.'" />
                                 </div>
@@ -78,10 +79,11 @@ class Product {
     }
 
     public function product_slider_Template(){
+
         $product_template = '
             <div class="flex-col card-product">
                 <div class="layout-card">
-                    <a class="card-prod-link" href="products.php?show='.$this->product_id.'">
+                    <a class="card-prod-link" href="products.php?show='.$this->product_id.'&category='.$this->product_category.'">
                         <div class="shopping-column">
                          <img src="./imgs/products/'.$this->product_name.'/'.$this->product_img.'" />
                         </div>
@@ -135,13 +137,23 @@ class Product {
         if ($id) {
             global $database;
 
-            // get product category name
+            // get product type name
             $result_product_type = $database->query_array("SELECT * FROM rel_types_products WHERE product_id = $id");
             while ($row = mysqli_fetch_array($result_product_type)) {
                 $type_id = $row['type_id'];
                 $type_name = $database->query_array("SELECT * FROM types WHERE id = $type_id");
                 while ($row = mysqli_fetch_array($type_name)) {
                     $this->product_type = $row['type_name'];
+                }
+            }
+
+            // get product category name
+            $result_product_type = $database->query_array("SELECT * FROM rel_categories_products WHERE prod_id = $id");
+            while ($row = mysqli_fetch_array($result_product_type)) {
+                $cat_id = $row['cat_id'];
+                $type_name = $database->query_array("SELECT * FROM categories WHERE cat_id = $cat_id");
+                while ($row = mysqli_fetch_array($type_name)) {
+                    $this->product_category = $row['cat_name'];
                 }
             }
             // get product info

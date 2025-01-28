@@ -3,13 +3,21 @@
 
 </div>
 <nav>
+    <?php
+        if(isset($_GET["category"])) {
+            $cat = $_GET["category"];
+        }
+
+
+    ?>
     <div class="nav_container flex-row wrapper">
         <div class="nav-categories nav-col flex-row">
             <div class="hamb-container">
                 <i class="fa-solid fa-bars"></i>
             </div>
-            <a href="index.php?category=male" class="cat">MENS</a>
-            <a href="index.php?category=female" class="cat">WOMENS</a>
+            <a href="index.php?category=male" class="cat <?php if($cat== "male" ) { echo 'active_nav_link'; } ?>">MENS</a>
+            <a href="index.php?category=female" class="cat <?php if($cat== "female") { echo 'active_nav_link'; } ?>">WOMENS</a>
+
             <div class="cat">
 
                 <div class="search-box-nav">

@@ -37,7 +37,10 @@
 	--icons: 1.3rem;
 	--border: #e5e7eb;
 }
-
+.active_nav_link {
+	background-color: black;
+	color: white !important;
+}
 .cat {
 	white-space: nowrap;
 	cursor: pointer;
@@ -617,6 +620,7 @@ body {
 	width: 275px;
 	align-items: center;
 	.cat {
+		padding: 6px;
 		font-weight: 500;
 		font-size: var(--extra-small);
 		margin-right: 10px;
@@ -937,10 +941,11 @@ body {
 	position: absolute;
 }
 .shopping-column {
+	background-color: var(--light-gray);
 	height: 100%;
 	img {
-		-o-object-fit: cover;
-		object-fit: cover;
+		-o-object-fit: contain;
+		object-fit: contain;
 		-webkit-user-drag: none !important;
 		-webkit-user-select: none !important;
 		-moz-user-select: none !important;
@@ -976,7 +981,7 @@ section {
 		-moz-user-select: none;
 		user-select: none;
 		width: 20vw;
-		padding-right: 10px;
+		margin-right: 10px;
 	}
 }
 

@@ -24,6 +24,11 @@
   --border: #e5e7eb;
 }
 
+.active_nav_link {
+  background-color: black;
+  color: white !important;
+}
+
 .cat {
   white-space: nowrap;
   cursor: pointer;
@@ -650,6 +655,7 @@ body {
   align-items: center;
 }
 .nav-categories .cat {
+  padding: 6px;
   font-weight: 500;
   font-size: var(--extra-small);
   margin-right: 10px;
@@ -992,11 +998,12 @@ body {
 }
 
 .shopping-column {
+  background-color: var(--light-gray);
   height: 100%;
 }
 .shopping-column img {
-  -o-object-fit: cover;
-  object-fit: cover;
+  -o-object-fit: contain;
+  object-fit: contain;
   -webkit-user-drag: none !important;
   -webkit-user-select: none !important;
   -moz-user-select: none !important;
@@ -1035,7 +1042,7 @@ section {
   -moz-user-select: none;
   user-select: none;
   width: 20vw;
-  padding-right: 10px;
+  margin-right: 10px;
 }
 
 .inactive-basket {

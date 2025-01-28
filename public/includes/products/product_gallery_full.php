@@ -19,29 +19,29 @@
 
 
 <div class="product_gallery_full_container">
-    <a  href="<?php echo htmlspecialchars('imgs/products/'.$product_name . '/' . $product_img1); ?> "data-fancybox="<?php echo $new_index;?>" data-caption="<?php echo $product_name;?>" data-fancybox-index=<?php echo $new_index;?>>
-        <div class="full-screen-gallery-container">
-            <img src="<?php echo htmlspecialchars('imgs/products/'.$product_name . '/' . $product_img1); ?>" />
-        </div>
-    </a>
 
-    <a  href="<?php echo htmlspecialchars('imgs/products/'.$product_name . '/' . $product_img2); ?> "data-fancybox="<?php echo $new_index;?>" data-caption="<?php echo $product_name;?>" data-fancybox-index=<?php echo $new_index;?>>
-        <div class="full-screen-gallery-container">
-            <img src="<?php echo htmlspecialchars('imgs/products/'.$product_name . '/' . $product_img2); ?>" />
-        </div>
-    </a>
+    <div class="full-screen-gallery-container">
+        <img src="<?php echo htmlspecialchars('imgs/products/'.$product_name . '/' . $product_img1); ?>" />
+    </div>
 
-    <a  href="<?php echo htmlspecialchars('imgs/products/'.$product_name . '/' . $product_img3); ?> "data-fancybox="<?php echo $new_index;?>" data-caption="<?php echo $product_name;?>" data-fancybox-index=<?php echo $new_index;?>>
-        <div class="full-screen-gallery-container">
-            <img src="<?php echo htmlspecialchars('imgs/products/'.$product_name . '/' . $product_img3); ?>" />
-        </div>
-    </a>
 
-    <a  href="<?php echo htmlspecialchars('imgs/products/'.$product_name . '/' . $product_img4); ?> "data-fancybox="<?php echo $new_index;?>" data-caption="<?php echo $product_name;?>" data-fancybox-index=<?php echo $new_index;?>>
-        <div class="full-screen-gallery-container">
-            <img src="<?php echo htmlspecialchars('imgs/products/'.$product_name . '/' . $product_img4); ?>" />
-        </div>
-    </a>
+
+    <div class="full-screen-gallery-container">
+        <img src="<?php echo htmlspecialchars('imgs/products/'.$product_name . '/' . $product_img2); ?>" />
+    </div>
+
+
+
+    <div class="full-screen-gallery-container">
+        <img src="<?php echo htmlspecialchars('imgs/products/'.$product_name . '/' . $product_img3); ?>" />
+    </div>
+
+
+
+    <div class="full-screen-gallery-container">
+        <img src="<?php echo htmlspecialchars('imgs/products/'.$product_name . '/' . $product_img4); ?>" />
+    </div>
+
 
 
 
