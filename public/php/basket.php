@@ -4,17 +4,21 @@ class Basket {
 
 
     // Add an item to a user's basket
-    public function addItem($item_id, $quantity, $price) {
+    public function addItem($item_id, $quantity, $price,  $productsize) {
         if (!isset($_SESSION['baskets'])) {
             $_SESSION['baskets'] = []; // Initialize basket for the user
         }
+        // Create a unique key using product ID and size
+        $unique_key = $item_id . '_' . $productsize;
 
-        if (isset($_SESSION['baskets'][$item_id])) {
-            $_SESSION['baskets'][$item_id]['quantity'] += $quantity;
+        if (isset($_SESSION['baskets'][$unique_key])) {
+            $_SESSION['baskets'][$unique_key]['quantity'] += $quantity;
         } else {
-            $_SESSION['baskets'][$item_id] = [
+            $_SESSION['baskets'][$unique_key] = [
                 'quantity' => $quantity,
-                'price' => $price
+                'price' => $price,
+                'size' => $productsize,
+                'id' => $item_id
             ];
         }
     }
@@ -30,7 +34,7 @@ class Basket {
     public function getTotal() {
         $total = 0;
         if (isset($_SESSION['baskets'])) {
-            foreach ($_SESSION['baskets']as $item_id => $details) {
+            foreach ($_SESSION['baskets']as $item=> $details) {
                 $total += $details['quantity'] * $details['price'];
             }
         }
@@ -41,10 +45,13 @@ class Basket {
         if (isset($_SESSION['baskets'])) {
             $reversed_baskets = array_reverse($_SESSION['baskets'], true);
 
-            foreach ($reversed_baskets as $item_id => $details) {
+            foreach ($reversed_baskets as $unique_key => $details) {
                 $product_new = new Product();
-                $product_new->create_product($item_id);
-                echo $product_new->product_basket_Template($details['quantity']);
+                $product_id = $details['id'];
+
+
+                $product_new->create_product($product_id );
+                echo $product_new->product_basket_Template($details['quantity'],$details['size']);
             }
 
 

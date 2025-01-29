@@ -17,7 +17,7 @@
 
       <div class="price-basket flex-row">
         <h5>Total</h5>
-        <h5><?php echo '£'.$basket->getTotal();?></h5>
+        <h5>£<span class="basket_total"><?php echo $basket->getTotal();?></span></h5>
       </div>
       <button class="button-custom">
       Proceed to Checkout

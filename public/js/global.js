@@ -61,7 +61,7 @@ function showExtraNav(){
 
 }
 showExtraNav()
-// ---------------reloado basket ajax-------------------
+// ---------------reloado basket products ajax-------------------
 function ReloadBasketAjax(){
   const basketContainer = document.querySelector(".body-basket")
   const dummydata= "";
@@ -70,6 +70,19 @@ function ReloadBasketAjax(){
     basketContainer.innerHTML=data;
 
 
+  })
+  .catch(error => {
+      console.error('Error:', error);
+  })
+
+}
+// ---------------reloado basket total ajax------------------
+function ReloadBasketTotalAjax(){
+  const basketTotalContainer = document.querySelector(".basket_total")
+  const dummydata= "";
+  SendDataAjax(dummydata, "ajax/reload_basket_total.php")
+  .then(data => {
+    basketTotalContainer.innerHTML=data;
   })
   .catch(error => {
       console.error('Error:', error);
@@ -88,7 +101,8 @@ function addProduct(){
         label.addEventListener("click", ()=>{
           const productId = label.getAttribute("data-prod-id");
           const productsize= label.getAttribute("data-prod-size");
-          SendDataAjax(productId, "ajax/add_to_basket.php")
+          data = {productId:productId,productsize:productsize };
+          SendDataAjax(data, "ajax/add_to_basket.php")
           .then(data => {
 
             onBasket()
@@ -257,6 +271,7 @@ function onBasket(){
   basketContainer.classList.remove("inactive-basket")
   basketContainer.classList.add("active-basket")
   ReloadBasketAjax()
+  ReloadBasketTotalAjax()
 }
 
 function offBasket(){

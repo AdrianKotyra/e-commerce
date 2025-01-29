@@ -10,16 +10,19 @@
         global $user;
         global $session;
         global $product;
-        $product_id = $_POST["data"];
+
+        $data = $_POST["data"];
+        $data_prod_id =  $data["productId"];
+        $data_prod_size =  $data["productsize"];
 
         $new_product = New Product();
 
-        // check if product with this id exists
-        $new_product->create_product($product_id);
+        // NEEED MORE VERIFICATION VALIDATION IF ID EXISTS WITH THIS SIZE
+        $new_product->create_product($data_prod_id);
 
         $product_price = $new_product->product_price;
 
-        $basket->addItem($product_id, 1, $product_price);
+        $basket->addItem($data_prod_id, 1, $product_price, $data_prod_size);
 
 
 

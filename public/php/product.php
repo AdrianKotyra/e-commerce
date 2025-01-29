@@ -180,12 +180,13 @@ class Product {
         </div>';
         return  $product_template;
     }
-    public function product_basket_Template($quantity_basket){
+    public function product_basket_Template($quantity_basket, $size){
 
         $product_template = '<div class="basket_product_template flex-row">
         <img src="./imgs/products/'.$this->product_name.'/'.$this->product_img.'" />
         <div class="prod-basket-desc col-row">
           <p class="prod-title-basket">'.$this->product_name.'</p>
+          <p class="prod-size">Size: '.$size.'</p>
           <span class="prod-price-basket"><b>£'.$this->product_price.'</b></span>
           <br>
           <div class="prod-coontroller-basket flex-row">

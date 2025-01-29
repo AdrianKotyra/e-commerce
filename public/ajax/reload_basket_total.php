@@ -6,9 +6,7 @@
     global $basket;
 
     if(isset($_POST["data"])) {
-        $basket->processUserBasket();
-
-
+        echo $basket->getTotal();
 
     }
 

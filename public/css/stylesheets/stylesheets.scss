@@ -270,11 +270,17 @@
 		color: black;
 	}
 }
-.prod-title-basket {
-	font-weight: 400;
-}
+
 .prod-basket-desc {
 	width: 100%;
+	font-size: var(--very-small);
+	.prod-title-basket {
+		font-weight: 600;
+	}
+}
+.prod-basket-desc >*{
+	line-height: 0.5;
+
 }
 .product-basket-container {
 	img {
@@ -872,6 +878,10 @@ body {
 }
 .prod-size-similar {
 	text-transform: uppercase;
+}
+.prod-size {
+	font-size: var(--very-small);
+	line-height: 0;
 }
 .similar-prod-desc {
 	display: flex;
