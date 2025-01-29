@@ -4,6 +4,63 @@ Fancybox.bind("[data-fancybox]", {
 
 });
 
+
+
+
+// ---------------extra nav display-------------------
+
+
+function showExtraNav(){
+
+  const bodymask = document.querySelector(".body-mask-nav");
+  const mainExtraNav = document.querySelector(".nav-extra");
+  const navContainers = document.querySelectorAll(".nav-extra-container");
+  const menNav = document.querySelector(".men-extra-nav");
+  const womenNav = document.querySelector(".female-extra-nav");
+
+
+
+
+  const menTrigger = document.querySelector("#cat_male")
+  const femaleTrigger = document.querySelector("#cat_female")
+  function displayExtraNavOff(){
+    document.addEventListener('mouseover', (event) => {
+      const hoveredElement = event.target;
+      if (!hoveredElement.closest('nav')) {
+        mainExtraNav.style.display="none";
+        bodymask.style.display="none";
+      }
+    });
+
+  }
+
+
+
+  menTrigger.addEventListener("mouseover", ()=>{
+    mainExtraNav.style.display="block";
+    navContainers.forEach(navGender=>{
+      navGender.style.display="none"
+      menNav.style.display="flex"
+      bodymask.style.display="block";
+    })
+    displayExtraNavOff()
+
+  })
+
+  femaleTrigger.addEventListener("mouseover", ()=>{
+    mainExtraNav.style.display="block";
+    navContainers.forEach(navGender=>{
+      navGender.style.display="none"
+      womenNav.style.display="flex"
+      bodymask.style.display="block";
+    })
+    displayExtraNavOff()
+
+  })
+
+
+}
+showExtraNav()
 // ---------------reloado basket ajax-------------------
 function ReloadBasketAjax(){
   const basketContainer = document.querySelector(".body-basket")

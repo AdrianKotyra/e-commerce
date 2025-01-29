@@ -41,6 +41,7 @@ include "php/init.php"?>
 
 
 <div class="body-mask"></div>
+<div class="body-mask-nav"></div>
 <?php include("includes/basket-user.php") ?>
 <?php include("includes/nav.php") ?>
 <!-- <div class="mobile-quick-add">

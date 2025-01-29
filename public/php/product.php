@@ -12,6 +12,42 @@ class Product {
     public $product_type;
     public $product_category;
 
+    public function product_similar_card(){
+        $product_template = '   <div class="similar-prod-col flex-row">
+            <a class="similar-prod-link" href="products.php?show='.$this->product_id.'&category='.$this->product_category.'">
+                <img src="./imgs/products/'.$this->product_name.'/'.$this->product_img.'" />
+            </a>
+            <div class="similar-prod-desc">
+                <div class="prod-desc-similar-container">
+                    <div class="header-similar-prod-desc flex-row">
+                        <span class="prod-name-similar">
+                            '.$this->product_name.'
+                        </span>
+                        <span class="prod-price-similar">
+                            £'.$this->product_price.'
+                        </span>
+                    </div>
+
+                    <div class="prod-controller-similar flex-row">
+                        <select class="prod-size-similar" name="prod-size-similar" >
+                            <option value="">size 1</option>
+                            <option value="">size 2</option>
+                            <option value="">size 3</option>
+                            <option value="">size 4</option>
+                        </select>
+                        <button class="add-similar-button" value="add-similar-button">
+                            Add to basket
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>';
+        return  $product_template;
+    }
+
+
+
+
     public function product_category_card(){
         $product_template = '
             <div class="flex-col card-product">

@@ -59,8 +59,9 @@
 
             </div>
             <button class="button-custom">Add to Cart</button>
-            <?php include("includes/products/prod_similar.php") ?>
             <?php include("includes/products/prod_extra_desc.php") ?>
+            <?php include("includes/products/prod_similar.php") ?>
+
 
         </div>
 

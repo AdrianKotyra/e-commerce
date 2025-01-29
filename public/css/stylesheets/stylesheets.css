@@ -1,3 +1,14 @@
+:root {
+  --light-gray: #f5f5f5;
+  --very-small: 0.9rem;
+  --header-section: 2rem;
+  --header-section-small: 1.6rem;
+  --extra-small: 0.8rem;
+  --icons: 1.3rem;
+  --border: #e5e7eb;
+  --medium: 1.2rem;
+}
+
 .full-screen-gallery-container {
   background-color: var(--light-gray);
 }
@@ -12,16 +23,6 @@
   transform: translate(-50%, -50%);
   left: 50%;
   top: 50%;
-}
-
-:root {
-  --light-gray: #f5f5f5;
-  --very-small: 0.9rem;
-  --header-section: 2rem;
-  --header-section-small: 1.6rem;
-  --extra-small: 0.8rem;
-  --icons: 1.3rem;
-  --border: #e5e7eb;
 }
 
 .active_nav_link {
@@ -180,6 +181,16 @@
 .body-mask {
   animation: fadein 0.5s forwards;
   z-index: 22;
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  background-color: rgba(0, 0, 0, 0.577);
+  display: none;
+}
+
+.body-mask-nav {
+  animation: fadein 0.5s forwards;
+  z-index: 2;
   width: 100vw;
   height: 100vh;
   position: fixed;
@@ -641,6 +652,33 @@ nav {
   justify-content: space-between;
 }
 
+.nav_cats_container {
+  flex: 1;
+}
+
+.nav_cats_img {
+  position: relative;
+}
+.nav_cats_img img {
+  -o-object-fit: cover;
+     object-fit: cover;
+  padding-bottom: 12px;
+  width: 200px;
+  height: 300px;
+}
+.nav_cats_img p {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  left: 50%;
+  top: 50%;
+  letter-spacing: 1rem;
+  margin-left: 4px;
+  font-weight: 600;
+  font-size: var(--medium);
+  color: white;
+  text-align: center;
+}
+
 body {
   margin: 0;
 }
@@ -650,7 +688,44 @@ body {
   flex-direction: row;
 }
 
+.nav_cats_grid {
+  display: grid;
+  width: 500px;
+  grid-template-columns: repeat(2, 1fr);
+}
+.nav_cats_grid a {
+  text-decoration: none;
+  color: black;
+  opacity: 60%;
+  padding: 4px 0;
+}
+
+.nav-extra-container {
+  padding: 16px 0;
+}
+
+.nav_cats_header {
+  font-weight: 700;
+  line-height: 2;
+}
+
+.nav-extra-container {
+  animation: fadein 0.4s ease-in-out;
+}
+
+.nav-extra {
+  display: none;
+  padding: 20px 0;
+  color: black;
+  background-color: white;
+}
+.nav-extra hr {
+  opacity: 20%;
+  margin: 0 !important;
+}
+
 .nav-categories {
+  transform: translateX(-6px);
   width: 275px;
   align-items: center;
 }
