@@ -83,10 +83,11 @@ function ReloadBasketAjax(){
 
 function addProduct(){
 
-      const allLabels = document.querySelectorAll(".hidden-prod-label");
+      const allLabels = document.querySelectorAll(".available-size");
       allLabels.forEach(label=>{
         label.addEventListener("click", ()=>{
           const productId = label.getAttribute("data-prod-id");
+          const productsize= label.getAttribute("data-prod-size");
           SendDataAjax(productId, "ajax/add_to_basket.php")
           .then(data => {
 

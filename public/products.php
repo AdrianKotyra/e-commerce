@@ -13,6 +13,7 @@
         $product_img4 = $serch_product->product_img_4;
         $product_type = $serch_product->product_type;
         $product_category = $serch_product->product_category;
+        $product_sizes = $serch_product->product_sizes_list;
 
     }
 
@@ -50,6 +51,7 @@
             <div class="hover-prod-cat-info">
                 <span><b>Color: </b></span>hovered info
             </div>
+
             <div class="choose-size-container">
                 <div class="size-container-header flex-row">
                     <span>Choose a size</span>
