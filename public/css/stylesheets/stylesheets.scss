@@ -242,16 +242,19 @@
 	justify-content: space-between;
 }
 
-.hidden-prod-label {
+.sizes-grid-prod {
+	height: 100%;
 	display: grid;
-	gap: 2px;
+
 	grid-template-columns: repeat(6, 1fr);
 	span{
+		margin: auto;
+		width: 32px;
+		height: 32px;
 		display: flex;
 		justify-content: center;
 		align-items: center;
-		width: 100%;
-		height: 100%;
+
 		border: 1px solid black;
 		opacity: 50%;
 		cursor:default;
@@ -272,20 +275,25 @@
 	grid-template-columns: repeat(6, 1fr);
 }
 .women-grid{
+	gap: 4px;
+	margin: auto;
+    width: 60%;
 	grid-template-columns: repeat(4, 1fr) !important;
 }
 .products-sizes-grid {
 	margin-bottom: 32px;
 	display: grid;
-	gap: 2px;
+	gap: 4px;
+	width:70PX;
 	grid-template-columns: repeat(6, 1fr);
+	margin: 0;
 	span{
 		cursor:default;
 		display: flex;
 		justify-content: center;
 		align-items: center;
-		width: 100%;
-		height: 100%;
+		width: 32px;
+		height: 32px;
 		border: 1px solid black;
 		opacity: 50%;
 	}
@@ -608,6 +616,8 @@
 	animation: fadein 0.4s forwards;
 }
 .banner {
+	z-index: 2;
+	position: relative;
 	font-size: var(--very-small);
 	color: white;
 	background-color: black;
@@ -657,6 +667,7 @@ nav {
 	}
 }
 .layout-card {
+	overflow: hidden;
 	height: 100%;
 	-webkit-user-select: none;
 	-moz-user-select: none;
@@ -677,6 +688,7 @@ nav {
 //   z-index: 5;
 // }
 .hidden-prod-label {
+	padding: 8px;
 	display: none;
 	align-items: center;
 	display: none;
@@ -692,27 +704,27 @@ nav {
 	transform: translate(-50%, 0%);
 }
 .hidden-prod-label-active {
-	display: grid !important;
+	display: block !important;
 	animation: prod_label_animation-forwards 0.5s forwards;
 }
 .hidden-prod-label-inactive {
-	display: grid !important;
+	display: block !important;
 	animation: prod_label_animation-backwards 0.5s forwards;
 }
 .hidden-prod-label-detailed-active {
-	display: grid !important;
+	display: block !important;
 	animation: prod_label_animation-forwards_detailed 0.5s forwards;
 }
 .hidden-prod-label-detailed-inactive {
-	display: grid !important;
+	display: block !important;
 	animation: prod_label_animation-backwards_detailed 0.5s forwards;
 }
 .clicked-active-label {
-  display: grid !important;
+  display: block !important;
 	animation: prod_label_animation-forwards_detailed 0.5s forwards;
 }
 .clicked-inactive-label {
-  display: grid !important;
+  display: block !important;
   animation: prod_label_animation-backwards_detailed 0.5s forwards;
 }
 
@@ -978,6 +990,12 @@ body {
 }
 .prod-size-similar {
 	text-transform: uppercase;
+	.size-item {
+		display: none;
+	}
+	.available-size {
+		display: block;
+	}
 }
 .prod-size {
 	font-size: var(--very-small);
@@ -1053,11 +1071,41 @@ body {
 	letter-spacing: -1px;
 
 }
+.add-prod-container-products {
+	overflow: hidden;
+	position: relative;
+	.button-alert {
+		position: absolute;
+		background-color: red;
+		bottom: 0;
+		left: 0;
+		display: block;
+
+		transform: translatey(80px);
+}
+
+}
+.active-alert{
+	display: block;
+	animation: buttonalert 1s forwards;
+}
+.inactive-alert{
+	display: none;
+}
+.selected-size-products {
+	background-color: black !important;
+	color: white;
+}
+
 .choose-size-container {
 	span {
 		letter-spacing: -1px;
-		margin-top: 16px;
+
 	}
+	.chose-size-span {
+		margin: 16px 0;
+	}
+
 }
 .size-container-header {
 	justify-content: space-between;
@@ -1896,7 +1944,7 @@ footer {
     opacity: 0%;
   }
   100% {
-    bottom: 20px;
+    bottom: 50px;
     opacity: 100% !important;
   }
 }
@@ -1906,7 +1954,7 @@ footer {
     opacity: 0%;
   }
   0% {
-    bottom: 20px;
+    bottom: 50px;
     opacity: 100%;
   }
 }
@@ -1916,7 +1964,7 @@ footer {
     opacity: 0%;
   }
   100% {
-    bottom: 20px;
+    bottom: 50px;
     opacity: 100%;
   }
 }
@@ -1926,7 +1974,7 @@ footer {
     opacity: 0%;
   }
   0% {
-    bottom: 20px;
+    bottom: 50px;
     opacity: 100%;
   }
 }
@@ -1947,3 +1995,17 @@ footer {
     transform: rotate(0);
   }
 }
+@keyframes buttonalert {
+	0% {
+	  transform: translateY(80px)
+	}
+	20% {
+	    transform: translateY(0px)
+	}
+	90% {
+	    transform: translateY(0px)
+	}
+	100% {
+		transform: translateY(80px)
+	  }
+  }

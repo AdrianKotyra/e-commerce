@@ -143,13 +143,15 @@ function generate_product_grid_sizes($product_instance){
     return $chosen_grid;
 }
 
-function generate_sizes_html($product_instance){
+function generate_sizes_html($product_instance, $tag){
              // Generate the list of sizes as HTML
              $sizes_html = '';
              $chosen_grid = '';
              $chosen_cat_sizes_list = '';
              $all_sizes_men_list = [3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14];
              $all_sizes_women_list = [2, 3, 4, 5, 6, 7, 8, 9];
+             $currentPage= basename($_SERVER['PHP_SELF']);
+
              if($product_instance->product_category =="female") {
                 $chosen_cat_sizes_list = $all_sizes_women_list;
 
@@ -161,21 +163,31 @@ function generate_sizes_html($product_instance){
              if (!empty($product_instance->product_sizes_list)) {
                  foreach ($chosen_cat_sizes_list as $size) {
                      // creating class to hightlight avilable sizes based on if size is in avilable sizes of product and then addings attributes
-                     $available_class = in_array($size, $product_instance->product_sizes_list) ? 'available-size' : '';
-                     $available_attribute = in_array($size, $product_instance->product_sizes_list)? 'data-prod-id="' . $product_instance->product_id . '" data-prod-size="' . $size . '"'
+                     $available_class = in_array($size, $product_instance->product_sizes_list)? 'available-size' : '';
+                     $available_attribute = in_array($size, $product_instance->product_sizes_list)? 'selected data-prod-id="' . $product_instance->product_id . '" data-prod-size="' . $size . '"'
                          : '';
-                     $sizes_html .= '<span ' . $available_attribute . ' class="size-item ' . $available_class . '">' . htmlspecialchars($size) . '</span>';
+                     $sizes_html .= '<'.$tag.' ' . $available_attribute . ' class="size-item ' . $available_class . '">' . htmlspecialchars($size) . '</'.$tag.'>';
                  }
              }
     return $sizes_html;
 }
 // ------------------SECTION DETAILED PRODUCTS 5 IMAGES---------------------
 function section_detailed_products($type_products) {
+
+    if(isset($_GET["category"])) {
+
+        $category = $_GET["category"];
+        $category = "male" ?    $img_src = '<img src="./imgs/detailed_section/'.$type_products.'_'.$category.'.jpg" />' : '';
+
+    } else {
+        $img_src = '<img src="./imgs/detailed_section/'.$type_products.'_mix.jpg" />';
+    }
+
     $section =
     '<section class="product-section">
         <div class="product-section-container flex-row wrapper">
             <div class="prod-main-img">
-                <img src="./imgs/detailed_section/'.$type_products.'.jpg" />
+                '.$img_src.'
                 <span class="desc-main">
                     <a href="category.php?show='.$type_products.'">
                         <p>'.$type_products.'</p>

@@ -14,6 +14,9 @@ class Product {
     public $product_sizes_list;
 
     public function product_similar_card(){
+        $sizes_html = generate_sizes_html($this, "option");
+        $chosen_grid= generate_product_grid_sizes($this);
+
         $product_template = '   <div class="similar-prod-col flex-row">
             <a class="similar-prod-link" href="products.php?show='.$this->product_id.'&category='.$this->product_category.'">
                 <img src="./imgs/products/'.$this->product_name.'/'.$this->product_img.'" />
@@ -31,10 +34,7 @@ class Product {
 
                     <div class="prod-controller-similar flex-row">
                         <select class="prod-size-similar" name="prod-size-similar" >
-                            <option value="">size 1</option>
-                            <option value="">size 2</option>
-                            <option value="">size 3</option>
-                            <option value="">size 4</option>
+                          '. $sizes_html.'
                         </select>
                         <button class="add-similar-button" value="add-similar-button">
                             Add to basket
@@ -51,7 +51,7 @@ class Product {
 
     public function product_category_card(){
           // Generate the list of sizes as HTML
-        $sizes_html = generate_sizes_html($this);
+        $sizes_html = generate_sizes_html($this, "span");
         $chosen_grid= generate_product_grid_sizes($this);
         $product_template = '
             <div class="flex-col card-product">
@@ -61,10 +61,14 @@ class Product {
                             <img src="./imgs/products/'.$this->product_name.'/'.$this->product_img.'" />
                         </div>
                     </a>
-                    <div class="hidden-prod-label '.$chosen_grid.'">
-                        '.$sizes_html.'
+                     <div class="hidden-prod-label">
+                                <p> <b>QUICK ADD TO CART </b> </p>
+                                <div class="sizes-grid-prod '.$chosen_grid.'">
+                                '.$sizes_html.'
+                                </div>
 
-                    </div>
+
+                            </div>
                 </div>
 
                 <div class="shopping-card-desc ">
@@ -83,7 +87,7 @@ class Product {
         return  $product_template;
     }
     public function product_detailed_section_Template(){
-        $sizes_html = generate_sizes_html($this);
+        $sizes_html = generate_sizes_html($this, "span");
         $chosen_grid= generate_product_grid_sizes($this);
         $product_template = '
                <div class="grid-prod ">
@@ -94,8 +98,13 @@ class Product {
                                     <img src="./imgs/products/'.$this->product_name.'/'.$this->product_img.'" />
                                 </div>
                             </a>
-                            <div class="hidden-prod-label detailed-grid '.$chosen_grid.'" data-prod-id="'.$this->product_id.'">
+                            <div class="hidden-prod-label">
+                                <p> <b>QUICK ADD TO CART </b> </p>
+                                <div class="sizes-grid-prod '.$chosen_grid.'">
                                 '.$sizes_html.'
+                                </div>
+
+
                             </div>
                     </div>
                     <div class="shopping-card-desc ">
@@ -118,7 +127,7 @@ class Product {
 
     public function product_slider_Template(){
 
-        $sizes_html = generate_sizes_html($this);
+        $sizes_html = generate_sizes_html($this, "span");
         $chosen_grid= generate_product_grid_sizes($this);
 
         $product_template = '
@@ -129,9 +138,12 @@ class Product {
                          <img src="./imgs/products/'.$this->product_name.'/'.$this->product_img.'" />
                         </div>
                     </a>
-                    <div class="hidden-prod-label '.$chosen_grid.'">
+                    <div class="hidden-prod-label">
+                        <p> <b>QUICK ADD TO CART </b> </p>
+                        <div class="sizes-grid-prod '.$chosen_grid.'">
+                          '.$sizes_html.'
+                        </div>
 
-                        '.$sizes_html.'
 
                     </div>
                 </div>
@@ -160,10 +172,10 @@ class Product {
           <br>
           <div class="prod-coontroller-basket flex-row">
 
-            <div class="prod-incrementor ">
-              <div class="controller basket-decrement">-</div>
+            <div class="prod-incrementor">
+              <div class="controller basket-decrement" data-prod-id="'.$this->product_id.'"data-prod-size="'.$size .'">-</div>
               <span class="quantity-prod-basket">'.$quantity_basket.'</span>
-              <div class="controller basket-increment">+</div>
+              <div class="controller basket-increment" data-prod-id="'.$this->product_id.'"data-prod-size="'.$size .'">+</div>
             </div>
 
             <span class="remove-item-basket">Remove</span>

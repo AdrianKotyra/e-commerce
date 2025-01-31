@@ -61,6 +61,7 @@ function showExtraNav(){
 
 }
 showExtraNav()
+
 // ---------------reloado basket products ajax-------------------
 function ReloadBasketAjax(){
   const basketContainer = document.querySelector(".body-basket")
@@ -68,7 +69,8 @@ function ReloadBasketAjax(){
   SendDataAjax(dummydata, "ajax/reload_basket.php")
   .then(data => {
     basketContainer.innerHTML=data;
-
+    // when basket is reloaded initiate decrement and increment function ajax
+    increment_decrement_basket()
 
   })
   .catch(error => {
@@ -83,6 +85,8 @@ function ReloadBasketTotalAjax(){
   SendDataAjax(dummydata, "ajax/reload_basket_total.php")
   .then(data => {
     basketTotalContainer.innerHTML=data;
+
+
   })
   .catch(error => {
       console.error('Error:', error);
@@ -92,11 +96,11 @@ function ReloadBasketTotalAjax(){
 
 
 
-// ---------------add product to basket ajax-------------------
+// ---------------quick add product to basket ajax-------------------
 
 function addProduct(){
-
-      const allLabels = document.querySelectorAll(".available-size");
+      // select only those not in prodcuts.php by selecting by container which is not in products.php
+      const allLabels = document.querySelectorAll(".sizes-grid-prod .available-size");
       allLabels.forEach(label=>{
         label.addEventListener("click", ()=>{
           const productId = label.getAttribute("data-prod-id");
@@ -117,9 +121,51 @@ function addProduct(){
 }
 addProduct()
 
+function increment_decrement_basket(){
+  // create sub function to increment and decrement
+  function send_data_ajax(controller){
+    const productId = controller.getAttribute("data-prod-id");
+    const productsize= controller.getAttribute("data-prod-size");
+    data = {productId:productId,productsize:productsize };
+
+    if(controller.classList.contains("basket-increment")) {
+      SendDataAjax(data, "ajax/add_to_basket.php")
+      .then(data => {
+        onBasket()
+      })
+      .catch(error => {
+          console.error('Error:', error);
+      })
+    }
+    else {
+      SendDataAjax(data, "ajax/basket-decrement.php")
+      .then(data => {
+        onBasket()
+      })
+      .catch(error => {
+          console.error('Error:', error);
+      })
+    }
+
+  }
 
 
+  // select only those not in prodcuts.php by selecting by container which is not in products.php
+  const allLabels = document.querySelectorAll(".prod-incrementor");
+  allLabels.forEach(label=>{
+    const incrementor = label.querySelector(".basket-increment");
+    const decrementor = label.querySelector(".basket-decrement");
 
+    incrementor.addEventListener("click", ()=>{
+      send_data_ajax(incrementor)
+    })
+    decrementor.addEventListener("click", ()=>{
+      send_data_ajax(decrementor)
+    })
+   })
+}
+
+increment_decrement_basket()
 
 
 // ---------------mobile quick add product-------------------

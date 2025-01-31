@@ -1,6 +1,7 @@
 
 // -----------------Size guide Modal-----------------
 
+
 function displayModalGuideSizes() {
     const triggerfemale = document.querySelector(".size_guide_container_female");
     const triggermale = document.querySelector(".size_guide_container_male");
@@ -312,3 +313,62 @@ class Slider {
 }
 
 const ImageSlider = new Slider(document.querySelector(".image-slider"));
+
+
+
+// ------------------------ajax send product to basket--------------------------------
+
+
+
+function addProduct_products(){
+
+  const allLabels = document.querySelectorAll(".available-size");
+  const submitPurchased = document.querySelector(".add-to-card-products");
+
+  allLabels.forEach(label=>{
+    label.addEventListener("click", ()=>{
+      allLabels.forEach(label=>{
+        label.classList.remove("selected-size-products");
+      })
+      label.classList.add("selected-size-products");
+
+
+
+
+    })
+
+
+
+  })
+
+  submitPurchased.addEventListener("click", ()=>{
+    const buttonAlert = document.querySelector(".button-alert");
+    const selectedSize = document.querySelector(".selected-size-products");
+    if(selectedSize) {
+      const productId = selectedSize.getAttribute("data-prod-id");
+      const productsize= selectedSize.getAttribute("data-prod-size");
+      data = {productId:productId,productsize:productsize };
+      SendDataAjax(data, "ajax/add_to_basket.php")
+      .then(data => {
+
+        onBasket()
+
+      })
+      .catch(error => {
+          console.error('Error:', error);
+      })
+    }
+    else {
+      buttonAlert.classList.remove("active-alert");
+      void buttonAlert.offsetWidth;
+      buttonAlert.classList.add("active-alert");
+
+
+    }
+
+
+
+  })
+
+}
+addProduct_products()

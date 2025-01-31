@@ -16,7 +16,7 @@
         $product_category = $serch_product->product_category;
         $product_sizes = $serch_product->product_sizes_list;
 
-        $sizes_html = generate_sizes_html($serch_product);
+        $sizes_html = generate_sizes_html($serch_product, "span");
         $chosen_grid= generate_product_grid_sizes($serch_product);
 }
 
@@ -57,7 +57,7 @@
 
             <div class="choose-size-container">
                 <div class="size-container-header flex-row">
-                    <span>Choose a size</span>
+                    <span class="chose-size-span">Choose a size</span>
                     <span class="link_sizes">Size Guide</span>
 
                 </div>
@@ -69,8 +69,11 @@
                 </div>
 
             </div>
+            <div class="add-prod-container-products">
+                <button class="button-custom add-to-card-products">Add to Cart</button>
+                <button class="button-custom button-alert">Please select a size</button>
+            </div>
 
-            <button class="button-custom">Add to Cart</button>
             <?php include("includes/products/prod_extra_desc.php") ?>
             <?php include("includes/products/prod_similar.php") ?>
 
