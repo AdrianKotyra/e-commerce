@@ -12,10 +12,13 @@
         $product_img3 = $serch_product->product_img_3;
         $product_img4 = $serch_product->product_img_4;
         $product_type = $serch_product->product_type;
+        $product_desc = $serch_product->product_desc;
         $product_category = $serch_product->product_category;
         $product_sizes = $serch_product->product_sizes_list;
 
-    }
+        $sizes_html = generate_sizes_html($serch_product);
+        $chosen_grid= generate_product_grid_sizes($serch_product);
+}
 
 
 ?>
@@ -31,7 +34,7 @@
             <p  class="prod-category"><a href="index.php?category=<?php echo $product_category;?>"> <?php echo  $product_category;?> </a> > <a href="category.php?show=<?php echo $product_type;?>&category=<?php echo $product_category;?>"> <?php echo  $product_type;?> </a></p>
             <h1  class="prod-name"><?php echo  $product_name;?></h1>
             <span class="prod-price"><b>£<?php echo  $product_price;?></b></span>
-            <span class="prod-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat laborum minima earum eligendi pariatur beatae odit!</span>
+            <span class="prod-desc"><?php echo  $product_desc;?></span>
             <div class="product-categories flex-row">
                 <a  href="<?php echo htmlspecialchars('imgs/products/'.$product_name . '/' . $product_img1); ?> "data-fancybox="<?php echo $product_id;?>" data-caption="<?php echo $product_name;?>" data-fancybox-index=<?php echo $product_id;?>>
                     <img  src="<?php echo htmlspecialchars('imgs/products/'.$product_name . '/' . $product_img1); ?> "/>
@@ -58,8 +61,15 @@
                     <span class="link_sizes">Size Guide</span>
 
                 </div>
+                <div class="products-sizes-grid <?php echo  $chosen_grid;?>">
+                    <?php
+                        echo $sizes_html;
+
+                    ?>
+                </div>
 
             </div>
+
             <button class="button-custom">Add to Cart</button>
             <?php include("includes/products/prod_extra_desc.php") ?>
             <?php include("includes/products/prod_similar.php") ?>

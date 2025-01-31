@@ -4,12 +4,12 @@ class Product {
     public $product_id;
     public $product_name;
     public $product_price;
-    public $product_stock;
     public $product_img;
     public $product_img_2;
     public $product_img_3;
     public $product_img_4;
     public $product_type;
+    public $product_desc;
     public $product_category;
     public $product_sizes_list;
 
@@ -50,19 +50,9 @@ class Product {
 
 
     public function product_category_card(){
-           // Generate the list of sizes as HTML
-           $sizes_html = '';
-           $all_sizes_list = [3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14];
-
-           if (!empty($this->product_sizes_list)) {
-               foreach ($all_sizes_list as $size) {
-                   // creating class to hightlight avilable sizes based on if size is in avilable sizes of product and then addings attributes
-                   $available_class = in_array($size, $this->product_sizes_list) ? 'available-size' : '';
-                   $available_attribute = in_array($size, $this->product_sizes_list)? 'data-prod-id="' . $this->product_id . '" data-prod-size="' . $size . '"'
-                       : '';
-                   $sizes_html .= '<span ' . $available_attribute . ' class="size-item ' . $available_class . '">' . htmlspecialchars($size) . '</span>';
-               }
-           }
+          // Generate the list of sizes as HTML
+        $sizes_html = generate_sizes_html($this);
+        $chosen_grid= generate_product_grid_sizes($this);
         $product_template = '
             <div class="flex-col card-product">
                 <div class="layout-card">
@@ -71,7 +61,7 @@ class Product {
                             <img src="./imgs/products/'.$this->product_name.'/'.$this->product_img.'" />
                         </div>
                     </a>
-                    <div class="hidden-prod-label">
+                    <div class="hidden-prod-label '.$chosen_grid.'">
                         '.$sizes_html.'
 
                     </div>
@@ -93,21 +83,10 @@ class Product {
         return  $product_template;
     }
     public function product_detailed_section_Template(){
-        // Generate the list of sizes as HTML
-        $sizes_html = '';
-        $all_sizes_list = [3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14];
-
-        if (!empty($this->product_sizes_list)) {
-            foreach ($all_sizes_list as $size) {
-                // creating class to hightlight avilable sizes based on if size is in avilable sizes of product and then addings attributes
-                $available_class = in_array($size, $this->product_sizes_list) ? 'available-size' : '';
-                $available_attribute = in_array($size, $this->product_sizes_list)? 'data-prod-id="' . $this->product_id . '" data-prod-size="' . $size . '"'
-                    : '';
-                $sizes_html .= '<span ' . $available_attribute . ' class="size-item ' . $available_class . '">' . htmlspecialchars($size) . '</span>';
-            }
-        }
+        $sizes_html = generate_sizes_html($this);
+        $chosen_grid= generate_product_grid_sizes($this);
         $product_template = '
-               <div class="grid-prod">
+               <div class="grid-prod ">
                 <div class="flex-col card-product">
                     <div class="layout-card">
                             <a class="prod-link" href="products.php?show='.$this->product_id.'&category='.$this->product_category.'">
@@ -115,7 +94,7 @@ class Product {
                                     <img src="./imgs/products/'.$this->product_name.'/'.$this->product_img.'" />
                                 </div>
                             </a>
-                            <div class="hidden-prod-label detailed-grid" data-prod-id="'.$this->product_id.'">
+                            <div class="hidden-prod-label detailed-grid '.$chosen_grid.'" data-prod-id="'.$this->product_id.'">
                                 '.$sizes_html.'
                             </div>
                     </div>
@@ -138,19 +117,9 @@ class Product {
     }
 
     public function product_slider_Template(){
-       // Generate the list of sizes as HTML
-        $sizes_html = '';
-        $all_sizes_list = [3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14];
 
-        if (!empty($this->product_sizes_list)) {
-            foreach ($all_sizes_list as $size) {
-                // creating class to hightlight avilable sizes based on if size is in avilable sizes of product and then addings attributes
-                $available_class = in_array($size, $this->product_sizes_list) ? 'available-size' : '';
-                $available_attribute = in_array($size, $this->product_sizes_list)? 'data-prod-id="' . $this->product_id . '" data-prod-size="' . $size . '"'
-                    : '';
-                $sizes_html .= '<span ' . $available_attribute . ' class="size-item ' . $available_class . '">' . htmlspecialchars($size) . '</span>';
-            }
-        }
+        $sizes_html = generate_sizes_html($this);
+        $chosen_grid= generate_product_grid_sizes($this);
 
         $product_template = '
             <div class="flex-col card-product">
@@ -160,7 +129,7 @@ class Product {
                          <img src="./imgs/products/'.$this->product_name.'/'.$this->product_img.'" />
                         </div>
                     </a>
-                    <div class="hidden-prod-label">
+                    <div class="hidden-prod-label '.$chosen_grid.'">
 
                         '.$sizes_html.'
 
@@ -238,8 +207,9 @@ class Product {
                 $this->product_img_2 = $row['product_img2'];
                 $this->product_img_3 = $row['product_img3'];
                 $this->product_img_4 = $row['product_img4'];
+                $this->product_desc = $row['product_desc'];
                 $this->product_price = $row['product_price'];
-                $this->product_stock = $row['product_stock'];
+
                 // $this->product_description = $row['product_description'];
             }
 
@@ -247,7 +217,7 @@ class Product {
 
             // get product sizes
             // create list of ids of sizes---------------
-            $result_sizes = $database->query_array("SELECT * FROM rel_products_sizes WHERE prod_id = $id");
+            $result_sizes = $database->query_array("SELECT * FROM rel_products_sizes WHERE prod_id = $id and stock > 0");
             while ($row = mysqli_fetch_array($result_sizes)) {
 
                 $list_sizes_id[] = $row["size_id"];

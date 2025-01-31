@@ -133,6 +133,42 @@ function displayDetailedProducts($type_products) {
 
 }}
 
+function generate_product_grid_sizes($product_instance){
+    if($product_instance->product_category =="female") {
+        $chosen_grid = 'women-grid';
+    }
+    else {
+        $chosen_grid = 'men-grid';
+    }
+    return $chosen_grid;
+}
+
+function generate_sizes_html($product_instance){
+             // Generate the list of sizes as HTML
+             $sizes_html = '';
+             $chosen_grid = '';
+             $chosen_cat_sizes_list = '';
+             $all_sizes_men_list = [3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14];
+             $all_sizes_women_list = [2, 3, 4, 5, 6, 7, 8, 9];
+             if($product_instance->product_category =="female") {
+                $chosen_cat_sizes_list = $all_sizes_women_list;
+
+            }
+            else {
+                $chosen_cat_sizes_list = $all_sizes_men_list;
+
+            }
+             if (!empty($product_instance->product_sizes_list)) {
+                 foreach ($chosen_cat_sizes_list as $size) {
+                     // creating class to hightlight avilable sizes based on if size is in avilable sizes of product and then addings attributes
+                     $available_class = in_array($size, $product_instance->product_sizes_list) ? 'available-size' : '';
+                     $available_attribute = in_array($size, $product_instance->product_sizes_list)? 'data-prod-id="' . $product_instance->product_id . '" data-prod-size="' . $size . '"'
+                         : '';
+                     $sizes_html .= '<span ' . $available_attribute . ' class="size-item ' . $available_class . '">' . htmlspecialchars($size) . '</span>';
+                 }
+             }
+    return $sizes_html;
+}
 // ------------------SECTION DETAILED PRODUCTS 5 IMAGES---------------------
 function section_detailed_products($type_products) {
     $section =
@@ -332,7 +368,10 @@ function login_User_link(){
                     LOG IN
                 </span>
 
-            </a>';
+            </a>
+
+
+            ';
     }
     if ($session->signed_in===true && $user-> user_status=="admin") {
         echo '

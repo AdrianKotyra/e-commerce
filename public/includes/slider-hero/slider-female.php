@@ -6,21 +6,21 @@
   <div class="swiper-slide">
     <figure class="slide-bgimg" style="background-image:url('./imgs/slider/slider-female/slider%20(1).jpg') ; background-position: bottom;">  </figure>
       <div class="content">
-        <p class="title">female</p>
+        <p class="title">Lorem Ipsum</p>
         <span class="caption">Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</span>
       </div>
     </div>
     <div class="swiper-slide">
     <figure class="slide-bgimg" style="background-image:url('./imgs/slider/slider-female/slider%20(2).jpg') ">  </figure>
       <div class="content">
-        <p class="title">Shaun Matthews</p>
+        <p class="title">Lorem Ipsum</p>
         <span class="caption">Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</span>
       </div>
     </div>
     <div class="swiper-slide">
     <figure class="slide-bgimg" style="background-image:url('./imgs/slider/slider-female/slider%20(3).jpg') ; background-position: bottom;">  </figure>
       <div class="content">
-        <p class="title">Alexis Berry</p>
+        <p class="title">Lorem Ipsum</p>
         <span class="caption">Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</span>
       </div>
     </div>
@@ -28,14 +28,14 @@
     <div class="swiper-slide">
     <figure class="slide-bgimg" style="background-image:url('./imgs/slider/slider-female/slider%20(4).jpg')">  </figure>
       <div class="content">
-        <p class="title">Trevor	Copeland</p>
+        <p class="title">Lorem Ipsum</p>
         <span class="caption">Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</span>
       </div>
     </div>
     <div class="swiper-slide">
     <figure class="slide-bgimg" style="background-image:url('./imgs/slider/slider-female/slider%20(5).jpg')">  </figure>
       <div class="content">
-        <p class="title">Bernadette	Newman</p>
+        <p class="title">Lorem Ipsum</p>
         <span class="caption">Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</span>
       </div>
     </div>

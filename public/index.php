@@ -13,6 +13,7 @@
     <?php include("includes/sections/video-section.php") ?>
     <?php section_slider_products("Retro/Classic Sneakers") ?>
     <?php section_slider_products("Trending") ?>
+
     <?php include("includes/sections/news-section.php") ?>
 
 

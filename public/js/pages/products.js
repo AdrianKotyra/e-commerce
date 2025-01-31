@@ -1,3 +1,218 @@
+
+// -----------------Size guide Modal-----------------
+
+function displayModalGuideSizes() {
+    const triggerfemale = document.querySelector(".size_guide_container_female");
+    const triggermale = document.querySelector(".size_guide_container_male");
+    const modalContainer = document.querySelector(".modal-container");
+    const triggerGuides = document.querySelector(".link_sizes");
+
+    const guidesTemplate = `
+    <div class="sizes_guide">
+        <div class="size_gruide_container">
+
+            <div class="cross-gruides">
+                <i class="fa-solid fa-xmark"></i>
+            </div>
+
+            <div class="gender-guides-controller flex-row">
+                <button class="men-guide">Men</button>
+                <button class="female-guide active-guide-trigger">Female</button>
+            </div>
+
+            <table class="table_guides table_female">
+                <thead>
+                    <tr>
+                    <th>UK Size</th>
+                    <th>EU Size</th>
+                    <th>US Size</th>
+                    <th>Foot Length (mm)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                    <td>2</td>
+                    <td>35</td>
+                    <td>4</td>
+                    <td>212</td>
+                    </tr>
+                    <tr class="highlight-row">
+                    <td>3</td>
+                    <td>36</td>
+                    <td>5</td>
+                    <td>220</td>
+                    </tr>
+                    <tr>
+                    <td>4</td>
+                    <td>37</td>
+                    <td>6</td>
+                    <td>229</td>
+                    </tr>
+                    <tr class="highlight-row">
+                    <td>5</td>
+                    <td>38</td>
+                    <td>7</td>
+                    <td>237</td>
+                    </tr>
+                    <tr>
+                    <td>6</td>
+                    <td>39</td>
+                    <td>8</td>
+                    <td>246</td>
+                    </tr>
+                    <tr class="highlight-row">
+                    <td>7</td>
+                    <td>40</td>
+                    <td>9</td>
+                    <td>254</td>
+                    </tr>
+                    <tr>
+                    <td>8</td>
+                    <td>41</td>
+                    <td>10</td>
+                    <td>262</td>
+                    </tr>
+                    <tr class="highlight-row">
+                    <td>9</td>
+                    <td>42</td>
+                    <td>11</td>
+                    <td>270</td>
+                    </tr>
+                </tbody>
+            </table>
+
+
+    <table class="table_guides table_male">
+      <thead>
+        <tr>
+          <th>UK Size</th>
+          <th>EU Size</th>
+          <th>US Size</th>
+          <th>Foot Length (mm)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>3</td>
+          <td>35.5</td>
+          <td>4</td>
+          <td>220</td>
+        </tr>
+        <tr class="highlight-row">
+          <td>4</td>
+          <td>37</td>
+          <td>5</td>
+          <td>229</td>
+        </tr>
+        <tr>
+          <td>5</td>
+          <td>38</td>
+          <td>6</td>
+          <td>237</td>
+        </tr>
+        <tr class="highlight-row">
+          <td>6</td>
+          <td>39</td>
+          <td>7</td>
+          <td>246</td>
+        </tr>
+        <tr>
+          <td>7</td>
+          <td>40.5</td>
+          <td>8</td>
+          <td>254</td>
+        </tr>
+        <tr class="highlight-row">
+          <td>8</td>
+          <td>42</td>
+          <td>9</td>
+          <td>262</td>
+        </tr>
+        <tr>
+          <td>9</td>
+          <td>43</td>
+          <td>10</td>
+          <td>271</td>
+        </tr>
+        <tr class="highlight-row">
+          <td>10</td>
+          <td>44.5</td>
+          <td>11</td>
+          <td>279</td>
+        </tr>
+        <tr>
+          <td>11</td>
+          <td>46</td>
+          <td>12</td>
+          <td>288</td>
+        </tr>
+        <tr class="highlight-row">
+          <td>12</td>
+          <td>47</td>
+          <td>13</td>
+          <td>296</td>
+        </tr>
+        <tr>
+          <td>13</td>
+          <td>48</td>
+          <td>14</td>
+          <td>305</td>
+        </tr>
+        <tr class="highlight-row">
+          <td>14</td>
+          <td>49.5</td>
+          <td>15</td>
+          <td>314</td>
+        </tr>
+      </tbody>
+    </table>
+      </div>
+
+  </div>
+  `;
+
+  triggerGuides.addEventListener("click", () => {
+    const bodyMask = document.querySelector(".body-mask");
+    bodyMask.style.display="block";
+    modalContainer.innerHTML = guidesTemplate;
+
+    const triggerMale = document.querySelector(".men-guide");
+    const triggerFemale = document.querySelector(".female-guide");
+    const maleTable = document.querySelector(".table_male");
+    const femaleTable = document.querySelector(".table_female");
+    const closeModal = document.querySelector(".cross-gruides i");
+
+    // Show the appropriate table based on the gender button click
+    triggerMale.addEventListener("click", () => {
+      maleTable.classList.add("table_guides_active");
+      femaleTable.classList.remove("table_guides_active");
+      triggerMale.classList.add("active-guide-trigger");
+      triggerFemale.classList.remove("active-guide-trigger");
+    });
+
+    triggerFemale.addEventListener("click", () => {
+      femaleTable.classList.add("table_guides_active");
+      maleTable.classList.remove("table_guides_active");
+      triggerFemale.classList.add("active-guide-trigger");
+      triggerMale.classList.remove("active-guide-trigger");
+    });
+
+    // Close the modal when the "X" icon is clicked
+    closeModal.addEventListener("click", () => {
+      modalContainer.innerHTML = "";
+      bodyMask.style.display="none";
+    });
+
+    // Initially show the female table by default
+    femaleTable.classList.add("table_guides_active");
+  });
+}
+
+
+
+displayModalGuideSizes()
+
+
 class Slider {
     constructor(slider) {
         this.slider = slider;
