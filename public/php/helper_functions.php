@@ -166,9 +166,10 @@ function generate_sizes_html($product_instance, $tag){
                      $available_class = in_array($size, $product_instance->product_sizes_list)? 'available-size' : '';
                      $available_attribute = in_array($size, $product_instance->product_sizes_list)? 'selected data-prod-id="' . $product_instance->product_id . '" data-prod-size="' . $size . '"'
                          : '';
-                     $sizes_html .= '<'.$tag.' ' . $available_attribute . ' class="size-item ' . $available_class . '">' . htmlspecialchars($size) . '</'.$tag.'>';
+                     $sizes_html .= '<'.$tag.' ' . $available_attribute . ' class="size-item ' . $available_class . '" value='.htmlspecialchars($size).'>' . htmlspecialchars($size) . '</'.$tag.'>';
                  }
              }
+
     return $sizes_html;
 }
 // ------------------SECTION DETAILED PRODUCTS 5 IMAGES---------------------

@@ -4,12 +4,7 @@ Fancybox.bind("[data-fancybox]", {
 
 });
 
-
-
-
 // ---------------extra nav display-------------------
-
-
 function showExtraNav(){
 
   const bodymask = document.querySelector(".body-mask-nav");
@@ -62,110 +57,13 @@ function showExtraNav(){
 }
 showExtraNav()
 
-// ---------------reloado basket products ajax-------------------
-function ReloadBasketAjax(){
-  const basketContainer = document.querySelector(".body-basket")
-  const dummydata= "";
-  SendDataAjax(dummydata, "ajax/reload_basket.php")
-  .then(data => {
-    basketContainer.innerHTML=data;
-    // when basket is reloaded initiate decrement and increment function ajax
-    increment_decrement_basket()
-
-  })
-  .catch(error => {
-      console.error('Error:', error);
-  })
-
-}
-// ---------------reloado basket total ajax------------------
-function ReloadBasketTotalAjax(){
-  const basketTotalContainer = document.querySelector(".basket_total")
-  const dummydata= "";
-  SendDataAjax(dummydata, "ajax/reload_basket_total.php")
-  .then(data => {
-    basketTotalContainer.innerHTML=data;
-
-
-  })
-  .catch(error => {
-      console.error('Error:', error);
-  })
-
-}
 
 
 
-// ---------------quick add product to basket ajax-------------------
-
-function addProduct(){
-      // select only those not in prodcuts.php by selecting by container which is not in products.php
-      const allLabels = document.querySelectorAll(".sizes-grid-prod .available-size");
-      allLabels.forEach(label=>{
-        label.addEventListener("click", ()=>{
-          const productId = label.getAttribute("data-prod-id");
-          const productsize= label.getAttribute("data-prod-size");
-          data = {productId:productId,productsize:productsize };
-          SendDataAjax(data, "ajax/add_to_basket.php")
-          .then(data => {
-
-            onBasket()
-
-          })
-          .catch(error => {
-              console.error('Error:', error);
-          })
-        })
-      })
-
-}
-addProduct()
-
-function increment_decrement_basket(){
-  // create sub function to increment and decrement
-  function send_data_ajax(controller){
-    const productId = controller.getAttribute("data-prod-id");
-    const productsize= controller.getAttribute("data-prod-size");
-    data = {productId:productId,productsize:productsize };
-
-    if(controller.classList.contains("basket-increment")) {
-      SendDataAjax(data, "ajax/add_to_basket.php")
-      .then(data => {
-        onBasket()
-      })
-      .catch(error => {
-          console.error('Error:', error);
-      })
-    }
-    else {
-      SendDataAjax(data, "ajax/basket-decrement.php")
-      .then(data => {
-        onBasket()
-      })
-      .catch(error => {
-          console.error('Error:', error);
-      })
-    }
-
-  }
 
 
-  // select only those not in prodcuts.php by selecting by container which is not in products.php
-  const allLabels = document.querySelectorAll(".prod-incrementor");
-  allLabels.forEach(label=>{
-    const incrementor = label.querySelector(".basket-increment");
-    const decrementor = label.querySelector(".basket-decrement");
 
-    incrementor.addEventListener("click", ()=>{
-      send_data_ajax(incrementor)
-    })
-    decrementor.addEventListener("click", ()=>{
-      send_data_ajax(decrementor)
-    })
-   })
-}
 
-increment_decrement_basket()
 
 
 // ---------------mobile quick add product-------------------
@@ -307,47 +205,7 @@ function disableLinksSliderOnDrag() {
 
 disableLinksSliderOnDrag()
 
-// -------------BASKET SHOW--------------------
 
-
-function onBasket(){
-  const basketContainer = document.querySelector(".basket-user");
-  const bodymask = document.querySelector(".body-mask");
-  bodymask.style.display="block";
-  basketContainer.classList.remove("inactive-basket")
-  basketContainer.classList.add("active-basket")
-  ReloadBasketAjax()
-  ReloadBasketTotalAjax()
-}
-
-function offBasket(){
-  const basketContainer = document.querySelector(".basket-user");
-  const bodymask = document.querySelector(".body-mask");
-
-  bodymask.style.display="none";
-  basketContainer.classList.remove("active-basket")
-  basketContainer.classList.add("inactive-basket")
-}
-
-function showBasket(){
-  const basketTrigger = document.querySelector(".backet-container");
-  const crossBasket = document.querySelector(".cross-basket")
-
-  basketTrigger.addEventListener("click", ()=>{
-    onBasket()
-  })
-
-
-
-  crossBasket.addEventListener("click", ()=>{
-      offBasket()
-
-  })
-
-}
-
-
-showBasket()
 
 // ----------------BFOR HORIZONTAL SCROLLING AND VERTICAL ---------------
 

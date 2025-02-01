@@ -341,7 +341,7 @@ function addProduct_products(){
 
   })
 
-  submitPurchased.addEventListener("click", ()=>{
+  submitPurchased&&submitPurchased.addEventListener("click", ()=>{
     const buttonAlert = document.querySelector(".button-alert");
     const selectedSize = document.querySelector(".selected-size-products");
     if(selectedSize) {

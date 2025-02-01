@@ -12,7 +12,93 @@ class Product {
     public $product_desc;
     public $product_category;
     public $product_sizes_list;
+    public $product_availability;
 
+
+    // Function to fetch product details from the database
+    public function create_product($id) {
+        if ($id) {
+            global $database;
+
+            // get product type name
+            $result_product_type = $database->query_array("SELECT * FROM rel_types_products WHERE product_id = $id");
+            while ($row = mysqli_fetch_array($result_product_type)) {
+                $type_id = $row['type_id'];
+                $type_name = $database->query_array("SELECT * FROM types WHERE id = $type_id");
+                while ($row = mysqli_fetch_array($type_name)) {
+                    $this->product_type = $row['type_name'];
+                }
+            }
+
+            // get product category name
+            $result_product_type = $database->query_array("SELECT * FROM rel_categories_products WHERE prod_id = $id");
+            while ($row = mysqli_fetch_array($result_product_type)) {
+                $cat_id = $row['cat_id'];
+                $type_name = $database->query_array("SELECT * FROM categories WHERE cat_id = $cat_id");
+                while ($row = mysqli_fetch_array($type_name)) {
+                    $this->product_category = $row['cat_name'];
+                }
+            }
+            // get product info
+            $result = $database->query_array("SELECT * FROM products WHERE product_id = $id");
+            while ($row = mysqli_fetch_array($result)) {
+                $this->product_id = $row['product_id'];
+                $this->product_name = $row['product_name'];
+                $this->product_img = $row['product_img'];
+                $this->product_img_2 = $row['product_img2'];
+                $this->product_img_3 = $row['product_img3'];
+                $this->product_img_4 = $row['product_img4'];
+                $this->product_desc = $row['product_desc'];
+                $this->product_price = $row['product_price'];
+
+                // $this->product_description = $row['product_description'];
+            }
+
+
+
+            // get product sizes
+            // create list of ids of sizes---------------
+            $result_sizes = $database->query_array("SELECT * FROM rel_products_sizes WHERE prod_id = $id and stock > 0");
+            while ($row = mysqli_fetch_array($result_sizes)) {
+
+                $list_sizes_id[] = $row["size_id"];
+            }
+            // create list of sizes based on ids---------------
+            if (!empty($list_sizes_id)) {
+                $sizes_ids_str = implode(",", $list_sizes_id);
+
+                // Query the sizes table to get the actual sizes
+                $result_actual_sizes = $database->query_array("SELECT * FROM sizes WHERE id IN ($sizes_ids_str)");
+
+                $product_sizes_list = [];
+                while ($size_row = mysqli_fetch_array($result_actual_sizes)) {
+                    $product_sizes_list[] = $size_row["size"];
+                }
+
+
+                $this->product_sizes_list = $product_sizes_list;
+                // if product has at least one stock > 1 in any size
+                $this->product_availability  = true;
+            } else {
+                $this->product_availability  = false;
+            }
+        }
+    }
+
+    // Function to return product price
+    public function getPrice() {
+        return $this->product_price;
+    }
+
+    // Function to return product stock availability
+    public function getStock() {
+        return $this->product_stock;
+    }
+
+    // Function to return product name
+    public function getName() {
+        return $this->product_name;
+    }
     public function product_similar_card(){
         $sizes_html = generate_sizes_html($this, "option");
         $chosen_grid= generate_product_grid_sizes($this);
@@ -129,7 +215,7 @@ class Product {
 
         $sizes_html = generate_sizes_html($this, "span");
         $chosen_grid= generate_product_grid_sizes($this);
-
+        $message = $this->product_availability? 'QUICK ADD TO CART' : "Out of stock";
         $product_template = '
             <div class="flex-col card-product">
                 <div class="layout-card">
@@ -139,7 +225,7 @@ class Product {
                         </div>
                     </a>
                     <div class="hidden-prod-label">
-                        <p> <b>QUICK ADD TO CART </b> </p>
+                        <p> <b>'.$message.'</b> </p>
                         <div class="sizes-grid-prod '.$chosen_grid.'">
                           '.$sizes_html.'
                         </div>
@@ -162,13 +248,13 @@ class Product {
         return  $product_template;
     }
     public function product_basket_Template($quantity_basket, $size){
-
+        $prod_total = $this->product_price*$quantity_basket;
         $product_template = '<div class="basket_product_template flex-row">
         <img src="./imgs/products/'.$this->product_name.'/'.$this->product_img.'" />
         <div class="prod-basket-desc col-row">
           <p class="prod-title-basket">'.$this->product_name.'</p>
           <p class="prod-size">Size: '.$size.'</p>
-          <span class="prod-price-basket"><b>£'.$this->product_price.'</b></span>
+          <span class="prod-price-basket"><b>£'. $prod_total.'</b></span>
           <br>
           <div class="prod-coontroller-basket flex-row">
 
@@ -186,86 +272,6 @@ class Product {
         return  $product_template;
     }
 
-    // Function to fetch product details from the database
-    public function create_product($id) {
-        if ($id) {
-            global $database;
-
-            // get product type name
-            $result_product_type = $database->query_array("SELECT * FROM rel_types_products WHERE product_id = $id");
-            while ($row = mysqli_fetch_array($result_product_type)) {
-                $type_id = $row['type_id'];
-                $type_name = $database->query_array("SELECT * FROM types WHERE id = $type_id");
-                while ($row = mysqli_fetch_array($type_name)) {
-                    $this->product_type = $row['type_name'];
-                }
-            }
-
-            // get product category name
-            $result_product_type = $database->query_array("SELECT * FROM rel_categories_products WHERE prod_id = $id");
-            while ($row = mysqli_fetch_array($result_product_type)) {
-                $cat_id = $row['cat_id'];
-                $type_name = $database->query_array("SELECT * FROM categories WHERE cat_id = $cat_id");
-                while ($row = mysqli_fetch_array($type_name)) {
-                    $this->product_category = $row['cat_name'];
-                }
-            }
-            // get product info
-            $result = $database->query_array("SELECT * FROM products WHERE product_id = $id");
-            while ($row = mysqli_fetch_array($result)) {
-                $this->product_id = $row['product_id'];
-                $this->product_name = $row['product_name'];
-                $this->product_img = $row['product_img'];
-                $this->product_img_2 = $row['product_img2'];
-                $this->product_img_3 = $row['product_img3'];
-                $this->product_img_4 = $row['product_img4'];
-                $this->product_desc = $row['product_desc'];
-                $this->product_price = $row['product_price'];
-
-                // $this->product_description = $row['product_description'];
-            }
-
-
-
-            // get product sizes
-            // create list of ids of sizes---------------
-            $result_sizes = $database->query_array("SELECT * FROM rel_products_sizes WHERE prod_id = $id and stock > 0");
-            while ($row = mysqli_fetch_array($result_sizes)) {
-
-                $list_sizes_id[] = $row["size_id"];
-            }
-            // create list of sizes based on ids---------------
-            if (!empty($list_sizes_id)) {
-                $sizes_ids_str = implode(",", $list_sizes_id);
-
-                // Query the sizes table to get the actual sizes
-                $result_actual_sizes = $database->query_array("SELECT * FROM sizes WHERE id IN ($sizes_ids_str)");
-
-                $product_sizes_list = [];
-                while ($size_row = mysqli_fetch_array($result_actual_sizes)) {
-                    $product_sizes_list[] = $size_row["size"];
-                }
-
-
-                $this->product_sizes_list = $product_sizes_list;
-            }
-        }
-    }
-
-    // Function to return product price
-    public function getPrice() {
-        return $this->product_price;
-    }
-
-    // Function to return product stock availability
-    public function getStock() {
-        return $this->product_stock;
-    }
-
-    // Function to return product name
-    public function getName() {
-        return $this->product_name;
-    }
 }
 
 ?>

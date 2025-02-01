@@ -405,9 +405,16 @@
 	cursor: pointer;
 }
 .remove-item-basket {
+	cursor: pointer;
 	text-decoration: underline;
 }
+.prod_unavailable {
+	position: absolute;
+	@include centerAbsolute();
+	width: 100% !important;
+}
 .prod-incrementor {
+	user-select: none;
 	font-weight: 600;
 	padding: 10px;
 	border: 2px solid rgba(0, 0, 0, 0.1215686275);
@@ -415,6 +422,7 @@
 	& > * {
 		display: inline;
 		margin-right: 10px;
+		user-select: none;
 	}
 }
 .hamb-container {
@@ -687,6 +695,10 @@ nav {
 //   top: 0;
 //   z-index: 5;
 // }
+.button-out-stock {
+	cursor: default !important;
+	background-color: #d2cece !important;
+}
 .hidden-prod-label {
 	padding: 8px;
 	display: none;
@@ -699,7 +711,6 @@ nav {
 	background-color: white;
 	bottom: 60px;
 	width: 90%;
-	height: 100px;
 	left: calc(50% - 5px);
 	transform: translate(-50%, 0%);
 }

@@ -15,6 +15,7 @@
         $product_desc = $serch_product->product_desc;
         $product_category = $serch_product->product_category;
         $product_sizes = $serch_product->product_sizes_list;
+        $product_availability = $serch_product->product_availability;
 
         $sizes_html = generate_sizes_html($serch_product, "span");
         $chosen_grid= generate_product_grid_sizes($serch_product);
@@ -51,13 +52,11 @@
                 </a>
             </div>
 
-            <div class="hover-prod-cat-info">
-                <span><b>Color: </b></span>hovered info
-            </div>
+
 
             <div class="choose-size-container">
                 <div class="size-container-header flex-row">
-                    <span class="chose-size-span">Choose a size</span>
+                    <span class="chose-size-span"><?php echo  $product_availability? 'Choose a size' : '</span>'?>
                     <span class="link_sizes">Size Guide</span>
 
                 </div>
@@ -70,7 +69,7 @@
 
             </div>
             <div class="add-prod-container-products">
-                <button class="button-custom add-to-card-products">Add to Cart</button>
+                <button class="button-custom  <?php echo  $product_availability?  'add-to-card-products' : 'button-out-stock';?> "><?php echo  $product_availability? 'Add to cart' : 'out of stock'?></button>
                 <button class="button-custom button-alert">Please select a size</button>
             </div>
 
