@@ -250,7 +250,9 @@ class Product {
     public function product_basket_Template($quantity_basket, $size){
         $prod_total = $this->product_price*$quantity_basket;
         $product_template = '<div class="basket_product_template flex-row">
-        <img src="./imgs/products/'.$this->product_name.'/'.$this->product_img.'" />
+        <div class="product_img_container">
+            <img src="./imgs/products/'.$this->product_name.'/'.$this->product_img.'" />
+        </div>
         <div class="prod-basket-desc col-row">
           <p class="prod-title-basket">'.$this->product_name.'</p>
           <p class="prod-size">Size: '.$size.'</p>

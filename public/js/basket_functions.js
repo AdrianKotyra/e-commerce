@@ -10,7 +10,7 @@ function onBasket(){
     basketContainer.classList.remove("inactive-basket")
     basketContainer.classList.add("active-basket")
     ReloadBasketAjax()
-    ReloadBasketTotalAjax()
+
   }
 
   function offBasket(){
@@ -89,7 +89,7 @@ function onBasket(){
         if (data) {
           SendDataAjax(data, "ajax/remove_from_basket.php")
             .then(data => {
-              onBasket();
+              ReloadBasketAjax()
             })
             .catch(error => {
               console.error('Error:', error);
@@ -98,7 +98,7 @@ function onBasket(){
       });
     });
   }
-
+  removeFromBasket()
   // -------------increment and decrement --------------------
   function increment_decrement_basket(){
     // create sub function to increment and decrement
@@ -110,7 +110,7 @@ function onBasket(){
       if(controller.classList.contains("basket-increment")) {
         SendDataAjax(data, "ajax/add_to_basket.php")
         .then(data => {
-          onBasket()
+          ReloadBasketAjax()
         })
         .catch(error => {
             console.error('Error:', error);
@@ -119,7 +119,7 @@ function onBasket(){
       else {
         SendDataAjax(data, "ajax/basket-decrement.php")
         .then(data => {
-          onBasket()
+          ReloadBasketAjax()
         })
         .catch(error => {
             console.error('Error:', error);
@@ -170,31 +170,29 @@ function onBasket(){
 
   }
   addProduct()
+
   // ---------------reloado basket products ajax-------------------
   function ReloadBasketAjax(){
-    const basketContainer = document.querySelector(".body-basket")
+    const basketContainer = document.querySelectorAll(".body-basket");
+    const basketTotalContainer = document.querySelectorAll(".basket_total");
+    const basketNumber = document.querySelector(".basket-number");
     const dummydata= "";
     SendDataAjax(dummydata, "ajax/reload_basket.php")
     .then(data => {
-      basketContainer.innerHTML=data;
+      const basket_reloaded = data[0];
+      const total_reloaded = data[1];
+      const number_items = data[2];
+
+
+      number_items>0? basketNumber.classList.add("basket-active") : basketNumber.classList.remove("basket-active");
+
+      basketNumber.innerHTML=number_items;
+      basketContainer.forEach(ele=>{ele.innerHTML=basket_reloaded;})
+      basketTotalContainer.forEach(ele=>{ele.innerHTML=total_reloaded;})
       // when basket is reloaded initiate decrement and increment function ajax
       increment_decrement_basket()
+      // when basket is reloaded initiate remove item function ajax
       removeFromBasket()
-
-    })
-    .catch(error => {
-        console.error('Error:', error);
-    })
-
-  }
-  // ---------------reloado basket total ajax------------------
-  function ReloadBasketTotalAjax(){
-    const basketTotalContainer = document.querySelector(".basket_total")
-    const dummydata= "";
-    SendDataAjax(dummydata, "ajax/reload_basket_total.php")
-    .then(data => {
-      basketTotalContainer.innerHTML=data;
-
 
     })
     .catch(error => {

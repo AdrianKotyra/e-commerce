@@ -273,6 +273,7 @@
 }
 .men-grid {
 	grid-template-columns: repeat(6, 1fr);
+
 }
 .women-grid{
 	gap: 4px;
@@ -356,11 +357,7 @@
 	font-weight: 700;
 	justify-content: space-between;
 }
-.cart-button {
-	border: 2px solid black !important;
-	background-color: white !important;
-	color: black !important;
-}
+
 .trending_section {
 
 	.shopping-column {
@@ -403,6 +400,23 @@
 }
 .controller {
 	cursor: pointer;
+}
+.basket-active {
+	background: black;
+}
+.basket-number {
+	font-weight: 900;
+	text-align: center;
+    width: 20px;
+	font-size: 0.6rem;
+    padding: 2px;
+    border-radius: 50%;
+    color: white;
+
+    z-index: 2;
+    right: -20px;
+    top: -5px;
+    position: absolute;
 }
 .remove-item-basket {
 	cursor: pointer;
@@ -539,6 +553,21 @@
 		padding: 6px 0;
 	}
 }
+.wrapper-extra {
+
+	max-width: 72rem;
+}
+.section-cart-container{
+	margin: auto
+}
+.product_img_container {
+	background-color: var(--light-gray);
+}
+.section-cart {
+	.section-header{
+		margin-bottom: 30px
+	}
+}
 .login-wrapper {
   @include mobilePaddig();
 	text-align: left;
@@ -652,10 +681,15 @@
 }
 .basket_product_template {
 	padding: 8px ;
-	img{
+	.product_img_container{
 		margin-right: 8px;
 		width: 25%;
-		object-fit: cover;
+
+		img{
+			object-fit: contain;
+			width: 100%;
+			height: 100%;
+		}
 	}
 }
 nav {
@@ -699,6 +733,39 @@ nav {
 	cursor: default !important;
 	background-color: #d2cece !important;
 }
+
+.cart-container {
+	.basket_product_template .product_img_container{
+		width: 25%;
+	}
+	.prod-basket-desc {
+		height: 260px;
+	}
+	.cart-overview {
+		h5{
+			margin-bottom: 40px;
+		}
+		.button-custom{
+			width: 100%;
+		}
+		.cart-total {
+			width: 100%;
+			justify-content: space-between;
+			span{
+				margin-bottom: 26px;
+			}
+		}
+	}
+}
+.cart-link {
+	width: 100%;
+	.cart-button {
+		border: 2px solid black !important;
+		background-color: white !important;
+		color: black !important;
+		width: 100%;
+	}
+}
 .hidden-prod-label {
 	padding: 8px;
 	display: none;
@@ -713,6 +780,9 @@ nav {
 	width: 90%;
 	left: calc(50% - 5px);
 	transform: translate(-50%, 0%);
+	.men-grid .size-item  {
+		margin-bottom: 4px !important;
+	}
 }
 .hidden-prod-label-active {
 	display: block !important;
@@ -1417,6 +1487,9 @@ footer {
 	width: 100%;
 }
 .backet-container {
+	margin-bottom: 4px;
+	font-size: 1rem;
+	position: relative;
 	cursor: pointer;
 }
 .grid-setting-links {
@@ -1636,9 +1709,7 @@ footer {
 	-webkit-backface-visibility:hidden;
   }
 
-  .swiper-wrapper{
 
-  }
   .swiper-slide{
 	overflow: hidden;
 	@extend %backface_visibility_hidden;

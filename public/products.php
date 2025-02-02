@@ -53,7 +53,6 @@
             </div>
 
 
-
             <div class="choose-size-container">
                 <div class="size-container-header flex-row">
                     <span class="chose-size-span"><?php echo  $product_availability? 'Choose a size' : '</span>'?>

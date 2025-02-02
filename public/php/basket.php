@@ -62,25 +62,56 @@ class Basket {
         }
         return $total;
     }
+    // Get the number of items
+    public function getNumber() {
+        $number = 0;
+        if (isset($_SESSION['baskets'])) {
+            foreach ($_SESSION['baskets']as $item) {
+                $number+=1;
 
+
+
+            }
+            return $number;
+        }
+    }
+      // Get the number of subitems
+      public function getNumberTotal() {
+        $number = 0;
+        if (isset($_SESSION['baskets'])) {
+            foreach ($_SESSION['baskets']as $item=>$details) {
+                $number+=  $_SESSION['baskets'][$item]['quantity'];
+
+
+
+            }
+            return $number;
+        }
+    }
     public function processUserBasket() {
         if (isset($_SESSION['baskets'])) {
             $reversed_baskets = array_reverse($_SESSION['baskets'], true);
-
+            $products_basket = '';
             foreach ($reversed_baskets as $unique_key => $details) {
                 $product_new = new Product();
                 $product_id = $details['id'];
 
 
                 $product_new->create_product($product_id );
-                echo $product_new->product_basket_Template($details['quantity'],$details['size']);
+
+                $products_basket.=  $product_new->product_basket_Template($details['quantity'],$details['size']);
+
+
             }
 
+            return  $products_basket;
 
         } else {
-            echo "No basket found for user ID: <br>";
+            return "No basket found for user ID: <br>";
         }
+        return $products_basket;
     }
+
 
 }
 $basket = new Basket();

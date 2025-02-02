@@ -48,6 +48,11 @@
 
             <?php login_User_link()?>
             <div class="backet-container">
+            <?php $basket_number = $basket->getNumber(); ?>
+                <span class="basket-number <?php if ($basket_number > 0) echo 'basket-active'; ?>">
+                    <?php if ($basket_number > 0) echo $basket_number; ?>
+                </span>
+
                 <i class="fa-solid fa-basket-shopping"></i>
             </div>
 

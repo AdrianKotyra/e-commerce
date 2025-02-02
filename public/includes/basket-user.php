@@ -22,8 +22,11 @@
       <button class="button-custom">
       Proceed to Checkout
       </button>
-      <button class="button-custom cart-button">
-      Your Cart
-      </button>
+      <a class="cart-link"href="cart.php">
+        <button class="button-custom cart-button">
+        Your Cart
+        </button>
+      </a>
+
     </div>
   </div>
