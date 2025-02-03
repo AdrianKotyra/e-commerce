@@ -1,3 +1,4 @@
+<?php  header('Content-Type: application/json');?>
 <?php session_start()?>
 <?php include "../php/init.php"?>
 
@@ -11,7 +12,7 @@
 
 
         $data = [$user_basket, $user_total, $number_items];
-        header('Content-Type: application/json');
+
 
         echo json_encode($data);  // Return JSON encoded data
     }

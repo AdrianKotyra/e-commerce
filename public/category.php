@@ -5,6 +5,7 @@
       <?php
         if(isset($_GET["show"])){
             global $connection;
+
             $result_product_type =  secure_query_fetch_data("SELECT * FROM types WHERE type_name", $_GET["show"]);
             if(mysqli_num_rows($result_product_type)>0) {
                 while ($row = mysqli_fetch_array($result_product_type)) {
@@ -53,14 +54,15 @@
                 <div class="filter-dropdown inactive-dropdown-filter">
                     <?php $_GET["show"];
                         $type = $_GET["show"];
+                        $category = $_GET["category"];
                     ?>
                     <form action="category.php" method="GET">
                         <input type="hidden" name="show" value="<?php echo htmlspecialchars($type); ?>">
                         <div class="dropdown-content">
 
-                            <p class="flex-row"><input name="category"type="radio" value="female">Womens</p>
-                            <p class="flex-row"><input name="category"type="radio" value="male">Mens</p>
-                            <p class="flex-row"><input name="category"type="radio" value="mixed">Both</p>
+                            <p class="flex-row"><input <?php  echo $category=="female"? 'checked ' : '' ?> name="category"type="radio" value="female">Womens</p>
+                            <p class="flex-row"><input <?php  echo $category=="male"? 'checked ' : '' ?>name="category"type="radio" value="male">Mens</p>
+                            <p class="flex-row"><input <?php  echo $category=="mixed"? 'checked ' : '' ?> name="category"type="radio" value="mixed">Both</p>
 
 
 
@@ -74,17 +76,19 @@
             </div>
             <div class="filter-col flex-row">
                 <div class="container-cat-filter flex-row">
-                    <span>cat1</span>
+                    <span>Sizes</span>
                     <i class="fa-solid fa-angle-down"></i>
                 </div>
 
                 <div class="filter-dropdown inactive-dropdown-filter">
-                    <div class="dropdown-content">
-                        <p>dsdsa</p>
-                        <p>dsdsa</p>
-                        <p>dsdsa</p>
-                        <button class="button-custom">APPLY</button>
-                    </div>
+                    <form action="category.php" method="GET">
+                        <div class="dropdown-content">
+                        <p class="flex-row"><input <?php  echo $category=="female"? 'checked ' : '' ?> name="category"type="radio" value="female">Womens</p>
+                            <p class="flex-row"><input <?php  echo $category=="male"? 'checked ' : '' ?>name="category"type="radio" value="male">Mens</p>
+                            <p class="flex-row"><input <?php  echo $category=="mixed"? 'checked ' : '' ?> name="category"type="radio" value="mixed">Both</p>
+                            <button class="button-custom">APPLY</button>
+                        </div>
+                    </form>
                 </div>
 
             </div>

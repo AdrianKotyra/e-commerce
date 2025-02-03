@@ -52,6 +52,7 @@ include "php/init.php"?>
 </div>
 <?php include("includes/basket-user.php") ?>
 <?php include("includes/nav.php") ?>
+<?php include("includes/nav-mobile.php") ?>
 <!-- <div class="mobile-quick-add">
 
 </div> -->

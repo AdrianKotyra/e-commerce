@@ -38,7 +38,7 @@
 
         <div class="logo-nav nav-col">
             <a href="index.php">
-                <p class="logo-name">Hi-Top Sneakers </p>
+                <p class="logo-name">H!-Top Sneakers </p>
             </a>
 
         </div>

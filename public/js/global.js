@@ -59,11 +59,59 @@ showExtraNav()
 
 
 
+// ---------------mobile nav display-------------------
+
+function displayMobileNav(){
+  function switchCategories(){
+    const maleSwitcher = document.querySelector(".maleSwitch");
+    const femaleSwitcher = document.querySelector(".femaleSwitch");
+    const maleContainer = document.querySelector(".body-mobile-nav .male-cats");
+    const femaleContainer = document.querySelector(".body-mobile-nav .female-cats ");
+    const allCatsSwitcher = document.querySelectorAll(".top-nav-gender-switcher span");
+    const allCats = document.querySelectorAll(".mobile-cats");
+
+    maleSwitcher.addEventListener("click", ()=>{
+      allCatsSwitcher.forEach(ele=>{
+        ele.classList.remove("mobile-active-cat")
+      })
+      allCats.forEach(ele=>{
+        ele.classList.remove("active-mobile-nav")
+      })
+      maleContainer.classList.add("active-mobile-nav");
+      maleSwitcher.classList.add("mobile-active-cat");
+    })
+
+    femaleSwitcher.addEventListener("click", ()=>{
+      allCatsSwitcher.forEach(ele=>{
+        ele.classList.remove("mobile-active-cat")
+      })
+      allCats.forEach(ele=>{
+        ele.classList.remove("active-mobile-nav")
+      })
+      femaleContainer.classList.add("active-mobile-nav");
+
+      femaleSwitcher.classList.add("mobile-active-cat");
+    })
+  }
+
+  const triggerMobile = document.querySelector(".hamb-container");
+  const mobileNav = document.querySelector(".nav-mobile");
+  triggerMobile.addEventListener("click", ()=>{
+    mobileNav.classList.toggle("active-mobile-nav");
+    switchCategories()
+
+  })
+  window.addEventListener("resize", ()=>{
+    if(window.innerWidth>=1024) {
+      mobileNav.classList.remove("active-mobile-nav");
+    }
+  })
 
 
+}
 
 
-
+displayMobileNav()
 
 
 // ---------------mobile quick add product-------------------
@@ -166,7 +214,6 @@ function SendDataAjax(sendData, file) {
       });
   });
 }
-
 
 
 

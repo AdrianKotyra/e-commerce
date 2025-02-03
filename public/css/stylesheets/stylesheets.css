@@ -80,6 +80,50 @@
   top: 50%;
 }
 
+.nav-mobile {
+  animation: mobileNav 0.2s forwards;
+  display: none;
+  position: sticky;
+  top: 40px;
+  z-index: 3;
+  background-color: white;
+  height: 100vh;
+  width: 100%;
+}
+.nav-mobile .mobile-cats {
+  display: none;
+  flex-direction: column;
+}
+.nav-mobile .mobile-cats a {
+  text-decoration: none;
+  color: black;
+  font-weight: 400;
+  line-height: 2rem;
+  letter-spacing: -1px;
+  font-size: var(--very-small);
+}
+.nav-mobile .body-mobile-nav {
+  height: 90vh;
+  overflow-y: scroll;
+}
+.nav-mobile .body-mobile-nav h5 {
+  padding: 20px 0 10px 0;
+}
+.nav-mobile .top-nav-gender-switcher * {
+  flex: 1;
+  cursor: pointer;
+  border: 1px solid black;
+  text-align: center;
+  padding: 6px 0;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.mobile-active-cat {
+  background-color: black !important;
+  color: white !important;
+}
+
 .active_nav_link {
   background-color: black;
   color: white !important;
@@ -99,8 +143,9 @@
 }
 
 .logo-name {
+  white-space: nowrap;
   margin: auto;
-  font-weight: 600;
+  font-weight: 800;
   letter-spacing: 0.3rem;
   font-size: var(--header-section-small);
   font-family: ui-monospace;
@@ -694,7 +739,7 @@
 .login-container {
   justify-content: right;
   display: flex;
-  width: 275px;
+  width: 33%;
   align-items: center;
 }
 .login-container .nav-col {
@@ -856,6 +901,19 @@ nav {
   object-fit: cover;
 }
 
+.nav-mobile-container {
+  width: 100%;
+}
+
+.active-mobile-nav {
+  display: flex !important;
+}
+
+.active-mobile-cat {
+  animation: fadein 0.3s forwards;
+  display: flex !important;
+}
+
 .detailed-grid {
   left: 50% !important;
 }
@@ -943,7 +1001,7 @@ body {
 
 .nav-categories {
   transform: translateX(-6px);
-  width: 275px;
+  width: 33%;
   align-items: center;
 }
 .nav-categories .cat {
@@ -1846,14 +1904,14 @@ footer {
 
 @media screen and (min-width: 1024px) {
   .wrapper {
-    padding-left: 2%;
-    padding-right: 2%;
+    padding-left: 4%;
+    padding-right: 4%;
   }
 }
 @media screen and (min-width: 1200px) {
   .wrapper {
-    padding-left: 5%;
-    padding-right: 5%;
+    padding-left: 7%;
+    padding-right: 7%;
   }
 }
 @media screen and (max-width: 1200px) {
@@ -1873,6 +1931,19 @@ footer {
   }
 }
 @media screen and (max-width: 1024px) {
+  .swiper-slide .content {
+    left: 50%;
+    top: 50%;
+    text-align: center;
+    transform: translate(-50%, -50%);
+  }
+  .wrapper {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+  .logo-name {
+    font-size: 1.2rem;
+  }
   .hero-section {
     height: 70vh;
   }
@@ -2011,6 +2082,9 @@ footer {
   }
 }
 @media screen and (max-width: 767px) {
+  .swiper-slide .content {
+    width: 100%;
+  }
   .full-screen-news {
     display: none;
   }
@@ -2156,5 +2230,13 @@ footer {
   }
   100% {
     transform: translateY(80px);
+  }
+}
+@keyframes mobileNav {
+  0% {
+    transform: translatex(-100vw);
+  }
+  100% {
+    transform: translatex(0);
   }
 }/*# sourceMappingURL=stylesheets.css.map */
