@@ -6,6 +6,8 @@
     <?php
         if(isset($_GET["category"])) {
             $cat = $_GET["category"];
+        } else {
+            $cat = '';
         }
 
 
@@ -15,9 +17,11 @@
             <div class="hamb-container">
                 <i class="fa-solid fa-bars"></i>
             </div>
+            <div class="cats-nav-container-extra-nav flex-row extra-nav-trigger">
+                <a id="cat_male"href="index.php?category=male" class="cat <?php if($cat== "male" ) { echo 'active_nav_link'; } ?>">MENS</a>
+                <a id="cat_female"href="index.php?category=female" class="cat <?php if($cat== "female") { echo 'active_nav_link'; } ?>">WOMENS</a>
 
-            <a id="cat_male"href="index.php?category=male" class="cat <?php if($cat== "male" ) { echo 'active_nav_link'; } ?>">MENS</a>
-            <a id="cat_female"href="index.php?category=female" class="cat <?php if($cat== "female") { echo 'active_nav_link'; } ?>">WOMENS</a>
+            </div>
 
             <div class="cat">
 
@@ -61,7 +65,7 @@
 
 
     </div>
-    <div class="nav-extra wrapper ">
+    <div class="nav-extra wrapper extra-nav-trigger">
         <hr>
         <div class="flex-row nav-extra-container men-extra-nav">
 

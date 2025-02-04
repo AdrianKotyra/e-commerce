@@ -12,7 +12,7 @@
         </div>
 
         <div class="user-info-img">
-            <img class="event-img"src="https://images.pexels.com/photos/27639777/pexels-photo-27639777/free-photo-of-voiture-de-sport-blanche-toyota-garee-dans-un-parking-souterrain.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" />
+            <img class="event-img"src="./imgs/account/acc.jpg" />
         </div>
 
     </div>

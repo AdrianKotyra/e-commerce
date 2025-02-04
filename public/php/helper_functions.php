@@ -45,6 +45,63 @@ function Redirect_Not_Logged_User() {
 
 
 }
+
+
+function displaySizesSelect($sizeGET){
+    global $database;
+    $checked = '';
+    $sizes='';
+    $result_sizes = $database->query_array("SELECT * FROM sizes");
+    while ($row = mysqli_fetch_array($result_sizes)) {
+        $list_sizes[] = $row["size"];
+    }
+    $checked = $sizeGET == "all"? "checked" : '';
+    $sizes.='<p class="flex-row size-radio"><input '.$checked.' name="size"type="radio" value="all">all</p>';
+    foreach ($list_sizes as $size ) {
+        $checked = $sizeGET == $size? "checked" : '';
+        $sizes.=  '<p class="flex-row size-radio"><input '.$checked.' name="size"type="radio" value="'.$size.'">'.$size.'</p>';
+    }
+
+    return $sizes;
+}
+
+
+// ------------------DISPLAY searched PRODUCTS -----------------------------
+function displaySearchedProducts() {
+    global $connection;
+    $searched = '';
+    $output= '';
+    if(isset($_GET["search"])) {
+        $searched =  $_GET["search"];
+        $query = "SELECT * FROM products WHERE product_name LIKE '%$searched%'";
+        $searched_products = mysqli_query($connection, $query);
+        while ($row = mysqli_fetch_assoc($searched_products)) {
+            $prod_id = $row["product_id"];
+            if(isset($_GET["category"]) && $_GET["category"]!="mixed"){
+                $category_products_ids = listenCategory();
+                if (in_array($prod_id, $category_products_ids)) {
+                    $product_new = new Product();
+                    $product_new->create_product($prod_id);
+                    $output.= $product_new->product_category_card();
+                }
+            }
+            else {
+                $product_new = new Product();
+                $product_new->create_product($prod_id);
+                $output.= $product_new->product_category_card();
+            }
+        }
+        return $output;
+    }
+
+    else {
+       return;
+    }
+
+
+
+}
+
 // ------------------DISPLAY PRODUCTS CATEGORY-----------------------------
 function displayCategoryProducts($type_products) {
     global $connection;

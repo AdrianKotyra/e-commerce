@@ -1,5 +1,5 @@
 :root {
-  --light-gray: #f5f5f5;
+  --light-gray: #f7f3f3;
   --very-small: 0.9rem;
   --header-section: 2rem;
   --header-section-small: 1.6rem;
@@ -231,6 +231,10 @@
   max-width: 100%;
   text-align: center;
   font-weight: 600;
+}
+
+#search-input {
+  opacity: 0;
 }
 
 .search-input-container input {
@@ -989,6 +993,7 @@ body {
 }
 
 .nav-extra {
+  transform: translateY(-10px);
   display: none;
   padding: 20px 0;
   color: black;
@@ -1298,6 +1303,7 @@ body {
 }
 
 .search-box-nav {
+  align-items: center;
   display: flex;
   flex-wrap: nowrap;
 }
@@ -1307,6 +1313,9 @@ body {
   padding: 0;
 }
 .search-box-nav input {
+  margin-left: 10px;
+  height: 25px;
+  border: 1px solid rgba(0, 0, 0, 0.436);
   opacity: 0%;
   vertical-align: 4px;
   width: 125px;
@@ -1446,11 +1455,21 @@ section {
   animation: hideBasket 0.5s forwards;
 }
 
+.size-radio {
+  font-weight: 600;
+  display: flex;
+  justify-content: space-between;
+  margin: 2px;
+  width: 39%;
+}
+
 .inactive-search-bar {
-  animation: fadeout 0.4s forwards;
+  visibility: hidden;
+  opacity: 0;
 }
 
 .active-search-bar {
+  visibility: visible;
   transition: 0.4s;
   transform: translatex(0%) !important;
   display: block !important;
@@ -1649,7 +1668,6 @@ footer {
   container-type: inline-size;
   contain: content;
   background-color: rgba(0, 0, 0, 0.4);
-  box-shadow: rgba(0, 0, 0, 0.2) 0px 1px 2px, rgba(0, 0, 0, 0.3) 0px 2px 4px, rgba(0, 0, 0, 0.25) 0px 4px 8px, rgba(0, 0, 0, 0.2) 0px 8px 16px, rgba(0, 0, 0, 0.15) 0px 16px 32px;
 }
 
 .slider__content {
@@ -1697,7 +1715,7 @@ footer {
 .slider-navigation {
   background: rgba(0, 0, 0, 0) !important;
   z-index: 10;
-  display: grid;
+  display: none;
   grid-auto-flow: column;
   grid-template-columns: repeat(6, 1fr);
   grid-auto-columns: 100%;
@@ -2009,7 +2027,6 @@ footer {
     width: 100%;
   }
   :root {
-    --light-gray: #f1eeee;
     --very-small: 1rem;
     --header-section: 1.2rem;
     --extra-small: 0.9rem;

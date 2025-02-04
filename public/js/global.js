@@ -21,7 +21,7 @@ function showExtraNav(){
   function displayExtraNavOff(){
     document.addEventListener('mouseover', (event) => {
       const hoveredElement = event.target;
-      if (!hoveredElement.closest('nav')) {
+      if (!hoveredElement.closest('.extra-nav-trigger')) {
         mainExtraNav.style.display="none";
         bodymask.style.display="none";
       }
@@ -52,6 +52,7 @@ function showExtraNav(){
     displayExtraNavOff()
 
   })
+
 
 
 }
