@@ -32,7 +32,7 @@
         </div>
 
         <div class="product-info ">
-            <p  class="prod-category"><a href="index.php?category=<?php echo $product_category;?>"> <?php echo  $product_category;?> </a> > <a href="category.php?show=<?php echo $product_type;?>&category=<?php echo $product_category;?>"> <?php echo  $product_type;?> </a></p>
+            <p  class="prod-category"><a href="index.php?category=<?php echo $product_category;?>"> <?php echo  $product_category;?> </a> > <a href="category.php?type=<?php echo $product_type;?>&category=<?php echo $product_category;?>"> <?php echo  $product_type;?> </a></p>
             <h1  class="prod-name"><?php echo  $product_name;?></h1>
             <span class="prod-price"><b>£<?php echo  $product_price;?></b></span>
             <span class="prod-desc"><?php echo  $product_desc;?></span>

@@ -10,7 +10,7 @@ function get_products_types_nav($category){
 
     while ($row = mysqli_fetch_assoc($select_product_types)) {
         $type_names = $row["type_name"];
-        echo '<a href="category.php?show='.$type_names.'&category='.$category.'">
+        echo '<a href="category.php?type='.$type_names.'&category='.$category.'">
             <span>'.$type_names.'</span>
         </a>';
     }
@@ -46,6 +46,31 @@ function Redirect_Not_Logged_User() {
 
 }
 
+// ------------------DISPLAY all types  PRODUCTS -----------------------------
+
+function get_products_types_select($typeGET){
+    global $connection;
+    $types = "";
+    $checked = '';
+    $query = "SELECT * FROM types";
+    $select_product_types = mysqli_query($connection, $query);
+    if (!$select_product_types) {
+        die("Query failed: " . mysqli_error($connection));
+    }
+    $checked = $typeGET == "all"? "checked" : '';
+    $types.='<p class="flex-row size-radio"><input '.$checked.' name="type"type="radio" value="all">all</p>';
+    while ($row = mysqli_fetch_assoc($select_product_types)) {
+        $type_name = $row["type_name"];
+        $checked = $typeGET == $type_name? "checked" : '';
+        $types.='<p class="flex-row size-radio"><input '.$checked.' name="type"type="radio" value="'.$type_name.'">'.$type_name.'</p>';
+    }
+    return $types;
+}
+
+
+
+
+// ------------------DISPLAY all sizes PRODUCTS -----------------------------
 
 function displaySizesSelect($sizeGET){
     global $database;
@@ -66,84 +91,129 @@ function displaySizesSelect($sizeGET){
 }
 
 
+
+
+
+
 // ------------------DISPLAY searched PRODUCTS -----------------------------
 function displaySearchedProducts() {
     global $connection;
-    $searched = '';
-    $output= '';
-    if(isset($_GET["search"])) {
-        $searched =  $_GET["search"];
+    $output = '';
+
+    if (isset($_GET["search"])) {
+        $searched = $_GET["search"];
+        $list_products_ids = [];
+
+
         $query = "SELECT * FROM products WHERE product_name LIKE '%$searched%'";
         $searched_products = mysqli_query($connection, $query);
+
         while ($row = mysqli_fetch_assoc($searched_products)) {
             $prod_id = $row["product_id"];
-            if(isset($_GET["category"]) && $_GET["category"]!="mixed"){
+            $include_product = true;  // Flag to decide if product should be included
+
+            // Filter by category if set
+            if (isset($_GET["category"]) && $_GET["category"] != "mixed") {
                 $category_products_ids = listenCategory();
-                if (in_array($prod_id, $category_products_ids)) {
-                    $product_new = new Product();
-                    $product_new->create_product($prod_id);
-                    $output.= $product_new->product_category_card();
+                if (!in_array($prod_id, $category_products_ids)) {
+                    $include_product = false;
                 }
             }
-            else {
-                $product_new = new Product();
-                $product_new->create_product($prod_id);
-                $output.= $product_new->product_category_card();
+
+            // Filter by type if set
+            if ($include_product && isset($_GET["type"]) && $_GET["type"] != "all") {
+                $list_of_products_ids_in_type = get_Products_list_ids_by_type_name();
+                if (!in_array($prod_id, $list_of_products_ids_in_type)) {
+                    $include_product = false;
+                }
+            }
+
+            // Filter by size if set
+            if ($include_product && isset($_GET["size"]) && $_GET["size"] != "all") {
+                $list_of_products_ids_in_size = get_Products_list_ids_by_size();
+                if (!in_array($prod_id, $list_of_products_ids_in_size)) {
+                    $include_product = false;
+                }
+            }
+
+
+
+            // Add product to the list if it passes filters
+            if ($include_product) {
+                $list_products_ids[] = $prod_id;
             }
         }
+
+        // Display products
+        foreach ($list_products_ids as $product_id) {
+            $product_new = new Product();
+            $product_new->create_product($product_id);
+            $output .= $product_new->product_category_card();
+        }
+
         return $output;
     }
 
-    else {
-       return;
-    }
-
-
-
+    return;
 }
 
 // ------------------DISPLAY PRODUCTS CATEGORY-----------------------------
 function displayCategoryProducts($type_products) {
+    $list_products_ids = [];
     global $connection;
     $output = '';
-    // Sanitize and escape the category name to prevent SQL injection
-    $type_products = mysqli_real_escape_string($connection, $type_products);
-    // Retrieve the type ID
+
     $query = "SELECT * FROM types WHERE type_name = '$type_products'";
     $select_product_types = mysqli_query($connection, $query);
-    if (!$select_product_types) {
-        die("Query failed: " . mysqli_error($connection));
-    }
-    // Fetch category ID if it exists
+
+
     if ($row = mysqli_fetch_assoc($select_product_types)) {
         $type_id = $row["id"];
         // Retrieve related product IDs
         $query2 = "SELECT * FROM rel_types_products WHERE type_id = $type_id ";
-
         $select_products = mysqli_query($connection, $query2);
-        if (!$select_products) {
-            die("Query failed: " . mysqli_error($connection));
-        }
+
         while ($product_row = mysqli_fetch_assoc($select_products)) {
             $prod_id = $product_row["product_id"];
+            $include_product = true;  // Flag to decide if product should be included
 
-            if(isset($_GET["category"]) && $_GET["category"]!="mixed"){
+            // Filter by category if set
+            if (isset($_GET["category"]) && $_GET["category"] != "mixed") {
                 $category_products_ids = listenCategory();
-                if (in_array($prod_id, $category_products_ids)) {
-                    $product_new = new Product();
-                    $product_new->create_product($prod_id);
-                    $output.= $product_new->product_category_card();
+                if (!in_array($prod_id, $category_products_ids)) {
+                    $include_product = false;
                 }
             }
-            else {
-                $product_new = new Product();
-                $product_new->create_product($prod_id);
-                $output.= $product_new->product_category_card();
-            }
-    }
-    return $output;
 
-}}
+
+            // Filter by size if set
+            if ($include_product && isset($_GET["size"]) && $_GET["size"] != "all") {
+                $list_of_products_ids_in_size = get_Products_list_ids_by_size();
+                if (!in_array($prod_id, $list_of_products_ids_in_size)) {
+                    $include_product = false;
+                }
+            }
+
+
+
+            // Add product to the list if it passes filters
+            if ($include_product) {
+                $list_products_ids[] = $prod_id;
+            }
+        }
+
+        // Display products
+        foreach ($list_products_ids as $product_id) {
+            $product_new = new Product();
+            $product_new->create_product($product_id);
+            $output .= $product_new->product_category_card();
+        }
+
+        return $output;
+    }
+
+    return;
+}
 
 
 
@@ -235,9 +305,13 @@ function section_detailed_products($type_products) {
     if(isset($_GET["category"])) {
 
         $category = $_GET["category"];
-        $category = "male" ?    $img_src = '<img src="./imgs/detailed_section/'.$type_products.'_'.$category.'.jpg" />' : '';
 
-    } else {
+        $img_src = '<img src="./imgs/detailed_section/'.$type_products.'_'.$category.'.jpg" />';
+
+
+
+    }
+    else {
         $img_src = '<img src="./imgs/detailed_section/'.$type_products.'_mix.jpg" />';
     }
 
@@ -247,7 +321,7 @@ function section_detailed_products($type_products) {
             <div class="prod-main-img">
                 '.$img_src.'
                 <span class="desc-main">
-                    <a href="category.php?show='.$type_products.'">
+                    <a href="category.php?type='.$type_products.'">
                         <p>'.$type_products.'</p>
 
                         <button class="button-custom-img">SHOP NOW</button>
@@ -273,7 +347,7 @@ function section_detailed_products($type_products) {
 function section_slider_products($type_products) {
     $section =
     '<section class="trending_section">
-        <a href="category.php?show='.$type_products.'">
+        <a href="category.php?type='.$type_products.'">
             <h3 class="section-header">
                 '.$type_products.'
             </h3>
@@ -307,6 +381,60 @@ function listenCategory(){
 
     }
     return  $prod_list_category;
+}
+// create list of products ids based on GET type
+function get_Products_list_ids_by_type_name() {
+    if(isset($_GET["type"])) {
+        global $connection;
+        $type_name =  $_GET["type"];
+
+        $list_prod_ids = [];
+        $type_products =  $_GET["type"];
+        $query = "SELECT * FROM types WHERE type_name = '$type_name'";
+        $select_product_types = mysqli_query($connection, $query);
+
+        while ($product_row = mysqli_fetch_assoc($select_product_types)) {
+            $type_id = $product_row["id"];
+
+            $query2 = "SELECT * FROM rel_types_products WHERE type_id = $type_id ";
+            $select_products = mysqli_query($connection, $query2);
+            while ($product_row = mysqli_fetch_assoc($select_products)) {
+                $prod_id = $product_row["product_id"];
+                $list_prod_ids[] = $prod_id;
+            }
+        }
+        }
+
+        return  $list_prod_ids;
+
+
+}
+// create list of products ids based on size GET
+function get_Products_list_ids_by_size() {
+    if(isset($_GET["size"])) {
+        global $connection;
+        $size =  $_GET["size"];
+
+        $list_prod_ids = [];
+        $size =  $_GET["size"];
+        $query = "SELECT * FROM sizes WHERE size =  $size";
+        $select_sizes = mysqli_query($connection, $query);
+
+        while ($product_row = mysqli_fetch_assoc($select_sizes)) {
+            $size_id = $product_row["id"];
+
+            $query2 = "SELECT * FROM rel_products_sizes WHERE size_id = $size_id ";
+            $select_products = mysqli_query($connection, $query2);
+            while ($product_row = mysqli_fetch_assoc($select_products)) {
+                $prod_id = $product_row["prod_id"];
+                $list_prod_ids[] = $prod_id;
+            }
+        }
+    }
+
+    return  $list_prod_ids;
+
+
 }
 // ------------------GET SLIDER PRODUCTS---------------------
 

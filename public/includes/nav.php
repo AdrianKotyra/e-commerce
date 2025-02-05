@@ -16,11 +16,12 @@
         <div class="nav-categories nav-col flex-row">
             <div class="hamb-container">
                 <i class="fa-solid fa-bars"></i>
+
             </div>
             <div class="cats-nav-container-extra-nav flex-row extra-nav-trigger">
-                <a id="cat_male"href="index.php?category=male" class="cat <?php if($cat== "male" ) { echo 'active_nav_link'; } ?>">MENS</a>
-                <a id="cat_female"href="index.php?category=female" class="cat <?php if($cat== "female") { echo 'active_nav_link'; } ?>">WOMENS</a>
-
+                <a id="cat_male"href="index.php?category=male" class="cat <?php if($cat== "male" ) { echo 'active_nav_link_male'; } ?>">MENS</a>
+                <a id="cat_female"href="index.php?category=female" class="cat <?php if($cat== "female") { echo 'active_nav_link_female'; } ?>">WOMENS</a>
+                <a id="cat_unisex"href="index.php?category=unisex" class="cat <?php if($cat== "unisex") { echo 'active_nav_link_unisex'; } ?>">UNISEX</a>
             </div>
 
             <div class="cat">

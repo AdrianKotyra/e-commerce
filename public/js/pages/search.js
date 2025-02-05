@@ -1,3 +1,20 @@
+// ---------------submit search-------------
+
+
+function submitForm() {
+    const searchButton = document.querySelector(".search-icon-container");
+    searchButton&&searchButton.addEventListener("click", ()=>{
+        document.querySelector(".search-form").submit();
+    })
+
+}
+
+
+
+submitForm()
+
+// ---------------dropdowns-------------
+
 function DropDownFilters() {
     const allDropdowns = document.querySelectorAll(".filter-dropdown");
     const dropDowns = document.querySelectorAll(".filter-col");

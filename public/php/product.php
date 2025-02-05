@@ -139,22 +139,43 @@ class Product {
           // Generate the list of sizes as HTML
         $sizes_html = generate_sizes_html($this, "span");
         $chosen_grid= generate_product_grid_sizes($this);
+        $category_message = '';
+        $product_category = $this->product_category;
+        $message = $this->product_availability? 'QUICK ADD TO CART' : "Out of stock";
+        if(  $product_category == "female") {
+            $category_message ='  <i class="fa-solid fa-venus" style="color: #e0c1d4;"></i>';
+        }
+        else if ($product_category == "male") {
+            $category_message = '  <i class="fa-solid fa-mars" style="color:#acb5e6;"></i>';
+        }
+        else {
+            $category_message = '<i class="fa-solid fa-venus-mars" style="color:#90e185;"></i>';
+        }
+
         $product_template = '
             <div class="flex-col card-product">
+                <div class="category-sex-label">  '.$category_message.'</div>
                 <div class="layout-card">
                    <a class="prod-link" href="products.php?show='.$this->product_id.'&category='.$this->product_category.'">
                         <div class="shopping-column">
                             <img src="./imgs/products/'.$this->product_name.'/'.$this->product_img.'" />
                         </div>
                     </a>
-                     <div class="hidden-prod-label">
-                                <p> <b>QUICK ADD TO CART </b> </p>
-                                <div class="sizes-grid-prod '.$chosen_grid.'">
-                                '.$sizes_html.'
-                                </div>
-
+                      <div class="hidden-prod-label">
+                        <div class="hidden-prod-label-container">
+                            <div class="hidden-mobile exit-mobile-label">
+                                <i class="fa-solid fa-xmark"></i>
 
                             </div>
+                            <img class="hidden-mobile-img-display"src="./imgs/products/'.$this->product_name.'/'.$this->product_img.'" />
+                            <p class="hidden-mobile"> <b>'.$this->product_name.'</b> </p>
+                            <p > <b>'.$message.'</b> </p>
+                            <div class="sizes-grid-prod '.$chosen_grid.'">
+                            '.$sizes_html.'
+                            </div>
+
+                        </div>
+                    </div>
                 </div>
 
                 <div class="shopping-card-desc ">
@@ -175,8 +196,25 @@ class Product {
     public function product_detailed_section_Template(){
         $sizes_html = generate_sizes_html($this, "span");
         $chosen_grid= generate_product_grid_sizes($this);
+        $category_message = '';
+        $product_category = $this->product_category;
+        $message = $this->product_availability? 'QUICK ADD TO CART' : "Out of stock";
+
+        if(  $product_category == "female") {
+            $category_message ='  <i class="fa-solid fa-venus" style="color: #e0c1d4;"></i>';
+        }
+        else if ($product_category == "male") {
+            $category_message = '  <i class="fa-solid fa-mars" style="color:#acb5e6;"></i>';
+        }
+        else {
+            $category_message = '<i class="fa-solid fa-venus-mars" style="color:#90e185;"></i>';
+        }
+
+
+
         $product_template = '
                <div class="grid-prod ">
+                <div class="category-sex-label">  '.$category_message.'</div>
                 <div class="flex-col card-product">
                     <div class="layout-card">
                             <a class="prod-link" href="products.php?show='.$this->product_id.'&category='.$this->product_category.'">
@@ -215,9 +253,25 @@ class Product {
 
         $sizes_html = generate_sizes_html($this, "span");
         $chosen_grid= generate_product_grid_sizes($this);
+        $category_message = '';
         $message = $this->product_availability? 'QUICK ADD TO CART' : "Out of stock";
+        $product_category = $this->product_category;
+
+        if(  $product_category == "female") {
+            $category_message ='  <i class="fa-solid fa-venus" style="color: #e0c1d4;"></i>';
+        }
+        else if ($product_category == "male") {
+            $category_message = '  <i class="fa-solid fa-mars" style="color:#acb5e6;"></i>';
+        }
+        else {
+            $category_message = '<i class="fa-solid fa-venus-mars" style="color:#90e185;"></i>';
+        }
+
+
         $product_template = '
             <div class="flex-col card-product">
+                <div class="category-sex-label">  '.$category_message.'</div>
+
                 <div class="layout-card">
                     <a class="card-prod-link" href="products.php?show='.$this->product_id.'&category='.$this->product_category.'">
                         <div class="shopping-column">
@@ -225,12 +279,19 @@ class Product {
                         </div>
                     </a>
                     <div class="hidden-prod-label">
-                        <p> <b>'.$message.'</b> </p>
-                        <div class="sizes-grid-prod '.$chosen_grid.'">
-                          '.$sizes_html.'
+                        <div class="hidden-prod-label-container">
+                            <div class="hidden-mobile exit-mobile-label">
+                                <i class="fa-solid fa-xmark"></i>
+
+                            </div>
+                            <img class="hidden-mobile-img-display"src="./imgs/products/'.$this->product_name.'/'.$this->product_img.'" />
+                            <p class="hidden-mobile"> <b>'.$this->product_name.'</b> </p>
+                            <p > <b>'.$message.'</b> </p>
+                            <div class="sizes-grid-prod '.$chosen_grid.'">
+                            '.$sizes_html.'
+                            </div>
+
                         </div>
-
-
                     </div>
                 </div>
                 <div class="shopping-card-desc ">

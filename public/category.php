@@ -3,10 +3,11 @@
 <section class="hero-section">
     <div class="hero-container">
       <?php
-        if(isset($_GET["show"])){
+        if(isset($_GET["type"])){
+            $type = $_GET["type"];
             global $connection;
 
-            $result_product_type =  secure_query_fetch_data("SELECT * FROM types WHERE type_name", $_GET["show"]);
+            $result_product_type =  secure_query_fetch_data("SELECT * FROM types WHERE type_name", $_GET["type"]);
             if(mysqli_num_rows($result_product_type)>0) {
                 while ($row = mysqli_fetch_array($result_product_type)) {
                     $type_img = $row["type_img"];
@@ -34,127 +35,117 @@
 
 </section>
 
+<?php
+
+    $category = '';
+    $size = '';
+
+
+    if(isset($_GET["category"])) {
+        $category = $_GET["category"];
+    }
+    else {
+        $category = 'mixed';
+    }
+
+    if(isset($_GET["size"])) {
+        $size = $_GET["size"];
+    }
+    else {
+        $size = 'all';
+    }
+
+    #
+
+?>
+
 
 
 <section class="search-grid-products">
-    <div class="filter-container flex-row wrapper">
+<div class="filter-container flex-row wrapper">
 
-        <div class="filters flex-row ">
-            <span class="filter_titler">FILTER</span>
-
-
-
-
-            <div class="filter-col flex-row ">
-                <div class="container-cat-filter flex-row">
-                    <span>Sex</span>
-                    <i class="fa-solid fa-angle-down"></i>
-                </div>
-
-                <div class="filter-dropdown inactive-dropdown-filter">
-                    <?php $_GET["show"];
-                        $type = $_GET["show"];
-                        $category = $_GET["category"];
-                    ?>
-                    <form action="category.php" method="GET">
-                        <input type="hidden" name="show" value="<?php echo htmlspecialchars($type); ?>">
-                        <div class="dropdown-content">
-
-                            <p class="flex-row"><input <?php  echo $category=="female"? 'checked ' : '' ?> name="category"type="radio" value="female">Womens</p>
-                            <p class="flex-row"><input <?php  echo $category=="male"? 'checked ' : '' ?>name="category"type="radio" value="male">Mens</p>
-                            <p class="flex-row"><input <?php  echo $category=="mixed"? 'checked ' : '' ?> name="category"type="radio" value="mixed">Both</p>
+<div class="filters flex-row ">
+    <span class="filter_titler">FILTER</span>
 
 
 
 
-                            <button type="submit" class="button-custom">APPLY</button>
-                        </div>
-                    </form>
+    <div class="filter-col flex-row ">
+        <div class="container-cat-filter flex-row">
+            <span>Sex</span>
+            <i class="fa-solid fa-angle-down"></i>
+        </div>
 
-                </div>
+        <form action="category.php" method="GET" >
+        <div class="filter-dropdown inactive-dropdown-filter">
 
+
+
+            <input type="hidden" name="type" value="<?php echo htmlspecialchars($type); ?>">
+            <div class="dropdown-content">
+
+                <p class="flex-row"><input <?php  echo $category=="female"? 'checked ' : '' ?> name="category"type="radio" value="female">Womens</p>
+                <p class="flex-row"><input <?php  echo $category=="male"? 'checked ' : '' ?>name="category"type="radio" value="male">Mens</p>
+                <p class="flex-row"><input <?php  echo $category=="unisex"? 'checked ' : '' ?>name="category"type="radio" value="unisex">Unisex</p>
+                <p class="flex-row"><input <?php  echo $category=="mixed" ||  $category=='' ?   'checked ' : '' ?> name="category"type="radio" value="mixed">All</p>
+
+
+
+
+                <button type="submit" class="button-custom">APPLY</button>
             </div>
-            <div class="filter-col flex-row">
-                <div class="container-cat-filter flex-row">
-                    <span>Sizes</span>
-                    <i class="fa-solid fa-angle-down"></i>
+
+
+        </div>
+
+    </div>
+    <div class="filter-col flex-row">
+        <div class="container-cat-filter flex-row">
+            <span>Sizes</span>
+            <i class="fa-solid fa-angle-down"></i>
+        </div>
+
+        <div class="filter-dropdown inactive-dropdown-filter">
+
+                <div class="dropdown-content">
+                    <?php echo displaySizesSelect($size);?>
+                    <button type="submit" class="button-custom">APPLY</button>
                 </div>
 
-                <div class="filter-dropdown inactive-dropdown-filter">
-                    <form action="category.php" method="GET">
-                        <div class="dropdown-content">
-                        <p class="flex-row"><input <?php  echo $category=="female"? 'checked ' : '' ?> name="category"type="radio" value="female">Womens</p>
-                            <p class="flex-row"><input <?php  echo $category=="male"? 'checked ' : '' ?>name="category"type="radio" value="male">Mens</p>
-                            <p class="flex-row"><input <?php  echo $category=="mixed"? 'checked ' : '' ?> name="category"type="radio" value="mixed">Both</p>
-                            <button class="button-custom">APPLY</button>
-                        </div>
-                    </form>
-                </div>
+        </div>
 
+    </div>
+
+    </div>
+    <div class="filter-col flex-row">
+            <div class="container-cat-filter flex-row">
+                <span>sort by</span>
+                <i class="fa-solid fa-angle-down"></i>
             </div>
-            <div class="filter-col flex-row">
-                <div class="container-cat-filter flex-row">
-                    <span>cat1</span>
-                    <i class="fa-solid fa-angle-down"></i>
-                </div>
 
-                <div class="filter-dropdown inactive-dropdown-filter">
-                    <div class="dropdown-content">
-                        <p>dsdsa</p>
-                        <p>dsdsa</p>
-                        <p>dsdsa</p>
-                        <button class="button-custom">APPLY</button>
-                    </div>
-                </div>
+            <div class="filter-dropdown inactive-dropdown-filter">
+                <div class="dropdown-content">
 
-            </div>
-            <div class="filter-col flex-row">
-                <div class="container-cat-filter flex-row">
-                    <span>cat1</span>
-                    <i class="fa-solid fa-angle-down"></i>
-                </div>
 
-                <div class="filter-dropdown inactive-dropdown-filter">
-                    <div class="dropdown-content">
-                        <p>dsdsa</p>
-                        <p>dsdsa</p>
-                        <p>dsdsa</p>
-                        <button class="button-custom">APPLY</button>
-                    </div>
+                    <button class="button-custom">APPLY</button>
                 </div>
-
             </div>
 
         </div>
-        <div class="filter-col flex-row">
-                <div class="container-cat-filter flex-row">
-                    <span>sort by</span>
-                    <i class="fa-solid fa-angle-down"></i>
-                </div>
-
-                <div class="filter-dropdown inactive-dropdown-filter">
-                    <div class="dropdown-content">
-                        <p>dsdsa</p>
-                        <p>dsdsa</p>
-                        <p>dsdsa</p>
-                        <button class="button-custom">APPLY</button>
-                    </div>
-                </div>
-
-            </div>
 
 
 
     </div>
+    </form>
+
+
     <div class="search-grid-products-container wrapper">
 
-        <?php echo displayCategoryProducts($_GET["show"]);?>
+    <?php echo displayCategoryProducts($type);?>
+
 
     </div>
-
-
 </section>
-
 
 
 

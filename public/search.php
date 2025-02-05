@@ -5,6 +5,7 @@
     $searched = '';
     $category = '';
     $size = '';
+    $type = '';
     if(isset($_GET["search"])) {
         $searched = $_GET["search"];
 
@@ -27,6 +28,13 @@
     else {
         $size = 'all';
     }
+    if(isset($_GET["type"])) {
+        $type = $_GET["type"];
+
+    }
+    else {
+        $type = 'all';
+    }
     #
 
 ?>
@@ -35,7 +43,7 @@
         Your search for "<?php echo $searched;?>" revealed the following
     </div>
     <div class="search-container">
-        <form action="search.php" method="GET">
+        <form action="search.php" method="GET" class="search-form">
             <div class="search-input-container flex-row">
                 <input type="text" placeholder="Search" name="search">
 
@@ -65,7 +73,7 @@
             <i class="fa-solid fa-angle-down"></i>
         </div>
 
-        <form action="search.php" method="GET">
+        <form action="search.php" method="GET" >
         <div class="filter-dropdown inactive-dropdown-filter">
 
 
@@ -75,7 +83,8 @@
 
                 <p class="flex-row"><input <?php  echo $category=="female"? 'checked ' : '' ?> name="category"type="radio" value="female">Womens</p>
                 <p class="flex-row"><input <?php  echo $category=="male"? 'checked ' : '' ?>name="category"type="radio" value="male">Mens</p>
-                <p class="flex-row"><input <?php  echo $category=="mixed" ||  $category=='' ?   'checked ' : '' ?> name="category"type="radio" value="mixed">Both</p>
+                <p class="flex-row"><input <?php  echo $category=="unisex"? 'checked ' : '' ?>name="category"type="radio" value="unisex">Unisex</p>
+                <p class="flex-row"><input <?php  echo $category=="mixed" ||  $category=='' ?   'checked ' : '' ?> name="category"type="radio" value="mixed">All</p>
 
 
 
@@ -103,7 +112,22 @@
         </div>
 
     </div>
+    <div class="filter-col flex-row">
+        <div class="container-cat-filter flex-row">
+            <span>Types</span>
+            <i class="fa-solid fa-angle-down"></i>
+        </div>
 
+        <div class="filter-dropdown inactive-dropdown-filter">
+
+                <div class="dropdown-content types-dropdown">
+                    <?php echo get_products_types_select($type);?>
+                    <button type="submit" class="button-custom">APPLY</button>
+                </div>
+
+        </div>
+
+    </div>
 
     </div>
     <div class="filter-col flex-row">
@@ -114,9 +138,8 @@
 
             <div class="filter-dropdown inactive-dropdown-filter">
                 <div class="dropdown-content">
-                    <p>dsdsa</p>
-                    <p>dsdsa</p>
-                    <p>dsdsa</p>
+
+
                     <button class="button-custom">APPLY</button>
                 </div>
             </div>
@@ -126,11 +149,12 @@
 
 
     </div>
-</form>
+    </form>
+
+
     <div class="search-grid-products-container wrapper">
 
         <?php echo displaySearchedProducts();?>
-
 
 
     </div>
