@@ -1,5 +1,7 @@
 :root {
-
+	--men-color : #acb5e6;
+	--women-color : rgb(224, 193, 212);
+	--uni-color : #90e185;
 	--light-gray: #f7f3f3;
 	--very-small:  0.9rem;
 	--header-section: 2rem;
@@ -142,6 +144,12 @@
 	}
 }
 .category-sex-label {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 30px;
+	height: 30px;
+	text-align: center;
 	z-index: 2;
 	position: absolute;
 	top: 3px;
@@ -357,6 +365,21 @@
     width: 60%;
 	grid-template-columns: repeat(4, 1fr) !important;
 }
+.available-size-male {
+	border: 1px solid white !important;
+	color: white;
+	background-color: var(--men-color) !important;
+}
+.available-size-female {
+	border: 1px solid white !important;
+	color: white;
+	background-color: var(--women-color) !important;;
+}
+.available-size-uni {
+	border: 1px solid white !important;
+	color: white;
+	background-color: var(--uni-color) !important;;
+}
 .products-sizes-grid {
 	margin-bottom: 32px;
 	display: grid;
@@ -398,7 +421,7 @@
 }
 .body-mask-nav {
 	animation: fadein 0.5s forwards;
-	z-index: 2;
+	z-index: 3;
 	width: 100vw;
 	height: 100vh;
 	position: fixed;
@@ -712,6 +735,34 @@
 .user-account-header {
 	padding-top: 50px;
 }
+.gender-icon {
+	font-size: 1.2rem;
+	color: white;
+}
+.active-type-class-female {
+	opacity: 100%!important;
+	background-color:rgb(224, 193, 212);
+	span {
+		opacity: 100%!important;
+		color: white;
+	}
+}
+.active-type-class-male {
+	opacity: 100%!important;
+	background-color:#acb5e6 !important;
+	span {
+		opacity: 100%!important;
+		color: white;
+	}
+}
+.active-type-class-unisex {
+	opacity: 100%!important;
+	background-color:#90e185!important;
+	span {
+		opacity: 100%!important;
+		color: white;
+	}
+}
 .button-custom-img {
 	border: none;
 	background-color: rgba(0, 0, 0, 0);
@@ -747,7 +798,7 @@
 	animation: fadein 0.4s forwards;
 }
 .banner {
-	z-index: 2;
+	z-index: 3;
 	position: relative;
 	font-size: var(--very-small);
 	color: white;
@@ -957,6 +1008,7 @@ nav {
 
 	position: relative;
 	img{
+		filter: brightness(0.8);
 		object-fit: cover;
 		padding-bottom: 12px;
 		width: 200px;
@@ -965,6 +1017,7 @@ nav {
 	}
 	p{
 		@include centerAbsolute();
+		z-index: 2;
 		letter-spacing: 1rem;
 		margin-left: 4px;
 		font-weight: 600;
@@ -985,6 +1038,7 @@ body {
 .nav_cats_grid {
 	display: grid;
 	width: 500px;
+
 	grid-template-columns: repeat(2, 1fr);
 	span {
 
@@ -994,7 +1048,7 @@ body {
 		text-decoration: none;
 		color: black;
 		opacity: 60%;
-		padding: 4px 0;
+		padding: 4px 6px;
 	}
 }
 .nav-extra-container {
@@ -1947,6 +2001,8 @@ footer {
 		display: none;
 	}
 	.sizes-grid-prod {
+		margin: auto;
+        width: 50%;
 		height: auto;
 	}
 	.layout-card {

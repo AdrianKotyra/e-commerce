@@ -18,7 +18,7 @@
             break;
 
 
-            default:        include "includes//slider-hero/slider-unisex.php";
+            default:        include "includes/slider-hero/slider-unisex.php";
             break;
 
         }

@@ -1,16 +1,23 @@
 <?php  require_once("init.php");
 
-function get_products_types_nav($category){
+function get_products_types_nav($category) {
+    $type = isset($_GET["type"]) ? $_GET["type"] : '';
     global $connection;
+
     $query = "SELECT * FROM types;";
     $select_product_types = mysqli_query($connection, $query);
+
     if (!$select_product_types) {
         die("Query failed: " . mysqli_error($connection));
     }
 
     while ($row = mysqli_fetch_assoc($select_product_types)) {
         $type_names = $row["type_name"];
-        echo '<a href="category.php?type='.$type_names.'&category='.$category.'">
+        $class_active = ($type == $type_names && isset($_GET["category"]) && $_GET["category"] == $category)
+            ? "active-type-class-$category"
+            : "";
+
+        echo '<a class="'.$class_active.'" href="category.php?type='.$type_names.'&category='.$category.'">
             <span>'.$type_names.'</span>
         </a>';
     }
@@ -271,26 +278,33 @@ function generate_product_grid_sizes($product_instance){
 }
 
 function generate_sizes_html($product_instance, $tag){
-             // Generate the list of sizes as HTML
-             $sizes_html = '';
-             $chosen_grid = '';
-             $chosen_cat_sizes_list = '';
-             $all_sizes_men_list = [3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14];
-             $all_sizes_women_list = [2, 3, 4, 5, 6, 7, 8, 9];
-             $currentPage= basename($_SERVER['PHP_SELF']);
+            // Generate the list of sizes as HTML
+            $sizes_html = '';
+            $chosen_grid = '';
+            $chosen_cat_sizes_list = '';
+            $all_sizes_men_list = [3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14];
+            $all_sizes_women_list = [2, 3, 4, 5, 6, 7, 8, 9];
+            $currentPage= basename($_SERVER['PHP_SELF']);
+            $available_size_color_class = '';
 
-             if($product_instance->product_category =="female") {
-                $chosen_cat_sizes_list = $all_sizes_women_list;
-
+            if($product_instance->product_category =="female") {
+            $chosen_cat_sizes_list = $all_sizes_women_list;
+            $available_size_color_class = "available-size-female";
+            }
+            else if($product_instance->product_category =="male") {
+                $chosen_cat_sizes_list = $all_sizes_men_list;
+                $available_size_color_class = "available-size-male";
             }
             else {
+
                 $chosen_cat_sizes_list = $all_sizes_men_list;
+                $available_size_color_class = "available-size-uni";
 
             }
              if (!empty($product_instance->product_sizes_list)) {
                  foreach ($chosen_cat_sizes_list as $size) {
                      // creating class to hightlight avilable sizes based on if size is in avilable sizes of product and then addings attributes
-                     $available_class = in_array($size, $product_instance->product_sizes_list)? 'available-size' : '';
+                     $available_class = in_array($size, $product_instance->product_sizes_list)? "available-size $available_size_color_class " : '';
                      $available_attribute = in_array($size, $product_instance->product_sizes_list)? 'selected data-prod-id="' . $product_instance->product_id . '" data-prod-size="' . $size . '"'
                          : '';
                      $sizes_html .= '<'.$tag.' ' . $available_attribute . ' class="size-item ' . $available_class . '" value='.htmlspecialchars($size).'>' . htmlspecialchars($size) . '</'.$tag.'>';

@@ -12,12 +12,12 @@ function showExtraNav(){
   const navContainers = document.querySelectorAll(".nav-extra-container");
   const menNav = document.querySelector(".men-extra-nav");
   const womenNav = document.querySelector(".female-extra-nav");
+  const uniNav = document.querySelector(".uni-extra-nav");
 
+  const menTrigger = document.querySelector("#cat_male");
+  const femaleTrigger = document.querySelector("#cat_female");
+  const uniTrigger = document.querySelector("#cat_unisex");
 
-
-
-  const menTrigger = document.querySelector("#cat_male")
-  const femaleTrigger = document.querySelector("#cat_female")
   function displayExtraNavOff(){
     document.addEventListener('mouseover', (event) => {
       const hoveredElement = event.target;
@@ -28,30 +28,22 @@ function showExtraNav(){
     });
 
   }
-
-
-
-  menTrigger.addEventListener("mouseover", ()=>{
-    mainExtraNav.style.display="block";
-    navContainers.forEach(navGender=>{
-      navGender.style.display="none"
-      menNav.style.display="flex"
+  function displayExtraNavCategory(trigger, navToDisplay ){
+    trigger.addEventListener("mouseover", ()=>{
+      mainExtraNav.style.display="block";
+      navContainers.forEach(navGender=>{
+        navGender.style.display="none"
+      })
+      navToDisplay.style.display="flex"
       bodymask.style.display="block";
+      displayExtraNavOff()
+
     })
-    displayExtraNavOff()
+  }
 
-  })
-
-  femaleTrigger.addEventListener("mouseover", ()=>{
-    mainExtraNav.style.display="block";
-    navContainers.forEach(navGender=>{
-      navGender.style.display="none"
-      womenNav.style.display="flex"
-      bodymask.style.display="block";
-    })
-    displayExtraNavOff()
-
-  })
+  displayExtraNavCategory(menTrigger,menNav )
+  displayExtraNavCategory(femaleTrigger,womenNav )
+  displayExtraNavCategory(uniTrigger,uniNav )
 
 
 

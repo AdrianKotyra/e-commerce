@@ -1,4 +1,7 @@
 :root {
+  --men-color: #acb5e6;
+  --women-color: rgb(224, 193, 212);
+  --uni-color: #90e185;
   --light-gray: #f7f3f3;
   --very-small: 0.9rem;
   --header-section: 2rem;
@@ -121,6 +124,12 @@
 }
 
 .category-sex-label {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 30px;
+  height: 30px;
+  text-align: center;
   z-index: 2;
   position: absolute;
   top: 3px;
@@ -347,6 +356,24 @@
   grid-template-columns: repeat(4, 1fr) !important;
 }
 
+.available-size-male {
+  border: 1px solid white !important;
+  color: white;
+  background-color: var(--men-color) !important;
+}
+
+.available-size-female {
+  border: 1px solid white !important;
+  color: white;
+  background-color: var(--women-color) !important;
+}
+
+.available-size-uni {
+  border: 1px solid white !important;
+  color: white;
+  background-color: var(--uni-color) !important;
+}
+
 .products-sizes-grid {
   margin-bottom: 32px;
   display: grid;
@@ -389,7 +416,7 @@
 
 .body-mask-nav {
   animation: fadein 0.5s forwards;
-  z-index: 2;
+  z-index: 3;
   width: 100vw;
   height: 100vh;
   position: fixed;
@@ -737,6 +764,38 @@
   padding-top: 50px;
 }
 
+.gender-icon {
+  font-size: 1.2rem;
+  color: white;
+}
+
+.active-type-class-female {
+  opacity: 100% !important;
+  background-color: rgb(224, 193, 212);
+}
+.active-type-class-female span {
+  opacity: 100% !important;
+  color: white;
+}
+
+.active-type-class-male {
+  opacity: 100% !important;
+  background-color: #acb5e6 !important;
+}
+.active-type-class-male span {
+  opacity: 100% !important;
+  color: white;
+}
+
+.active-type-class-unisex {
+  opacity: 100% !important;
+  background-color: #90e185 !important;
+}
+.active-type-class-unisex span {
+  opacity: 100% !important;
+  color: white;
+}
+
 .button-custom-img {
   border: none;
   background-color: rgba(0, 0, 0, 0);
@@ -774,7 +833,7 @@
 }
 
 .banner {
-  z-index: 2;
+  z-index: 3;
   position: relative;
   font-size: var(--very-small);
   color: white;
@@ -992,6 +1051,7 @@ nav {
   position: relative;
 }
 .nav_cats_img img {
+  filter: brightness(0.8);
   -o-object-fit: cover;
      object-fit: cover;
   padding-bottom: 12px;
@@ -1003,6 +1063,7 @@ nav {
   transform: translate(-50%, -50%);
   left: 50%;
   top: 50%;
+  z-index: 2;
   letter-spacing: 1rem;
   margin-left: 4px;
   font-weight: 600;
@@ -1029,7 +1090,7 @@ body {
   text-decoration: none;
   color: black;
   opacity: 60%;
-  padding: 4px 0;
+  padding: 4px 6px;
 }
 
 .nav-extra-container {
@@ -2027,6 +2088,8 @@ footer {
     display: none;
   }
   .sizes-grid-prod {
+    margin: auto;
+    width: 50%;
     height: auto;
   }
   .layout-card {

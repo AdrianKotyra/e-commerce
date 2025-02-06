@@ -108,6 +108,24 @@
             </div>
 
         </div>
+        <div class="flex-row nav-extra-container uni-extra-nav">
+
+            <div class="nav_cats_container">
+
+                <span class="nav_cats_header">Shop by Unisex category</span>
+                <div class="nav_cats_grid">
+                    <?php get_products_types_nav('unisex')?>
+                </div>
+            </div>
+
+            <div class="nav_cats_img">
+                <p>
+                    Unisex
+                </p>
+                <img src="./imgs/nav/uni/uni.jpg" alt="">
+            </div>
+
+        </div>
     </div>
 
 </nav>
