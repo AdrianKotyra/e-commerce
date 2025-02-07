@@ -35,8 +35,14 @@
         <div class="desc-video">
             <h3>Retro/Classic Sneakers</h3>
             <div class="flex-row">
+                <a href="category.php?type=Retro/Classic%20Sneakers&category=female">
+                    <button>SHOP WOMENS</button>
+                </a>
+               <a href="category.php?type=Retro/Classic%20Sneakers&category=male">
                 <button>SHOP MENS</button>
-                <button>SHOP WOMENS</button>
+
+               </a>
+
             </div>
         </div>
     </div>

@@ -1,0 +1,62 @@
+<?php include("includes/header.php") ?>
+
+<section class="hero-section post-hero-banner">
+    <div class="hero-container">
+      <?php
+
+
+      ?>
+      <h1 class="category_header">Hi-top Sneakers Community</h1>
+      <img class="category_bg"src="imgs/posts/posts_all.jpg" alt="">
+
+    </div>
+
+
+
+
+</section>
+<?php
+    if(isset($_GET["search"])) {
+        $searched = $_GET["search"];
+    }
+    else {
+        $searched = '';
+    }
+?>
+
+<section class="section-all-posts wrapper">
+    <section class="search-section">
+        <div class="search-msg-container">
+            Your search for "<?php echo $searched;?>" revealed the following
+        </div>
+        <div class="search-container">
+            <form action="news_all.php" method="GET" class="search-form">
+                <div class="search-input-container flex-row">
+                    <input type="text" placeholder="Search" name="search">
+
+                    <div class="search-icon-container flex-col">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </div>
+                </div>
+            </form>
+
+        </div>
+
+
+    </section>
+    <h5>Our news</h5>
+    <div class="grid-section-all-posts ">
+        <?php echo generate_posts_allposts();?>
+
+    </div>
+</section>
+
+
+
+
+
+
+<script src="js/pages/search.js"></script>
+
+
+<?php include("includes/footer.php") ?>

@@ -22,6 +22,54 @@ function get_products_types_nav($category) {
         </a>';
     }
 }
+function format_date($originalDate){
+
+    $formattedDate = date("F j, Y", strtotime($originalDate));
+    return $formattedDate;
+}
+
+function generate_posts_allposts() {
+    global $connection;
+    if(isset($_GET["search"])) {
+        $searched = $_GET["search"];
+        $query = "SELECT * FROM news  where post_header LIKE '%$searched%'";
+        $select_posts = mysqli_query($connection, $query);
+        while ($row = mysqli_fetch_assoc($select_posts)) {
+            $post_id = $row["id"];
+            $new_post = new Post();
+            $new_post->create_post($post_id);
+            echo $new_post->AllpostsCart();
+        }
+
+    }
+    else {
+        $query = "SELECT * FROM news";
+        $select_posts = mysqli_query($connection, $query);
+        while ($row = mysqli_fetch_assoc($select_posts)) {
+            $post_id = $row["id"];
+            $new_post = new Post();
+            $new_post->create_post($post_id);
+            echo $new_post->AllpostsCart();
+        }
+    }
+
+
+}
+
+
+
+function generate_posts_main() {
+    global $connection;
+    $query = "SELECT * FROM news  LIMIT 3 OFFSET 0 ;";
+    $select_posts = mysqli_query($connection, $query);
+    while ($row = mysqli_fetch_assoc($select_posts)) {
+        $post_id = $row["id"];
+        $new_post = new Post();
+        $new_post->create_post($post_id);
+        echo $new_post->MainPostCart();
+    }
+
+}
 
 
 function secure_query_fetch_data($query, $param){

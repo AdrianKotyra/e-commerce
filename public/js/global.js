@@ -340,22 +340,20 @@ function verticalScrollActive() {
 
 // --------------nav search-------------
 function searchNav(){
-  const searchInput = document.querySelector(".search-box-nav input");
+  const searchInput = document.querySelector(".searcher-mobile");
   const searchTrigger = document.querySelector(".search-trigger");
   const searchBox = document.querySelector(".search-box-nav")
+  const closeSearchIcon = document.querySelector(".close-search-nav")
   searchTrigger? searchTrigger.addEventListener("click", ()=>{
     searchInput.classList.remove("inactive-search-bar")
     searchInput.classList.add("active-search-bar")
   }): null;
 
   // Add a click event listener to the document to handle clicks outside the active card
-  document.addEventListener("click", (event) => {
-    if (searchBox && !searchBox.contains(event.target)) {
-       searchInput.classList.remove("active-search-bar")
-       searchInput.classList.add("inactive-search-bar")
-    } else {
+  closeSearchIcon.addEventListener("click",() => {
 
-    }
+      searchInput.classList.remove("active-search-bar")
+
 
   })
 

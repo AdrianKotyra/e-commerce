@@ -3,6 +3,7 @@
 
 </div>
 <nav>
+
     <?php
         if(isset($_GET["category"])) {
             $cat = $_GET["category"];
@@ -24,21 +25,17 @@
                 <a id="cat_unisex"href="index.php?category=unisex" class="cat <?php if($cat== "unisex") { echo 'active_nav_link_unisex'; } ?>">UNISEX</a>
             </div>
 
-            <div class="cat">
 
-                <div class="search-box-nav">
 
-                    <span class="material-symbols-outlined search-trigger">search</span>
-                    <form action="search.php" method="GET">
-                        <input type="search" name="search" placeholder="Search" id="search-input" >
+            <div class="search-box-nav ">
 
-                    </form>
-
-                </div>
-
+                <span class="material-symbols-outlined search-trigger">search</span>
 
 
             </div>
+
+
+
         </div>
 
         <div class="logo-nav nav-col">
@@ -127,5 +124,19 @@
 
         </div>
     </div>
+    <div class="searcher-mobile wrapper" id="search-box-nav">
 
+        <div class="searcher-mobile-container">
+            <span class="material-symbols-outlined icon-mobile-search">search</span>
+            <form action="search.php" method="GET" class="flex-row">
+                <input type="search" name="search" placeholder="search product" >
+
+            </form>
+            <i class="fa-solid fa-xmark close-search-nav"></i>
+        </div>
+
+
+
+
+    </div>
 </nav>
