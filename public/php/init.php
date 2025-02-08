@@ -9,6 +9,7 @@ require_once("basket.php");
 require_once("product.php");
 require_once("session.php");
 require_once("post.php");
+require_once("comment.php");
 require_once("helper_functions.php");
 require_once("config.php");
 

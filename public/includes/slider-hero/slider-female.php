@@ -4,7 +4,7 @@
 	<div class="swiper-container main-slider loading">
   <div class="swiper-wrapper">
   <div class="swiper-slide">
-    <figure class="slide-bgimg" style="background-image:url('./imgs/slider/slider-female/slider%20(1).jpg') ; background-position: bottom;">  </figure>
+    <figure class="slide-bgimg" style="background-image:url('./imgs/slider/slider-female/slider%20(1).jpg') ">  </figure>
       <div class="content">
         <p class="title">Designed to Impress</p>
         <span class="caption">From high-fashion to streetwear essentials, our women’s sneaker collection is made for trendsetters who love exclusivity and premium quality.</span>

@@ -30,6 +30,8 @@ function showExtraNav(){
   }
   function displayExtraNavCategory(trigger, navToDisplay ){
     trigger.addEventListener("mouseover", ()=>{
+      const searchInput = document.querySelector(".searcher-mobile");
+      searchInput.classList.remove("active-search-bar")
       mainExtraNav.style.display="block";
       navContainers.forEach(navGender=>{
         navGender.style.display="none"

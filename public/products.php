@@ -84,5 +84,54 @@
 
 </section>
 
+
+<section class="product-comments-section">
+    <div class="product-comments-sectionC-container wrapper">
+        <div class="reviews-container">
+            <div class="rating-container flex-col">
+                <div class="rating">5 stars</div>
+                <div class="rating-reviews-counts">Based on
+                <?php
+
+                echo comment::get_number_comments($product_id);
+                ?> reviews</div>
+            </div>
+            <button class="button-custom write-review-button">
+                WRITE REVIEW
+            </button>
+
+        </div>
+
+        <div class="form-comment-add inactive-comment-form">
+            <form action=""></form>
+            <span>What would you rate this product?</span>
+            <div class="stars-form-container">
+
+            </div>
+            <span>Tell us your feedback about the product?</span>
+            <textarea class="feedback-content" name="feedback-content" id=""></textarea>
+            <div class="feedback-inputs">
+                <label for="name">Your name</label>
+                <input type="text" name="name">
+                <label for="email">Your email</label>
+                <input type="text" name="email">
+            </div>
+
+            <div class="button-feedback-container">
+                <button class="button-custom cancel-feedback">Cancel</button>
+                <button class="button-custom accept-feedback">Submit</button>
+            </div>
+
+        </div>
+
+
+        <?php echo displayAllcomments($product_id);?>
+
+
+
+
+    </div>
+</section>
+
 <script src="js/pages/products.js"></script>
 <?php include("includes/footer.php") ?>

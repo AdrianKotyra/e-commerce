@@ -28,6 +28,22 @@ function format_date($originalDate){
     return $formattedDate;
 }
 
+function displayAllcomments($product_id){
+    global $connection;
+
+    $query = "SELECT * FROM comments where product_id = $product_id";
+    $select_comments = mysqli_query($connection, $query);
+    while ($row = mysqli_fetch_assoc($select_comments)) {
+        $comment_id = $row["comment_id"];
+        $new_comment = new Comment();
+        $new_comment->create_comment($comment_id);
+        echo $new_comment->comment_cart();
+
+    }
+}
+
+
+
 function generate_posts_allposts() {
     global $connection;
     if(isset($_GET["search"])) {
