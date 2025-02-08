@@ -1,4 +1,74 @@
 
+function showAddReview(){
+  const triggerReviewForm = document.querySelector(".write-review-button");
+  const reviewForm = document.querySelector(".form-comment-add");
+
+  triggerReviewForm.addEventListener("click", ()=>{
+    const closeForm = document.querySelector(".cancel-feedback");
+    reviewForm.classList.remove("inactive-comment-form");
+    closeForm.addEventListener("click", ()=>{
+      reviewForm.classList.add("inactive-comment-form");
+    })
+  })
+}
+
+showAddReview()
+
+// ---------------stars revire function-------------------
+function manageStartsReviews(){
+  const stars = document.querySelectorAll(".star");
+  const ratingTexts = document.querySelectorAll(".rating-text .text");
+  const ratingInput = document.getElementById("rating");
+
+  stars.forEach((star, index) => {
+      star.addEventListener("click", function() {
+          const value = star.getAttribute("data-value");
+          console.log(value)
+          // Toggle selected class for current star and deselect others
+          stars.forEach((s, i) => {
+              if (i <= index) {
+                  s.classList.add("selected");
+              } else {
+                  s.classList.remove("selected");
+              }
+          });
+
+          // Display corresponding rating text and hide others
+          ratingTexts.forEach((text, i) => {
+              if (i == index) {
+                  text.style.display = "inline-block";
+              } else {
+                  text.style.display = "none";
+              }
+          });
+
+
+      });
+
+      star.addEventListener("mouseover", function() {
+          const value = star.getAttribute("data-value");
+          // Highlight stars on hover
+          stars.forEach((s, i) => {
+              if (i < value) {
+                  s.classList.add("hovered");
+              } else {
+                  s.classList.remove("hovered");
+              }
+          });
+      });
+
+      star.addEventListener("mouseout", function() {
+          // Remove hover effect on mouseout
+          stars.forEach(s => s.classList.remove("hovered"));
+      });
+  });
+}
+
+manageStartsReviews()
+
+
+
+
 // -----------------Size guide Modal-----------------
 
 

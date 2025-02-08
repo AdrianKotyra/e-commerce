@@ -86,35 +86,54 @@
 
 
 <section class="product-comments-section">
-    <div class="product-comments-sectionC-container wrapper">
-        <div class="reviews-container">
-            <div class="rating-container flex-col">
-                <div class="rating">5 stars</div>
-                <div class="rating-reviews-counts">Based on
-                <?php
+    <div class="product-comments-section-container wrapper">
+        <div class="reviews-container-controller">
+            <div class="reviews-container">
+                <div class="rating-container flex-col">
+                    <div class="rating">5 stars</div>
+                    <div class="rating-reviews-counts">Based on
+                    <?php
 
-                echo comment::get_number_comments($product_id);
-                ?> reviews</div>
+                    echo comment::get_number_comments($product_id);
+                    ?> reviews</div>
+
+                </div>
+
+                <button class="button-custom write-review-button">
+                    WRITE REVIEW
+                </button>
+
             </div>
-            <button class="button-custom write-review-button">
-                WRITE REVIEW
-            </button>
-
+            <hr>
         </div>
+
+
 
         <div class="form-comment-add inactive-comment-form">
             <form action=""></form>
             <span>What would you rate this product?</span>
             <div class="stars-form-container">
+                <div class="stars">
+                    <span class="star" data-value="1"><img src="./imgs/icons/star.svg" alt=""></span>
+                    <span class="star" data-value="2"><img src="./imgs/icons/star.svg" alt=""></span>
+                    <span class="star" data-value="3"><img src="./imgs/icons/star.svg" alt=""></span>
+                    <span class="star" data-value="4"><img src="./imgs/icons/star.svg" alt=""></span>
+                    <span class="star" data-value="5"><img src="./imgs/icons/star.svg" alt=""></span>
 
+                </div>
             </div>
             <span>Tell us your feedback about the product?</span>
             <textarea class="feedback-content" name="feedback-content" id=""></textarea>
-            <div class="feedback-inputs">
-                <label for="name">Your name</label>
-                <input type="text" name="name">
-                <label for="email">Your email</label>
-                <input type="text" name="email">
+            <div class="feedback-inputs flex-row">
+                <div class="input-col flex-col">
+                    <label for="name">Your name</label>
+                    <input type="text" name="name">
+                </div>
+                <div class="input-col flex-col">
+                    <label for="email">Your email</label>
+                    <input type="text" name="email">
+                </div>
+
             </div>
 
             <div class="button-feedback-container">

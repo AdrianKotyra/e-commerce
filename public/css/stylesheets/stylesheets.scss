@@ -104,7 +104,13 @@
 	font-weight: 600;
 }
 .stars-form-container{
-
+	padding: 20px 0;
+	.hovered {
+		filter: invert(76%) sepia(16%) saturate(738%) hue-rotate(195deg) brightness(95%) contrast(89%);
+	}
+	.selected{
+		filter: invert(76%) sepia(16%) saturate(738%) hue-rotate(195deg) brightness(95%) contrast(89%);
+	}
 }
 .nav-mobile {
 	animation: mobileNav 0.2s forwards;
@@ -364,6 +370,9 @@
 
 	}
 }
+.stars-form-container {
+
+}
 .header-mobile-post {
 	display: none;
 }
@@ -525,11 +534,19 @@
 .basket-active {
 	background: black;
 }
-.reviews-container {
-	width: 100%;
-	display: flex;
-	justify-content: space-between;
-	flex-direction: row;
+.reviews-container-controller{
+	.reviews-container {
+		width: 100%;
+		display: flex;
+		justify-content: space-between;
+		flex-direction: row;
+
+
+	}
+
+	hr{
+		padding: 30px 0;
+	}
 }
 
 .comment-product-col-container {
@@ -1002,8 +1019,44 @@ nav {
 		height: 50px;
 	}
 }
+.form-comment-add {
+	display: flex;
+	flex-direction: column;
+	span {
+		font-size:var(--very-small);
+		font-weight: 600;
+	}
+}
 .inactive-comment-form {
 	display: none;
+}
+
+.feedback-content {
+	height: 120px;
+	resize: none;
+	margin-bottom: 20px;
+}
+.button-feedback-container {
+justify-content: right;
+	display: flex;
+	gap: 10px;
+	.cancel-feedback {
+		background-color: white;
+		color: black;
+		border: 1px solid black;
+	}
+}
+.feedback-inputs{
+	margin-bottom: 20px;
+	gap: 20px;
+	width: 100%;
+	.input-col{
+		width: 50%;
+		label {
+			font-size:var(--very-small);
+			font-weight: 600;
+		}
+	}
 }
 .layout-card {
 

@@ -89,6 +89,16 @@
   font-weight: 600;
 }
 
+.stars-form-container {
+  padding: 20px 0;
+}
+.stars-form-container .hovered {
+  filter: invert(76%) sepia(16%) saturate(738%) hue-rotate(195deg) brightness(95%) contrast(89%);
+}
+.stars-form-container .selected {
+  filter: invert(76%) sepia(16%) saturate(738%) hue-rotate(195deg) brightness(95%) contrast(89%);
+}
+
 .nav-mobile {
   animation: mobileNav 0.2s forwards;
   display: none;
@@ -529,11 +539,14 @@
   background: black;
 }
 
-.reviews-container {
+.reviews-container-controller .reviews-container {
   width: 100%;
   display: flex;
   justify-content: space-between;
   flex-direction: row;
+}
+.reviews-container-controller hr {
+  padding: 30px 0;
 }
 
 .comment-product-col-container {
@@ -1038,8 +1051,47 @@ nav {
   height: 50px;
 }
 
+.form-comment-add {
+  display: flex;
+  flex-direction: column;
+}
+.form-comment-add span {
+  font-size: var(--very-small);
+  font-weight: 600;
+}
+
 .inactive-comment-form {
   display: none;
+}
+
+.feedback-content {
+  height: 120px;
+  resize: none;
+  margin-bottom: 20px;
+}
+
+.button-feedback-container {
+  justify-content: right;
+  display: flex;
+  gap: 10px;
+}
+.button-feedback-container .cancel-feedback {
+  background-color: white;
+  color: black;
+  border: 1px solid black;
+}
+
+.feedback-inputs {
+  margin-bottom: 20px;
+  gap: 20px;
+  width: 100%;
+}
+.feedback-inputs .input-col {
+  width: 50%;
+}
+.feedback-inputs .input-col label {
+  font-size: var(--very-small);
+  font-weight: 600;
 }
 
 .layout-card {
