@@ -1,4 +1,5 @@
 <?php include("includes/header.php") ?>
+
 <?php
     global $product;
     if(isset($_GET["show"])) {
@@ -90,12 +91,24 @@
         <div class="reviews-container-controller">
             <div class="reviews-container">
                 <div class="rating-container flex-col">
-                    <div class="rating">5 stars</div>
-                    <div class="rating-reviews-counts">Based on
-                    <?php
+                    <div class="rating">
+                        <span class="stars_numbers stars">
+                            <?php  echo comment::get_average_rating($product_id);?>
+                        </span>
 
-                    echo comment::get_number_comments($product_id);
-                    ?> reviews</div>
+
+                        <span class="stars">
+                            <?php  echo comment::get_average_rating_stars($product_id);?>
+                        </span>
+
+
+                    </div>
+
+                    <?php echo comment::get_number_comments($product_id);  ?>
+
+
+
+
 
                 </div>
 
@@ -110,36 +123,44 @@
 
 
         <div class="form-comment-add inactive-comment-form">
-            <form action=""></form>
-            <span>What would you rate this product?</span>
-            <div class="stars-form-container">
-                <div class="stars">
-                    <span class="star" data-value="1"><img src="./imgs/icons/star.svg" alt=""></span>
-                    <span class="star" data-value="2"><img src="./imgs/icons/star.svg" alt=""></span>
-                    <span class="star" data-value="3"><img src="./imgs/icons/star.svg" alt=""></span>
-                    <span class="star" data-value="4"><img src="./imgs/icons/star.svg" alt=""></span>
-                    <span class="star" data-value="5"><img src="./imgs/icons/star.svg" alt=""></span>
+            <form class="form-comment flex-col">
+                <span>What would you rate this product?</span>
+                <span class="rating-stars-container inactive-comment-form ">Please choose a rating</span>
+                <div class="stars-form-container">
+                    <div class="stars">
+                        <span class="star" data-value="1"><img src="./imgs/icons/star.svg" alt=""></span>
+                        <span class="star" data-value="2"><img src="./imgs/icons/star.svg" alt=""></span>
+                        <span class="star" data-value="3"><img src="./imgs/icons/star.svg" alt=""></span>
+                        <span class="star" data-value="4"><img src="./imgs/icons/star.svg" alt=""></span>
+                        <span class="star" data-value="5"><img src="./imgs/icons/star.svg" alt=""></span>
+
+                    </div>
+                </div>
+                <span>Tell us your feedback about the product?</span>
+                <textarea class="feedback-content" name="feedback-content" class="feedback-content" ></textarea>
+                <div class="feedback-inputs flex-row">
+                    <div class="input-col flex-col">
+                        <label for="userName">Your name</label>
+                        <input type="text" name="userName" class="userName">
+                    </div>
+                    <div class="input-col flex-col">
+                        <label for="userEmail">Your email</label>
+                        <input type="text" name="userEmail" class="userEmail">
+                    </div>
 
                 </div>
-            </div>
-            <span>Tell us your feedback about the product?</span>
-            <textarea class="feedback-content" name="feedback-content" id=""></textarea>
-            <div class="feedback-inputs flex-row">
-                <div class="input-col flex-col">
-                    <label for="name">Your name</label>
-                    <input type="text" name="name">
-                </div>
-                <div class="input-col flex-col">
-                    <label for="email">Your email</label>
-                    <input type="text" name="email">
+
+                <div class="button-feedback-container">
+                    <button class="button-custom cancel-feedback" >Cancel</button>
+                    <button class="button-custom accept-feedback" >Submit</button>
                 </div>
 
-            </div>
+            </form>
 
-            <div class="button-feedback-container">
-                <button class="button-custom cancel-feedback">Cancel</button>
-                <button class="button-custom accept-feedback">Submit</button>
-            </div>
+
+
+        </div>
+        <div class="alert-container alert-comment">
 
         </div>
 

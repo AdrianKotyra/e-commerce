@@ -1,12 +1,117 @@
 
+
+
+function GetCommentAjax(){
+  document.querySelector(".form-comment").addEventListener("submit", function(event) {
+    event.preventDefault();
+  });
+
+  let rating = "";
+  const stars = document.querySelectorAll(".stars-form-container .stars .star");
+  const ratingAlert = document.querySelector(".rating-stars-container");
+  const submitFormButton = document.querySelector(".accept-feedback");
+
+  // get rating from stars attribute
+  stars.forEach(star=>{
+    star.addEventListener("click", ()=>{
+      rating = star.getAttribute("data-value");
+
+    })
+
+  })
+
+  submitFormButton.addEventListener("click", ()=>{
+
+    if(rating!="") {
+      sendAjaxComment(rating)
+      // reset rating  and rating alert after sending ajax
+      rating = "";
+      ratingAlert.classList.add("inactive-comment-form");
+    }
+    else {
+      // show alert to show rating
+      ratingAlert.classList.remove("inactive-comment-form");
+    }
+  })
+
+
+  function sendAjaxComment(stars_rating){
+    const feedbackFormContainer = document.querySelector(".form-comment-add");
+
+    const alertContainer = document.querySelector(".alert-container");
+    const userNameForm = document.querySelector(".userName").value;
+    const userEmailForm = document.querySelector(".userEmail").value;
+    const userFeedback = document.querySelector(".feedback-content").value;
+    const rating = stars_rating;
+
+    // get product id from param GET
+    const urlParams = new URLSearchParams(window.location.search);
+    const productId = urlParams.get("show");
+
+    const formData = new FormData();
+    formData.append('userName', userNameForm);
+    formData.append('userEmail', userEmailForm);
+    formData.append('userFeedback', userFeedback);
+    formData.append('productId', productId);
+    formData.append('rating', rating);
+
+    fetch('./ajax/create_comment.php', {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => response.text())
+    .then(data => {
+      if(data) {
+        alertContainer.innerHTML=data;
+        feedbackFormContainer.classList.add("inactive-comment-form")
+
+
+
+      }
+
+
+
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
+  }
+
+
+}
+
+GetCommentAjax()
+
+
+
+function resetForm(){
+  let userNameForm = document.querySelector(".userName");
+  let userEmailForm = document.querySelector(".userEmail")
+  let userFeedback = document.querySelector(".feedback-content");
+  const stars = document.querySelectorAll(".star");
+  // reset form
+  stars.forEach(star=>{
+  star.classList.remove("selected")
+  })
+  userFeedback.value = ""
+  userNameForm.value = ""
+  userEmailForm.value= ""
+
+}
+
+
 function showAddReview(){
   const triggerReviewForm = document.querySelector(".write-review-button");
   const reviewForm = document.querySelector(".form-comment-add");
 
+
   triggerReviewForm.addEventListener("click", ()=>{
     const closeForm = document.querySelector(".cancel-feedback");
     reviewForm.classList.remove("inactive-comment-form");
+    resetForm()
+
     closeForm.addEventListener("click", ()=>{
+
       reviewForm.classList.add("inactive-comment-form");
     })
   })
@@ -23,7 +128,7 @@ function manageStartsReviews(){
   stars.forEach((star, index) => {
       star.addEventListener("click", function() {
           const value = star.getAttribute("data-value");
-          console.log(value)
+
           // Toggle selected class for current star and deselect others
           stars.forEach((s, i) => {
               if (i <= index) {
