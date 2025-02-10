@@ -11,7 +11,7 @@
 
         }
 
-        echo displaySimilarProducts($prod_type_checked, 4,  $new_prod_id);?>
+        echo displaySimilarProducts($prod_type_checked, 4, $new_prod_id);?>
     </div>
 
 </section>

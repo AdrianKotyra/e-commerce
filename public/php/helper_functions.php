@@ -293,6 +293,7 @@ function displayCategoryProducts($type_products) {
 function displayDetailedProducts($type_products) {
     global $connection;
     $output = '';
+    $counter = 1;
     // Sanitize and escape the category name to prevent SQL injection
     $type_products = mysqli_real_escape_string($connection, $type_products);
     // Retrieve the type ID
@@ -305,26 +306,37 @@ function displayDetailedProducts($type_products) {
     if ($row = mysqli_fetch_assoc($select_product_types)) {
         $type_id = $row["id"];
         // Retrieve related product IDs
-        $query2 = "SELECT * FROM rel_types_products WHERE type_id = $type_id LIMIT 4 OFFSET 0";
+        $query2 = "SELECT * FROM rel_types_products WHERE type_id = $type_id";
 
         $select_products = mysqli_query($connection, $query2);
         if (!$select_products) {
             die("Query failed: " . mysqli_error($connection));
         }
+
         while ($product_row = mysqli_fetch_assoc($select_products)) {
             $prod_id = $product_row["product_id"];
+            // GET ONLY 4 PRODUCTS by creating counter and incrementing counter
+
 
             if(isset($_GET["category"]) && $_GET["category"]!="mixed"){
                 $category_products_ids = listenCategory();
-                if (in_array($prod_id, $category_products_ids)) {
+
+                if (in_array($prod_id, $category_products_ids) && $counter<=4) {
+                    $counter+=1;
+                    $product_new = new Product();
+                    $product_new->create_product($prod_id);
+                    $output.= $product_new->product_detailed_section_Template();
+            } }
+
+            else {
+
+                if($counter<=4) {
+                    $counter+=1;
                     $product_new = new Product();
                     $product_new->create_product($prod_id);
                     $output.= $product_new->product_detailed_section_Template();
                 }
-            } else {
-                $product_new = new Product();
-                $product_new->create_product($prod_id);
-                $output.= $product_new->product_detailed_section_Template();
+
             }
     }
     return $output;
@@ -436,7 +448,21 @@ function section_slider_products($type_products) {
     </section>';
     echo $section;
 }
-
+// ------------------SECTION SLIDER---------------------
+function section_slider_trending() {
+    $section =
+    '<section class="trending_section">
+        <a href="category.php?type=Trending">
+            <h3 class="section-header">
+                Trending
+            </h3>
+        </a>
+        <div class="container-section vetical-scroll-grab-class flex-row shopping-row">'
+            . displayTrendyProducts(8) . '
+        </div>
+    </section>';
+    echo $section;
+}
 // create list of products ids based on GET category
 function listenCategory(){
 
@@ -514,18 +540,55 @@ function get_Products_list_ids_by_size() {
 
 
 }
+// ------------------GET trendy PRODUCTS by views---------------------
+function displayTrendyProducts($LIMIT) {
+    global $connection;
+    $output = '';
+    $query = "SELECT * FROM products ORDER BY product_views DESC LIMIT $LIMIT OFFSET 0";
+    $select_products_by_views = mysqli_query($connection, $query);
+
+    while ($product_row = mysqli_fetch_assoc($select_products_by_views)) {
+        $prod_id = $product_row["product_id"];
+
+        if(isset($_GET["category"]) && $_GET["category"]!="mixed"){
+            $category_products_ids = listenCategory();
+
+            if (in_array($prod_id, $category_products_ids)) {
+                $product_new = new Product();
+                $product_new->create_product($prod_id);
+
+                $output.= $product_new->product_slider_Template();
+            }
+
+        } else {
+            $product_new = new Product();
+            $product_new->create_product($prod_id);
+            $output.= $product_new->product_slider_Template();
+        }
+
+
+    }
+    return $output;
+}
+
+
+
+
+
+
 // ------------------GET SLIDER PRODUCTS---------------------
 
 
-function displaySimilarProducts($type_products, $limit, $prod_id_displated_prod) {
+function displaySimilarProducts($type_products,  $limit, $prod_id_displated_prod) {
     global $connection;
     $output = '';
-    // Sanitize and escape the category name to prevent SQL injection
-    $type_products = mysqli_real_escape_string($connection, $type_products);
 
-
+    $counter = 1;
+    // take_first_index_of_list_of_product_types
+    $type_products_selected = $type_products[0];
+    print_r($type_products[0]);
     // Retrieve the type ID
-    $query = "SELECT * FROM types WHERE type_name = '$type_products'";
+    $query = "SELECT * FROM types WHERE type_name = '$type_products_selected'";
     $select_product_types = mysqli_query($connection, $query);
 
     if (!$select_product_types) {
@@ -537,7 +600,7 @@ function displaySimilarProducts($type_products, $limit, $prod_id_displated_prod)
         $type_id = $row["id"];
 
         // Retrieve related product IDs
-        $query2 = "SELECT * FROM rel_types_products WHERE type_id = $type_id  LIMIT $limit OFFSET 0";
+        $query2 = "SELECT * FROM rel_types_products WHERE type_id = $type_id ";
         $select_products = mysqli_query($connection, $query2);
 
 
@@ -552,7 +615,8 @@ function displaySimilarProducts($type_products, $limit, $prod_id_displated_prod)
             if(isset($_GET["category"]) && $_GET["category"]!="mixed"){
                 $category_products_ids = listenCategory();
 
-                if (in_array($prod_id, $category_products_ids)) {
+                if (in_array($prod_id, $category_products_ids) &&  $counter<=$limit) {
+                    $counter+= 1;
                     $product_new = new Product();
 
                     // make sure products are different that the one displayed
@@ -565,10 +629,6 @@ function displaySimilarProducts($type_products, $limit, $prod_id_displated_prod)
 
                 }
 
-            } else {
-                $product_new = new Product();
-                $product_new->create_product($prod_id);
-                $output.= $product_new->product_similar_card();
             }
     }
     return $output;

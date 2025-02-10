@@ -6,6 +6,7 @@
         $product_id = $_GET["show"];
         $serch_product = new Product();
         $serch_product->create_product($product_id);
+        Product::increment_product_views($product_id);
         $product_name = $serch_product->product_name;
         $product_price= $serch_product->product_price;
         $product_img1 = $serch_product->product_img;
@@ -33,7 +34,20 @@
         </div>
 
         <div class="product-info ">
-            <p  class="prod-category"><a href="index.php?category=<?php echo $product_category;?>"> <?php echo  $product_category;?> </a> > <a href="category.php?type=<?php echo $product_type;?>&category=<?php echo $product_category;?>"> <?php echo  $product_type;?> </a></p>
+
+            <p  class="prod-category">
+                <a href="index.php?category=<?php echo $product_category;?>"> <?php echo  $product_category;?> </a>  >
+
+                <?php
+                // echo all product types
+                foreach ($product_type as $type ) {
+                   echo ' <a href="category.php?type=<?php echo $product_type;?>&category='.$product_category.'">
+                   '.$type.' /
+                    </a>';
+                }
+                ?>
+
+            </p>
             <h1  class="prod-name"><?php echo  $product_name;?></h1>
             <span class="prod-price"><b>£<?php echo  $product_price;?></b></span>
             <span class="prod-desc"><?php echo  $product_desc;?></span>

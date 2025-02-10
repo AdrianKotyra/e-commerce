@@ -8,14 +8,29 @@ class Product {
     public $product_img_2;
     public $product_img_3;
     public $product_img_4;
+
+
+        // list of types []
     public $product_type;
+
     public $product_desc;
+
+
     public $product_category;
     public $product_sizes_list;
     public $product_availability;
 
 
     // Function to fetch product details from the database
+    public static function increment_product_views($id) {
+        global $connection;
+
+
+        $query = "UPDATE products SET product_views = product_views + 1 WHERE product_id = $id";
+        $increment_views = mysqli_query($connection, $query);
+    }
+
+
     public function create_product($id) {
         if ($id) {
             global $database;
@@ -26,13 +41,14 @@ class Product {
                 $type_id = $row['type_id'];
                 $type_name = $database->query_array("SELECT * FROM types WHERE id = $type_id");
                 while ($row = mysqli_fetch_array($type_name)) {
-                    $this->product_type = $row['type_name'];
+                    $this->product_type[] = $row['type_name'];
                 }
             }
 
             // get product category name
             $result_product_type = $database->query_array("SELECT * FROM rel_categories_products WHERE prod_id = $id");
             while ($row = mysqli_fetch_array($result_product_type)) {
+
                 $cat_id = $row['cat_id'];
                 $type_name = $database->query_array("SELECT * FROM categories WHERE cat_id = $cat_id");
                 while ($row = mysqli_fetch_array($type_name)) {

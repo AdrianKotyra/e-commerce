@@ -9,10 +9,10 @@
     <?php include("includes/sections/event-section.php") ?>
     <?php section_slider_products("Casual Sneakers") ?>
     <?php section_slider_products("Limited Edition Collectibles") ?>
-    <?php section_slider_products("Luxury Sneakers") ?>
+
     <?php include("includes/sections/video-section.php") ?>
     <?php section_slider_products("Retro/Classic Sneakers") ?>
-    <?php section_slider_products("Trending") ?>
+    <?php section_slider_trending() ?>
 
     <?php include("includes/sections/news-section.php") ?>
 
