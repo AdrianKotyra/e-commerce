@@ -99,9 +99,10 @@ function onBasket(){
     });
   }
   removeFromBasket()
+
   // -------------increment and decrement --------------------
   function increment_decrement_basket(){
-    // create sub function to increment and decrement
+
     function send_data_ajax(controller){
       const productId = controller.getAttribute("data-prod-id");
       const productsize= controller.getAttribute("data-prod-size");
@@ -110,7 +111,11 @@ function onBasket(){
       if(controller.classList.contains("basket-increment")) {
         SendDataAjax(data, "ajax/add_to_basket.php")
         .then(data => {
-          ReloadBasketAjax()
+            // w8 for data and then reload basket
+
+            ReloadBasketAjax()
+
+
         })
         .catch(error => {
             console.error('Error:', error);
@@ -119,7 +124,10 @@ function onBasket(){
       else {
         SendDataAjax(data, "ajax/basket-decrement.php")
         .then(data => {
-          ReloadBasketAjax()
+          // w8 for data and then reload basket
+
+            ReloadBasketAjax()
+          200
         })
         .catch(error => {
             console.error('Error:', error);
@@ -136,9 +144,13 @@ function onBasket(){
       const decrementor = label.querySelector(".basket-decrement");
 
       incrementor.addEventListener("click", ()=>{
+        const colBasketProduct = decrementor.closest(".basket_product_template ");
+        colBasketProduct.classList.add("incremeting_class")
         send_data_ajax(incrementor)
       })
       decrementor.addEventListener("click", ()=>{
+        const colBasketProduct = decrementor.closest(".basket_product_template ");
+        colBasketProduct.classList.add("incremeting_class")
         send_data_ajax(decrementor)
       })
      })

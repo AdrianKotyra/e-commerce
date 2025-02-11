@@ -1,5 +1,5 @@
 <section class="event-section">
-    <div class="event-section-container wrapper">
+    <div class="event-section-container">
         <div class="img-container-event">
             <img src="./imgs/event_section/event.jpg"  />
         </div>

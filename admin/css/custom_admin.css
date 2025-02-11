@@ -5,6 +5,10 @@ html {
     font-weight: 800;
     font-size: 2rem;
 }
+.product_stock_img {
+    width: 100px;
+    height: 100px;
+}
 .edit_tickets_img {
     width: 100px;
     height: 100px;

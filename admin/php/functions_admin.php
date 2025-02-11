@@ -55,19 +55,87 @@
     }
 
 
+    if(isset($_GET["delete_user"])) {
+    global $connection;
+    $user_to_be_deleted = $_GET["delete_user"];
+
+    // delete user account
+
+
+    $query = "DELETE from users WHERE user_id={$user_to_be_deleted}";
+    $delete_user_account = mysqli_query($connection, $query);
+
+
+
+
+}}
+
+function select_and_display_product_stock() {
+    global $connection;
+    if(isset($_GET["product_id"])) {
+        $product_id = $_GET["product_id"];
+        $query = "SELECT * from rel_products_sizes where prod_id =  $product_id ";
+        $select_prod_query = mysqli_query($connection, $query);
+        while($row = mysqli_fetch_assoc($select_prod_query)) {
+            $size_id = $row["size_id"];
+            $stock= $row["stock"];
+
+
+            $query2 = "SELECT * from sizes where id = $size_id";
+            $select_sizes_query = mysqli_query($connection, $query2);
+            while($row = mysqli_fetch_assoc($select_sizes_query)) {
+                echo " <tr>  ";
+                $size= $row["size"];
+                echo "<td>". $size. "</td>";
+                echo "<td>". $stock. "</td>";
+                echo "<td><a href='products.php?source=edit_stock&size_id={$size_id}'>EDIT</a></td>";
+                echo "<td > <span class='delete_button' data-link='products.php?delete_size=$size_id'> Delete </span></td>";
+                echo " </tr>  ";
+            }
+
+        }
+    }
+
+
+}
+function select_and_display_products() {
+    global $connection;
+
+    $query = "SELECT * from products";
+    $select_users_query = mysqli_query($connection, $query);
+    if (!$select_users_query) {
+        die("Query Failed: " . mysqli_error($connection));
+    }
+    while($row = mysqli_fetch_assoc($select_users_query)) {
+
+        $product_id = $row["product_id"];
+
+
+
+        // Loop through each column in the row
+        foreach ($row as $key => $value) {
+            echo "<td>" . htmlspecialchars($value) . "</td>";
+        }
+        echo "<td><a href='products.php?source=show&product_id={$product_id}'>STOCK</a></td>";
+        echo "<td><a href='products.php?source=edit_product&uproduct_id={$product_id}'>EDIT</a></td>";
+        echo "<td > <span class='delete_button' data-link='products.php?delete_product=$product_id'> Delete </span></td>";
+        echo " </tr>  ";
+
+
+
+
+    }
 
 
     if(isset($_GET["delete_user"])) {
-        global $connection;
-        $user_to_be_deleted = $_GET["delete_user"];
+    global $connection;
+    $user_to_be_deleted = $_GET["delete_user"];
 
-        // delete user account
-
-
-        $query = "DELETE from users WHERE user_id={$user_to_be_deleted}";
-        $delete_user_account = mysqli_query($connection, $query);
+    // delete user account
 
 
+    $query = "DELETE from users WHERE user_id={$user_to_be_deleted}";
+    $delete_user_account = mysqli_query($connection, $query);
 
 
 

@@ -19,9 +19,11 @@
         <h5>Total</h5>
         <h5>£<span class="basket_total"><?php echo $basket->getTotal();?></span></h5>
       </div>
-      <button class="button-custom">
-      Proceed to Checkout
-      </button>
+      <a href="check_out.php" class="checkout_basket">
+        <button class="button-custom">
+        Proceed to Checkout
+        </button>
+      </a>
       <a class="cart-link"href="cart.php">
         <button class="button-custom cart-button">
         Your Cart

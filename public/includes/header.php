@@ -51,7 +51,11 @@ include "php/init.php"?>
 
 </div>
 <?php include("includes/basket-user.php") ?>
-<?php include("includes/nav.php") ?>
+<?php
+basename($_SERVER['PHP_SELF']) != "check_out.php"?
+include("includes/nav.php") : include("includes/nav_checkout.php");
+
+?>
 <?php include("includes/nav-mobile.php") ?>
 <!-- <div class="mobile-quick-add">
 

@@ -55,7 +55,7 @@
                     <?php if ($basket_number > 0) echo $basket_number; ?>
                 </span>
 
-                <i class="fa-solid fa-basket-shopping"></i>
+                <img class="cart-shopping"src="./imgs/icons/cart.svg" alt="">
             </div>
 
         </div>
