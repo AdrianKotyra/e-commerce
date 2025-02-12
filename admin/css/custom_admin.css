@@ -11,7 +11,16 @@
     --border: #e5e7eb;
     --medium: 1.2rem;
 }
+.total_stock {
+    font-size: 2rem;
+    font-weight: 700;
+    display: block;
+    margin: 16px 0;
+}
+td {
+    max-width: 100px;
 
+}
 .table-female {
     background-color: rgb(237, 227, 233);
 }
@@ -59,14 +68,20 @@ html {
 .new_message {
     background-color: rgb(116, 235, 116);
 }
-
-
+.page-header {
+    text-decoration: none;
+    color: black;
+}
+.button-admin:hover {
+    background-color:  rgb(0, 0, 0);
+    color: white;
+}
 .button-admin {
     margin: 12px 12px 12px 0;
     border-radius: 4px;
     width: 140px;
     height: 40px;
-    background-color:  rgb(23, 204, 23);
+    background-color:  rgb(0, 0, 0);
     color: white;
     border: none;
 }

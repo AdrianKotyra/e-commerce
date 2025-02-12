@@ -49,7 +49,7 @@
                             <a href="products.php">See all products</a>
                         </li>
                         <li>
-                            <a href="users.php?source=add_users">Add products</a>
+                            <a href="products.php?source=add_product">Add products</a>
                         </li>
                     </ul>
                 </li>

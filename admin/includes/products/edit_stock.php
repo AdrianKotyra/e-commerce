@@ -42,7 +42,6 @@
         $product_id = $_GET["product_id"];
         $serch_product = new Product();
         $serch_product->create_product($product_id);
-        Product::increment_product_views($product_id);
         $product_name = $serch_product->product_name;
         $product_img1 = $serch_product->product_img;
 

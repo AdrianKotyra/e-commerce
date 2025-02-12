@@ -38,7 +38,6 @@
         $product_id = $_GET["product_id"];
         $serch_product = new Product();
         $serch_product->create_product($product_id);
-        Product::increment_product_views($product_id);
         $product_name = $serch_product->product_name;
         $product_img1 = $serch_product->product_img;
         $product_sizes_list = $serch_product->product_sizes_list;
@@ -50,12 +49,12 @@
         if($serch_product->product_category =="female") {
             $chosen_cat_sizes_list = $all_sizes_women_list;
             }
-            else if($serch_product->product_category =="male") {
-                $chosen_cat_sizes_list = $all_sizes_men_list;
-            }
-            else {
-                $chosen_cat_sizes_list = $all_sizes_men_list;
-            }
+        else if($serch_product->product_category =="male") {
+            $chosen_cat_sizes_list = $all_sizes_men_list;
+        }
+        else {
+            $chosen_cat_sizes_list = $all_sizes_men_list;
+        }
     }
     echo
     '<a href="products.php?source=show&product_id='.$product_id.'">
@@ -89,7 +88,7 @@
 
 
     <div class="form-group">
-        <input class="btn btn-primary" type="submit" name="add_stock" value="Add Stock">
+        <input class="btn btn-primary button-admin" type="submit" name="add_stock" value="Add Stock">
     </div>
 
 </form>

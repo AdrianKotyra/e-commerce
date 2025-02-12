@@ -10,7 +10,7 @@ class Product {
     public $product_img_4;
 
 
-        // list of types []
+    // list of types []
     public $product_type;
 
     public $product_desc;
@@ -96,11 +96,38 @@ class Product {
                 // if product has at least one stock > 1 in any size
                 $this->product_availability  = true;
             } else {
+                $list_sizes_id = [];
+                $this->product_sizes_list = $list_sizes_id;
                 $this->product_availability  = false;
             }
         }
     }
+    public static function getproductCategory($id){
+        global $database;
+        // get product category name
+        $result_product_type = $database->query_array("SELECT * FROM rel_categories_products WHERE prod_id = $id");
+        while ($row = mysqli_fetch_array($result_product_type)) {
 
+            $cat_id = $row['cat_id'];
+            $type_name = $database->query_array("SELECT * FROM categories WHERE cat_id = $cat_id");
+            while ($row = mysqli_fetch_array($type_name)) {
+                $product_category = $row['cat_name'];
+                return $product_category;
+            }
+        }
+    }
+    public static function getproductTotalStock($id){
+        global $database;
+        $total = 0;
+        // get product category name
+        $result_product_type = $database->query_array("SELECT * FROM rel_products_sizes WHERE prod_id = $id");
+        while ($row = mysqli_fetch_array($result_product_type)) {
+
+            $stock = $row['stock'];
+           $total+= $stock;
+        }
+        return $total;
+    }
     // Function to return product price
     public function getPrice() {
         return $this->product_price;
