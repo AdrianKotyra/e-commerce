@@ -5,37 +5,26 @@
 <?php
 
 
-    if(isset($_GET["user_id"])) {
+
+    if(isset($_POST["edit_stock"]) && isset($_GET["size_id"]) && isset($_GET["product_id"])) {
         global $connection;
-        $user_id_to_be_edited = $_GET["user_id"];
-    }
-    if(isset($_POST["edit_user"])) {
-
-        $user_firstname= trim($_POST["user_firstname"]);
-        $user_lastname= trim($_POST["user_lastname"]);
-        $user_password= trim($_POST["user_password"]) ;
-        $user_email =trim($_POST["user_email"]) ;
-        $user_city= trim($_POST["user_city"]);
-        $user_postcode= trim($_POST["user_postcode"]) ;
-        $user_address =trim($_POST["user_address"]) ;
-
-        $user_country =trim($_POST["user_country"]) ;
+        $product_id = $_GET["product_id"];
+        $size_id = $_GET["size_id"];
+        $stock= trim($_POST["stock"]);
+        $size_id= trim($_POST["size_id"]);
 
 
 
-        $query_update = "UPDATE users SET ";
-        $query_update .= "user_firstname = '{$user_firstname}', ";
-        $query_update .= "user_password = '{$user_password}', ";
-        $query_update .= "user_lastname = '{$user_lastname}', ";
-        $query_update .= "user_email = '{$user_email}', ";
-        $query_update .= "user_city = '{$user_city}', ";
-        $query_update .= "user_postcode = '{$user_postcode}', ";
-        $query_update .= "user_address = '{$user_address}', ";
-        $query_update .= "user_country = '{$user_country}' ";
-        $query_update .= "WHERE user_id = {$user_id_to_be_edited}";
 
-        $update_details = mysqli_query($connection, $query_update);
-        alert_text("User have been updated", "users.php");
+        $query_update = "UPDATE rel_products_sizes SET ";
+        $query_update .= "prod_id = '{$product_id}', ";
+        $query_update .= "size_id = '{$size_id}', ";
+        $query_update .= "stock = '{$stock}' ";
+        $query_update .= "WHERE prod_id =  $product_id AND size_id =  $size_id";
+
+
+        $update_stock = mysqli_query($connection, $query_update);
+        alert_text("Stock has been updated", "products.php?source=show&product_id=$product_id");
 
 
 
@@ -46,24 +35,46 @@
 ?>
 <!--  -->
 
+
 <?php
+    global $product;
+    if(isset($_GET["product_id"])) {
+        $product_id = $_GET["product_id"];
+        $serch_product = new Product();
+        $serch_product->create_product($product_id);
+        Product::increment_product_views($product_id);
+        $product_name = $serch_product->product_name;
+        $product_img1 = $serch_product->product_img;
 
-    if(isset($_GET["user_id"])) {
+    }
+    echo
+    '<a href="products.php?source=show&product_id='.$product_id.'">
+    <h3>'.$product_name.'</h3>
+    <img src="./../public/imgs/products/'.$product_name.'/'.$product_img1.'" alt="" class="product_stock_img">
+    </a>';
+
+
+?>
+
+
+
+<?php
+    if(isset($_GET["size_id"]) && isset($_GET["product_id"])) {
         global $connection;
-        $user_id_to_be_edited = $_GET["user_id"];
-        $query = "SELECT * from users where user_id={$user_id_to_be_edited}";
-        $select_users_query = mysqli_query($connection, $query);
-        while($row = mysqli_fetch_assoc($select_users_query)) {
-
-            $user_firstname= $row["user_firstname"];
-            $user_lastname= $row["user_lastname"];
-            $user_password= $row["user_password"] ;
-            $user_email =$row["user_email"] ;
-            $user_city= $row["user_city"];
-            $user_postcode=$row["user_postcode"] ;
-            $user_address =$row["user_address"] ;
-            $user_country =$row["user_country"] ;
-    }}
+        $product_id = $_GET["product_id"];
+        $size_id = $_GET["size_id"];
+        $query = "SELECT * from rel_products_sizes where size_id={$size_id} AND prod_id =  {$product_id}  ";
+        $select_size_query = mysqli_query($connection, $query);
+        while($row = mysqli_fetch_assoc($select_size_query)) {
+            $stock = $row["stock"];
+            $size_id= $row["size_id"];
+            $query2 = "SELECT * from sizes where id = $size_id";
+            $select_sizes_query = mysqli_query($connection, $query2);
+            while($row = mysqli_fetch_assoc($select_sizes_query)) {
+                $size= $row["size"];
+            }
+        }
+    }
 
 ?>
 <form action="" method="post" enctype="multipart/form-data">
@@ -71,48 +82,24 @@
 
 
     <div class="form-group">
-        <label for="user_firstname">User Firstname</label>
-        <input required type="text" class="form-control" name="user_firstname" value="<?php echo $user_firstname;?>">
+        <input required type="text" class="form-control hidden" name="size_id"  value="<?php echo $size_id;?>">
+        <label for="user_firstname">Size</label>
+        <?php echo $size;?>
     </div>
 
 
     <div class="form-group">
-        <label for="user_lastname">User Lastname</label>
-        <input required type="text" class="form-control" name="user_lastname"  value="<?php echo $user_lastname;?>">
+        <label for="user_lastname">Stock</label>
+        <input required type="number" class="form-control" name="stock"  value="<?php echo $stock;?>">
     </div>
 
-    <div class="form-group">
-        <label for="user_email">User Email</label>
-        <input required type="text" class="form-control" name="user_email"  value="<?php echo $user_email;?>">
-    </div>
-    <div class="form-group">
-        <label for="user_password">User password</label>
-        <input required type="password" class="form-control" name="user_password"  value="<?php echo $user_password;?>">
-    </div>
-
-    <div class="form-group">
-        <label for="user_address">User address</label>
-        <input  type="text" class="form-control" name="user_address"  value="<?php echo $user_address;?>">
-    </div>
-    <div class="form-group">
-        <label for="user_postcode">User postcode</label>
-        <input  type="text" class="form-control" name="user_postcode"  value="<?php echo $user_postcode;?>">
-    </div>
-    <div class="form-group">
-        <label for="user_city">User City</label>
-        <input  type="text" class="form-control" name="user_city"  value="<?php echo $user_city;?>">
-    </div>
-    <div class="form-group">
-        <label for="user_country">User country</label>
-        <input  type="text" class="form-control" name="user_country"  value="<?php echo $user_country;?>">
-    </div>
 
 
 
 
 
 <div class="form-group">
-    <input class="btn btn-primary" type="submit" name="edit_user" value="edit user">
+    <input class="btn btn-primary" type="submit" name="edit_stock" value="edit stock">
 </div>
 
 </form>

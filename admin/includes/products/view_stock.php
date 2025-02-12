@@ -7,24 +7,14 @@
         $serch_product->create_product($product_id);
         Product::increment_product_views($product_id);
         $product_name = $serch_product->product_name;
-        $product_price= $serch_product->product_price;
         $product_img1 = $serch_product->product_img;
-        $product_img2 = $serch_product->product_img_2;
-        $product_img3 = $serch_product->product_img_3;
-        $product_img4 = $serch_product->product_img_4;
-        $product_type = $serch_product->product_type;
-        $product_desc = $serch_product->product_desc;
-        $product_category = $serch_product->product_category;
-        $product_sizes = $serch_product->product_sizes_list;
-        $product_availability = $serch_product->product_availability;
-
-        $sizes_html = generate_sizes_html($serch_product, "span");
-        $chosen_grid= generate_product_grid_sizes($serch_product);
+        $product_category =  $serch_product->product_category;
 }
 
 
 ?>
 <?php echo
+'<h5> Category > <b>'.$product_category.'</b></h5>'.
 '<h3>'.$product_name.'</h3>
 <img src="./../public/imgs/products/'.$product_name.'/'.$product_img1.'" alt="" class="product_stock_img">
 <br>

@@ -81,26 +81,38 @@ function select_and_display_product_stock() {
             $stock= $row["stock"];
 
 
-            $query2 = "SELECT * from sizes where id = $size_id";
+            $query2 = "SELECT * from sizes where id = $size_id ";
             $select_sizes_query = mysqli_query($connection, $query2);
             while($row = mysqli_fetch_assoc($select_sizes_query)) {
-                echo " <tr>  ";
                 $size= $row["size"];
+                echo " <tr>  ";
+
                 echo "<td>". $size. "</td>";
                 echo "<td>". $stock. "</td>";
-                echo "<td><a href='products.php?source=edit_stock&size_id={$size_id}'>EDIT</a></td>";
-                echo "<td > <span class='delete_button' data-link='products.php?delete_size=$size_id'> Delete </span></td>";
+                echo "<td><a href='products.php?source=show&product_id={$product_id}&size_id={$size_id}'>EDIT</a></td>";
+                echo "<td > <span class='delete_button' data-link='products.php?source=show&delete_size=$size_id&product_id={$product_id}'> Delete </span></td>";
                 echo " </tr>  ";
             }
 
         }
     }
+    if(isset($_GET["delete_size"]) && isset($_GET["product_id"])) {
+        $size_id = $_GET["delete_size"];
+        $prod_id =  $_GET["product_id"];
 
+        $query = "DELETE from rel_products_sizes WHERE size_id=$size_id AND prod_id = $prod_id";
+        $delete_stock= mysqli_query($connection, $query);
+        if($delete_stock) {
+            echo '<script> window.location.href = "products.php?source=show&product_id='.$prod_id.'" </script>';
+        }
+
+
+    }
 
 }
 function select_and_display_products() {
     global $connection;
-
+    global $product;
     $query = "SELECT * from products";
     $select_users_query = mysqli_query($connection, $query);
     if (!$select_users_query) {
@@ -109,16 +121,29 @@ function select_and_display_products() {
     while($row = mysqli_fetch_assoc($select_users_query)) {
 
         $product_id = $row["product_id"];
+        $serch_product = new Product();
+        $serch_product->create_product($product_id);
+        $product_id_class = $serch_product->product_id;
+        $product_category = $serch_product->product_category;
+        $cat_color = '';
 
-
+        if($serch_product->product_category =="female") {
+            $cat_color = "table-female";
+        }
+        else if($serch_product->product_category =="male") {
+            $cat_color = "table-male";
+        }
+        else {
+            $cat_color = "table-uni";
+        }
 
         // Loop through each column in the row
         foreach ($row as $key => $value) {
-            echo "<td>" . htmlspecialchars($value) . "</td>";
+            echo "<td class='$cat_color'>" . substr($value, 0, 50) . "</td>";
         }
-        echo "<td><a href='products.php?source=show&product_id={$product_id}'>STOCK</a></td>";
-        echo "<td><a href='products.php?source=edit_product&uproduct_id={$product_id}'>EDIT</a></td>";
-        echo "<td > <span class='delete_button' data-link='products.php?delete_product=$product_id'> Delete </span></td>";
+        echo "<td class='$cat_color'><a href='products.php?source=show&product_id={$product_id_class}'>STOCK</a></td>";
+        echo "<td class='$cat_color'><a href='products.php?source=edit_product&uproduct_id={$product_id_class}'>EDIT</a></td>";
+        echo "<td class='$cat_color'> <span class='delete_button' data-link='products.php?delete_product=$product_id_class'> Delete </span></td>";
         echo " </tr>  ";
 
 

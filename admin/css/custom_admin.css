@@ -1,3 +1,27 @@
+:root {
+    --men-color: #acb5e6;
+    --women-color: rgb(224, 193, 212);
+    --uni-color: #90e185;
+    --light-gray: #f7f3f3;
+    --very-small: 0.9rem;
+    --header-section: 2rem;
+    --header-section-small: 1.6rem;
+    --extra-small: 0.8rem;
+    --icons: 1.3rem;
+    --border: #e5e7eb;
+    --medium: 1.2rem;
+}
+
+.table-female {
+    background-color: rgb(237, 227, 233);
+}
+.table-male {
+    background-color:  #dbdef0;
+
+}
+.table-uni {
+    background-color: #dff4db;
+}
 html {
     background-color: white;
 }
