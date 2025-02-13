@@ -3,6 +3,7 @@
     <div class="login-wrapper">
         <div class="login" >
             <h1>LOGIN</h1>
+            <span>admin/admin</span>
             <div class="alert-container"></div>
             <div class="login-col">
                 <label for="login"><b>Email</b></label>

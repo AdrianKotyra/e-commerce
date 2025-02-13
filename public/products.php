@@ -41,7 +41,7 @@
                 <?php
                 // echo all product types
                 foreach ($product_type as $type ) {
-                   echo ' <a href="category.php?type=<?php echo $product_type;?>&category='.$product_category.'">
+                   echo ' <a href="category.php?type='.$type.'&category='.$product_category.'">
                    '.$type.' /
                     </a>';
                 }
