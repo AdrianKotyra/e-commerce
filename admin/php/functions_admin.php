@@ -141,7 +141,7 @@ function select_and_display_products() {
             echo "<td class='$cat_color'>" . substr($value, 0, 50) . "</td>";
         }
         echo "<td class='$cat_color'><a href='products.php?source=show&product_id={$product_id}'>STOCK</a></td>";
-        echo "<td class='$cat_color'><a href='products.php?source=edit_product&uproduct_id={$product_id}'>EDIT</a></td>";
+        echo "<td class='$cat_color'><a href='products.php?source=edit_product&product_id={$product_id}'>EDIT</a></td>";
         echo "<td class='$cat_color'> <span class='delete_button' data-link='products.php?delete_product=$product_id'> Delete </span></td>";
         echo " </tr>  ";
 

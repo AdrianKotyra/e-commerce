@@ -10,15 +10,16 @@
         $select_size_query = mysqli_query($connection, $query);
         while($row = mysqli_fetch_assoc($select_size_query)) {
             $size_id = $row["id"];
+            $query_update = "INSERT INTO `rel_products_sizes` (`prod_id`, `size_id`, `stock`) ";
+            $query_update .= "VALUES ('{$product_id}', '{$size_id}', '{$stock}')";
+
+            $update_stock = mysqli_query($connection, $query_update);
+            alert_text("Stock has been updated", "products.php?source=show&product_id=$product_id");
+
+
 
         }
 
-
-        $query_update = "INSERT INTO `rel_products_sizes` (`prod_id`, `size_id`, `stock`) ";
-        $query_update .= "VALUES ('{$product_id}', '{$size_id}', '{$stock}')";
-
-        $update_stock = mysqli_query($connection, $query_update);
-        alert_text("Stock has been updated", "products.php?source=show&product_id=$product_id");
 
 
 

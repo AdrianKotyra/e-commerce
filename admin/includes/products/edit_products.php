@@ -1,118 +1,181 @@
-
-
-<!-- UPDATE FROM FORM TO MYSQL -->
-
 <?php
+if (isset($_POST['edit_product'])) {
+    global $connection;
 
+    $product_id = $_GET["product_id"];
+    $new_product_name = $_POST['product_name']; // New name from form
+    $product_price = $_POST['product_price'];
+    $product_desc = $_POST['product_desc'];
 
-    if(isset($_GET["user_id"])) {
-        global $connection;
-        $user_id_to_be_edited = $_GET["user_id"];
-    }
-    if(isset($_POST["edit_user"])) {
+    $types = $_POST['types'] ?? []; // Array of selected types
 
-        $user_firstname= trim($_POST["user_firstname"]);
-        $user_lastname= trim($_POST["user_lastname"]);
-        $user_password= trim($_POST["user_password"]) ;
-        $user_email =trim($_POST["user_email"]) ;
-        $user_city= trim($_POST["user_city"]);
-        $user_postcode= trim($_POST["user_postcode"]) ;
-        $user_address =trim($_POST["user_address"]) ;
+    // Paths
+    $default_image_path = "../public/imgs/products/default/default.jpg";
 
-        $user_country =trim($_POST["user_country"]) ;
+    // Fetch existing product data
+    $query = "SELECT * FROM products WHERE product_id = $product_id";
+    $select_product = mysqli_query($connection, $query);
+    $product_data = mysqli_fetch_assoc($select_product);
 
+    $old_product_name = $product_data['product_name']; // Store the old name
+    $old_product_dir = "../public/imgs/products/$old_product_name";
+    $new_product_dir = "../public/imgs/products/$new_product_name";
 
-
-        $query_update = "UPDATE users SET ";
-        $query_update .= "user_firstname = '{$user_firstname}', ";
-        $query_update .= "user_password = '{$user_password}', ";
-        $query_update .= "user_lastname = '{$user_lastname}', ";
-        $query_update .= "user_email = '{$user_email}', ";
-        $query_update .= "user_city = '{$user_city}', ";
-        $query_update .= "user_postcode = '{$user_postcode}', ";
-        $query_update .= "user_address = '{$user_address}', ";
-        $query_update .= "user_country = '{$user_country}' ";
-        $query_update .= "WHERE user_id = {$user_id_to_be_edited}";
-
-        $update_details = mysqli_query($connection, $query_update);
-        alert_text("User have been updated", "users.php");
-
-
-
-
+    // Rename folder if product name has changed
+    if ($old_product_name !== $new_product_name && is_dir($old_product_dir)) {
+        rename($old_product_dir, $new_product_dir);
+    } else {
+        $new_product_dir = $old_product_dir; // Keep the same directory
     }
 
+    // Handling uploaded images (retain existing if none uploaded)
+    $post_image1 = !empty($_FILES['product_img']['name']) ? $_FILES['product_img']['name'] : $product_data['product_img'];
+    $post_image_temp1 = $_FILES['product_img']['tmp_name'] ?? "";
 
+    $post_image2 = !empty($_FILES['product_img2']['name']) ? $_FILES['product_img2']['name'] : $product_data['product_img2'];
+    $post_image_temp2 = $_FILES['product_img2']['tmp_name'] ?? "";
+
+    $post_image3 = !empty($_FILES['product_img3']['name']) ? $_FILES['product_img3']['name'] : $product_data['product_img3'];
+    $post_image_temp3 = $_FILES['product_img3']['tmp_name'] ?? "";
+
+    $post_image4 = !empty($_FILES['product_img4']['name']) ? $_FILES['product_img4']['name'] : $product_data['product_img4'];
+    $post_image_temp4 = $_FILES['product_img4']['tmp_name'] ?? "";
+
+    // Move uploaded files (only if new images are uploaded)
+    if (!empty($post_image_temp1)) move_uploaded_file($post_image_temp1, "$new_product_dir/$post_image1");
+    if (!empty($post_image_temp2)) move_uploaded_file($post_image_temp2, "$new_product_dir/$post_image2");
+    if (!empty($post_image_temp3)) move_uploaded_file($post_image_temp3, "$new_product_dir/$post_image3");
+    if (!empty($post_image_temp4)) move_uploaded_file($post_image_temp4, "$new_product_dir/$post_image4");
+
+    // Update product details
+    $query = "UPDATE products
+        SET product_name = '$new_product_name',
+            product_price = '$product_price',
+            product_img = '$post_image1',
+            product_img2 = '$post_image2',
+            product_img3 = '$post_image3',
+            product_img4 = '$post_image4',
+            product_desc = '$product_desc'
+        WHERE product_id = '$product_id'";
+
+    $update_product_query = mysqli_query($connection, $query);
+
+    if (!$update_product_query) {
+        die("Product Update Failed: " . mysqli_error($connection));
+    }
+
+    // Delete existing type relations
+    $delete_query = "DELETE FROM rel_types_products WHERE product_id = '$product_id'";
+    mysqli_query($connection, $delete_query);
+
+    // Insert new type relations
+    foreach ($types as $type_id) {
+        $query3 = "INSERT INTO rel_types_products (type_id, product_id) VALUES ('$type_id', '$product_id')";
+        mysqli_query($connection, $query3);
+    }
+
+    alert_text("Product has been updated", "products.php");
+}
 ?>
-<!--  -->
+
 
 <?php
 
-    if(isset($_GET["user_id"])) {
-        global $connection;
-        $user_id_to_be_edited = $_GET["user_id"];
-        $query = "SELECT * from users where user_id={$user_id_to_be_edited}";
-        $select_users_query = mysqli_query($connection, $query);
-        while($row = mysqli_fetch_assoc($select_users_query)) {
+    if(isset($_GET["product_id"])) {
 
-            $user_firstname= $row["user_firstname"];
-            $user_lastname= $row["user_lastname"];
-            $user_password= $row["user_password"] ;
-            $user_email =$row["user_email"] ;
-            $user_city= $row["user_city"];
-            $user_postcode=$row["user_postcode"] ;
-            $user_address =$row["user_address"] ;
-            $user_country =$row["user_country"] ;
-    }}
+        $new_product = New Product();
+        $new_product-> create_product($_GET["product_id"]);
+        $product_id = $new_product ->product_id;
+        $product_name = $new_product ->product_name;
+        $product_price = $new_product ->product_price;
+        $product_img = $new_product ->product_img;
+        $product_img_2 = $new_product ->product_img_2;
+        $product_img_3 = $new_product ->product_img_3;
+        $product_img_4 = $new_product ->product_img_4;
+        $product_desc = $new_product ->product_desc;
+        // list of prod type names
+        $product_type = $new_product ->product_type;
+
+    }
 
 ?>
 <form action="" method="post" enctype="multipart/form-data">
 
-
+    <div class="form-group">
+        <label for="product_name">Product name</label>
+        <input required type="text" class="form-control" name="product_name" value="<?php echo $product_name;?>">
+    </div>
 
     <div class="form-group">
-        <label for="user_firstname">User Firstname</label>
-        <input required type="text" class="form-control" name="user_firstname" value="<?php echo $user_firstname;?>">
+        <label for="product_price">Product price</label>
+        <input required type="number" class="form-control" name="product_price" value="<?php echo $product_price;?>">
+    </div>
+
+    <div class="form-group">
+        <label for="product_desc">Product description</label>
+        <textarea required type="text" class="form-control prod_desc_area" name="product_desc"><?php echo $product_desc;?></textarea>
+    </div>
+    <div class="admin-grid-prod-imgs">
+    <div class="form-group flex-col">
+        <img src="./../public/imgs/products/<?php echo $product_name.'/'.$product_img;?>" alt="" class="product_stock_img">
+        <label for="product_img">Product image 1</label>
+        <input type="file" name="product_img" value="<?php echo $product_img;?>">
+    </div>
+
+    <div class="form-group flex-col">
+        <img src="./../public/imgs/products/<?php echo $product_name.'/'.$product_img_2;?>" alt="" class="product_stock_img">
+        <label for="product_img2">Product image 2</label>
+        <input type="file" name="product_img2">
+    </div>
+
+    <div class="form-group flex-col">
+        <img src="./../public/imgs/products/<?php echo $product_name.'/'.$product_img_3;?>" alt="" class="product_stock_img">
+        <label for="product_img3">Product image 3</label>
+        <input type="file" name="product_img3">
+    </div>
+
+    <div class="form-group flex-col">
+        <img src="./../public/imgs/products/<?php echo $product_name.'/'.$product_img_4;?>" alt="" class="product_stock_img">
+        <label for="product_img4">Product image 4</label>
+        <input type="file" name="product_img4">
+    </div>
     </div>
 
 
     <div class="form-group">
-        <label for="user_lastname">User Lastname</label>
-        <input required type="text" class="form-control" name="user_lastname"  value="<?php echo $user_lastname;?>">
+    <label for="category">Category</label>
+
     </div>
 
     <div class="form-group">
-        <label for="user_email">User Email</label>
-        <input required type="text" class="form-control" name="user_email"  value="<?php echo $user_email;?>">
+    <label for="Type">Type</label>
+    <br>
+
+        <?php  $query = "SELECT * FROM types";
+            global $connection;
+
+            $select_product_types = mysqli_query($connection, $query);
+            while ($row = mysqli_fetch_assoc($select_product_types)) {
+                $type_name = $row["type_name"];
+                $type_id = $row["id"];
+                if(in_array($type_name, $product_type))
+                {
+                    echo '<input type="checkbox" checked name="types[]" value="'.$type_id.'">
+                    <label for='.$type_name.'"> '.$type_name.'</label><br>';
+                }
+                else {
+                    echo '<input type="checkbox" name="types[]" value="'.$type_id.'">
+                    <label for='.$type_name.'"> '.$type_name.'</label><br>';
+                }
+
+            }
+        ?>
+
+
+
     </div>
+
     <div class="form-group">
-        <label for="user_password">User password</label>
-        <input required type="password" class="form-control" name="user_password"  value="<?php echo $user_password;?>">
+        <input class="btn btn-primary button-admin" type="submit" name="edit_product" value="Edit Product">
     </div>
-
-    <div class="form-group">
-        <label for="user_address">User address</label>
-        <input  type="text" class="form-control" name="user_address"  value="<?php echo $user_address;?>">
-    </div>
-    <div class="form-group">
-        <label for="user_postcode">User postcode</label>
-        <input  type="text" class="form-control" name="user_postcode"  value="<?php echo $user_postcode;?>">
-    </div>
-    <div class="form-group">
-        <label for="user_city">User City</label>
-        <input  type="text" class="form-control" name="user_city"  value="<?php echo $user_city;?>">
-    </div>
-    <div class="form-group">
-        <label for="user_country">User country</label>
-        <input  type="text" class="form-control" name="user_country"  value="<?php echo $user_country;?>">
-    </div>
-
-
-
-
-
-<div class="form-group">
-    <input class="btn btn-primary" type="submit" name="edit_user" value="edit user">
-</div>
-
 </form>
