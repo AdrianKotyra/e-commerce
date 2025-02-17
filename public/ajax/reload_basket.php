@@ -6,7 +6,7 @@
     global $basket;
 
     if (isset($_POST["data"])) {
-        $user_basket = $basket->processUserBasket();
+        $user_basket = $basket->processUserBasket("product_basket_Template");
         $user_total = $basket->getTotal();
         $number_items = $basket-> getNumber();
 

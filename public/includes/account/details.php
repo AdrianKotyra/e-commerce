@@ -6,28 +6,15 @@ if (isset($_POST["update-account"])) {
 
 
 <?php
-
     $user_id =  $user->user_id;
-    global $connection;
-    global $database;
-
-    $query = "SELECT * FROM users where user_id = $user_id ";
-    $result = $database->query_array($query);
-    while($row = mysqli_fetch_array($result )) {
-        $user_email = $row["user_email"];
-        $user_lastname = $row["user_lastname"];
-        $user_firstname = $row["user_firstname"];
-        $user_password = $row["user_password"];
-        $user_address = $row["user_address"];
-        $user_city = $row["user_city"];
-
-        $user_country = $row["user_country"];
-        $user_postcode = $row["user_postcode"];
-    }
-
-
-
-
+    $user_email = $user->user_email;
+    $user_lastname = $user->user_lastname;
+    $user_firstname = $user->user_firstname;
+    $user_password =$user->user_password;
+    $user_address = $user->user_address;
+    $user_city = $user->user_city;
+    $user_country = $user->user_country;
+    $user_postcode = $user->user_postcode;
 
 ?>
 

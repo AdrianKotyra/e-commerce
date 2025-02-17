@@ -7,8 +7,19 @@
         const alertContainer = document.querySelector(".alert-container");
         const userEmailForm = document.querySelector(".email").value;
         const userPasswordForm = document.querySelector(".password").value;
+
+        const urlParams = new URLSearchParams(window.location.search);
+
+
        // Create a FormData object
         const formData = new FormData();
+        // check for param to redirect to checkout or just login
+        if (urlParams.has("check_out")) {
+          formData.append('userParam', "checkout");
+        }
+        else {
+          formData.append('userParam', "login");
+        }
         formData.append('userEmail', userEmailForm);
         formData.append('userPassword', userPasswordForm);
         // Send data via AJAX
@@ -18,9 +29,15 @@
         })
         .then(response => response.text())
         .then(data => {
+
           if(data.trim()==="success-logged") {
 
             window.location.href = `account.php`;
+            return;
+          }
+          if(data.trim()==="success-logged-checkout") {
+
+            window.location.href = `check_out.php`;
             return;
           }
           if(data.trim()==="admin") {

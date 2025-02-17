@@ -7,16 +7,19 @@
         </h3>
         <div class="cart-container cart-products row ">
             <div class="col col-12 col-lg-8 cart-container body-basket">
-                <?php echo $basket->processUserBasket(); ?>
+                <?php echo $basket->processUserBasket("product_basket_Template"); ?>
             </div>
             <div class="col col-12 col-lg-4 cart-container cart-overview">
                 <h5>Overview</h5>
                 <div class="cart-total flex-row">
-                    <span>Subtotal ( <?php echo $basket->getNumberTotal(); ?> items)</span>
-                    <div>£<span class="basket_total"> <?php echo $basket->getTotal(); ?></span></div>
+                    <span>Subtotal (<?php echo $basket->getNumberTotal(); ?> items)</span>
+                    <span class="basket_total"> <b>£<?php echo $basket->getTotal(); ?></b></span>
 
                 </div>
-                <button class="button-custom">Proceed to Checkout</button>
+                <a href="check_out.php">
+                    <button class="button-custom">Proceed to Checkout</button>
+                </a>
+
             </div>
         </div>
     </div>

@@ -392,6 +392,38 @@ class Product {
         </div>';
         return  $product_template;
     }
+    public function product_checkout_Template($quantity_basket, $size){
+        $prod_total = $this->product_price*$quantity_basket;
+        $product_template = '
+
+
+                    <div class="check_out_prod_col flex-row">
+                        <div class="col-check-prod flex-row">
+                            <div class="img-container">
+                                <span class="prod-quantity">'.$quantity_basket.'</span>
+                               <img src="./imgs/products/'.$this->product_name.'/'.$this->product_img.'" />
+                            </div>
+                            <div class="prod-info-checkout flex-col">
+                                <span class="prod-name">'.$this->product_name.'</span>
+                                <span class="prod-size">size:' .$size.'</span>
+                            </div>
+
+                        </div>
+                        <div class="prod-info">
+                            <span class="prod-price">
+                            £'. $prod_total.'
+                            </span>
+
+                        </div>
+
+
+                </div>
+
+
+
+       ';
+        return  $product_template;
+    }
 
 }
 

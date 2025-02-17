@@ -88,7 +88,7 @@ class Basket {
             return $number;
         }
     }
-    public function processUserBasket() {
+    public function processUserBasket($product_template) {
         if (isset($_SESSION['baskets'])) {
             $reversed_baskets = array_reverse($_SESSION['baskets'], true);
             $products_basket = '';
@@ -99,7 +99,7 @@ class Basket {
 
                 $product_new->create_product($product_id );
 
-                $products_basket.=  $product_new->product_basket_Template($details['quantity'],$details['size']);
+                $products_basket.=  $product_new->$product_template($details['quantity'],$details['size']);
 
 
             }
@@ -111,6 +111,7 @@ class Basket {
         }
         return $products_basket;
     }
+
 
 
 }

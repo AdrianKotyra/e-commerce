@@ -4,6 +4,8 @@ include "../php/init.php"?>
 <?php
     $user_password = trim($_POST['userPassword']);
     $user_email = trim($_POST['userEmail']);
+
+
     $result_finding_users = $database -> query_array("SELECT * FROM users WHERE user_email = '$user_email' AND user_password = '$user_password'");
     $num_rows = mysqli_num_rows($result_finding_users);
    // WRONG CREDENTIALS
@@ -37,7 +39,13 @@ include "../php/init.php"?>
             $session->login($user_id);
             $user = new User();
             $user->create_user($session->user_id);
-            $data = "success-logged";
+            if(trim($_POST['userParam']) =="checkout"){
+                $data = "success-logged-checkout";
+            }
+            else {
+                $data = "success-logged";
+            }
+
 
         }
     }
