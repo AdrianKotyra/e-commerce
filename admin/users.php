@@ -1,78 +1,50 @@
-<!DOCTYPE html>
-<html lang="en">
-<?php include("includes/admin_header.php")?>
+<?php include("includes/header.php") ?>
 
-    <body>
+<body class="">
 
-    <div id="wrapper">
+  <div class="wrapper ">
+    <?php include("includes/nav.php") ?>
+    <?php include("includes/top-nav.php")?>
+    <div class="main-panel">
 
-        <!-- Navigation -->
-        <?php include("includes/nav.php")?>
+      <div class="content">
+        <div class="row">
 
-        <div id="page-wrapper">
-            <div class="container-fluid">
+          <div class="col-md-12">
+            <div class="card">
 
-
-            <div class="row">
-
-                <div class="col-lg-12">
-                    <a href="users.php"  class="text-center">
-                        <h1 class="page-header">
-                        Users
-
-                        </h1>
-                    </a>
-
-
-
-
-                </div>
-            </div>
-
-
-            </div>
-
-
-
+            <div class="card-body">
             <?php
 
-                if(isset($_GET["source"])) {
-                    $source = $_GET["source"];
+            if(isset($_GET["source"])) {
+            $source = $_GET["source"];
 
-                }
-                else {
-                    $source = "";
-                }
-                switch($source) {
-                    case 'add_users';
-                    include "includes/users/add_users.php";
-                    break;
+            }
+            else {
+                $source = "";
+            }
+            switch($source) {
+                case 'add_users';
+                include "includes/pages/users/add_users.php";
+                break;
 
-                    case 'edit_user';
-                    include "includes/users/edit_users.php";
-                    break;
-
-
-                    default: include "includes/users/view_all_users.php";
-                    break;
+                case 'edit_user';
+                include "includes/pages/users/edit_users.php";
+                break;
 
 
-                }
+                default: include "includes/pages/users/view_all_users.php";
+                break;
 
 
+            }
 
             ?>
-
-
-
         </div>
-
-
+      </div>
     </div>
-
-
-    <?php include("includes/admin_footer.php") ?>
-
+  </div>
+  <?php include("includes/footer.php")?>
 </body>
 
 </html>

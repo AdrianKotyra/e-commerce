@@ -1,40 +1,23 @@
-<!DOCTYPE html>
-<html lang="en">
-<?php include("includes/admin_header.php")?>
+<?php include("includes/header.php") ?>
 
-    <body>
+<body class="">
 
-    <div id="wrapper">
+  <div class="wrapper ">
+    <?php include("includes/nav.php") ?>
+    <?php include("includes/top-nav.php")?>
+    <div class="main-panel">
 
-        <!-- Navigation -->
-        <?php include("includes/nav.php")?>
+      <div class="content">
+        <div class="row">
 
-        <div id="page-wrapper">
-            <div class="container-fluid">
+          <div class="col-md-12">
+            <div class="card">
 
-
-            <div class="row">
-
-                <div class="col-lg-12">
-                    <a href="products.php"  class="text-center">
-                        <h1 class="page-header">
-                        Products
-
-                        </h1>
-                    </a>
-
-
-
-
-                </div>
-            </div>
-
-
-            </div>
-
-
-
+            <div class="card-body">
             <?php
+
+
+
 
                 if(isset($_GET["source"])) {
                     $source = $_GET["source"];
@@ -45,24 +28,24 @@
                 }
                 switch($source) {
                     case 'add_product';
-                    include "includes/products/add_products.php";
+                    include "includes/pages/products/add_products.php";
                     break;
 
                     case 'edit_product';
-                    include "includes/products/edit_products.php";
+                    include "includes/pages/products/edit_products.php";
                     break;
 
                     case 'show';
-                    include "includes/products/view_stock.php";
+                    include "includes/pages/products/view_stock.php";
                     break;
                     case 'edit_stock';
-                    include "includes/products/edit_stock.php";
+                    include "includes/pages/products/edit_stock.php";
                     break;
                     case 'add_stock';
-                    include "includes/products/add_stock.php";
+                    include "includes/pages/products/add_stock.php";
                     break;
 
-                    default: include "includes/products/view_all_products.php";
+                    default: include "includes/pages/products/view_all_products.php";
                     break;
 
 
@@ -70,18 +53,12 @@
 
 
 
-            ?>
+                ?>
+                </div>
+              </div>
+            </div>
+          </div>
+          <?php include("includes/footer.php")?>
+        </body>
 
-
-
-        </div>
-
-
-    </div>
-
-
-    <?php include("includes/admin_footer.php") ?>
-
-</body>
-
-</html>
+        </html>

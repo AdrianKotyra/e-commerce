@@ -711,10 +711,8 @@ function login_User_link(){
     }
     if ($session->signed_in===true && $user-> user_status=="admin") {
         echo '
-         <a href="../admin/index.php" class="user-container-profile login-icon">
-            <i class="fa-regular fa-user"></i>
-        </a>
-        <a class="login-nav-link" href="../admin/index.php">
+
+        <a class="login-nav-link" href="../admin/dashboard.php">
             <span class="login-nav">
                 ADMIN
             </span>

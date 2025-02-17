@@ -17,6 +17,16 @@
     }
 
 
+    function select_table_cols($table_name){
+        global $connection;
+        $query = "SELECT * from $table_name LIMIT 1";
+        $select_users_query = mysqli_query($connection, $query);
+        if ($select_users_query) {
+            while ($field_info = mysqli_fetch_field($select_users_query)) {
+                echo '<th>' . htmlspecialchars($field_info->name) . '</th>';
+            }
+    }}
+
     function select_and_display_users() {
     global $connection;
 
@@ -29,26 +39,16 @@
 
         $user_email = $row["user_email"];
         $user_id = $row["user_id"];
-        $user_firstname= $row["user_firstname"];
-        $user_lastname= $row["user_lastname"];
-
-        $user_country= $row["user_country"];
-        $user_city= $row["user_city"];
         // DONT DISPLAY ADMIN details IN USERS
         if( $user_email!="admin") {
-
             echo "<tr>";
 
-
-            echo "<td>" . $user_id . "</td>";
-
-            echo "<td>" . $user_firstname . "</td>";
-            echo "<td>" . $user_lastname . "</td>";
-            echo "<td>" . $user_country . "</td>";
-            echo "<td>" . $user_city . "</td>";
-            echo "<td>" . $user_email . "</td>";
-            echo "<td class='text-right'><a href='users.php?source=edit_user&user_id={$user_id}'>EDIT</a></td>";
-            echo "<td class='text-right'> <span class='delete_button' data-link='users.php?delete_user=$user_id'> Delete </span></td>";
+            // Loop through each column in the row
+            foreach ($row as $key => $value) {
+                echo "<td>" . htmlspecialchars($value) . "</td>";
+            }
+            echo "<td><a href='users.php?source=edit_user&user_id={$user_id}'>EDIT</a></td>";
+            echo "<td > <span class='delete_button' data-link='users.php?delete_user=$user_id'> Delete </span></td>";
             echo "</tr>";
         }
 
@@ -69,7 +69,6 @@
 
 
 }}
-
 
 function select_and_display_product_stock() {
     global $connection;
@@ -123,25 +122,27 @@ function select_and_display_products() {
     while($row = mysqli_fetch_assoc($select_users_query)) {
 
         $product_id = $row["product_id"];
-        $product_name = $row["product_name"];
-        $product_img = $row["product_img"];
-        $product_price = $row["product_price"];
-
 
         $product_category = Product::getproductCategory($product_id);
+        $cat_color = '';
 
+        if( $product_category =="female") {
+            $cat_color = "table-female";
+        }
+        else if( $product_category =="male") {
+            $cat_color = "table-male";
+        }
+        else {
+            $cat_color = "table-uni";
+        }
 
         // Loop through each column in the row
-        echo "<td > $product_id</td>";
-
-        echo "<td > $product_name</td>";
-        echo "<td><img src='../public/imgs/products/$product_name/$product_img'></td>";
-
-        echo "<td > $product_price</td>";
-        echo "<td > $product_category</td>";
-        echo "<td class='text-right'><a href='products.php?source=show&product_id={$product_id}'>STOCK</a></td>";
-        echo "<td class='text-right'><a href='products.php?source=edit_product&product_id={$product_id}'>EDIT</a></td>";
-        echo "<td class='text-right'> <span class='delete_button' data-link='products.php?delete_product=$product_id'> Delete </span></td>";
+        foreach ($row as $key => $value) {
+            echo "<td class='$cat_color'>" . substr($value, 0, 50) . "</td>";
+        }
+        echo "<td class='$cat_color'><a href='products.php?source=show&product_id={$product_id}'>STOCK</a></td>";
+        echo "<td class='$cat_color'><a href='products.php?source=edit_product&product_id={$product_id}'>EDIT</a></td>";
+        echo "<td class='$cat_color'> <span class='delete_button' data-link='products.php?delete_product=$product_id'> Delete </span></td>";
         echo " </tr>  ";
 
 
@@ -1131,7 +1132,7 @@ function select_and_display_tickets_not_assigned() {
 
 
 function alert_text($text, $link){
-    echo '<div class="alert alert-success alert-dismissible fade text-center show row-custom" role="alert">'
+    echo '<div class="alert alert-success text-center alert_header row-custom" role="alert">'
     .$text.'
     <a class="edit-icon" href="'.$link.'">
         <img src="../public/imgs/icons/exit.svg">
@@ -1139,7 +1140,7 @@ function alert_text($text, $link){
     </div>';
 }
 function alert_text_warning($text){
-    echo '<div class="alert alert-danger alert-dismissible fade show text-center row-custom" role="alert">'
+    echo '<div class="alert alert-danger text-center alert_header row-custom" role="alert">'
     .$text.'
 
     </div>';

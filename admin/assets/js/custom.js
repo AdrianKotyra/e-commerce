@@ -1,0 +1,62 @@
+
+
+
+function createConfirmWindowDeleteRow(){
+    const deleteButton = document.querySelectorAll(".delete_button")
+
+    const modalContainer = document.querySelector(".modal-window-container");
+    const confirmationModalLiteral = `
+     <div class="confirmationWindowModal">
+        <img class="cross_modal_admin exit-modal"src="../public/imgs/icons/cross.svg" alt="">
+
+        <div class="buttons-message-container">
+            <p>Are you sure you want to delete this record?</p>
+            <div class="buttons-ok-cancel">
+                <button class="accept_button">OK</button>
+                <button class="exit-modal">Cancel</button>
+            </div>
+
+        </div>
+    </div>
+
+    `
+
+    deleteButton.forEach(button => {
+
+        button.addEventListener("click", ()=>{
+
+            modalContainer.innerHTML=confirmationModalLiteral;
+
+            const acceptButton = document.querySelector(".accept_button")
+            document.addEventListener('keydown', function(event) {
+                if (event.key === 'Enter') {
+                    let selectedDeleteLink = button.getAttribute("data-link");
+
+                    window.location.href = `${selectedDeleteLink}`;
+                }
+
+            })
+
+            acceptButton.addEventListener("click", ()=>{
+                let selectedDeleteLink = button.getAttribute("data-link");
+
+                window.location.href = `${selectedDeleteLink}`;
+            })
+
+
+
+            const exitModal = document.querySelectorAll(".exit-modal");
+            exitModal.forEach(ele=>ele.addEventListener("click", ()=>{
+
+                modalContainer.innerHTML="";
+
+            }))
+        })
+    });
+
+
+
+
+
+}
+createConfirmWindowDeleteRow()
