@@ -18,8 +18,9 @@
 
 ?>
 <?php echo
-'<h5> Category > <b>'.$product_category.'</b></h5>'.
+
 '<h3>'.$product_name.'</h3>
+<span> '.$product_category.'</span>
 <img src="./../public/imgs/products/'.$product_name.'/'.$product_img1.'" alt="" class="product_stock_img">
 <img src="./../public/imgs/products/'.$product_name.'/'.$product_img2.'" alt="" class="product_stock_img">
 <img src="./../public/imgs/products/'.$product_name.'/'.$product_img3.'" alt="" class="product_stock_img">

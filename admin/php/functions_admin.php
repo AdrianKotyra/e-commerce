@@ -70,7 +70,36 @@
 
 }}
 
+function chart_cart_template($icon, $column_name){
+    $number_records_col = get_row_count($column_name);
+    $html = '<a class="col-lg-3 col-md-6 col-sm-6 chart-small" href="'.$column_name.'.php">
 
+                <div class="card card-stats">
+                    <div class="card-body ">
+                    <div class="row">
+                        <div class="col-5 col-md-4">
+                            <div class="icon-big text-center icon-warning">
+                                <i class="nc-icon '.$icon.' text-warning"></i>
+                            </div>
+                        </div>
+                        <div class="col-7 col-md-8">
+                            <div class="numbers">
+                                <p class="card-category">'.$column_name.'</p>
+                                <p class="card-title">'.$number_records_col.'<p>
+
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                    <div class="card-footer ">
+                    <hr>
+
+                </div>
+            </div>
+
+        </a>';
+return $html;
+}
 function select_and_display_product_stock() {
     global $connection;
     if(isset($_GET["product_id"])) {
@@ -891,7 +920,8 @@ function get_row_count($col_name){
     $select_all_records = mysqli_query($connection, $query);
     $row_counts = mysqli_num_rows( $select_all_records);
     // decrement by 1 dont include admin account
-    echo $row_counts-1;
+    $col_name=="users"? $row_counts=$row_counts-1 : "";
+    return $row_counts;
 }
 function select_and_display_comments() {
     global $connection;

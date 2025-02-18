@@ -25,14 +25,20 @@ $active_page =  basename($_SERVER['PHP_SELF']);
           </li> -->
           <li class="<?= $active_page == 'users.php' ? 'active' : '' ?>">
             <a href="users.php">
-              <i class="nc-icon nc-tile-56"></i>
+              <i class="nc-icon nc-circle-10"></i>
               <p>Users</p>
             </a>
           </li>
           <li class="<?= $active_page == 'products.php' ? 'active' : '' ?>">
             <a href="products.php">
               <i class="nc-icon nc-tile-56"></i>
-              <p>products</p>
+              <p>Products</p>
+            </a>
+          </li>
+          <li class="<?= $active_page == 'comments.php' ? 'active' : '' ?>">
+            <a href="comments.php">
+              <i class="nc-icon nc-favourite-28"></i>
+              <p>Comments</p>
             </a>
           </li>
         </ul>

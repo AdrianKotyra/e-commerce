@@ -1,4 +1,22 @@
 
+// SETTING UP DEFAULT TODAYS DATE TO ELEMENTS WITH datePicker id
+
+function getTodaysDate(){
+    Date.prototype.toDateInputValue = (function() {
+        var local = new Date(this);
+        local.setMinutes(this.getMinutes() - this.getTimezoneOffset());
+        return local.toJSON().slice(0,10);
+    });
+    const dateElement = document.getElementById('datePicker');
+    dateElement? document.getElementById('datePicker').value = new Date().toDateInputValue() : null;
+}
+getTodaysDate()
+
+
+
+//CREATE CONFIRMATION WINDOW TO DELETE RECORD. RECORD DELETION ON PASSING DATA-LINK ATTRIBUTE  AND GOING TO THE LINK
+
+
 
 
 function createConfirmWindowDeleteRow(){
@@ -60,3 +78,13 @@ function createConfirmWindowDeleteRow(){
 
 }
 createConfirmWindowDeleteRow()
+
+function SendDataAjax(sendData, file) {
+    return new Promise((resolve, reject) => {
+        $.post(file, {data: sendData}, function(data) {
+            resolve(data);
+        }).fail(function(jqXHR, textStatus, errorThrown) {
+            reject(errorThrown);
+        });
+    });
+  }

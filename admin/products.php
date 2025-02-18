@@ -7,10 +7,13 @@
     <?php include("includes/top-nav.php")?>
     <div class="main-panel">
 
+
+
       <div class="content">
         <div class="row">
 
           <div class="col-md-12">
+          <a href="products.php"><h3>PRODUCTS</h3></a>
             <div class="card">
 
             <div class="card-body">
