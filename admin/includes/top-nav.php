@@ -46,11 +46,12 @@
                   </p>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
-                  <a class="dropdown-item" href="#">Action</a>
-                  <a class="dropdown-item" href="#">Another action</a>
-                  <a class="dropdown-item" href="#">Something else here</a>
+                  <!-- <a class="dropdown-item" href="#">Action</a>
+                  <a class="dropdown-item" href="#">Another action</a> -->
+                  <a class="dropdown-item" href="dashboard.php?logout">Log out</a>
                 </div>
               </li>
+
               <!-- <li class="nav-item">
                 <a class="nav-link btn-rotate" href="javascript:;">
                   <i class="nc-icon nc-settings-gear-65"></i>

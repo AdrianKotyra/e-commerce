@@ -42,7 +42,7 @@
           }
           if(data.trim()==="admin") {
 
-            window.location.href = `../admin/index.php`;
+            window.location.href = `../admin/dashboard.php`;
             return;
           }
           else {
