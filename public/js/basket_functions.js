@@ -3,6 +3,10 @@
 
 // -------------BASKET SHOW--------------------
 
+
+
+
+
 function onBasket(){
     const basketContainer = document.querySelector(".basket-user");
     const bodymask = document.querySelector(".body-mask");
@@ -41,6 +45,8 @@ function onBasket(){
 
 
   showBasket()
+
+
   // -------------add to basket --------------------
   function add_similar_to_basket() {
     const similarProds = document.querySelectorAll(".similar-prod-col");
@@ -158,11 +164,38 @@ function onBasket(){
 
   increment_decrement_basket()
 
+  function displayModalWindowAddedProduct(data){
+    function displayOffModal(){
+      const cross = document.querySelectorAll(".exit-modal");
+      const crossBasket = document.querySelector(".exit-modal-go-basket");
+      // off the modal
+      cross.forEach(element => {
+        element.addEventListener("click", ()=>{
+          modalWindow.innerHTML="";
+          bodymask.style.display="none";
+        })
+      });
+      // display basket and off the modal
+      crossBasket.addEventListener("click", ()=>{
+        onBasket()
+      })
+
+    }
+
+    const modalWindow = document.querySelector(".modal-container");
+    const bodymask = document.querySelector(".body-mask");
+    bodymask.style.display="block";
+    modalWindow.innerHTML=data;
+    displayOffModal()
+
+  }
+
 
   // ---------------quick add product to basket ajax-------------------
   function addProduct(){
     // select only those not in prodcuts.php by selecting by container which is not in products.php
     const allLabels = document.querySelectorAll(".sizes-grid-prod .available-size");
+
     allLabels.forEach(label=>{
       label.addEventListener("click", ()=>{
         const productId = label.getAttribute("data-prod-id");
@@ -171,7 +204,8 @@ function onBasket(){
         SendDataAjax(data, "ajax/add_to_basket.php")
         .then(data => {
 
-          onBasket()
+          displayModalWindowAddedProduct(data)
+          ReloadBasketAjax()
 
         })
         .catch(error => {

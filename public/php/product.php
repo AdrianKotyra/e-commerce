@@ -366,6 +366,55 @@ class Product {
         </div>';
         return  $product_template;
     }
+    public function product_added_window_Template($quantity_basket, $size, $product_price ){
+        global $basket;
+
+        $prod_total = $product_price*$quantity_basket;
+        $total_items_in_basket = $basket::getNumber();
+        $total_price = $basket::getTotal();
+
+        $html = '<div class="added-prod-window">
+    <div class="added-prod-window-top">
+      <div class="exit-icon exit-modal">
+      <i class="fa-solid fa-xmark "></i>
+      </div>
+
+      <i class="fa-solid fa-check"></i>
+      <span><b>Product has been added to your basket.</b></span>
+    </div>
+
+    <div class="added-prod-window-body">
+      <div class="prod-info-window">
+        <img src="./imgs/products/'.$this->product_name.'/'.$this->product_img.'" alt="">
+        <div class="prod-info-container flex-col">
+          <span> <b>'.$this->product_name.'</b></span>
+          <span> £'.$prod_total.'</span>
+          <span>size: '. $size.'</span>
+          <span>Quantity: '.$quantity_basket.'</span>
+        </div>
+
+      </div>
+      <div class="prod-basket-window flex-row">
+          <div class="hr-col"></div>
+          <div class="prod-basket-window-container flex-col">
+                <div class="basket-info flex-col">
+                    <span>Producs in your basket : '.$total_items_in_basket.'</span>
+                    <span><b>Total: £'.$total_price.'</b></span>
+                </div>
+                <div class="button-prod-window flex-row">
+
+
+                    <button class="button-custom exit-modal">back to shop</button>
+                    <button class="button-custom exit-modal exit-modal-go-basket">back to basket</button>
+                </div>
+          </div>
+
+
+      </div>
+    </div>
+    </div>';
+    return  $html;
+    }
     public function product_basket_Template($quantity_basket, $size){
         $prod_total = $this->product_price*$quantity_basket;
         $product_template = '<div class="basket_product_template flex-row">

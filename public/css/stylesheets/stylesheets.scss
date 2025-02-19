@@ -1581,6 +1581,78 @@ body {
 		text-transform: uppercase;
 	}
 }
+.added-prod-window {
+	animation: fadein 0.3s forwards;
+	.exit-icon {
+		position: absolute;
+		right: 4px;
+		top: 2px;
+		font-size: 1.4rem;
+		color: #00000055;
+		cursor: pointer;
+	}
+	width: 900px;
+	height: 300px;
+	.hr-col{
+		height: 100%;
+		width: 2px;
+		background-color: #0000002a;
+	}
+	.button-prod-window {
+		gap: 10px;
+	}
+	.added-prod-window-top{
+		position: relative;
+		text-align: center;
+		padding: 10px;
+		background-color: var(--light-gray);
+		span{
+			margin-left: 10px;
+		}
+	}
+	.prod-basket-window-container {
+		padding-left: 44px;
+		justify-content: space-between;
+	}
+	.prod-basket-window-container >*{
+		margin: 0 0 14px 0
+	}
+	.added-prod-window-body {
+		display: flex;
+		flex-direction: row;
+		padding: 20px;
+		height: calc(100% - 44px);
+	}
+
+	background-color: white;
+	.prod-info-window{
+		display: flex;
+		flex-direction: row;
+
+
+
+		width: 50%;
+		img{
+			object-fit: cover;
+			width: 40%;
+			height: 100%;
+		}
+		.prod-info-container {
+			margin-left: 20px;
+			width: 50%;
+		}
+		.prod-info-container >* {
+			margin-bottom: 12px;
+		}
+	}
+	.prod-basket-window {
+		width: 50%;
+		.basket-info >* {
+			margin-bottom: 12px;
+		}
+
+	}
+}
 .total {
 
 	width: 100%;
@@ -2677,6 +2749,7 @@ footer {
     max-width: 100%;
   }
 }
+
 /* Responsive design */
 @media (max-width: 768px) {
 	.modal-container {
@@ -2769,6 +2842,39 @@ footer {
     height: 50vw;
   }
 }
+@media (max-width: 900px) {
+	.added-prod-window {
+		width: 100vw;
+		height: 100vh
+	}
+	.added-prod-window .prod-basket-window-container {
+		padding-left: 10px;
+	}
+	.added-prod-window .prod-basket-window {
+		width: 100%;
+	}
+	.added-prod-window-body {
+		flex-direction: column !important;
+	}
+	.added-prod-window .prod-info-window {
+		width: 100%;
+	}
+	.prod-info-window{
+
+		flex-direction: column !important;
+
+
+		width: 100%;
+		img{
+
+
+		}
+		.prod-info-container {
+
+			width: 100%;
+		}
+ }}
+
 @media screen and (max-width: 467px) {
 	.sizes-grid-prod {
 		width: 100%;
