@@ -401,11 +401,11 @@ class Product {
                     <span>Producs in your basket : '.$total_items_in_basket.'</span>
                     <span><b>Total: £'.$total_price.'</b></span>
                 </div>
-                <div class="button-prod-window flex-row">
+                <div class="button-prod-window">
 
 
-                    <button class="button-custom exit-modal">back to shop</button>
-                    <button class="button-custom exit-modal exit-modal-go-basket">back to basket</button>
+                    <button class="button-custom exit-modal">continue shopping</button>
+                    <button class="button-custom exit-modal exit-modal-go-basket">check basket</button>
                 </div>
           </div>
 

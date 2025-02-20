@@ -11,6 +11,7 @@ function onBasket(){
     const basketContainer = document.querySelector(".basket-user");
     const bodymask = document.querySelector(".body-mask");
     bodymask.style.display="block";
+    document.body.style.overflowY = "hidden";
     basketContainer.classList.remove("inactive-basket")
     basketContainer.classList.add("active-basket")
     ReloadBasketAjax()
@@ -22,6 +23,7 @@ function onBasket(){
     const bodymask = document.querySelector(".body-mask");
 
     bodymask.style.display="none";
+    document.body.style.overflowY = "scroll";
     basketContainer.classList.remove("active-basket")
     basketContainer.classList.add("inactive-basket")
   }
@@ -171,8 +173,15 @@ function onBasket(){
       // off the modal
       cross.forEach(element => {
         element.addEventListener("click", ()=>{
+          // display off all opened products labels
+          const Labels = document.querySelectorAll(".hidden-prod-label");
+          Labels.forEach(label=>{
+            label.classList.remove("clicked-active-label");
+          })
+          // close modal
           modalWindow.innerHTML="";
           bodymask.style.display="none";
+          document.body.style.overflowY = "scroll";
         })
       });
       // display basket and off the modal
@@ -185,7 +194,9 @@ function onBasket(){
     const modalWindow = document.querySelector(".modal-container");
     const bodymask = document.querySelector(".body-mask");
     bodymask.style.display="block";
+    document.body.style.overflowY = "hidden";
     modalWindow.innerHTML=data;
+
     displayOffModal()
 
   }

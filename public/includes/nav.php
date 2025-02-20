@@ -63,66 +63,92 @@
 
 
     </div>
+
     <div class="nav-extra wrapper extra-nav-trigger">
         <hr>
-        <div class="flex-row nav-extra-container men-extra-nav">
+        <div class="nav-extra-container men-extra-nav flex-col">
+            <div class="flex-row nav-extra-content">
+                <div class="nav_cats_container">
 
-            <div class="nav_cats_container">
-
-                <span class="nav_cats_header">Shop by Mens category</span>
-                <div class="nav_cats_grid">
-                    <?php get_products_types_nav('male')?>
+                    <span class="nav_cats_header">Shop by Mens category</span>
+                    <div class="nav_cats_grid">
+                        <?php get_products_types_nav('male')?>
+                    </div>
                 </div>
 
+                <div class="nav_cats_img">
+                    <p>
+                        Mens
+                    </p>
+                    <img src="./imgs/nav/men/men_nav.jpg" alt="">
+                </div>
             </div>
-
-            <div class="nav_cats_img">
-                <p>
-                    Mens
-                </p>
-                <img src="./imgs/nav/men/men_nav.jpg" alt="">
+            <hr>
+            <div class="nav-extra-main-links flex-row">
+                <a href="news_all.php">Blog</a>
+                <a href="Event.php">Events</a>
+                <a href="contact.php">Contact</a>
+                <a href="faq.php">FAQ</a>
             </div>
-
-
 
 
         </div>
-        <div class="flex-row nav-extra-container female-extra-nav">
 
-            <div class="nav_cats_container">
+        <div class="nav-extra-container female-extra-nav flex-col">
+            <div class="flex-row nav-extra-content">
+                <div class="nav_cats_container">
 
-                <span class="nav_cats_header">Shop by Womens category</span>
-                <div class="nav_cats_grid">
-                    <?php get_products_types_nav('female')?>
+                    <span class="nav_cats_header">Shop by Womens category</span>
+                    <div class="nav_cats_grid">
+                        <?php get_products_types_nav('female')?>
+                    </div>
+                </div>
+
+                <div class="nav_cats_img">
+                    <p>
+                        Womens
+                    </p>
+                    <img src="./imgs/nav/women/women.jpg" alt="">
                 </div>
             </div>
-
-            <div class="nav_cats_img">
-                <p>
-                    Womens
-                </p>
-                <img src="./imgs/nav/women/women.jpg" alt="">
+            <hr>
+            <div class="nav-extra-main-links flex-row">
+                <a href="news_all.php">Blog</a>
+                <a href="Event.php">Events</a>
+                <a href="contact.php">Contact</a>
+                <a href="faq.php">FAQ</a>
             </div>
+
 
         </div>
-        <div class="flex-row nav-extra-container uni-extra-nav">
+        <div class="nav-extra-container uni-extra-nav flex-col">
+            <div class="flex-row nav-extra-content">
+                <div class="nav_cats_container">
 
-            <div class="nav_cats_container">
-
-                <span class="nav_cats_header">Shop by Unisex category</span>
-                <div class="nav_cats_grid">
-                    <?php get_products_types_nav('unisex')?>
+                    <span class="nav_cats_header">Shop by Unisex category</span>
+                    <div class="nav_cats_grid">
+                        <?php get_products_types_nav('unisex')?>
+                    </div>
                 </div>
-            </div>
 
-            <div class="nav_cats_img">
-                <p>
+                <div class="nav_cats_img">
+                    <p>
                     Unisex
-                </p>
-                <img src="./imgs/nav/uni/uni.jpg" alt="">
+                    </p>
+                    <img src="./imgs/nav/uni/uni.jpg" alt="">
+                </div>
+            </div>
+            <hr>
+            <div class="nav-extra-main-links flex-row">
+                <a href="news_all.php">Blog</a>
+                <a href="Event.php">Events</a>
+                <a href="contact.php">Contact</a>
+                <a href="faq.php">FAQ</a>
             </div>
 
+
         </div>
+
     </div>
     <div class="searcher-mobile wrapper" id="search-box-nav">
 
