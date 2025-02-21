@@ -12,6 +12,15 @@
   --medium: 1.2rem;
 }
 
+.faq-section {
+  padding: 40px 0;
+  display: flex;
+  justify-content: center;
+}
+.faq-section .faq-prod-desc {
+  font-weight: 600;
+}
+
 .checkout_basket button {
   width: 100%;
 }
@@ -225,6 +234,10 @@
   font-size: var(--very-small);
 }
 
+.contact-hero-banner {
+  height: 160px;
+}
+
 .logo-nav a {
   color: black;
   text-decoration: none;
@@ -236,7 +249,6 @@
   font-weight: 800;
   letter-spacing: 0.3rem;
   font-size: var(--header-section-small);
-  font-family: ui-monospace;
 }
 
 .account-info .header-title-small {
@@ -686,6 +698,29 @@
 .searcher-mobile input {
   border: 1px solid rgba(0, 0, 0, 0.244);
   width: 100%;
+}
+
+.contact-section {
+  display: flex;
+  justify-content: center;
+}
+.contact-section .container-form-contact {
+  display: flex;
+  flex-direction: row;
+}
+.contact-section .container-form-contact > * {
+  width: 50%;
+}
+.contact-section .container-form-contact > * .send-contact-form {
+  width: 100%;
+}
+.contact-section .map-contact {
+  width: 80%;
+  height: 300px;
+}
+.contact-section .map-contact .iframe-map {
+  width: 100%;
+  height: 100%;
 }
 
 .basket-number {
@@ -2835,6 +2870,15 @@ footer {
 }
 /* Responsive design */
 @media (max-width: 768px) {
+  .contact-section .map-contact {
+    width: 100%;
+  }
+  .container-form-contact {
+    flex-direction: column !important;
+  }
+  .contact-section .container-form-contact > * {
+    width: 100%;
+  }
   .modal-container .sizes_guide {
     width: 100vw;
     height: 100vh;

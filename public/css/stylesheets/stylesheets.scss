@@ -12,7 +12,14 @@
 	--medium: 1.2rem;
 }
 
-
+.faq-section {
+	padding: 40px 0;
+	display: flex;
+	justify-content: center;
+	.faq-prod-desc {
+		font-weight: 600;
+	}
+}
 @mixin mobilePaddig{
   padding: 0 1.25rem;
 }
@@ -244,6 +251,9 @@
 	color: black;
 	font-size: var(--very-small);
 }
+.contact-hero-banner {
+	height: 160px;
+}
 .logo-nav {
 	a{
 		color: black;
@@ -256,7 +266,7 @@
 	font-weight: 800;
 	letter-spacing: 0.3rem;
 	font-size: var(--header-section-small);
-	font-family: ui-monospace;
+
 }
 .account-info {
 	.header-title-small {
@@ -693,6 +703,29 @@
 		width: 100%;
 	}
 }
+.contact-section {
+	display: flex;
+	justify-content: center;
+	.container-form-contact{
+		display: flex;
+		flex-direction: row;
+	}
+	.container-form-contact >*{
+		width: 50%;
+		.send-contact-form{
+			width: 100%;
+		}
+	}
+	.map-contact {
+		width: 80%;
+		height: 300px;
+		.iframe-map{
+			width: 100%;
+			height: 100%;
+		}
+	}
+}
+
 .basket-number {
 	font-weight: 900;
 	text-align: center;
@@ -1383,6 +1416,7 @@ body {
 }
 
 .nav-extra{
+
 	transform: translateY(-10px);
 	display: none;
 	padding: 20px 0;
@@ -2790,7 +2824,17 @@ footer {
 
 /* Responsive design */
 @media (max-width: 768px) {
-
+	.contact-section {
+		.map-contact{
+			width: 100%;
+		}
+	}
+	.container-form-contact {
+		flex-direction: column !important;
+	}
+	.contact-section .container-form-contact > * {
+		width: 100%;
+	}
 	.modal-container {
 
 

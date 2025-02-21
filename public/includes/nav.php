@@ -86,7 +86,6 @@
             <hr>
             <div class="nav-extra-main-links flex-row">
                 <a href="news_all.php">Blog</a>
-                <a href="Event.php">Events</a>
                 <a href="contact.php">Contact</a>
                 <a href="faq.php">FAQ</a>
             </div>
@@ -114,7 +113,6 @@
             <hr>
             <div class="nav-extra-main-links flex-row">
                 <a href="news_all.php">Blog</a>
-                <a href="Event.php">Events</a>
                 <a href="contact.php">Contact</a>
                 <a href="faq.php">FAQ</a>
             </div>
@@ -141,7 +139,6 @@
             <hr>
             <div class="nav-extra-main-links flex-row">
                 <a href="news_all.php">Blog</a>
-                <a href="Event.php">Events</a>
                 <a href="contact.php">Contact</a>
                 <a href="faq.php">FAQ</a>
             </div>
