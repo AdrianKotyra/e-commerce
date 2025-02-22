@@ -31,7 +31,7 @@ function format_date($originalDate){
 function displayAllcomments($product_id){
     global $connection;
 
-    $query = "SELECT * FROM comments where product_id = $product_id";
+    $query = "SELECT * FROM comments where product_id = $product_id AND approved = 'approved'";
     $select_comments = mysqli_query($connection, $query);
     while ($row = mysqli_fetch_assoc($select_comments)) {
         $comment_id = $row["comment_id"];

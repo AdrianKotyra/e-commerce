@@ -1,6 +1,6 @@
 <?php include("includes/header.php") ?>
 
-<section class="hero-section post-hero-banner">
+<section class="contact-hero-banner">
     <div class="hero-container">
       <?php
         if(isset($_GET["post"])){

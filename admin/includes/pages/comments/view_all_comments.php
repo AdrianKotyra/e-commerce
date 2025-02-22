@@ -1,13 +1,11 @@
 
 
 <div class="card-header">
-    <h4 class="card-title"> All users</h4>
+    <h4 class="card-title"> All comments</h4>
 </div>
 <div class="card-body">
 
-    <a href="users.php?source=add_users">
-    <button type="submit" class="btn btn-primary btn-round">Add new user</button>
-    </a>
+
     <div class="alert-box-user-deletion confirmationWindowModal">
 
         <div class="buttons-message-container">
@@ -20,26 +18,33 @@
         </div>
 
     </div>
-    <?php delete_users()?>
+    <?php delete_comments()  ?>
+
+
+
     <div class="table-responsive table-custom">
-        <table class="table">
+        <table class="table table-custom">
 
             <thead class=" text-primary">
-                <th>id</th>
-                <th>Name</th>
-                <th>Surname</th>
-                <th>Country </th>
-                <th> City </th>
-                <th> Email </th>
-                <th  class=" text-primary text-right">Edit</th>
+                <th>Id</th>
+                <th>User</th>
+                <th>Product</th>
+                <th>Rating </th>
+                <th>Status </th>
+                <th  class=" text-primary text-right">Check feedback</th>
+                <th  class=" text-primary text-right">Change status</th>
                 <th  class=" text-primary text-right">Delete</th>
             </thead>
+
+
+            <?php change_status_comments()?>
+
 
 
 
             <tbody>
 
-                <?php select_and_display_users();?>
+                <?php select_and_display_comments();?>
 
             </tbody>
 

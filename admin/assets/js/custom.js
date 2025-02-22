@@ -30,8 +30,8 @@ function createConfirmWindowDeleteRow(){
         <div class="buttons-message-container">
             <p>Are you sure you want to delete this record?</p>
             <div class="buttons-ok-cancel">
-                <button class="accept_button">OK</button>
-                <button class="exit-modal">Cancel</button>
+                <button class="accept_button btn btn-primary btn-round">OK</button>
+                <button class="exit-modal btn btn-primary btn-round">Cancel</button>
             </div>
 
         </div>
@@ -78,6 +78,23 @@ function createConfirmWindowDeleteRow(){
 
 }
 createConfirmWindowDeleteRow()
+
+// ------------change comment status-----------
+function changeStatusComments(){
+    const allButtons = document.querySelectorAll(".change_status_button");
+    allButtons.forEach(changeButton=>{
+        changeButton.addEventListener("click", ()=>{
+            let selectedchangeLink = changeButton.getAttribute("data-link");
+
+            window.location.href = `${selectedchangeLink}`;
+        })
+    })
+
+
+}
+
+changeStatusComments()
+
 
 function SendDataAjax(sendData, file) {
     return new Promise((resolve, reject) => {

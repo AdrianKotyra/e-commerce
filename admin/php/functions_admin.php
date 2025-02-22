@@ -47,29 +47,115 @@
             echo "<td>" . $user_country . "</td>";
             echo "<td>" . $user_city . "</td>";
             echo "<td>" . $user_email . "</td>";
-            echo "<td class='text-right'><a href='users.php?source=edit_user&user_id={$user_id}'>EDIT</a></td>";
-            echo "<td class='text-right'> <span class='delete_button' data-link='users.php?delete_user=$user_id'> Delete </span></td>";
+            echo "<td class='text-right'><a class='table-nav-link' href='users.php?source=edit_user&user_id={$user_id}'>EDIT</a></td>";
+            echo "<td class='text-right'> <span class='table-nav-link delete_button' data-link='users.php?delete_user=$user_id'> Delete </span></td>";
             echo "</tr>";
         }
 
     }
 
 
+}
+
+
+function delete_users(){
     if(isset($_GET["delete_user"])) {
+        global $connection;
+        $user_to_be_deleted = $_GET["delete_user"];
+
+        // delete user account
+
+
+        $query = "DELETE from users WHERE user_id={$user_to_be_deleted}";
+        $delete_user_account = mysqli_query($connection, $query);
+
+
+
+
+    }
+}
+
+function change_status_comments(){
+    if(isset($_GET["change_status"])) {
+        global $connection;
+        $comment_id = $_GET["change_status"];
+        $query = "SELECT * from comments where comment_id = $comment_id";
+        $select_comment_query = mysqli_query($connection, $query);
+
+        while($row = mysqli_fetch_assoc($select_comment_query)) {
+
+            $comment_status_selected = $row["approved"];
+            $comment_id_selected = $row["comment_id"];
+
+            if($comment_status_selected=="approved") {
+                $query_updated_Status = "UPDATE `comments` SET `approved`='unapproved' where comment_id = $comment_id_selected";
+            }
+            else {
+                $query_updated_Status = "UPDATE `comments` SET `approved`='approved' where comment_id = $comment_id_selected";
+            }
+            $upate_status = mysqli_query($connection, $query_updated_Status);
+
+        }
+
+
+
+    }
+}
+function select_and_display_comments() {
     global $connection;
-    $user_to_be_deleted = $_GET["delete_user"];
+    global $product;
 
-    // delete user account
+    $query = "SELECT * from comments order by approved DESC";
+    $select_users_query = mysqli_query($connection, $query);
+    if (!$select_users_query) {
+        die("Query Failed: " . mysqli_error($connection));
+    }
+    while($row = mysqli_fetch_assoc($select_users_query)) {
+
+        $comment_id = $row["comment_id"];
+        $user_comment = $row["user_comment"];
+        $stars_rating= $row["stars_rating"];
+        $stars_container= "";
+        for ($i = 0; $i <= $stars_rating; $i++) {
+            $stars_container .= '<i class="fa-solid fa-star main-color"></i>';
+        }
+
+        $user_name= $row["user_name"];
+        $product_id= $row["product_id"];
+
+        $product_new = new Product();
+        $product_new ->create_product($product_id);
+        $product_name = $product_new->product_name;
+
+        $approved= $row["approved"];
 
 
-    $query = "DELETE from users WHERE user_id={$user_to_be_deleted}";
-    $delete_user_account = mysqli_query($connection, $query);
 
 
+        echo "<tr>";
+        echo "<td>" . $comment_id . "</td>";
+        echo "<td>" . $user_name . "</td>";
+        echo "<td>" . $product_name . "</td>";
+        echo "<td>" . $stars_container . "</td>";
+        echo "<td>" . $approved . "</td>";
+        echo "<td class='text-right'><a class='table-nav-link' href='comments.php?source=check_comment&comment_id={$comment_id}'>CHECK</span></td>";
+        echo "<td class='text-right'><span class='change_status_button table-nav-link' data-link='comments.php?change_status={$comment_id}'>CHANGE</span></td>";
+        echo "<td class='text-right'> <span class='delete_button table-nav-link' data-link='comments.php?delete_comment=$comment_id'> Delete </span></td>";
+        echo "</tr>";
 
 
-}}
+    }
 
+}
+
+function delete_comments(){
+    if(isset($_GET["delete_comment"])) {
+        global $connection;
+        $comment_to_be_deleted = $_GET["delete_comment"];
+        $query = "DELETE from comments WHERE comment_id={$comment_to_be_deleted}";
+        $delete_comment = mysqli_query($connection, $query);
+    }
+}
 function chart_cart_template($icon, $column_name){
     $number_records_col = get_row_count($column_name);
     $html = '<a class="col-lg-3 col-md-6 col-sm-6 chart-small" href="'.$column_name.'.php">
@@ -168,9 +254,9 @@ function select_and_display_products() {
 
         echo "<td > $product_price</td>";
         echo "<td > $product_category</td>";
-        echo "<td class='text-right'><a href='products.php?source=show&product_id={$product_id}'>STOCK</a></td>";
-        echo "<td class='text-right'><a href='products.php?source=edit_product&product_id={$product_id}'>EDIT</a></td>";
-        echo "<td class='text-right'> <span class='delete_button' data-link='products.php?delete_product=$product_id'> Delete </span></td>";
+        echo "<td class='text-right'><a class='table-nav-link' href='products.php?source=show&product_id={$product_id}'>STOCK</a></td>";
+        echo "<td class='text-right'><a class='table-nav-link'href='products.php?source=edit_product&product_id={$product_id}'>EDIT</a></td>";
+        echo "<td class='text-right'> <span class='table-nav-link delete_button' data-link='products.php?delete_product=$product_id'> Delete </span></td>";
         echo " </tr>  ";
 
 
@@ -923,54 +1009,7 @@ function get_row_count($col_name){
     $col_name=="users"? $row_counts=$row_counts-1 : "";
     return $row_counts;
 }
-function select_and_display_comments() {
-    global $connection;
 
-    $query = "SELECT * from comments_news";
-    $select_genres_query = mysqli_query($connection, $query);
-    while($row = mysqli_fetch_assoc($select_genres_query)) {
-        $comment_id = $row["comment_id"];
-        $comment_post_id = $row["comment_post_id"];
-        $comment_user_id = $row["comment_user_id"];
-        $comment_text = $row["comment_text"];
-        $comment_date = $row["comment_date"];
-
-        $query2 = "SELECT * from users where user_id = $comment_user_id";
-        $select_user_query = mysqli_query($connection, $query2);
-        while($row = mysqli_fetch_assoc($select_user_query)) {
-            $user_name = $row["user_firstname"];
-            $user_lastname = $row["user_lastname"];
-        }
-        $query3 = "SELECT * from posts where post_id = $comment_post_id";
-        $select_post_query = mysqli_query($connection, $query3);
-        while($row = mysqli_fetch_assoc($select_post_query)) {
-            $post_title = $row["post_title"];
-
-        }
-        echo"<tr>";
-        echo "<td>$comment_id</td>";
-        echo "<td>$comment_post_id</td>";
-        echo "<td>$post_title</td>";
-        echo "<td>$comment_user_id</td>";
-        echo '<td>' . $user_name . ' ' . $user_lastname . '</td>';
-        echo "<td>$comment_text</td>";
-        echo "<td>$comment_date</td>";
-        echo "<td><a href='comments.php?source=edit_comment&comment_id={$comment_id}'>EDIT</a></td>";
-        // echo "<td><a href='comments.php?delete_comment={$comment_id}'>DELETE</a></td>";
-        echo "<td > <span class='delete_button' data-link='comments.php?delete_comment=$comment_id'> Delete </span></td>";
-        echo"</tr>";
-    }
-
-    if(isset($_GET["delete_comment"])) {
-        $comment_to_be_deleted = $_GET["delete_comment"];
-        $query = "DELETE from comments_news WHERE comment_id={$comment_to_be_deleted}";
-        $delete_comment = mysqli_query($connection, $query);
-        echo '<script> window.location.href = "comments.php" </script>';
-
-    }
-
-
-}
 function delete_all_notifications_messages(){
     global $connection;
 
