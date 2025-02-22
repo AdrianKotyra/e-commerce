@@ -116,7 +116,7 @@ function select_and_display_comments() {
         $user_comment = $row["user_comment"];
         $stars_rating= $row["stars_rating"];
         $stars_container= "";
-        for ($i = 0; $i <= $stars_rating; $i++) {
+        for ($i = 0; $i < $stars_rating; $i++) {
             $stars_container .= '<i class="fa-solid fa-star main-color"></i>';
         }
 

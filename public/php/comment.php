@@ -39,7 +39,7 @@ class Comment {
 
     public static function get_number_comments($product_id) {
         global $database;
-        $result_comments = $database->query_array("SELECT * FROM comments WHERE product_id = $product_id");
+        $result_comments = $database->query_array("SELECT * FROM comments WHERE product_id = $product_id and approved = 'approved'");
         $rows = mysqli_num_rows($result_comments);
         if($rows>=1) {
             return  ' <div class="rating-reviews-counts">Based on
@@ -57,7 +57,7 @@ class Comment {
         $stars_container = '';
         $total_rating = 0;
         $average_rating = 0;
-        $result_comments = $database->query_array("SELECT * FROM comments WHERE product_id = $product_id");
+        $result_comments = $database->query_array("SELECT * FROM comments WHERE product_id = $product_id and approved = 'approved'" );
         while ($row = mysqli_fetch_assoc($result_comments)) {
             $total_rating+=$row["stars_rating"];
         }
@@ -84,7 +84,7 @@ class Comment {
 
         $total_rating = 0;
         $average_rating = 0;
-        $result_comments = $database->query_array("SELECT * FROM comments WHERE product_id = $product_id");
+        $result_comments = $database->query_array("SELECT * FROM comments WHERE product_id = $product_id and approved = 'approved'");
         while ($row = mysqli_fetch_assoc($result_comments)) {
             $total_rating+=$row["stars_rating"];
         }

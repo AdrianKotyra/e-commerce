@@ -69,7 +69,7 @@
 
 
             echo  '<div class="alert alert-success text-center" role="alert">
-                Feedback has been recieved
+                Feedback has been recieved. Waiting for approval.
             </div>';
 
         }
