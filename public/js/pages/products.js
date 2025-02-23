@@ -491,7 +491,7 @@ const ImageSlider = new Slider(document.querySelector(".image-slider"));
 
 
 
-// ------------------------ajax send product to basket--------------------------------
+// ------------------------ajax send product to basket on products page--------------------------------
 
 
 
@@ -525,8 +525,8 @@ function addProduct_products(){
       data = {productId:productId,productsize:productsize };
       SendDataAjax(data, "ajax/add_to_basket.php")
       .then(data => {
-
-        onBasket()
+        displayModalWindowAddedProduct(data)
+        ReloadBasketAjax()
 
       })
       .catch(error => {

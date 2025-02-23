@@ -67,7 +67,8 @@ function onBasket(){
         if (data) {
           SendDataAjax(data, "ajax/add_to_basket.php")
             .then(data => {
-              onBasket();
+              displayModalWindowAddedProduct(data)
+              ReloadBasketAjax()
             })
             .catch(error => {
               console.error('Error:', error);

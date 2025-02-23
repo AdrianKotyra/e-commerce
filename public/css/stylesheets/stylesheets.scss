@@ -2418,12 +2418,12 @@ footer {
 	transition: filter 150ms linear, scale 266ms ease;
 }
 .thumbnail {
-
+	background-color: var(--light-gray);
 	display: block;
 	max-width: 100%;
 	width: 100%;
-	-o-object-fit: cover;
-	object-fit: cover;
+	-o-object-fit: contain;
+	object-fit: contain;
 	height: 100%;
 }
 .nav-button[aria-selected=true] {
