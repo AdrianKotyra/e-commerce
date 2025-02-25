@@ -35,14 +35,21 @@
                 <th  class=" text-primary text-right">Change status</th>
                 <th  class=" text-primary text-right">Delete</th>
             </thead>
-
+            <div class="input-group no-border">
+                <input type="text" value="" class="form-control searcher-comment" placeholder="Search by product name...">
+                <div class="input-group-append">
+                    <div class="input-group-text">
+                    <i class="nc-icon nc-zoom-split"></i>
+                    </div>
+                </div>
+            </div>
 
             <?php change_status_comments()?>
 
 
 
 
-            <tbody>
+            <tbody class="comments_table">
 
                 <?php select_and_display_comments();?>
 

@@ -20,6 +20,14 @@
         </div>
 
     </div>
+    <div class="input-group no-border">
+        <input type="text" value="" class="form-control searcher-user" placeholder="Search by user first name...">
+        <div class="input-group-append">
+            <div class="input-group-text">
+            <i class="nc-icon nc-zoom-split"></i>
+            </div>
+        </div>
+    </div>
     <?php delete_users()?>
     <div class="table-responsive table-custom">
         <table class="table">
@@ -37,7 +45,7 @@
 
 
 
-            <tbody>
+            <tbody class="users_table">
 
                 <?php select_and_display_users();?>
 

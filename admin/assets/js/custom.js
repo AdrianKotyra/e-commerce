@@ -1,18 +1,94 @@
 
-// SETTING UP DEFAULT TODAYS DATE TO ELEMENTS WITH datePicker id
+// SEARCH PRODUCTS AJAX
 
-function getTodaysDate(){
-    Date.prototype.toDateInputValue = (function() {
-        var local = new Date(this);
-        local.setMinutes(this.getMinutes() - this.getTimezoneOffset());
-        return local.toJSON().slice(0,10);
-    });
-    const dateElement = document.getElementById('datePicker');
-    dateElement? document.getElementById('datePicker').value = new Date().toDateInputValue() : null;
-}
-getTodaysDate()
+function searchProductAdmin(){
+
+    const productsContainer = document.querySelector(".products_table");
+    const productSearcheInput = document.querySelector(".searcher-product");
 
 
+    productSearcheInput&&productSearcheInput.addEventListener("keyup", function(){
+      const productSearcheInputValue = productSearcheInput.value;
+
+        SendDataAjax(productSearcheInputValue, "./ajax/search_product.php")
+        .then(data => {
+            productsContainer.innerHTML=data;
+            createConfirmWindowDeleteRow()
+
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+
+
+
+
+    })
+
+  }
+  searchProductAdmin()
+
+
+// SEARCH PRODUCTS AJAX
+
+function searchUsersAdmin(){
+
+    const usersContainer = document.querySelector(".users_table");
+    const userSearcheInput = document.querySelector(".searcher-user");
+
+
+    userSearcheInput&&userSearcheInput.addEventListener("keyup", function(){
+      const userSearcheInputValue = userSearcheInput.value;
+
+        SendDataAjax(userSearcheInputValue, "./ajax/search_user.php")
+        .then(data => {
+            usersContainer.innerHTML=data;
+            createConfirmWindowDeleteRow()
+
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+
+
+
+
+    })
+
+  }
+  searchUsersAdmin()
+
+
+// SEARCH comment AJAX
+
+function searchCommentAdmin(){
+
+    const productsContainer = document.querySelector(".comments_table");
+    const productSearcheInput = document.querySelector(".searcher-comment");
+
+
+    productSearcheInput&&productSearcheInput.addEventListener("keyup", function(){
+      const productSearcheInputValue = productSearcheInput.value;
+
+        SendDataAjax(productSearcheInputValue, "./ajax/search_comment.php")
+        .then(data => {
+            productsContainer.innerHTML=data;
+            createConfirmWindowDeleteRow()
+            changeStatusComments()
+
+
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+
+
+
+
+    })
+
+  }
+  searchCommentAdmin()
 
 //CREATE CONFIRMATION WINDOW TO DELETE RECORD. RECORD DELETION ON PASSING DATA-LINK ATTRIBUTE  AND GOING TO THE LINK
 

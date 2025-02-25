@@ -109,11 +109,11 @@ class Comment {
            <div class="comment-product-col ">
             <hr>
             <div class="comment-product-col-container flex-row">
-                <hr>
+
                 <div class="comment-user-col flex-row">
                     <div class="flex-col">
                         <div class="user-avatar">
-                            A
+                              '.$this->user_name[0].'
                         </div>
                         <span class="user-name">
                             '.$this->user_name.'
@@ -140,7 +140,7 @@ class Comment {
                     </div>
 
                 </div>
-                <hr>
+
             </div>
         </div>
         ';

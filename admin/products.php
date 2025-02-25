@@ -47,7 +47,9 @@
                     case 'add_stock';
                     include "includes/pages/products/add_stock.php";
                     break;
-
+                    case 'reviews';
+                    include "includes/pages/products/view_reviews.php";
+                    break;
                     default: include "includes/pages/products/view_all_products.php";
                     break;
 

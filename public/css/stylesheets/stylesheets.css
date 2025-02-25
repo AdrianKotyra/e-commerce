@@ -472,7 +472,7 @@
   margin-bottom: 32px;
   display: grid;
   gap: 4px;
-  width: 70PX;
+  width: 70px;
   grid-template-columns: repeat(6, 1fr);
   margin: 0;
 }
@@ -773,7 +773,8 @@
   display: none;
 }
 
-.card-prod-link, .prod-link {
+.card-prod-link,
+.prod-link {
   -webkit-user-drag: none;
   -webkit-user-select: none;
   -moz-user-select: none;
@@ -1522,7 +1523,7 @@ body {
 }
 
 .prod-sub-imgs {
-  gap: 10PX;
+  gap: 10px;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   width: 35%;
@@ -1562,7 +1563,7 @@ body {
 
 .news-section-container {
   height: 40vw;
-  gap: 10PX;
+  gap: 10px;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
 }
@@ -1604,7 +1605,7 @@ body {
 }
 
 .grid-section-all-posts {
-  gap: 10PX;
+  gap: 10px;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
 }
@@ -1613,7 +1614,7 @@ body {
 }
 
 .search-grid-products-container {
-  gap: 10PX;
+  gap: 10px;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
 }
@@ -1622,7 +1623,7 @@ body {
 }
 
 .grid-account-details {
-  gap: 10PX;
+  gap: 10px;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
 }
@@ -1694,7 +1695,6 @@ body {
 }
 
 .added-prod-window {
-  animation: fadein 0.3s forwards;
   width: 900px;
   height: 300px;
   background-color: white;
@@ -1849,10 +1849,10 @@ body {
   display: inline-flex;
   width: 100%;
   position: relative;
-  background: #FFC439;
+  background: #ffc439;
   border-radius: 5px;
-  border: 1px solid #DC911D;
-  box-shadow: inset 0 1px 0 0 #FFD699;
+  border: 1px solid #dc911d;
+  box-shadow: inset 0 1px 0 0 #ffd699;
   font-family: "Helvetica Neue", Arial, sans-serif;
   font-weight: 700;
   font-size: 12px;
@@ -1873,7 +1873,7 @@ body {
   left: -1px;
   right: -1px;
   border-radius: 5px;
-  background: linear-gradient(to bottom, #FFAF00 0%, #DC911D 100%);
+  background: linear-gradient(to bottom, #ffaf00 0%, #dc911d 100%);
   z-index: 1;
 }
 .paypal-buy-now-button:after {
@@ -1884,18 +1884,18 @@ body {
   bottom: 0;
   left: 0;
   right: 0;
-  background: #FFC439;
-  box-shadow: inset 0 1px 0 0 #FFD699;
+  background: #ffc439;
+  box-shadow: inset 0 1px 0 0 #ffd699;
   z-index: 1;
 }
 .paypal-buy-now-button span {
   padding-top: 3px;
   padding-right: 7px;
-  text-shadow: 0 1px 0 #FFD699;
+  text-shadow: 0 1px 0 #ffd699;
   z-index: 2;
 }
 .paypal-buy-now-button svg {
-  filter: drop-shadow(0 1px 0 #FFFFFF);
+  filter: drop-shadow(0 1px 0 #ffffff);
   z-index: 2;
 }
 
@@ -2057,14 +2057,16 @@ body {
 .search-box-nav span {
   font-size: 24px;
   vertical-align: -1px;
-  color: #9B9B9B;
+  color: #9b9b9b;
 }
 
 .search-trigger {
   cursor: pointer;
 }
 
-.prod-price, .prod-desc, .product-categories {
+.prod-price,
+.prod-desc,
+.product-categories {
   margin-bottom: 20px;
 }
 
@@ -2487,7 +2489,8 @@ footer {
   scale: 1.1;
 }
 
-.nav-button[aria-selected=true], .nav-button:focus-visible {
+.nav-button[aria-selected=true],
+.nav-button:focus-visible {
   outline: 0.2em solid var(--active-color);
   outline-offset: 0.2em;
 }
@@ -2798,7 +2801,8 @@ footer {
   .login-nav-link {
     display: none;
   }
-  .prod-name, .prod-price {
+  .prod-name,
+  .prod-price {
     text-align: center;
     line-height: 1.3rem;
   }

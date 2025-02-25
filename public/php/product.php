@@ -116,6 +116,12 @@ class Product {
             }
         }
     }
+    public static function get_product_reviews_number($id){
+        global $database;
+        $result_product_type = $database->query_array("SELECT * FROM comments WHERE product_id = $id");
+        $number_comments = mysqli_num_rows($result_product_type);
+        return  $number_comments;
+    }
     public static function getproductTotalStock($id){
         global $database;
         $total = 0;
