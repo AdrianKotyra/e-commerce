@@ -33,13 +33,16 @@ function displayAllcomments($product_id){
 
     $query = "SELECT * FROM comments where product_id = $product_id AND approved = 'approved'";
     $select_comments = mysqli_query($connection, $query);
-    while ($row = mysqli_fetch_assoc($select_comments)) {
-        $comment_id = $row["comment_id"];
-        $new_comment = new Comment();
-        $new_comment->create_comment($comment_id);
-        echo $new_comment->comment_cart();
+    if(mysqli_num_rows($select_comments)>=1) {
+        while ($row = mysqli_fetch_assoc($select_comments)) {
+            $comment_id = $row["comment_id"];
+            $new_comment = new Comment();
+            $new_comment->create_comment($comment_id);
+            echo $new_comment->comment_cart();
 
+        }
     }
+
 }
 
 

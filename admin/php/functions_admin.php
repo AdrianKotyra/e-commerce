@@ -255,7 +255,7 @@ function select_and_display_products() {
 
         echo "<td > $product_price</td>";
         echo "<td > $product_category</td>";
-        echo "<td > <a class='table-nav-link' href='products.php?source=reviews&product_id={$product_id}'>$product_reviews_number</a></td>";
+        echo "<td > <span class='table-nav-link product_link' product_id= $product_id >$product_reviews_number</span></td>";
         echo "<td class='text-right'><a class='table-nav-link' href='products.php?source=show&product_id={$product_id}'>STOCK</a></td>";
         echo "<td class='text-right'><a class='table-nav-link'href='products.php?source=edit_product&product_id={$product_id}'>EDIT</a></td>";
         echo "<td class='text-right'> <span class='table-nav-link delete_button' data-link='products.php?delete_product=$product_id'> Delete </span></td>";

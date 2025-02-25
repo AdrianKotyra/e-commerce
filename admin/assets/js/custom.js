@@ -217,4 +217,48 @@ function SendDataAjax(sendData, file) {
 
 
 }
+
 createfeedbackWindow()
+
+
+function createProductreviewsWindow(){
+    const commentButtons = document.querySelectorAll(".product_link")
+    const modalContainer = document.querySelector(".modal-window-container");
+
+
+    commentButtons.forEach(button => {
+
+        button.addEventListener("click", ()=>{
+            const productId = button.getAttribute("product_id");
+
+            SendDataAjax(productId, "./ajax/product_reviews.php")
+            .then(data => {
+
+                modalContainer.innerHTML=data;
+
+
+
+                const exitModal = document.querySelectorAll(".exit-modal");
+                exitModal.forEach(ele=>ele.addEventListener("click", ()=>{
+
+                    modalContainer.innerHTML="";
+
+                }))
+
+
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+
+
+
+        })
+    });
+
+
+
+
+
+}
+createProductreviewsWindow()

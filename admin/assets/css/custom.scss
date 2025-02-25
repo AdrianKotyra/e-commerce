@@ -5,7 +5,10 @@
 .comment-product-col-container>*{
   margin: 10px 0;
 }
+
 .message-container-feedback {
+  overflow-y: scroll;
+  height: 100vh;
   padding: 14px;
   img{
     object-fit: cover;
@@ -4469,7 +4472,7 @@ textarea {
   border: 1px solid #eb804f67;
   box-shadow: 0 6px 10px -4px rgba(0, 0, 0, 0.15);
 
-    overflow-y: none;
+    overflow-y: hidden;
     left: 50%;
     top: 50%;
     transform: translate(-50%,-50%);
@@ -4499,6 +4502,10 @@ textarea {
     align-items: center;
     justify-content: center;
     text-align: center;
+}
+.feedbacks-modal {
+  height: 70vh;
+  width: 60vw ;
 }
 @media (max-width: 609px) {
     .confirmationWindowModal {
