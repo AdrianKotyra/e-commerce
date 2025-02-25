@@ -138,7 +138,7 @@ function select_and_display_comments() {
         echo "<td>" . $product_name . "</td>";
         echo "<td>" . $stars_container . "</td>";
         echo "<td>" . $approved . "</td>";
-        echo "<td class='text-right'><a class='table-nav-link' href='comments.php?source=check_comment&comment_id={$comment_id}'>CHECK</span></td>";
+        echo "<td class='text-right'><span class='table-nav-link comment-id-link' data-comment-id=$comment_id>CHECK</span></td>";
         echo "<td class='text-right'><span class='change_status_button table-nav-link' data-link='comments.php?change_status={$comment_id}'>CHANGE</span></td>";
         echo "<td class='text-right'> <span class='delete_button table-nav-link' data-link='comments.php?delete_comment=$comment_id'> Delete </span></td>";
         echo "</tr>";

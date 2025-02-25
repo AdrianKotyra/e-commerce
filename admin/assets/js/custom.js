@@ -75,7 +75,7 @@ function searchCommentAdmin(){
             productsContainer.innerHTML=data;
             createConfirmWindowDeleteRow()
             changeStatusComments()
-
+            createfeedbackWindow()
 
         })
         .catch(error => {
@@ -181,3 +181,40 @@ function SendDataAjax(sendData, file) {
         });
     });
   }
+  function createfeedbackWindow(){
+    const commentButtons = document.querySelectorAll(".comment-id-link")
+    const modalContainer = document.querySelector(".modal-window-container");
+
+
+    commentButtons.forEach(button => {
+
+        button.addEventListener("click", ()=>{
+            const productId = button.getAttribute("data-comment-id");
+            SendDataAjax(productId, "./ajax/comment_modal.php")
+            .then(data => {
+                modalContainer.innerHTML=data;
+
+                const exitModal = document.querySelectorAll(".exit-modal");
+                exitModal.forEach(ele=>ele.addEventListener("click", ()=>{
+
+                    modalContainer.innerHTML="";
+
+                }))
+
+
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+
+
+
+        })
+    });
+
+
+
+
+
+}
+createfeedbackWindow()

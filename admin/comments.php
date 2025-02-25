@@ -25,14 +25,11 @@
                 $source = "";
             }
             switch($source) {
-                case 'check_comment';
-                include "includes/pages/comments/check_comment.php";
-                break;
 
 
 
-                default: include "includes/pages/comments/view_all_comments.php";
-                break;
+              default: include "includes/pages/comments/view_all_comments.php";
+              break;
 
 
             }
