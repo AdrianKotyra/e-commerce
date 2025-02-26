@@ -32,7 +32,8 @@
   <!-- charts -->
   <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
   <script type="text/javascript"></script>
-
+   <!-- quill text editor -->
+  <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
 
 </head>
 <div class="modal-window-container">

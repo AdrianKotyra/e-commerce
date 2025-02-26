@@ -126,7 +126,7 @@ function select_and_display_comments() {
         $product_new = new Product();
         $product_new ->create_product($product_id);
         $product_name = $product_new->product_name;
-
+        $product_category = Product::getproductCategory($product_id);
         $approved= $row["approved"];
 
 
@@ -135,7 +135,7 @@ function select_and_display_comments() {
         echo "<tr>";
         echo "<td>" . $comment_id . "</td>";
         echo "<td>" . $user_name . "</td>";
-        echo "<td>" . $product_name . "</td>";
+        echo "<td > <a target='_blank' href='../../ecommerce/public/products.php?show=$product_id&category=$product_category'>$product_name </a></td>";
         echo "<td>" . $stars_container . "</td>";
         echo "<td>" . $approved . "</td>";
         echo "<td class='text-right'><span class='table-nav-link comment-id-link' data-comment-id=$comment_id>CHECK</span></td>";
@@ -250,7 +250,7 @@ function select_and_display_products() {
         // Loop through each column in the row
         echo "<td > $product_id</td>";
 
-        echo "<td > $product_name</td>";
+        echo "<td > <a target='_blank'  href='../../ecommerce/public/products.php?show=$product_id&category=$product_category'>$product_name </a></td>";
         echo "<td><img src='../public/imgs/products/$product_name/$product_img'></td>";
 
         echo "<td > $product_price</td>";
@@ -841,34 +841,44 @@ function select_and_display_bookings() {
 function select_and_display_posts() {
     global $connection;
 
-    $query = "SELECT * from posts";
+    $query = "SELECT * from news";
     $select_genres_query = mysqli_query($connection, $query);
     while($row = mysqli_fetch_assoc($select_genres_query)) {
-        $post_id = $row["post_id"];
-        $post_title = $row["post_title"];
-        $post_text = $row["post_text"];
-        $post_img = $row["post_img"];
-        $post_header = $row["post_header"];
+        $post_id = $row["id"];
         $post_date = $row["post_date"];
+        $post_header = $row["post_header"];
+        $post_content = $row["post_desc"];
 
+
+        $post_img = $row["post_img"];
+        $post_subheader = $row["post_subheading"];
+        $post_banner = $row["post_banner"];
+        $post_author = $row["post_author"];
+
+        $post_content_trimmed = substr($post_content, 0, 50);
+        $post_header_trimmed = substr($post_header, 0, 50);
+        $post_subheader_trimmed = substr($post_subheader, 0, 50);
         echo"<tr>";
         echo "<td>$post_id</td>";
-        echo "<td>$post_title</td>";
-        echo "<td>$post_text</td>";
-        echo "<td><img class='table_img' width=100 height=100 src='../public/$post_img'></td>";
-        echo "<td>$post_header</td>";
         echo "<td>$post_date</td>";
+        echo "<td>$post_header_trimmed</td>";
+        echo "<td>$post_subheader_trimmed</td>";
+        echo "<td>$post_content_trimmed</td>";
+        echo "<td><img class='table_img text-primary' width='100' height='100' src='../public/imgs/posts/$post_header/$post_img'></td>";
+        echo "<td><img class='table_img text-primary ' width=100 height=100 src='../public/imgs/posts/$post_header/$post_banner'></td>";
+        echo "<td>$post_author</td>";
 
-        echo "<td><a href='posts.php?source=edit_post&post_id={$post_id}'>EDIT</a></td>";
+
+        echo "<td class='text-right'><a href='posts.php?source=edit_post&post_id={$post_id}'>EDIT</a></td>";
         // echo "<td><a href='posts.php?delete_post={$post_id}'>DELETE</a></td>";
-        echo "<td > <span class='delete_button'  data-link='posts.php?delete_post=$post_id'> Delete </span></td>";
+        echo "<td class='text-right'> <span class='delete_button '  data-link='posts.php?delete_post=$post_id'> Delete </span></td>";
         echo"</tr>";
     }
 
     if(isset($_GET["delete_post"])) {
         $post_to_be_deleted = $_GET["delete_post"];
         // delete post img
-        $query2 = "SELECT * from posts WHERE post_id = $post_to_be_deleted";
+        $query2 = "SELECT * from news WHERE id = $post_to_be_deleted";
         $delete_post_img = mysqli_query($connection, $query2);
         while($row = mysqli_fetch_assoc($delete_post_img)) {
 
@@ -881,7 +891,7 @@ function select_and_display_posts() {
         }
 
 
-        $query = "DELETE from posts WHERE post_id={$post_to_be_deleted}";
+        $query = "DELETE from news WHERE post_id={$post_to_be_deleted}";
         $delete_post = mysqli_query($connection, $query);
         echo '<script> window.location.href = "posts.php" </script>';
 

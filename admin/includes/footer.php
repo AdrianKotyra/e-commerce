@@ -3,7 +3,7 @@
   <script src="./assets/js/core/bootstrap.min.js"></script>
 
   <!--   Core custom JS Files   -->
-  <script src="./assets/js/charts.js"></script>
+
   <script src="./assets/js/custom.js"></script>
 
   <?php ob_end_flush();?>

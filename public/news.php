@@ -28,7 +28,7 @@
 
       ?>
       <h1 class="category_header"><?php echo $post_header ;?></h1>
-      <img class="category_bg"src="imgs/posts/post<?php echo $post_id."/".$post_banner ;?>" alt="">
+      <img class="category_bg"src="imgs/posts/<?php echo $post_header."/".$post_banner ;?>" alt="">
 
     </div>
 
@@ -64,7 +64,11 @@
     </div>
     <div class="post-col header-container">
       <h1 class="section-header header-fullscreen-post"><?php echo $post_header;?></h1>
-      <img src="imgs/posts/post<?php echo  $post_id.'/'.$post_img;?>" alt="">
+      <!-- if post img not added dont display it -->
+      <?php
+      echo $post_img=="default1.jpg"?  " ": "<img src='imgs/posts/$post_header/$post_img'>";
+      ?>
+
       <p class="post-content"><?php echo $post_desc;?></p>
 
 

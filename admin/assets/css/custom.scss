@@ -7,8 +7,11 @@
 }
 
 .message-container-feedback {
-  overflow-y: scroll;
-  height: 100vh;
+  height: 100%;
+    overflow-y: scroll;
+  .alert-danger{
+    margin-top: 20px;  }
+
   padding: 14px;
   img{
     object-fit: cover;
@@ -4282,7 +4285,9 @@ nav {
 a {
     text-decoration: none !important;
 }
-
+#editor-container {
+  height: 300px;
+}
 
 :root {
   --light-gray: #f7f3f3;
@@ -4292,7 +4297,7 @@ a {
 }
 .table-nav-link {
   cursor: pointer;
-  color: black;
+  color: var(--admin-color);
   text-decoration: none;
 }
 .table-nav-link:hover {
@@ -4456,6 +4461,7 @@ textarea {
   display: block;
 }
 .cross_modal_admin {
+  z-index: 2;
     position: absolute;
     top: 10px;
     right: 10px;
@@ -4504,6 +4510,7 @@ textarea {
     text-align: center;
 }
 .feedbacks-modal {
+
   height: 70vh;
   width: 60vw ;
 }

@@ -12,7 +12,7 @@ if (isset($_POST['create_product'])) {
     $default_image_path = "../public/imgs/products/default/default.jpg";
     $product_dir = "../public/imgs/products/$product_name";
 
-    // check if the product directory exists
+    // check if the product directory exists and create folder for the product
     if (!is_dir($product_dir)) {
         mkdir($product_dir, 0777, true);
     }

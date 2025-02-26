@@ -33,7 +33,7 @@ if(!empty($search_product) || $search_product!="") {
              // Loop through each column in the row
                 echo "<td > $product_id</td>";
 
-                echo "<td > $product_name</td>";
+                echo "<td > <a target='_blank'  href='../../ecommerce/public/products.php?show=$product_id&category=$product_category'>$product_name </a></td>";
                 echo "<td><img src='../public/imgs/products/$product_name/$product_img'></td>";
 
                 echo "<td > $product_price</td>";

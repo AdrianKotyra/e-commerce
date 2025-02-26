@@ -44,7 +44,7 @@ if(!empty($search_product) || $search_product!="") {
             $product_new = new Product();
             $product_new ->create_product($product_id);
             $product_name = $product_new->product_name;
-
+            $product_category = Product::getproductCategory($product_id);
             $approved= $row["approved"];
 
 
@@ -53,7 +53,7 @@ if(!empty($search_product) || $search_product!="") {
             echo "<tr>";
             echo "<td>" . $comment_id . "</td>";
             echo "<td>" . $user_name . "</td>";
-            echo "<td>" . $product_name . "</td>";
+            echo "<td > <a target='_blank'  href='../../ecommerce/public/products.php?show=$product_id&category=$product_category'>$product_name </a></td>";
             echo "<td>" . $stars_container . "</td>";
             echo "<td>" . $approved . "</td>";
             echo "<td class='text-right'><span class='table-nav-link comment-id-link' data-comment-id=$comment_id>CHECK</span></td>";

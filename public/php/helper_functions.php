@@ -51,7 +51,7 @@ function generate_posts_allposts() {
     global $connection;
     if(isset($_GET["search"])) {
         $searched = $_GET["search"];
-        $query = "SELECT * FROM news  where post_header LIKE '%$searched%'";
+        $query = "SELECT * FROM news  where post_header LIKE '%$searched%' order by id desc";
         $select_posts = mysqli_query($connection, $query);
         while ($row = mysqli_fetch_assoc($select_posts)) {
             $post_id = $row["id"];
@@ -62,7 +62,7 @@ function generate_posts_allposts() {
 
     }
     else {
-        $query = "SELECT * FROM news";
+        $query = "SELECT * FROM news order by id desc";
         $select_posts = mysqli_query($connection, $query);
         while ($row = mysqli_fetch_assoc($select_posts)) {
             $post_id = $row["id"];
@@ -79,7 +79,7 @@ function generate_posts_allposts() {
 
 function generate_posts_main() {
     global $connection;
-    $query = "SELECT * FROM news  LIMIT 3 OFFSET 0 ;";
+    $query = "SELECT * FROM news ORDER BY id DESC LIMIT 3 OFFSET 0";
     $select_posts = mysqli_query($connection, $query);
     while ($row = mysqli_fetch_assoc($select_posts)) {
         $post_id = $row["id"];

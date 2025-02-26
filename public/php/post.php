@@ -13,7 +13,6 @@ class Post {
     public function create_post($id) {
         if ($id) {
             global $database;
-
             $result_posts = $database->query_array("SELECT * FROM news WHERE id = $id");
             while ($row = mysqli_fetch_array($result_posts)) {
 
@@ -53,7 +52,7 @@ class Post {
                     </div>
 
                 </div>
-                <img class="event-img"src="imgs/posts/post'.$this->post_id.'/'.$this->post_banner.'" />
+                <img class="event-img"src="imgs/posts/'.$this->post_header.'/'.$this->post_banner.'" />
             </div>
         </a>
             ';
@@ -62,6 +61,9 @@ class Post {
 
 
         public function AllpostsCart(){
+
+
+
             $template_cart = '
             <a class="read-more-post-cart"href="news.php?post='.$this->post_id.'">
                 <div class="event-col">
@@ -79,7 +81,7 @@ class Post {
                         </div>
 
                     </div>
-                    <img class="event-img"src="imgs/posts/post'.$this->post_id.'/'.$this->post_banner.'" />
+                    <img class="event-img"src="imgs/posts/'.$this->post_header.'/'.$this->post_banner.'" />
                 </div>
             </a>
                 ';

@@ -41,6 +41,12 @@ $active_page =  basename($_SERVER['PHP_SELF']);
               <p>Comments</p>
             </a>
           </li>
+          <li class="<?= $active_page == 'posts.php' ? 'active' : '' ?>">
+            <a href="posts.php">
+              <i class="nc-icon nc-album-2"></i>
+              <p>Posts</p>
+            </a>
+          </li>
         </ul>
       </div>
 </div>
