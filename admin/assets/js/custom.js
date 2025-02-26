@@ -262,3 +262,42 @@ function createProductreviewsWindow(){
 
 }
 createProductreviewsWindow()
+
+
+function createPostContentWindow(){
+    const postButtons = document.querySelectorAll(".post_link")
+    const modalContainer = document.querySelector(".modal-window-container");
+
+
+    postButtons.forEach(button => {
+
+        button.addEventListener("click", ()=>{
+            const postId = button.getAttribute("post_id");
+            SendDataAjax(postId, "./ajax/post_content_modal.php")
+            .then(data => {
+                modalContainer.innerHTML=data;
+
+                const exitModal = document.querySelectorAll(".exit-modal");
+                exitModal.forEach(ele=>ele.addEventListener("click", ()=>{
+
+                    modalContainer.innerHTML="";
+
+                }))
+
+
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+
+
+
+        })
+    });
+
+
+
+
+
+}
+createPostContentWindow()

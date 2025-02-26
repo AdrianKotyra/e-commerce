@@ -27,10 +27,11 @@
                 <th>date</th>
                 <th>header</th>
                 <th>subheader</th>
-                <th>content</th>
+
                 <th>img </th>
                 <th>banner</th>
                 <th>author</th>
+                <th class=" text-primary text-right">content</th>
                 <th  class=" text-primary text-right">Edit</th>
                 <th  class=" text-primary text-right">Delete</th>
             </thead>

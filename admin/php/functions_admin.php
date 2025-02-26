@@ -855,7 +855,6 @@ function select_and_display_posts() {
         $post_banner = $row["post_banner"];
         $post_author = $row["post_author"];
 
-        $post_content_trimmed = substr($post_content, 0, 50);
         $post_header_trimmed = substr($post_header, 0, 50);
         $post_subheader_trimmed = substr($post_subheader, 0, 50);
         echo"<tr>";
@@ -863,35 +862,34 @@ function select_and_display_posts() {
         echo "<td>$post_date</td>";
         echo "<td>$post_header_trimmed</td>";
         echo "<td>$post_subheader_trimmed</td>";
-        echo "<td>$post_content_trimmed</td>";
+
         echo "<td><img class='table_img text-primary' width='100' height='100' src='../public/imgs/posts/$post_header/$post_img'></td>";
         echo "<td><img class='table_img text-primary ' width=100 height=100 src='../public/imgs/posts/$post_header/$post_banner'></td>";
         echo "<td>$post_author</td>";
 
-
-        echo "<td class='text-right'><a href='posts.php?source=edit_post&post_id={$post_id}'>EDIT</a></td>";
-        // echo "<td><a href='posts.php?delete_post={$post_id}'>DELETE</a></td>";
-        echo "<td class='text-right'> <span class='delete_button '  data-link='posts.php?delete_post=$post_id'> Delete </span></td>";
+        echo "<td class='text-right' > <span class='table-nav-link post_link' post_id= $post_id >check</span></td>";
+        echo "<td class='text-right'><a class='table-nav-link '  href='posts.php?source=edit_post&post_id={$post_id}'>EDIT</a></td>";
+        echo "<td class='text-right'> <span class='delete_button table-nav-link '  data-link='posts.php?delete_post=$post_id'> Delete </span></td>";
         echo"</tr>";
     }
 
     if(isset($_GET["delete_post"])) {
         $post_to_be_deleted = $_GET["delete_post"];
         // delete post img
-        $query2 = "SELECT * from news WHERE id = $post_to_be_deleted";
-        $delete_post_img = mysqli_query($connection, $query2);
-        while($row = mysqli_fetch_assoc($delete_post_img)) {
+        // $query2 = "SELECT * from news WHERE id = $post_to_be_deleted";
+        // $delete_post_img = mysqli_query($connection, $query2);
+        // while($row = mysqli_fetch_assoc($delete_post_img)) {
 
 
-            $destination_img_upload = $row["post_img"];
-            if (file_exists($destination_img_upload)) {
-                unlink($destination_img_upload);
+        //     $destination_img_upload = $row["post_img"];
+        //     if (file_exists($destination_img_upload)) {
+        //         unlink($destination_img_upload);
 
-            }
-        }
+        //     }
+        // }
 
 
-        $query = "DELETE from news WHERE post_id={$post_to_be_deleted}";
+        $query = "DELETE from news WHERE id={$post_to_be_deleted}";
         $delete_post = mysqli_query($connection, $query);
         echo '<script> window.location.href = "posts.php" </script>';
 

@@ -90,11 +90,11 @@ if (isset($_POST['create_post'])) {
     <textarea name="content" id="hidden-textarea" style="display: none;"></textarea>
 
 
-    <label for="product_img">Product image 1</label>    <br>
+    <label for="img">Post banner</label>    <br>
     <input type="file" name="img">
     <br>
 
-    <label for="product_img2">Product image 2</label>    <br>
+    <label for="banner">Post Image</label>    <br>
     <input type="file" name="banner">
     <br>
     <div class="form-group">
