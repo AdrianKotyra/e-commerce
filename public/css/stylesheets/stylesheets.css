@@ -12,6 +12,10 @@
   --medium: 1.2rem;
 }
 
+.logo-normal {
+  text-decoration: none;
+}
+
 .faq-section {
   padding: 40px 0;
   display: flex;
@@ -248,7 +252,7 @@
   margin: auto;
   font-weight: 800;
   letter-spacing: 0.3rem;
-  font-size: var(--header-section-small);
+  font-size: var(--header-section-small) !important;
 }
 
 .account-info .header-title-small {
@@ -1096,7 +1100,7 @@
 
 .section-header {
   text-align: center;
-  font-size: var(--header-section);
+  font-size: var(--header-section-small);
   padding: 20px;
 }
 
@@ -1506,6 +1510,7 @@ body {
 }
 
 .desc-news-col {
+  width: 90%;
   margin: auto;
   text-align: center;
   color: white;
@@ -2215,23 +2220,24 @@ section {
 footer {
   background-color: #1a1a1a;
   color: #f0f0f0;
-  padding: 15vh 0 20px;
+  padding: 15vh 0;
   font-family: Arial, sans-serif;
+}
+footer .logo-normal {
+  color: white;
 }
 
 .footer-container {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  max-width: 1200px;
+  width: 100%;
   margin: 0 auto;
-  padding: 0 20px;
 }
 
 .footer-section {
   flex: 1;
   min-width: 250px;
-  margin-bottom: 30px;
 }
 .footer-section h3 {
   color: #fff;
@@ -2843,6 +2849,7 @@ footer {
     width: 100%;
   }
   :root {
+    --header-section-small:1.3rem;
     --very-small: 0.8rem;
     --header-section: 1.2rem;
     --extra-small: 0.9rem;
@@ -2924,6 +2931,9 @@ footer {
   }
 }
 @media screen and (max-width: 767px) {
+  footer {
+    padding: 9vh 0 6vh 0;
+  }
   .basket-user {
     width: 100%;
   }

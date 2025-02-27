@@ -87,7 +87,8 @@
 
 
 </section>
+<?php section_slider_trending() ?>
 <script src="js/countries.js"></script>
 <script src="js/pages/account.js"></script>
-<?php section_slider_products("Trending") ?>
+
 <?php include("includes/footer.php") ?>

@@ -2,7 +2,7 @@
 
 
 <footer>
-        <div class="footer-container">
+        <div class="footer-container wrapper">
             <div class="footer-section">
                 <h3>Quick Links</h3>
                 <ul>
@@ -22,20 +22,16 @@
                 </ul>
             </div>
             <div class="footer-section">
-                <h3>Connect With Us</h3>
+                <a href="../public/index.php" class="simple-text logo-normal">
+                <h3 class="logo-name">H!-Top Sneakers </h3>
+                </a>
                 <div class="social-links">
                     <a href="#" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
                     <a href="#" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
                     <a href="#" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
                     <a href="#" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
                 </div>
-                <div class="newsletter-footer">
-                    <h4>Subscribe to Our Newsletter</h4>
-                    <form>
-                        <input type="email" placeholder="Your Email" aria-label="Email for newsletter">
-                        <button type="submit">Subscribe</button>
-                    </form>
-                </div>
+
             </div>
         </div>
 

@@ -67,10 +67,8 @@
       // initialise function on enter
       document.addEventListener("keydown", (event)=>{
         if(event.key==="Enter") {
-          const inactiveSearch = document.querySelector(".inactive-search-bar");
-          if(inactiveSearch) {
-            sendLoginAjax(event)
-        } }
+          sendLoginAjax(event)
+        }
 
       })
 

@@ -27,7 +27,7 @@
         }
 
       ?>
-      <h1 class="category_header"><?php echo $post_header ;?></h1>
+
       <img class="category_bg"src="imgs/posts/<?php echo $post_id."/".$post_banner ;?>" alt="">
 
     </div>
