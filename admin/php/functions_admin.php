@@ -156,9 +156,9 @@ function delete_comments(){
         $delete_comment = mysqli_query($connection, $query);
     }
 }
-function chart_cart_template($icon, $column_name){
+function chart_cart_template($icon, $column_name, $link){
     $number_records_col = get_row_count($column_name);
-    $html = '<a class="col-lg-3 col-md-6 col-sm-6 chart-small" href="'.$column_name.'.php">
+    $html = '<a class="col-lg-3 col-md-6 col-sm-6 chart-small" href="'.$link.'">
 
                 <div class="card card-stats">
                     <div class="card-body ">
@@ -857,20 +857,22 @@ function select_and_display_posts() {
 
         $post_header_trimmed = substr($post_header, 0, 50);
         $post_subheader_trimmed = substr($post_subheader, 0, 50);
+
         echo"<tr>";
         echo "<td>$post_id</td>";
         echo "<td>$post_date</td>";
-        echo "<td>$post_header_trimmed</td>";
+        echo "<td><a class='table-nav-link'  target='_blank' href='../public/news.php?post={$post_id}'>$post_header_trimmed</a></td>";
         echo "<td>$post_subheader_trimmed</td>";
 
-        echo "<td><img class='table_img text-primary' width='100' height='100' src='../public/imgs/posts/$post_header/$post_img'></td>";
-        echo "<td><img class='table_img text-primary ' width=100 height=100 src='../public/imgs/posts/$post_header/$post_banner'></td>";
+        echo $post_img=='default1.jpg'? "<td><img class='table_img text-primary' width='100' height='100' src='../public/imgs/posts/default/noimage.JPEG'></td>" : "<td><img class='table_img text-primary' width='100' height='100' src='../public/imgs/posts/$post_id/$post_img'></td>";
+        echo "<td><img class='table_img text-primary ' width=100 height=100 src='../public/imgs/posts/$post_id/$post_banner'></td>";
         echo "<td>$post_author</td>";
 
         echo "<td class='text-right' > <span class='table-nav-link post_link' post_id= $post_id >check</span></td>";
         echo "<td class='text-right'><a class='table-nav-link '  href='posts.php?source=edit_post&post_id={$post_id}'>EDIT</a></td>";
         echo "<td class='text-right'> <span class='delete_button table-nav-link '  data-link='posts.php?delete_post=$post_id'> Delete </span></td>";
         echo"</tr>";
+
     }
 
     if(isset($_GET["delete_post"])) {

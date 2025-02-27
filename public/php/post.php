@@ -52,7 +52,7 @@ class Post {
                     </div>
 
                 </div>
-                <img class="event-img"src="imgs/posts/'.$this->post_header.'/'.$this->post_banner.'" />
+                <img class="event-img"src="imgs/posts/'.$this->post_id.'/'.$this->post_banner.'" />
             </div>
         </a>
             ';
@@ -81,7 +81,7 @@ class Post {
                         </div>
 
                     </div>
-                    <img class="event-img"src="imgs/posts/'.$this->post_header.'/'.$this->post_banner.'" />
+                    <img class="event-img"src="imgs/posts/'.$this->post_id.'/'.$this->post_banner.'" />
                 </div>
             </a>
                 ';

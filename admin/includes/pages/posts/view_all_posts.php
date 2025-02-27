@@ -37,7 +37,7 @@
             </thead>
 
             <div class="input-group no-border">
-                <input type="text" value="" class="form-control searcher-post" placeholder="Search by post name...">
+                <input type="text" value="" class="form-control searcher-post" placeholder="Search by post header...">
                 <div class="input-group-append">
                     <div class="input-group-text">
                     <i class="nc-icon nc-zoom-split"></i>
@@ -45,7 +45,7 @@
                 </div>
             </div>
 
-            <tbody class="products_table">
+            <tbody class="posts_table">
 
                 <?php select_and_display_posts();?>
 

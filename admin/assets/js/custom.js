@@ -89,6 +89,37 @@ function searchCommentAdmin(){
 
   }
   searchCommentAdmin()
+// SEARCH post AJAX
+
+function searchPostAdmin(){
+
+    const postsContainer = document.querySelector(".posts_table");
+    const postSearcheInput = document.querySelector(".searcher-post");
+
+
+    postSearcheInput&&postSearcheInput.addEventListener("keyup", function(){
+      const productSearcheInputValue = postSearcheInput.value;
+
+        SendDataAjax(productSearcheInputValue, "./ajax/search_post.php")
+        .then(data => {
+            postsContainer.innerHTML=data;
+            createConfirmWindowDeleteRow()
+            createPostContentWindow()
+
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+
+
+
+
+    })
+
+  }
+  searchPostAdmin()
+
+
 
 //CREATE CONFIRMATION WINDOW TO DELETE RECORD. RECORD DELETION ON PASSING DATA-LINK ATTRIBUTE  AND GOING TO THE LINK
 

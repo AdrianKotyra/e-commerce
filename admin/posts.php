@@ -34,7 +34,7 @@
                     include "includes/pages/posts/add_post.php";
                     break;
 
-                    case 'edit_product';
+                    case 'edit_post';
                     include "includes/pages/posts/edit_post.php";
                     break;
 

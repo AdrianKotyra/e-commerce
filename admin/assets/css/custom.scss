@@ -5,7 +5,14 @@
 .comment-product-col-container>*{
   margin: 10px 0;
 }
-
+.post_img {
+  object-fit: cover;
+  height: 200px;
+  width: 200px;
+}
+.hidden_input {
+  display: none;
+}
 .message-container-feedback {
   height: 100%;
     overflow-y: scroll;

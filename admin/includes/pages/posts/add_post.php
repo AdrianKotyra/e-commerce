@@ -5,14 +5,26 @@ if (isset($_POST['create_post'])) {
     $header  = $_POST['header'];
     $subheader = $_POST['subheader'];
     $content = $_POST['content'];
-
     $author = $_POST['author'];
     $post_date  = date("Y-m-d H:i:s");
-    // Paths for default image and product directory
-    $default_image_path = "../public/imgs/posts/default/default.jpg";
-    $post_dir = "../public/imgs/posts/$header";
 
-    // check if the product directory exists
+    // Insert the post first (without images)
+    $query = "INSERT INTO news (post_date, post_header, post_desc, post_subheading, post_author)
+              VALUES ('$post_date', '$header', '$content', '$subheader', '$author')";
+
+    $create_post_query = mysqli_query($connection, $query);
+
+    if (!$create_post_query) {
+        die("Query failed: " . mysqli_error($connection));
+    }
+
+    // Get the newly created post's ID
+    $post_id = mysqli_insert_id($connection);
+
+    // Define post directory using post_id
+    $post_dir = "../public/imgs/posts/$post_id";
+
+    // Check if the directory exists, if not, create it
     if (!is_dir($post_dir)) {
         mkdir($post_dir, 0777, true);
     }
@@ -24,8 +36,9 @@ if (isset($_POST['create_post'])) {
     $post_banner = $_FILES['banner']['name'] ?? "";
     $post_image_temp2 = $_FILES['banner']['tmp_name'] ?? "";
 
+    $default_image_path = "../public/imgs/posts/default/default.jpg";
 
-    // Move uploaded files, otherwise copy default image
+    // Move uploaded files, otherwise use default images
     if (!empty($post_image_temp1)) {
         move_uploaded_file($post_image_temp1, "$post_dir/$post_image");
     } else {
@@ -40,35 +53,21 @@ if (isset($_POST['create_post'])) {
         $post_banner = "default2.jpg";
     }
 
+    // Update the database with correct image paths
+    $update_query = "UPDATE news
+                     SET post_img = '$post_image', post_banner = '$post_banner'
+                     WHERE id = '$post_id'";
 
-    // Insert prodcut
-    if (isset($_POST['header']) && isset($_POST['subheader']) && isset($_POST['author'])) {
-    $query = "INSERT INTO news (post_date, post_header, post_desc, post_img, post_subheading, post_banner, post_author)
-    VALUES ('$post_date', '$header', '$content', '$post_image', '$subheader', '$post_banner', '$author')";
-    $create_post_query = mysqli_query($connection, $query);
+    $update_post_query = mysqli_query($connection, $update_query);
 
-
+    if (!$update_post_query) {
+        die("Update failed: " . mysqli_error($connection));
+    }
 
     alert_text("Post has been added", "posts.php");
-
-    }
-
-    else {
-        alert_text_warning("Filled up all the fields");
-    }
-
-
-
-
-
-
-
-
-
-
-
 }
 ?>
+
 
 
 <form action="" method="post" enctype="multipart/form-data" id="form-post">
