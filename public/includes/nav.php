@@ -147,7 +147,7 @@
         </div>
 
     </div>
-    <div class="searcher-mobile wrapper" id="search-box-nav">
+    <div class="searcher-mobile wrapper inactive-search-bar" id="search-box-nav">
 
         <div class="searcher-mobile-container">
             <span class="material-symbols-outlined icon-mobile-search">search</span>

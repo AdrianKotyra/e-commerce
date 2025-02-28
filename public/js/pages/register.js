@@ -3,11 +3,11 @@
     function sendRegisterAjax(){
 
           event.preventDefault()
-          const alertContainer = document.querySelector(".alert-container");
-          const userNameForm = document.querySelector(".firstname").value;
-          const userSurnameForm = document.querySelector(".lastname").value;
-          const userEmailForm = document.querySelector(".email").value;
-          const userPasswordForm = document.querySelector(".password").value;
+          const alertContainer = document.querySelector(".alert-container-register");
+          const userNameForm = document.querySelector(".firstname_reg").value;
+          const userSurnameForm = document.querySelector(".lastname_reg").value;
+          const userEmailForm = document.querySelector(".email_reg").value;
+          const userPasswordForm = document.querySelector(".password_reg").value;
 
 
          // Create a FormData object
@@ -49,10 +49,10 @@
            // initialise function on enter
         document.addEventListener("keydown", (event)=>{
         if(event.key==="Enter") {
-            const inactiveSearch = document.querySelector(".inactive-search-bar");
-            if(inactiveSearch) {
+
+
             sendRegisterAjax()(event)
-        }}
+        }
 
     })
 

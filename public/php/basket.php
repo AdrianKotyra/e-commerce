@@ -114,7 +114,7 @@ class Basket {
             return  $products_basket;
 
         } else {
-            return "No basket found for user ID: <br>";
+            return "Basket is empty";
         }
         return $products_basket;
     }

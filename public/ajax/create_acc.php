@@ -67,10 +67,8 @@
     if(!empty($errors)) {
         foreach ($errors as $error) {
             echo "
+           <div class='alert alert-danger col-lg-12 text-center mx-auto' role='alert'>$error</div>
 
-            <div class='alert alert-danger col-lg-12 text-center mx-auto' role='alert'>
-                $error
-            </div>
             ";
         }
     }

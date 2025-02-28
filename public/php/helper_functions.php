@@ -699,15 +699,15 @@ function login_User_link(){
     global $user;
     if ($session->signed_in===false) {
         echo '
-            <a href="login.php" class="user-container-profile login-icon">
+            <a class="user-container-profile login-icon login-trigger">
                 <i class="fa-regular fa-user"></i>
             </a>
-            <a class="login-nav-link" href="login.php">
+            <div class="login-nav-link login-trigger">
                 <span class="login-nav">
                     LOG IN
                 </span>
 
-            </a>
+            </div>
 
 
             ';

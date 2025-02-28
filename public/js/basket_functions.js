@@ -6,32 +6,24 @@
 
 
 
-
 function onBasket(){
     const basketContainer = document.querySelector(".basket-user");
-    const bodymask = document.querySelector(".body-mask");
-    bodymask.style.display="block";
-    document.body.style.overflowY = "hidden";
     basketContainer.classList.remove("inactive-basket")
     basketContainer.classList.add("active-basket")
+    bodyMaskOn()
     ReloadBasketAjax()
-
   }
 
   function offBasket(){
     const basketContainer = document.querySelector(".basket-user");
-    const bodymask = document.querySelector(".body-mask");
-
-    bodymask.style.display="none";
-    document.body.style.overflowY = "scroll";
     basketContainer.classList.remove("active-basket")
     basketContainer.classList.add("inactive-basket")
+    bodyMaskOff()
   }
 
   function showBasket(){
     const basketTrigger = document.querySelector(".backet-container");
     const crossBasket = document.querySelector(".cross-basket")
-
     basketTrigger.addEventListener("click", ()=>{
       onBasket()
     })

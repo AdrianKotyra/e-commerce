@@ -1,25 +1,25 @@
 <?php include("includes/header.php") ?>
 
-<section class="login-section">
-    <div class="login-wrapper">
-        <form class="login" action="" method="POST">
+<section class="register-section">
+    <div class="reg-wrapper">
+        <form class="reg-form flex-col" action="" method="POST">
             <h1>Create account</h1>
-            <div class="alert-container"></div>
-            <div class="login-col">
+            <div class="alert-container-register"></div>
+            <div class="login-col flex-col">
                 <label for="Firstname"><b>First name</b></label>
-                <input class="firstname" type="text" name="firstname">
+                <input class="firstname_reg" type="text" name="firstname">
             </div>
-            <div class="login-col">
+            <div class="login-col  flex-col">
                 <label for="Lastname"><b>Last name</b></label>
-                <input class="lastname" ype="text" name="lastname">
+                <input class="lastname_reg" ype="text" name="lastname">
             </div>
-            <div class="login-col">
+            <div class="login-col  flex-col">
                 <label for="email"><b>Email</b></label>
-                <input class="email" type="text" name="email">
+                <input class="email_reg" type="text" name="email">
             </div>
-            <div class="login-col">
+            <div class="login-col  flex-col">
                 <label for="password"><b>password</b></label>
-                <input class="password" type="password" name="password">
+                <input class="password_reg" type="password" name="password">
             </div>
 
             <button name="login-form" class="button-custom register-acc-trigger">Create</button>

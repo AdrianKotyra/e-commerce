@@ -75,4 +75,30 @@
     }
 
 
-  loginUserAJAX()
+
+
+function showLogin(){
+  const loginTrigger = document.querySelectorAll(".login-trigger");
+  const crosslogin = document.querySelector(".cross-login")
+  loginTrigger.forEach(login=>{
+    login.addEventListener("click", ()=>{
+
+      const loginContainer = document.querySelector(".login");
+      loginContainer.classList.remove("inactive-basket")
+      loginContainer.classList.add("active-basket")
+      bodyMaskOn()
+      loginUserAJAX()
+    })
+  })
+
+
+
+  crosslogin.addEventListener("click", ()=>{
+    const loginContainer = document.querySelector(".login");
+    loginContainer.classList.remove("active-basket")
+    loginContainer.classList.add("inactive-basket")
+    bodyMaskOff()
+  })
+
+}
+showLogin()

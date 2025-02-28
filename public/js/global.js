@@ -1,4 +1,15 @@
+function bodyMaskOn(){
+  const bodymask = document.querySelector(".body-mask");
+  bodymask.style.display="block";
+  document.body.style.overflowY = "hidden";
+}
 
+
+function bodyMaskOff(){
+  const bodymask = document.querySelector(".body-mask");
+  bodymask.style.display="none";
+  document.body.style.overflowY = "scroll";
+}
 // ---------------fancybox-------------------
 Fancybox.bind("[data-fancybox]", {
 
@@ -347,8 +358,15 @@ function searchNav(){
   const searchBox = document.querySelector(".search-box-nav")
   const closeSearchIcon = document.querySelector(".close-search-nav")
   searchTrigger? searchTrigger.addEventListener("click", ()=>{
-    searchInput.classList.remove("inactive-search-bar")
-    searchInput.classList.add("active-search-bar")
+    if(searchInput.classList.contains("inactive-search-bar")) {
+      searchInput.classList.remove("inactive-search-bar")
+      searchInput.classList.add("active-search-bar")
+    }
+    else {
+      searchInput.classList.add("inactive-search-bar")
+      searchInput.classList.remove("active-search-bar")
+    }
+
   }): null;
 
   // Add a click event listener to the document to handle clicks outside the active card
