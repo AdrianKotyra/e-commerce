@@ -40,7 +40,7 @@ function showExtraNav(){
 
   }
   function displayExtraNavCategory(trigger, navToDisplay ){
-    trigger.addEventListener("mouseover", ()=>{
+    trigger&&trigger.addEventListener("mouseover", ()=>{
       const searchInput = document.querySelector(".searcher-mobile");
       searchInput.classList.remove("active-search-bar")
       mainExtraNav.style.display="block";
@@ -102,7 +102,7 @@ function displayMobileNav(){
 
   const triggerMobile = document.querySelector(".hamb-container");
   const mobileNav = document.querySelector(".nav-mobile");
-  triggerMobile.addEventListener("click", ()=>{
+  triggerMobile&&triggerMobile.addEventListener("click", ()=>{
     triggerMobile.innerHTML='<i class="fa-solid fa-xmark"></i>';
     mobileNav.classList.toggle("active-mobile-nav");
     // change hamb icons depending on mobile nav class
@@ -370,7 +370,7 @@ function searchNav(){
   }): null;
 
   // Add a click event listener to the document to handle clicks outside the active card
-  closeSearchIcon.addEventListener("click",() => {
+  closeSearchIcon&&closeSearchIcon.addEventListener("click",() => {
 
       searchInput.classList.remove("active-search-bar")
 

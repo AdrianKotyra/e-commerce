@@ -24,7 +24,7 @@ function onBasket(){
   function showBasket(){
     const basketTrigger = document.querySelector(".backet-container");
     const crossBasket = document.querySelector(".cross-basket")
-    basketTrigger.addEventListener("click", ()=>{
+    basketTrigger&&basketTrigger.addEventListener("click", ()=>{
       onBasket()
     })
 

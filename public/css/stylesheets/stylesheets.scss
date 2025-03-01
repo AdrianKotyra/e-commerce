@@ -69,6 +69,7 @@
 }
 
 .nav_checkout {
+  z-index: 333;
   display: flex;
   justify-content: center;
   background-color: black;
@@ -438,6 +439,11 @@
   margin: auto;
   width: 60%;
   grid-template-columns: repeat(4, 1fr) !important;
+}
+.checkout_payment_col {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
 }
 .available-size-male {
   border: 1px solid white !important;
@@ -810,6 +816,12 @@
   color: black;
   background-color: white;
 }
+.pay-pay-container {
+
+  padding-bottom: 70px;
+  max-width: 450px;
+  width: 100%;
+}
 .login {
   animation: showBasket 0.5s forwards;
   transition: 0.4s;
@@ -927,7 +939,10 @@
     padding: 6px 0;
   }
 }
-
+.wrapper-extra-extra {
+  width: 100%;
+  max-width: 42rem;
+}
 .wrapper-extra {
   width: 100%;
   max-width: 72rem;
@@ -1415,6 +1430,9 @@ body {
     }
   }
 }
+.hidden-input {
+  display: none;
+}
 .nav_cats_header {
   font-weight: 700;
   line-height: 2;
@@ -1858,6 +1876,7 @@ body {
   }
 }
 .checkout_container {
+  height: 100vh;
   input::placeholder {
     opacity: 70%;
   }

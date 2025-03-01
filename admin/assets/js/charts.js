@@ -36,6 +36,12 @@ function drawChartviews(dataArray) {
             0: { color: '#34b5b8' },
 
         },
+        animation:
+        {
+            "startup": true,
+            duration: 1000,
+            easing: 'out'
+        }
 
     };
 
@@ -58,6 +64,12 @@ function drawChartStock(dataArray) {
             0: { color: '#34b5b8' },
 
         },
+        animation:
+        {
+            "startup": true,
+            duration: 1000,
+            easing: 'out'
+        }
 
     };
 
@@ -74,6 +86,13 @@ function drawChartGenders(dataArray) {
         title: '',
         pieHole: 0.4,
         height: 500,
+        animation:
+        {
+            "startup": true,
+            duration: 1000,
+            easing: 'out'
+        }
+
     };
 
     var chart = new google.visualization.PieChart(document.getElementById('chart_div_genders'));
