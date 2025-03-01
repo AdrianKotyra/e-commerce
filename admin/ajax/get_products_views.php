@@ -1,6 +1,6 @@
-<?php include "../php/init.php";
+<?php include "../../public/php/init.php";
    global $connection;
-   $query = "SELECT product_name, product_views FROM products ORDER BY product_views DESC LIMIT 20 OFFSET 0;";
+   $query = "SELECT product_name, product_views FROM products ORDER BY product_views DESC LIMIT 50 OFFSET 0;";
 
 
    $select_products_query = mysqli_query($connection, $query);

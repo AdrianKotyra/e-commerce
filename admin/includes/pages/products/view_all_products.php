@@ -28,6 +28,7 @@
                 <th>img</th>
                 <th>price </th>
                 <th>Gender</th>
+                <th>Quantity</th>
                 <th>Reviews</th>
                 <th class=" text-primary text-right"> stock </th>
                 <th  class=" text-primary text-right">Edit</th>

@@ -245,7 +245,7 @@ function select_and_display_products() {
 
         $product_category = Product::getproductCategory($product_id);
         $product_reviews_number = Product::get_product_reviews_number($product_id);
-
+        $total_stock = Product::getproductTotalStock($product_id);
 
         // Loop through each column in the row
         echo "<td > $product_id</td>";
@@ -255,6 +255,7 @@ function select_and_display_products() {
 
         echo "<td > $product_price</td>";
         echo "<td > $product_category</td>";
+        echo "<td > $total_stock</td>";
         echo "<td > <span class='table-nav-link product_link' product_id= $product_id >$product_reviews_number</span></td>";
         echo "<td class='text-right'><a class='table-nav-link' href='products.php?source=show&product_id={$product_id}'>STOCK</a></td>";
         echo "<td class='text-right'><a class='table-nav-link'href='products.php?source=edit_product&product_id={$product_id}'>EDIT</a></td>";

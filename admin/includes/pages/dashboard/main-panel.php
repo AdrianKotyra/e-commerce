@@ -13,11 +13,31 @@
 
             <div class="card ">
               <div class="card-header ">
-                <h5 class="card-title">20 most viewed products </h5>
+                <h5 class="card-title">50 most viewed products </h5>
 
               </div>
 
               <div id="chart_div_views"  style="width: 100%; height: 600px;"></div>
+
+            </div>
+
+            <div class="card ">
+              <div class="card-header ">
+                <h5 class="card-title">Top 50 Lowest stock products </h5>
+
+              </div>
+
+              <div id="chart_div_stock"  style="width: 100%; height: 600px;"></div>
+
+            </div>
+
+            <div class="card ">
+              <div class="card-header ">
+                <h5 class="card-title">Products genders distribution </h5>
+
+              </div>
+
+              <div id="chart_div_genders"  style="width: 100%; height: 600px;"></div>
 
             </div>
           </div>

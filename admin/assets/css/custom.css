@@ -18,6 +18,11 @@
   display: none;
 }
 
+.table-custom img {
+  width: 100px;
+  max-width: 100px;
+}
+
 .message-container-feedback {
   height: 100%;
   overflow-y: scroll;
