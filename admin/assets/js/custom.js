@@ -332,3 +332,44 @@ function createPostContentWindow(){
 
 }
 createPostContentWindow()
+
+
+
+
+function createOrdersContentWindow(){
+    const orderButtons = document.querySelectorAll(".order_link")
+    const modalContainer = document.querySelector(".modal-window-container");
+
+
+    orderButtons.forEach(button => {
+
+        button.addEventListener("click", ()=>{
+            const orderId = button.getAttribute("order_id");
+            SendDataAjax(orderId, "./ajax/order_content_modal.php")
+            .then(data => {
+                modalContainer.innerHTML=data;
+
+                const exitModal = document.querySelectorAll(".exit-modal");
+                exitModal.forEach(ele=>ele.addEventListener("click", ()=>{
+
+                    modalContainer.innerHTML="";
+
+                }))
+
+
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+
+
+
+        })
+    });
+
+
+
+
+
+}
+createOrdersContentWindow()

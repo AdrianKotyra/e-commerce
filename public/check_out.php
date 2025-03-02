@@ -16,7 +16,18 @@
 ?>
 
 <section class="checkout-section">
-    <div class="checkout_container flex-row wrapper-extra-extra">
+    <div class="checkout_container wrapper-extra">
+        <div class="payment-col">
+            <h3>Payment</h3>
+            <div class="pay-pay-container">
+
+                    <!-- ============PAYPAL============= -->
+                <div id="paypal-button-container"></div>
+                <p id="result-message"></p>
+
+
+            </div>
+        </div>
 
         <?php
             global $basket;
@@ -25,8 +36,11 @@
             $number_items = $basket->getNumberTotal();
         ?>
        <div class="container-prod-checkout flex-col">
+
             <div class="container-checkout-prods">
+
                 <div class="checkout_products_col">
+                <h3>Basket</h3>
                     <div class="prods-checkout-container-cols">
                         <?php echo $checkout_products;?>
                     </div>
@@ -48,13 +62,6 @@
 
                     </div>
 
-            <div class="pay-pay-container">
-                <!-- ============PAYPAL============= -->
-                <div id="paypal-button-container"></div>
-                            <p id="result-message"></p>
-
-
-            </div>
 
                 </div>
             </div>
@@ -81,9 +88,9 @@ $paypal_id = "AdD-sMw2qeU-LYOXjKBXZzlfnWT8t6uZCfu4oYctJ1xJ-nQpB1WozBcvKbkaM54-GD
 ></script>
 
 
-<?php include("paypal/paypal.php") ?>
 
 
-<script src="js/countries.js"></script>
+
+
 <?php include("includes/footer.php") ?>
 <script src="paypal/app.js"></script>

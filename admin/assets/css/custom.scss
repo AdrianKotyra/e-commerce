@@ -4486,7 +4486,10 @@ textarea {
     display: flex;
     flex-direction: row;
 }
-
+.order_header {
+  padding: 30px 0 30px 0;
+  text-align: center;
+}
 .confirmationWindowModal {
   border: 1px solid #eb804f67;
   box-shadow: 0 6px 10px -4px rgba(0, 0, 0, 0.15);
@@ -4496,8 +4499,8 @@ textarea {
     top: 50%;
     transform: translate(-50%,-50%);
     z-index: 99999999;
-    width: 50%;
-    height: 50%;
+    width: 70%;
+    height: 70%;
     position: fixed;
     color: rgb(0, 0, 0);
     background-color:#f4f3ef;

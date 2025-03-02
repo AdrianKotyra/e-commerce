@@ -281,6 +281,73 @@ function select_and_display_products() {
 
 
 }}
+
+function select_and_display_orders() {
+    global $connection;
+    global $product;
+    $query = "SELECT * FROM orders ";
+
+    $select_users_query = mysqli_query($connection, $query);
+    if (!$select_users_query) {
+        die("Query Failed: " . mysqli_error($connection));
+    }
+    while($row = mysqli_fetch_assoc($select_users_query)) {
+        $order_id = $row['id'];
+        $transaction_id = $row['transaction_id'];
+        $transaction_status = $row['transaction_status'];
+        $transaction_amount = $row['transaction_amount'];
+        $transaction_currency = $row['transaction_currency'];
+        $transaction_time = $row['transaction_time'];
+
+        // Sanitize and fetch payer details
+        $payer_name = $row['payer_name'];
+        $payer_email = $row['payer_email'];
+        $payer_id = $row['payer_id'];
+        $payer_phone = $row['payer_phone'];
+        $payer_country = $row['payer_country'];
+
+        // Sanitize and fetch shipping details
+        $shipping_street = $row['shipping_street'];
+        $shipping_city = $row['shipping_city'];
+        $shipping_state = $row['shipping_state'];
+        $shipping_postal_code = $row['shipping_postal_code'];
+        $shipping_country = $row['shipping_country'];
+
+
+        // Loop through each column in the row
+        echo "<td > $order_id</td>";
+        echo "<td > $transaction_id</td>";
+        echo "<td > $transaction_time </td>";
+        echo "<td > $transaction_amount</td>";
+        echo "<td > $payer_email</td>";
+
+        echo "<td class='text-right'> <span class='table-nav-link order_link' order_id= $order_id >Check</span></td>";
+        echo "<td class='text-right'><a class='table-nav-link'href='products.php?source=edit_order&order_id={$order_id}'>EDIT</a></td>";
+        echo "<td class='text-right'> <span class='table-nav-link delete_button' data-link='orders.php?delete_order=$order_id'> Delete </span></td>";
+        echo " </tr>  ";
+
+
+
+
+    }
+
+
+    if(isset($_GET["delete_order"])) {
+    global $connection;
+    $order_id = $_GET["delete_order"];
+
+    // delete order
+
+    $query = "DELETE from orders WHERE id={$order_id}";
+    $delete_order = mysqli_query($connection, $query);
+
+    // delete order_items
+    $query2 = "DELETE from order_items WHERE order_id={$order_id}";
+    $delete_order_items = mysqli_query($connection, $query2);
+    echo '<script> window.location.href = "orders.php" </script>';
+
+
+}}
 function validate_staff() {
     $errors = [];
     $min = 3;

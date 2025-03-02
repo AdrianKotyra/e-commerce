@@ -47,6 +47,12 @@ $active_page =  basename($_SERVER['PHP_SELF']);
               <p>Posts</p>
             </a>
           </li>
+          <li class="<?= $active_page == 'orders.php' ? 'active' : '' ?>">
+            <a href="orders.php">
+              <i class="nc-icon nc-check-2"></i>
+              <p>Orders</p>
+            </a>
+          </li>
         </ul>
       </div>
 </div>

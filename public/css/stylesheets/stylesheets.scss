@@ -816,11 +816,18 @@
   color: black;
   background-color: white;
 }
+.payment-col {
+  padding: 60px 20px;
+}
+
 .pay-pay-container {
 
-  padding-bottom: 70px;
-  max-width: 450px;
+
+  margin: 30px 0;
+
+
   width: 100%;
+
 }
 .login {
   animation: showBasket 0.5s forwards;
@@ -1777,7 +1784,9 @@ body {
   overflow-y: scroll;
   max-height: 400px;
   padding: 32px 0;
-
+  h3{
+    margin-bottom: 30px;
+  }
   .img-container {
     position: relative;
     width: 64px;
@@ -1788,6 +1797,7 @@ body {
       right: 0;
     }
     img {
+      object-fit: contain;
       width: 100%;
       height: 100%;
     }
@@ -1876,7 +1886,9 @@ body {
   }
 }
 .checkout_container {
-  height: 100vh;
+  display: flex;
+  flex-direction: row;
+  min-height: 600px;
   input::placeholder {
     opacity: 70%;
   }
@@ -2812,6 +2824,9 @@ footer {
 
 /* Responsive design */
 @media (max-width: 768px) {
+  .checkout_container {
+    flex-direction: column-reverse;
+  }
   .contact-section {
     .map-contact {
       width: 100%;

@@ -34,36 +34,58 @@ function getTotal() {
                         onApprove: function (data, actions) {
                             // Handle when the payment is approved
                             return actions.order.capture().then(function (details) {
-                                // Show a success message to the user
-                                const transaction = details.purchase_units[0].payments.captures[0];
+
+
 
                                 // Get payer's details
-                                const payerName = details.payer.name.given_name + ' ' + details.payer.name.surname; // Full payer name
-                                const shippingAddress = details.purchase_units[0].shipping.address;
+                                const payerName = details.payer.name.given_name + ' ' + details.payer.name.surname;
+                                const payerEmail = details.payer.email_address;
+                                const payerID = details.payer.payer_id;
+                                const payerPhone = details.payer.phone ? details.payer.phone.phone_number.national_number : '';
+                                const payerCountry = details.payer.address.country_code;
 
-                                // Example of extracting shipping address details:
+                                // shipping address details:
+                                const shippingAddress = details.purchase_units[0].shipping.address;
                                 const shippingStreet = shippingAddress.address_line_1;
-                                const shippingCity = shippingAddress.city;
+                                const shippingCity = shippingAddress.admin_area_2;
+                                const shippingState = shippingAddress.admin_area_1;
                                 const shippingPostalCode = shippingAddress.postal_code;
                                 const shippingCountry = shippingAddress.country_code;
 
+                                // Get transaction details
+                                const transaction = details.purchase_units[0].payments.captures[0];
+                                const transactionID = transaction.id;
+                                const transactionStatus = transaction.status;
+                                const transactionAmount = transaction.amount.value;
+                                const transactionCurrency = transaction.amount.currency_code;
+                                const transactionTime = transaction.create_time;
 
 
-
+                                // -----------------paypal--------------ajax sql
                                 $.ajax({
                                     method: "POST",
-                                    url: "paypal.php",
+                                    url: "paypal/paypal_ajax.php",
                                     data: {
-                                        transaction_id: transaction.id,
-                                        transaction_status: transaction.status,
-                                        payer_name: payerName,  // Send payer's full name
-                                        shipping_street: shippingStreet,  // Send shipping address details
+                                        transaction_id: transactionID,
+                                        transaction_status: transactionStatus,
+                                        transaction_amount: transactionAmount,
+                                        transaction_currency: transactionCurrency,
+                                        transaction_time: transactionTime,
+
+                                        payer_name: payerName,
+                                        payer_email: payerEmail,
+                                        payer_id: payerID,
+                                        payer_phone: payerPhone,
+                                        payer_country: payerCountry,
+
+                                        shipping_street: shippingStreet,
                                         shipping_city: shippingCity,
+                                        shipping_state: shippingState,
                                         shipping_postal_code: shippingPostalCode,
                                         shipping_country: shippingCountry
                                     },
                                     success: function(response) {
-                                        if(response == 1) {
+                                        if (response == 1) {
                                             alert("Transaction Completed by " + payerName + ". Payment successful");
                                         } else {
                                             alert('Failed to process payment');
@@ -71,6 +93,7 @@ function getTotal() {
                                         }
                                     }
                                 });
+
 
                                 // Optionally, show a message to the user
                                 alert('Transaction completed by ' + payerName + '. Payment successful');
