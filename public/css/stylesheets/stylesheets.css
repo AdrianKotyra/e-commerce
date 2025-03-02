@@ -12,6 +12,10 @@
   --medium: 1.2rem;
 }
 
+.products {
+  padding-top: 40px;
+}
+
 .logo-normal {
   text-decoration: none;
 }
@@ -1218,9 +1222,10 @@
 }
 
 nav {
+  box-shadow: -1px 5px 15px -5px rgba(0, 0, 0, 0.36);
   font-size: var(--very-small);
   z-index: 3;
-  height: 50px;
+  height: 70px;
   width: 100%;
   top: -1px;
   position: sticky;
@@ -1475,6 +1480,7 @@ nav {
 }
 
 body {
+  font-family: Helvetica, Arial, "sans-serif";
   margin: 0;
 }
 
@@ -1526,7 +1532,7 @@ body {
 }
 
 .nav-extra {
-  transform: translateY(-10px);
+  transform: translateY(-20px);
   display: none;
   padding: 20px 0;
   color: black;
@@ -2771,6 +2777,9 @@ footer .logo-normal {
   }
 }
 @media screen and (max-width: 1024px) {
+  nav {
+    height: 50px;
+  }
   .search-box-nav {
     margin-left: 20px;
   }

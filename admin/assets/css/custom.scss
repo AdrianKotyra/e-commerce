@@ -2302,7 +2302,9 @@ nav {
       margin-left: 0; }
     body > .navbar-collapse.collapse {
       display: none !important; } }
-
+      .sidebar .logo {
+        text-align: center;
+      }
   .dropdown-sharing .dropup-item {
     color: #66615b;
     font-size: 14px; }
@@ -3185,6 +3187,7 @@ nav {
         opacity: 1; }
     .sidebar .logo,
     .off-canvas-sidebar .logo {
+
       position: relative;
       padding: 7px 0.7rem;
       z-index: 4; }

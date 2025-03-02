@@ -2944,6 +2944,10 @@ a[data-toggle=collapse][aria-expanded=true] .caret,
     display: none !important;
   }
 }
+.sidebar .logo {
+  text-align: center;
+}
+
 .dropdown-sharing .dropup-item {
   color: #66615b;
   font-size: 14px;
