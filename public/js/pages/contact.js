@@ -1,0 +1,73 @@
+
+function contactUserAJAX() {
+    function sendmessageAjax(event) {
+        event.preventDefault();
+
+        const alertContainer = document.querySelector(".alert-container-contact");
+
+        // Get form values
+        const userNameForm = document.querySelector(".first_name").value.trim();
+        const userSurnameForm = document.querySelector(".last_name").value.trim();
+        const email = document.querySelector(".email").value.trim();
+        const address = document.querySelector(".address").value.trim();
+        const city = document.querySelector(".city").value.trim();
+        const postal = document.querySelector(".postal").value.trim();
+        const country = document.querySelector(".country").value.trim();
+        const message = document.querySelector(".message").value.trim();
+
+        // Validate required fields
+        if (!userNameForm || !userSurnameForm || !email || !address || !city || !postal || !country || !message) {
+            alertContainer.innerHTML = "<div class='alert alert-danger  text-center'>Please fill in all fields.</div>";
+            return;
+        }
+
+        // Create FormData object
+        const formData = new FormData();
+        formData.append('first_name', userNameForm);
+        formData.append('last_name', userSurnameForm);
+        formData.append('email', email);
+        formData.append('address', address);
+        formData.append('city', city);
+        formData.append('postal', postal);
+        formData.append('country', country);
+        formData.append('message', message);
+
+        // Send data via AJAX
+        fetch('./ajax/send_msg_contact.php', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => response.text())
+        .then(data => {
+            if (data.trim() === "1") {
+                alertContainer.innerHTML = "<div class='alert alert-success text-center'>Your message has been sent successfully!</div>";
+                document.querySelector("#send-contact-form").reset(); // Clear form
+            } else {
+                alertContainer.innerHTML = `${data}`;
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alertContainer.innerHTML = "<div class='alert alert-danger  text-center'>Something went wrong. Please try again.</div>";
+        });
+    }
+
+    // Attach event listener to the submit button
+    const sendButton = document.querySelector(".send-contact-form");
+    if (sendButton) {
+        sendButton.addEventListener("click", function(e) {
+            e.preventDefault();
+            sendmessageAjax(e);
+        });
+    }
+
+
+    // Submit on Enter key press
+    document.addEventListener("keydown", (event) => {
+        if (event.key === "Enter") {
+            sendmessageAjax(event);
+        }
+    });
+}
+
+contactUserAJAX();

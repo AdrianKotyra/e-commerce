@@ -170,12 +170,7 @@ function createConfirmWindowDeleteRow(){
 
 
 
-            const exitModal = document.querySelectorAll(".exit-modal");
-            exitModal.forEach(ele=>ele.addEventListener("click", ()=>{
-
-                modalContainer.innerHTML="";
-
-            }))
+            closeModal()
         })
     });
 
@@ -203,6 +198,16 @@ function changeStatusComments(){
 changeStatusComments()
 
 
+function closeModal(){
+    const modalContainer = document.querySelector(".modal-window-container");
+    const modalExits = document.querySelectorAll(".cross_modal_admin");
+    modalExits.forEach(ele=>ele.addEventListener("click", ()=>{
+
+        modalContainer.innerHTML="";
+
+    }))
+}
+
 function SendDataAjax(sendData, file) {
     return new Promise((resolve, reject) => {
         $.post(file, {data: sendData}, function(data) {
@@ -224,13 +229,8 @@ function SendDataAjax(sendData, file) {
             SendDataAjax(productId, "./ajax/comment_modal.php")
             .then(data => {
                 modalContainer.innerHTML=data;
-
-                const exitModal = document.querySelectorAll(".exit-modal");
-                exitModal.forEach(ele=>ele.addEventListener("click", ()=>{
-
-                    modalContainer.innerHTML="";
-
-                }))
+                expandWindowModal()
+                closeModal()
 
 
             })
@@ -253,10 +253,8 @@ createfeedbackWindow()
 
 
 function createProductreviewsWindow(){
-    const commentButtons = document.querySelectorAll(".product_link")
     const modalContainer = document.querySelector(".modal-window-container");
-
-
+    const commentButtons = document.querySelectorAll(".product_link")
     commentButtons.forEach(button => {
 
         button.addEventListener("click", ()=>{
@@ -266,15 +264,8 @@ function createProductreviewsWindow(){
             .then(data => {
 
                 modalContainer.innerHTML=data;
-
-
-
-                const exitModal = document.querySelectorAll(".exit-modal");
-                exitModal.forEach(ele=>ele.addEventListener("click", ()=>{
-
-                    modalContainer.innerHTML="";
-
-                }))
+                expandWindowModal()
+                closeModal()
 
 
             })
@@ -299,7 +290,6 @@ function createPostContentWindow(){
     const postButtons = document.querySelectorAll(".post_link")
     const modalContainer = document.querySelector(".modal-window-container");
 
-
     postButtons.forEach(button => {
 
         button.addEventListener("click", ()=>{
@@ -307,13 +297,8 @@ function createPostContentWindow(){
             SendDataAjax(postId, "./ajax/post_content_modal.php")
             .then(data => {
                 modalContainer.innerHTML=data;
-
-                const exitModal = document.querySelectorAll(".exit-modal");
-                exitModal.forEach(ele=>ele.addEventListener("click", ()=>{
-
-                    modalContainer.innerHTML="";
-
-                }))
+                expandWindowModal()
+                closeModal()
 
 
             })
@@ -339,8 +324,6 @@ createPostContentWindow()
 function createOrdersContentWindow(){
     const orderButtons = document.querySelectorAll(".order_link")
     const modalContainer = document.querySelector(".modal-window-container");
-
-
     orderButtons.forEach(button => {
 
         button.addEventListener("click", ()=>{
@@ -348,13 +331,8 @@ function createOrdersContentWindow(){
             SendDataAjax(orderId, "./ajax/order_content_modal.php")
             .then(data => {
                 modalContainer.innerHTML=data;
-
-                const exitModal = document.querySelectorAll(".exit-modal");
-                exitModal.forEach(ele=>ele.addEventListener("click", ()=>{
-
-                    modalContainer.innerHTML="";
-
-                }))
+                expandWindowModal()
+                closeModal()
 
 
             })
@@ -373,3 +351,14 @@ function createOrdersContentWindow(){
 
 }
 createOrdersContentWindow()
+
+
+function expandWindowModal(){
+    const expandIcon = document.querySelector(".expand-icon");
+    const windowModal = document.querySelector(".confirmationWindowModal");
+    expandIcon&&expandIcon.addEventListener("click", ()=>{
+        windowModal.classList.contains("expanedWindow")?
+        windowModal.classList.remove("expanedWindow"):
+        windowModal.classList.add("expanedWindow");
+    })
+}

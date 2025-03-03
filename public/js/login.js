@@ -32,7 +32,7 @@
 
           if(data.trim()==="success-logged") {
 
-            window.location.href = `account.php`;
+            window.location.reload();
             return;
           }
           if(data.trim()==="success-logged-checkout") {

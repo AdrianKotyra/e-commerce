@@ -42,7 +42,7 @@ if(!empty($order_id) || $order_id!="") {
 
             echo '  <div class="confirmationWindowModal">
             <img class="cross_modal_admin exit-modal"src="../public/imgs/icons/cross.svg" alt="">
-
+            <i class="fa-solid fa-expand expand-icon"></i>
             <div class="message-container-feedback">
               <div class="comment-container-view">
                     <h3 class="order_header"> Order details</h3>

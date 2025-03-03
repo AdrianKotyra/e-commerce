@@ -697,6 +697,8 @@
   }
 }
 .contact-section {
+
+
   display: flex;
   justify-content: center;
   .container-form-contact {
@@ -714,6 +716,20 @@
       width: 100%;
       height: 100%;
     }
+  }
+  .login-col {
+    display: block;
+
+    float: right;
+    span{
+      cursor: pointer;
+      text-decoration: underline;
+    }
+  }
+  .message {
+    resize: none;
+    width: 100%;
+    height: 300px;
   }
 }
 
@@ -887,6 +903,7 @@
   margin-top: 50px;
 }
 .login-nav {
+  text-transform:uppercase;
   font-weight: 500;
   font-size: var(--extra-small);
 }

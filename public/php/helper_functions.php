@@ -731,7 +731,7 @@ function login_User_link(){
         </a>
         <a class="login-nav-link" href="account.php">
             <span class="login-nav">
-                MY ACCOUNT
+                '.$user-> user_firstname.'
             </span>
 
         </a>';

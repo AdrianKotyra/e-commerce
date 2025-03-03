@@ -14,6 +14,7 @@ if(!empty($product_id)) {
 
    echo '  <div class="confirmationWindowModal feedbacks-modal">
     <img class="cross_modal_admin exit-modal"src="../public/imgs/icons/cross.svg" alt="">
+    <i class="fa-solid fa-expand expand-icon"></i>
 
     <div class="message-container-feedback">';
 

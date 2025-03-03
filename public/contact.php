@@ -42,51 +42,83 @@
                 </div>
 
             </div>
-            <div class="form-contact-container">
-                <form action="contact.php?sendform" id="send-contact-form" method="POST">
+            <?php
+            $username = $user->user_firstname ?? "";
+            $lastname = $user->user_lastname ?? "";
+            $user_email = $user->user_email ?? "";
+            $user_address = $user->user_address ?? "";
+            $user_city = $user->user_city ?? "";
+            $user_postcode = $user->user_postcode ?? "";
+            $user_country = $user->user_country ?? "";
 
+            ?>
+            <div class="form-contact-container">
+
+                <form  id="send-contact-form" method="POST">
+                <div class="login-col">
+                         have account?
+                        <span class="login-trigger"> log in</span>
+                    </div>
                     <div class="details-account-col">
                         <label   for="first_name">Email </label>
-                        <input class="form-control"  type="text" name="email">
+                        <input class="form-control email"  type="text" name="email" value="<?php echo  $user_email;?>">
 
                     </div>
 
                     <div class="details-account-col">
                         <label   for="first_name">First name </label>
-                        <input class="form-control"  type="text" name="first_name">
+                        <input class="form-control first_name"  type="text" name="first_name" value="<?php echo  $username;?>">
 
                     </div>
 
                     <div class="details-account-col">
                         <label for="last_name">Last name </label>
-                        <input class="form-control"  type="text" name="last_name">
+                        <input class="form-control last_name"  type="text" name="last_name" value="<?php echo  $lastname;?>">
 
                     </div>
 
                     <div class="details-account-col">
                         <label  for="address">Address </label>
-                        <input class="form-control"  type="text" name="address">
+                        <input class="form-control address"  type="text" name="address" value="<?php echo  $user_address;?>">
 
                     </div>
 
 
                     <div class="details-account-col">
                         <label for="city">City</label>
-                        <input class="form-control" type="text" name="city">
+                        <input class="form-control city" type="text" name="city" value="<?php echo  $user_city;?>">
                     </div>
                     <div class="details-account-col">
                         <label  for="postal">Postal/ZIP code</label>
-                        <input class="form-control" type="text" name="postal">
+                        <input class="form-control postal" type="text" name="postal" value="<?php echo  $user_postcode;?>">
+                    </div>
+
+                    <div class="details-account-col">
+                    <label for="country">Country/region</label>
+                        <select id="country" name="country" class="form-control country">
+                            <option value="<?php echo  $user_country;?>">
+
+                            </option>
+
+
+                        </select>
+                    </div>
+
+                    <div class="details-account-col">
+                        <label  for="message">message</label> <Br>
+                        <textarea name="" id="" name="message" class="message"></textarea>
                     </div>
 
 
                     <div class="details-account-col">
-                        <button type="submit" name="send-form-contact"class="button-custom send-contact-form">SEND</button>
+                        <button class="button-custom send-contact-form">SEND</button>
                     </div>
+                    <div class="alert-container-contact"></div>
 
                 </div>
 
             </form>
+
             </div>
         </div>
     </div>
@@ -98,3 +130,5 @@
 
 
 <?php include("includes/footer.php") ?>
+<script src="js/countries.js"></script>
+<script src="js/pages/contact.js"></script>

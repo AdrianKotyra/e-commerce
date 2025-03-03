@@ -64,8 +64,8 @@ let mainSliderOptions = {
       let swiper = this;
       for (let i = 0; i < swiper.slides.length; i++) {
         let slideProgress = swiper.slides[i].progress,
-          innerOffset = swiper.width * interleaveOffset,
-          innerTranslate = slideProgress * innerOffset;
+          innerOffset = 0,
+          innerTranslate = slideProgress * innerOffset/4;
 
         swiper.slides[i].querySelector('.slide-bgimg').style.transform =
           'translateX(' + innerTranslate + 'px)';

@@ -740,6 +740,19 @@
   width: 100%;
   height: 100%;
 }
+.contact-section .login-col {
+  display: block;
+  float: right;
+}
+.contact-section .login-col span {
+  cursor: pointer;
+  text-decoration: underline;
+}
+.contact-section .message {
+  resize: none;
+  width: 100%;
+  height: 300px;
+}
 
 .basket-number {
   font-weight: 900;
@@ -926,6 +939,7 @@
 }
 
 .login-nav {
+  text-transform: uppercase;
   font-weight: 500;
   font-size: var(--extra-small);
 }
