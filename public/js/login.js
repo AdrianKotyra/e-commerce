@@ -22,6 +22,7 @@
         }
         formData.append('userEmail', userEmailForm);
         formData.append('userPassword', userPasswordForm);
+        displayLoader()
         // Send data via AJAX
         fetch('./ajax/login_acc.php', {
             method: 'POST',
@@ -46,7 +47,7 @@
             return;
           }
           else {
-
+            offLoader()
             alertContainer.innerHTML=data;
             return;
           }

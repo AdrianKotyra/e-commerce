@@ -16,19 +16,28 @@
           formData.append('userSurname', userSurnameForm);
           formData.append('userEmail', userEmailForm);
           formData.append('userPassword', userPasswordForm);
+          displayLoader()
 
           // Send data via AJAX
           fetch('./ajax/create_acc.php', {
               method: 'POST',
               body: formData
           })
+
           .then(response => response.text())
           .then(data => {
-            if(data.trim()==="success") {
-                alertContainer.innerHTML="account created !";
+
+            if(data.trim()==="pass") {
+
+                document.querySelector(".reg-form").submit();
+                offLoader()
+
+                // window.location.href="registration_email.php";
 
             }
             else{
+                offLoader()
+
                 alertContainer.innerHTML=data;
             }
 

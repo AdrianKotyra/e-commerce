@@ -379,3 +379,16 @@ function searchNav(){
 
 }
 searchNav()
+// ----------------------------LOADER------------------------
+
+function displayLoader(){
+
+  const loader = document.querySelector(".loader");
+  loader.style.display="block";
+  bodyMaskOn()
+}
+function offLoader(){
+  const loader = document.querySelector(".loader");
+  loader.style.display="none";
+  bodyMaskOff()
+}

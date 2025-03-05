@@ -17,7 +17,7 @@
 
               </div>
 
-              <div id="chart_div_views"  style="width: 100%; height: 600px;"></div>
+              <div id="chart_div_views"  style="width: 100%; height: 100%;"></div>
 
             </div>
 
@@ -27,19 +27,32 @@
 
               </div>
 
-              <div id="chart_div_stock"  style="width: 100%; height: 600px;"></div>
+              <div id="chart_div_stock"  style="width: 100%; height: 100%;"></div>
 
             </div>
 
-            <div class="card ">
+            <div class="card">
               <div class="card-header ">
                 <h5 class="card-title">Products genders distribution </h5>
 
               </div>
 
-              <div id="chart_div_genders"  style="width: 100%; height: 600px;"></div>
+              <div id="chart_div_genders"  style="width: 100%; height: 100%;"></div>
 
             </div>
+
+            <div class="card ">
+              <div class="card-header ">
+                <h5 class="card-title">Feedbacks counter</h5>
+
+              </div>
+
+              <div id="barchart_feedback" style="width: 100%; height: 100%;"></div>
+
+            </div>
+
+
+
           </div>
         </div>
 

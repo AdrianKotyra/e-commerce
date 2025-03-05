@@ -42,22 +42,37 @@ include "php/init.php"?>
 
 <body>
 
-
+<!-- --------------BLACK MASK----------- -->
 <div class="body-mask"></div>
 <div class="body-mask-nav"></div>
+<!-- --------------MODAL WINDOW----------- -->
 <div class="modal-container">
 
-
-
 </div>
+<!-- --------------LOADER----------- -->
+<div class="loader">
+  <svg viewBox="0 0 200 200">
+    <circle cx="100" cy="100" r="50"></circle>
+  </svg>
+  <svg viewBox="0 0 200 200">
+    <circle cx="100" cy="100" r="50"></circle>
+  </svg>
+  <svg viewBox="0 0 200 200">
+    <circle cx="100" cy="100" r="50"></circle>
+  </svg>
+</div>
+<!-- --------------BASKET----------- -->
 <?php include("includes/basket-user.php") ?>
+<!-- --------------LOGIN----------- -->
 <?php include("includes/login-user.php") ?>
+<!-- --------------BLACK NAV FOR CHECKOUT----------- -->
 <?php
 basename($_SERVER['PHP_SELF']) != "check_out.php"?
 include("includes/nav.php") : include("includes/nav_checkout.php");
 
 ?>
 <?php include("includes/nav-mobile.php") ?>
+
 <!-- <div class="mobile-quick-add">
 
 </div> -->

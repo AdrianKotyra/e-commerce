@@ -1,6 +1,7 @@
 <?php include("includes/header.php") ?>
 <div class="sections">
     <?php include("includes/sections/hero-section.php") ?>
+
     <?php section_slider_products("Hi-Top Sneakers") ?>
     <?php include("includes/sections/newsletter-section.php") ?>
     <?php section_detailed_products("Outdoor Shoes")?>

@@ -1,6 +1,4 @@
 
-
-
 <footer>
         <div class="footer-container wrapper">
             <div class="footer-section">

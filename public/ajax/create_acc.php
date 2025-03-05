@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <?php include "../php/init.php"?>
 
 <?php
@@ -7,6 +8,11 @@
     $user_lastname = trim($_POST['userSurname']);
     $user_password = trim($_POST['userPassword']);
     $user_email = trim($_POST['userEmail']);
+
+
+
+
+
 
 
     $errors = [];
@@ -74,25 +80,24 @@
     }
 
     if(empty($errors)) {
+        // create session for code and account details to pass it into verification page
+        $activation_code_generate = strtoupper(bin2hex(random_bytes(10 / 2)));
+        $_SESSION["create_acc_code"] = $activation_code_generate;
+
+        $_SESSION["create_acc_firstname"] = $user_firstname;
+
+        $_SESSION["create_acc_lastname"] = $user_lastname;
+
+        $_SESSION["create_acc_email"] = $user_email;
+
+        $_SESSION["create_acc_password"] = $user_password;
+        send_create_account_email($user_firstname, $activation_code_generate, $user_email);
+        echo  trim('pass');
 
 
-        $query = "INSERT INTO users (user_firstname, user_lastname, user_email, user_password ) ";
-        $query .= "VALUES('{$user_firstname}', '{$user_lastname}', '{$user_email}', '{$user_password}')";
-
-
-        $create_user_query = mysqli_query($connection, $query);
-
-        if($create_user_query) {
-
-
-            echo  '<div class="alert alert-success text-center" role="alert">
-                Your account has been created.
-            </div>';
-
-        }
     }
 
-// }
+
 
 
 
