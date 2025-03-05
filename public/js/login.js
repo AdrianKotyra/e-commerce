@@ -22,15 +22,16 @@
         }
         formData.append('userEmail', userEmailForm);
         formData.append('userPassword', userPasswordForm);
-        displayLoader()
+
         // Send data via AJAX
         fetch('./ajax/login_acc.php', {
             method: 'POST',
             body: formData
+
         })
         .then(response => response.text())
         .then(data => {
-
+          displayLoader()
           if(data.trim()==="success-logged") {
 
             window.location.reload();
@@ -56,7 +57,10 @@
         })
         .catch(error => {
             console.error('Error:', error);
-        });
+        })
+        .finally(() => {
+          offLoader()
+      });
     }
 
     // initialise function on click

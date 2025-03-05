@@ -381,14 +381,23 @@ function searchNav(){
 searchNav()
 // ----------------------------LOADER------------------------
 
-function displayLoader(){
+let loaderTimeout;
 
-  const loader = document.querySelector(".loader");
-  loader.style.display="block";
-  bodyMaskOn()
+function displayLoader() {
+    // Set a timeout to display the loader after 1 second
+    loaderTimeout = setTimeout(() => {
+        const loader = document.querySelector(".loader");
+        loader.style.display = "block";
+        bodyMaskOn();
+    }, 1000);
 }
-function offLoader(){
-  const loader = document.querySelector(".loader");
-  loader.style.display="none";
-  bodyMaskOff()
+
+function offLoader() {
+    // Clear the timeout to prevent showing the loader if it didn't appear
+    clearTimeout(loaderTimeout);
+
+    // Hide the loader immediately if it is displayed
+    const loader = document.querySelector(".loader");
+    loader.style.display = "none";
+    bodyMaskOff();
 }

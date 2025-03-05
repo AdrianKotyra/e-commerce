@@ -105,9 +105,9 @@ function send_create_account_email($userName, $activation_code_generate, $email)
         <tbody>
           <tr>
             <td style="width: 596px; vertical-align: top; padding-left: 30px; padding-right: 30px; padding-top: 30px; padding-bottom: 40px;" width="596">
-              <h1 style="font-size: 20px; line-height: 24px;   padding: 10px; font-weight: 600; text-decoration: none; color: #000000;">'.$userName.' thank you for registering on our website! </h1> <br>
-              <p style="font-size: 19px; line-height:  24px;  padding: 10px; font-weight: 400; text-decoration: none; color: #919293;">To activate your account, please click the link below and enter the provided code:</p><br>
-              <p style="font-size: 25px; line-height:  24px;   padding: 10px; font-weight: 800; text-decoration: none; color: #919293;">'.$activation_code_generate.'</p><br>
+              <h1 style="font-size: 20px; line-height: 24px;   padding: 10px; font-weight: 600; text-decoration: none; color: #000000;">'.$userName.' thank you for registering on our website! </h1>
+              <p style="font-size: 19px; line-height:  24px;  padding: 10px; font-weight: 400; text-decoration: none; color: #919293;">To activate your account, please click the link below and enter the provided code:</p>
+              <p style="font-size: 25px; line-height:  24px;   padding: 10px; font-weight: 800; text-decoration: none; color: #919293;">'.$activation_code_generate.'</p>
 
               <a href="https://adriankotyraprojects.co.uk/websites/ecommerce/public/registration_email.php" target="_blank" style="background-color: #000000; font-size: 15px; line-height: 22px; font-weight: normal; text-decoration: none; padding: 12px 15px; color: #ffffff; border-radius: 5px; display: inline-block;">
                 Activate account

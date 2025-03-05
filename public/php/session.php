@@ -28,7 +28,7 @@ class Session{
         unset($_SESSION["user_id"]);
         unset($this->user_id);
         $this->signed_in = false;
-        session_destroy();
+
     }
     private function check_login() {
         if(isset($_SESSION["user_id"])) {
