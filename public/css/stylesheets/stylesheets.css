@@ -13,8 +13,12 @@
 }
 
 .sneaker_year_section {
-  display: table;
   margin: auto;
+}
+
+.main-even-img-container img {
+  -o-object-fit: cover !important;
+     object-fit: cover !important;
 }
 
 .sneaker_year_col {
@@ -26,6 +30,10 @@
 }
 .sneaker_year_col .section-header {
   margin: 60px 0;
+}
+.sneaker_year_col a {
+  text-decoration: none;
+  color: black;
 }
 
 .account-created-window h3 {
@@ -688,11 +696,12 @@
 }
 
 .img-container-event {
+  background-color: var(--light-gray);
   width: 50%;
 }
 .img-container-event img {
-  -o-object-fit: cover;
-  object-fit: cover;
+  -o-object-fit: contain;
+  object-fit: contain;
   width: 100%;
   height: 100%;
 }

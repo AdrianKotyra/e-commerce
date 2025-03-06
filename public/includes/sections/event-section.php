@@ -1,6 +1,6 @@
 <section class="event-section wrapper">
     <div class="event-section-container">
-        <div class="img-container-event">
+        <div class="img-container-event main-even-img-container">
             <img src="./imgs/event_section/event.jpg"  />
         </div>
         <div class="event-desc-container flex-col">
