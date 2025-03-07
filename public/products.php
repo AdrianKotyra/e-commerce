@@ -15,6 +15,7 @@
         $product_img4 = $serch_product->product_img_4;
         $product_type = $serch_product->product_type;
         $product_desc = $serch_product->product_desc;
+
         $product_category = $serch_product->product_category;
         $product_sizes = $serch_product->product_sizes_list;
         $product_availability = $serch_product->product_availability;
