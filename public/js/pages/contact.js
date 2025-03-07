@@ -4,7 +4,8 @@ function contactUserAJAX() {
         event.preventDefault();
 
         const alertContainer = document.querySelector(".alert-container-contact");
-
+        const contactContainer = document.querySelector(".contact-section-container");
+        const successContainer = document.querySelector(".success-container");
         // Get form values
         const userNameForm = document.querySelector(".first_name").value.trim();
         const userSurnameForm = document.querySelector(".last_name").value.trim();
@@ -40,8 +41,14 @@ function contactUserAJAX() {
         .then(response => response.text())
         .then(data => {
             if (data.trim() === "1") {
-                alertContainer.innerHTML = "<div class='alert alert-success text-center'>Your message has been sent successfully!</div>";
                 document.querySelector("#send-contact-form").reset(); // Clear form
+                // empty form and display success msg
+                contactContainer.innerHTML = "";
+
+                successContainer.style.display="flex"
+                successContainer.innerHTML = `<div class='alert alert-success text-center'>Thank you ${userNameForm}, Your message has been sent successfully!</div>`;
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+
             } else {
                 alertContainer.innerHTML = `${data}`;
             }

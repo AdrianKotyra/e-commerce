@@ -16,7 +16,9 @@
 
 
 </section>
+<div class="success-container">
 
+</div>
 <section class="contact-section">
 
     <div class="contact-section-container wrapper-extra">

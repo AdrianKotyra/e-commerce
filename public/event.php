@@ -66,10 +66,10 @@
     <img  src="<?php echo htmlspecialchars('imgs/products/'.$product_name . '/' . $product_img2); ?> "/>
     </div>
     <div class="event-desc-container flex-col">
-        <div class="event-desc-details">
+        <div class="event-desc-details event-page-col event_col_1">
             <h3><b><?php echo $header_1;?></b></h3>
             <p>  <?php echo $desc_1;?></p>
-
+            <span class="trigger_col_1"></span>
 
         </div>
 
@@ -85,10 +85,12 @@
     <img  src="<?php echo htmlspecialchars('imgs/products/'.$product_name . '/' . $product_img3); ?> "/>
     </div>
     <div class="event-desc-container flex-col">
-        <div class="event-desc-details">
+
+        <div class="event-desc-details event-page-col event_col_2">
+
         <h3><b><?php echo $header_2;?></b></h3>
         <p>  <?php echo $desc_2;?></p>
-
+        <span class="trigger_col_2"></span>
 
         </div>
 
@@ -99,6 +101,6 @@
 </div>
 
 </section>
-
+<script src="./js/pages/event.js"></script>
 
 <?php include("includes/footer.php") ?>

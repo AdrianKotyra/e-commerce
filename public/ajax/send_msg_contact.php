@@ -18,9 +18,9 @@ $min = 3;
 $max = 26;
 
 // Validate email
-if (!filter_var($user_email, FILTER_VALIDATE_EMAIL)) {
-    $errors[] = "Invalid email format";
-}
+// if (!filter_var($user_email, FILTER_VALIDATE_EMAIL)) {
+//     $errors[] = "Invalid email format";
+// }
 
 // Validate first name
 if (strlen($user_firstname) <= 2) {
