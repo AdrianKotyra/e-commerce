@@ -16,7 +16,6 @@
 
 
 
-
        $serch_product = new Product();
        $serch_product->create_product($product_id);
        $product_name = $serch_product->product_name;
