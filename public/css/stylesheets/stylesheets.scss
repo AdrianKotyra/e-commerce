@@ -384,6 +384,7 @@
 }
 .account-info {
   .header-title-small {
+
     padding: 16px;
     margin-bottom: 36px;
     background-color: var(--light-gray);
@@ -1280,6 +1281,9 @@ $animationSpeed: 40s;
 }
 .user-account-header {
   padding-top: 50px;
+  .header-title {
+
+  }
 }
 .gender-icon {
   font-size: 1.2rem;
@@ -2852,15 +2856,36 @@ footer {
   transform: translateX(-50px);
 }
 @media screen and (min-width: 1024px) {
+  .user-account-header {
+
+    .header-title {
+      padding-left: 4%;
+      padding-right: 4%;
+    }
+  }
   .wrapper {
-    padding-left: 4%;
-    padding-right: 4%;
+    padding-left: 8%;
+    padding-right: 8%;
+  }
+  .user-account-header {
+
+    .header-title {
+      padding-left: 16%;
+    padding-right:  16%;
+    }
   }
 }
 @media screen and (min-width: 1200px) {
   .wrapper {
     padding-left: 7%;
     padding-right: 7%;
+  }
+  .user-account-header {
+
+    .header-title {
+      padding-left: 14%;
+    padding-right:  14%;
+    }
   }
 }
 @media screen and (max-width: 1200px) {
@@ -2980,6 +3005,13 @@ footer {
   .wrapper {
     padding-left: 20px;
     padding-right: 20px;
+  }
+  .user-account-header {
+
+    .header-title {
+      padding-left: 40px;
+      padding-right: 40px;
+    }
   }
 
   .logo-name {
