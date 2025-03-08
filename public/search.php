@@ -138,7 +138,7 @@
 
             <div class="filter-dropdown inactive-dropdown-filter">
                 <div class="dropdown-content">
-
+                    <?php      displayFilters()?>
 
                     <button class="button-custom">APPLY</button>
                 </div>

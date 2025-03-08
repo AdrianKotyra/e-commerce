@@ -12,6 +12,10 @@
   --medium: 1.2rem;
 }
 
+.filter-radio {
+  white-space: nowrap;
+}
+
 .sneaker_year_section {
   margin: auto;
 }
@@ -1434,7 +1438,7 @@
 nav {
   box-shadow: -1px 5px 15px -5px rgba(0, 0, 0, 0.36);
   font-size: var(--very-small);
-  z-index: 3;
+  z-index: 4;
   height: 70px;
   width: 100%;
   top: -1px;
@@ -2831,12 +2835,19 @@ footer .logo-normal {
 
 .filter-dropdown {
   display: none;
+  border: 1px solid rgba(0, 0, 0, 0.237);
   padding: 10px;
-  z-index: 6;
+  z-index: 3;
   top: 30px;
   left: 0;
+  font-size: var(--very-small);
   background-color: white;
   position: absolute;
+}
+
+.filter-dropdown-product {
+  right: 0 !important;
+  left: unset;
 }
 
 .settings_link {

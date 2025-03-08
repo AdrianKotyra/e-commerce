@@ -308,7 +308,7 @@ function displaySizesSelect($sizeGET){
     global $database;
     $checked = '';
     $sizes='';
-    $result_sizes = $database->query_array("SELECT * FROM sizes");
+    $result_sizes = $database->query_array("SELECT * FROM sizes order by size");
     while ($row = mysqli_fetch_array($result_sizes)) {
         $list_sizes[] = $row["size"];
     }
@@ -323,7 +323,27 @@ function displaySizesSelect($sizeGET){
 }
 
 
+function displayFilters(){
+    if(isset($_GET["filter"])) {
+        $filter = $_GET["filter"];
+    } else {
+        $filter = '';
+    }
+    $checked_price_asc = $filter =="product_price ASC"?  "checked" : '';
+    $checked_price_desc = $filter =="product_price DESC"?  "checked" : '';
+    $checked_alp_asc = $filter =="product_name ASC"?  "checked" : '';
+    $checked_alp_desc = $filter =="product_name DESC"?  "checked" : '';
+    $checked_popularity_desc = $filter =="product_views DESC"?  "checked" : '';
 
+    $content = '
+    <p class="flex-row filter-radio"><input name="filter"'.$checked_price_asc.' type="radio" value="product_price ASC">PRICE, LOW TO HIGH</p>
+    <p class="flex-row filter-radio"><input name="filter"'.$checked_price_desc.' type="radio" value="product_price DESC">PRICE, HIGH TO LOW</p>
+    <p class="flex-row filter-radio"><input name="filter"'.$checked_alp_asc.' type="radio" value="product_name ASC">Alphabetically, Z-A</p>
+    <p class="flex-row filter-radio"><input name="filter"'.$checked_alp_desc.' type="radio" value="product_name DESC">Alphabetically, A-Z</p>
+    <p class="flex-row sfilter-radio"><input name="filter" '.$checked_popularity_desc.' type="radio" value="product_views DESC">POPULARITY</p>';
+    echo $content;
+
+}
 
 
 
@@ -376,18 +396,46 @@ function displaySearchedProducts() {
             }
         }
 
-        // Display products
-        foreach ($list_products_ids as $product_id) {
-            $product_new = new Product();
-            $product_new->create_product($product_id);
-            $output .= $product_new->product_category_card();
+      // FILTER products
+
+      if (isset($_GET["filter"])) {
+        $filter_get = $_GET["filter"];
+        if (is_array($list_products_ids) && count($list_products_ids) > 0) {
+            $in_clause = "(" . implode(",", array_map("intval", $list_products_ids)) . ")";
+            $query3 = "SELECT product_id FROM products WHERE product_id IN $in_clause ORDER BY $filter_get";
+            $select_products_filtered = mysqli_query($connection, $query3);
+
+            if ($select_products_filtered) {
+                $output = '';
+                while ($row = mysqli_fetch_assoc($select_products_filtered)) {
+                    $product_id_filtered = $row["product_id"];
+                    $product_new = new Product();
+                    $product_new->create_product($product_id_filtered);
+                    $output .= $product_new->product_category_card();
+                }
+            }
+
         }
 
-        return $output;
+
     }
 
-    return;
+    else {
+        foreach ($list_products_ids as $product_id) {
+        $product_new = new Product();
+        $product_new->create_product($product_id);
+        $output .= $product_new->product_category_card();
+
+        }
+
+    }
+
+    return $output;
 }
+
+return;
+}
+
 
 // ------------------DISPLAY PRODUCTS CATEGORY-----------------------------
 function displayCategoryProducts($type_products) {
@@ -435,10 +483,39 @@ function displayCategoryProducts($type_products) {
         }
 
         // Display products
-        foreach ($list_products_ids as $product_id) {
+
+        // FILTER products
+
+        if (isset($_GET["filter"])) {
+            $filter_get = $_GET["filter"];
+            if (is_array($list_products_ids) && count($list_products_ids) > 0) {
+                $in_clause = "(" . implode(",", array_map("intval", $list_products_ids)) . ")";
+                $query3 = "SELECT product_id FROM products WHERE product_id IN $in_clause ORDER BY $filter_get";
+                $select_products_filtered = mysqli_query($connection, $query3);
+
+                if ($select_products_filtered) {
+                    $output = '';
+                    while ($row = mysqli_fetch_assoc($select_products_filtered)) {
+                        $product_id_filtered = $row["product_id"];
+                        $product_new = new Product();
+                        $product_new->create_product($product_id_filtered);
+                        $output .= $product_new->product_category_card();
+                    }
+                }
+
+            }
+
+
+        }
+
+        else {
+            foreach ($list_products_ids as $product_id) {
             $product_new = new Product();
             $product_new->create_product($product_id);
             $output .= $product_new->product_category_card();
+
+            }
+
         }
 
         return $output;

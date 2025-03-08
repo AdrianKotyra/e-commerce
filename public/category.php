@@ -123,9 +123,9 @@
                 <i class="fa-solid fa-angle-down"></i>
             </div>
 
-            <div class="filter-dropdown inactive-dropdown-filter">
-                <div class="dropdown-content">
-
+            <div class="filter-dropdown filter-dropdown-product inactive-dropdown-filter ">
+                <div class="dropdown-content ">
+                <?php      displayFilters()?>
 
                     <button class="button-custom">APPLY</button>
                 </div>
