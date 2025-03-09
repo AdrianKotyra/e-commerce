@@ -53,6 +53,12 @@ $active_page =  basename($_SERVER['PHP_SELF']);
               <p>Orders</p>
             </a>
           </li>
+          <li class="<?= $active_page == 'messages.php' ? 'active' : '' ?>">
+            <a href="messages.php">
+              <i class="nc-icon nc-email-85"></i>
+              <p>Messages</p>
+            </a>
+          </li>
         </ul>
       </div>
 </div>

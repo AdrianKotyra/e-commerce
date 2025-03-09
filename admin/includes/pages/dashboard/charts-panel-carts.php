@@ -4,3 +4,4 @@
 <?php echo chart_cart_template("nc-favourite-28","comments","comments.php");?>
 <?php echo chart_cart_template("nc-icon nc-album-2","news","posts.php");?>
 <?php echo chart_cart_template("nc-icon nc-check-2","orders","orders.php");?>
+<?php echo chart_cart_template("nc-icon nc-email-85","messages","messages.php");?>

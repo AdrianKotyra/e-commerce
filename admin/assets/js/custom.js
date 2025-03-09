@@ -132,13 +132,13 @@ function createConfirmWindowDeleteRow(){
     const modalContainer = document.querySelector(".modal-window-container");
     const confirmationModalLiteral = `
      <div class="confirmationWindowModal">
-        <img class="cross_modal_admin exit-modal"src="../public/imgs/icons/cross.svg" alt="">
+        <img class="cross_modal_admin exit-modal exit_modal_trigger"src="../public/imgs/icons/cross.svg" alt="">
 
         <div class="buttons-message-container">
             <p>Are you sure you want to delete this record?</p>
             <div class="buttons-ok-cancel">
                 <button class="accept_button btn btn-primary btn-round">OK</button>
-                <button class="exit-modal btn btn-primary btn-round">Cancel</button>
+                <button class="exit-modal btn btn-primary btn-round exit_modal_trigger">Cancel</button>
             </div>
 
         </div>
@@ -200,7 +200,7 @@ changeStatusComments()
 
 function closeModal(){
     const modalContainer = document.querySelector(".modal-window-container");
-    const modalExits = document.querySelectorAll(".cross_modal_admin");
+    const modalExits = document.querySelectorAll(".exit_modal_trigger");
     modalExits.forEach(ele=>ele.addEventListener("click", ()=>{
 
         modalContainer.innerHTML="";
@@ -353,6 +353,8 @@ function createOrdersContentWindow(){
 createOrdersContentWindow()
 
 
+
+// ------------------expand modal window------------------------
 function expandWindowModal(){
     const expandIcon = document.querySelector(".expand-icon");
     const windowModal = document.querySelector(".confirmationWindowModal");
@@ -362,3 +364,40 @@ function expandWindowModal(){
         windowModal.classList.add("expanedWindow");
     })
 }
+
+
+
+function createMsgsContentWindow(){
+    const msgButtons = document.querySelectorAll(".msg_link")
+    const modalContainer = document.querySelector(".modal-window-container");
+    msgButtons.forEach(button => {
+
+        button.addEventListener("click", ()=>{
+            const msgId = button.getAttribute("msg_id");
+            SendDataAjax(msgId, "./ajax/msg_content_modal.php")
+            .then(data => {
+                modalContainer.innerHTML=data;
+                expandWindowModal()
+                closeModal()
+                // change status innnerhtml to 'readed' when clicked modal
+                document.querySelector(`.status-td-${msgId}`).innerHTML="readed"
+
+
+
+
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+
+
+
+        })
+    });
+
+
+
+
+
+}
+createMsgsContentWindow()
