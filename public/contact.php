@@ -58,10 +58,19 @@
             <div class="form-contact-container">
 
                 <form  id="send-contact-form" method="POST">
-                <div class="login-col">
+                <?php
+                    global $session;
+                    $isSignedin = $session->signed_in;
+                        if(!$isSignedin) {
+                            echo "  <div class='login-col'>
                          have account?
-                        <span class="login-trigger"> log in</span>
-                    </div>
+                        <span class='login-trigger'> log in</span>
+                        </div>";
+                        }
+
+
+                    ?>
+
                     <div class="details-account-col">
                         <label   for="first_name">Email </label>
                         <input class="form-control email"  type="text" name="email" value="<?php echo  $user_email;?>">

@@ -1167,7 +1167,7 @@
   display: none;
 }
 .user-container-profile i {
-  font-size: var(--icons);
+  font-size: 1rem;
 }
 
 .newsletter-form {
@@ -3023,6 +3023,10 @@ footer .logo-normal {
   }
 }
 @media screen and (max-width: 1024px) {
+  .cart-shopping {
+    width: 25px;
+    height: 25px;
+  }
   .sneaker_year_section {
     display: block;
   }

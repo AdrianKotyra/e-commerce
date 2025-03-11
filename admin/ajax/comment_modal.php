@@ -36,7 +36,7 @@ if(!empty($comment_id) || $comment_id!="") {
 
 
            echo '  <div class="confirmationWindowModal">
-                <img class="cross_modal_admin exit-modal"src="../public/imgs/icons/cross.svg" alt="">
+                <img class="cross_modal_admin exit-modal exit_modal_trigger"src="../public/imgs/icons/cross.svg" alt="">
                 <i class="fa-solid fa-expand expand-icon"></i>
                 <div class="message-container-feedback">
                   <div class="comment-container-view">
