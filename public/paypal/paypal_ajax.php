@@ -88,7 +88,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } else {
         echo "Duplicate Transaction"; // Transaction already exists
     }
-
+    // destroy basket sessions
+    unset($_SESSION['baskets']);
     $stmt->close();
     $connection->close();
 } else {

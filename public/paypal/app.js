@@ -86,7 +86,7 @@ function getTotal() {
                                     },
                                     success: function(response) {
                                         if (response == 1) {
-                                            alert("Transaction Completed by " + payerName + ". Payment successful");
+                                            displayModalTranscation(payerName);
                                         } else {
                                             alert('Failed to process payment');
                                             console.log(response);
@@ -95,8 +95,7 @@ function getTotal() {
                                 });
 
 
-                                // Optionally, show a message to the user
-                                alert('Transaction completed by ' + payerName + '. Payment successful');
+                                displayModalTranscation(payerName);
                             });
                         },
 

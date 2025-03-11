@@ -217,7 +217,7 @@
   opacity: 50%;
 }
 .modal-container {
-  z-index: 23;
+  z-index: 344;
   width: auto;
   height: auto;
   position: fixed;
@@ -680,7 +680,7 @@ $animationSpeed: 40s;
 }
 .body-mask {
   animation: fadein 0.5s forwards;
-  z-index: 22;
+  z-index: 222;
   width: 100vw;
   height: 100vh;
   position: fixed;
@@ -1133,6 +1133,58 @@ $animationSpeed: 40s;
 .cart-shopping {
   width: 30px;
   height: 30px;
+}
+.transcation_container {
+  z-index: 444;
+  background-color: white;
+  width: 100%;
+  min-width: 400px;
+  min-height: 300px;
+  padding: 12px;
+  text-align: center;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  .counter-container{
+    padding: 20px;
+  }
+  img{
+    margin: 0  auto;
+    width: 100%;
+    max-width: 100px;
+    height: 100px;
+  }
+  button {
+
+    margin: 0  auto;
+  }
+}
+.product_order_user_cart {
+  .products_orders_container {
+    display: grid;
+    justify-content: center;
+    gap: 10px;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  }
+  a{
+
+    text-decoration: none;
+    color: black;
+  }
+  margin: 10px;
+
+  padding: 10px;
+  background-color: var(--light-gray);
+
+  .img_order_col {
+    img{
+      margin: auto;
+      object-fit: contain;
+      width: 200px;
+      height: 200px;
+    }
+  }
 }
 .user-container-profile {
   display: none;
@@ -3249,6 +3301,11 @@ footer {
 @media screen and (max-width: 600px) {
   .added-prod-window {
     height: 100vh;
+  }
+  .transcation_container {
+    min-width: 100vw;
+   min-height: 100vh;
+
   }
   .newsletter-form {
     width: 100%;

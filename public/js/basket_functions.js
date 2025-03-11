@@ -250,3 +250,57 @@ function onBasket(){
     })
 
   }
+
+
+  // -----------------------transcation completed modal------------------------
+
+  function displayModalTranscation(payername){
+
+    function displayOffModal(){
+      const cross = document.querySelector(".exit-trans");
+
+      // off the modal
+      cross.addEventListener("click", ()=>{
+            window.location.href="index.php"
+
+      });
+
+
+    }
+
+    let transcation_container = `<div class="transcation_container">
+    <div class="trascation_content">
+
+      <img src="../public/imgs/icons/tick.svg">
+      <p> ${payername} your transaction completed successfully </p>
+      <button class="exit-trans button-custom" >accept </button>
+
+      <p class="counter-container"> The window will close in <span class="counter"></span> </p>
+    </div>
+    </div>`;
+
+    const modalWindow = document.querySelector(".modal-container");
+    const bodymask = document.querySelector(".body-mask");
+    bodymask.style.display="block";
+    document.body.style.overflowY = "hidden";
+    modalWindow.innerHTML = transcation_container;
+
+
+
+    let counter = 5;
+    let counterContainer = document.querySelector(".counter");
+
+
+
+    setInterval(() => {
+      counter-=1;
+      counterContainer.textContent=counter;
+      if(counter==0){
+        window.location.href="index.php"
+      }
+    }, 1000);
+
+
+    displayOffModal()
+
+  }
