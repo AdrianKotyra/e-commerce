@@ -20,24 +20,8 @@ class Order {
     public $shipping_state;
     public $shipping_postal_code;
     public $shipping_country;
-    // list od ids of products in list
-    public $list_od_products_ids;
 
 
-
-
-
-    private function get_list_products_order($order_id) {
-        global $database;
-        global $user;
-        $result_product= $database->query_array("SELECT * FROM order_items where order_id = $order_id");
-        while($row = mysqli_fetch_array($result_product)) {
-            $product_id = $row["product_id"];
-            $this->list_od_products_ids[] =  $product_id;
-
-
-        }
-    }
 
 
     public function order_info_by_user_id($user_id) {
@@ -66,7 +50,7 @@ class Order {
             $this-> shipping_postal_code = $row['shipping_postal_code'];
             $this-> shipping_country = $row['shipping_country'];
 
-            $this->get_list_products_order( $this-> order_id);
+
         }
 
     }
@@ -96,36 +80,34 @@ class Order {
             $this-> shipping_postal_code = $row['shipping_postal_code'];
             $this-> shipping_country = $row['shipping_country'];
 
-            $this->get_list_products_order( $this-> order_id);
+
         }
 
     }
 
 
-    public function get_user_order_cart($list_of_product_ids) {
+    public function get_user_order_cart($order_id) {
         global $database;
-
-        if (empty($list_of_product_ids)) {
-            return '<p>No products found in this order.</p>';
-        }
-
-        // Sanitize product IDs and create a comma-separated list
-        $product_ids = implode(',', array_map('intval', $list_of_product_ids));
-
-
-        $query = "SELECT product_id, product_name, product_img FROM products WHERE product_id IN ($product_ids)";
-        $result_product = $database->query_array($query);
-
         $products_container = '';
-        while ($row = mysqli_fetch_array($result_product)) {
-            $product_name = htmlspecialchars($row["product_name"]);
-            $product_img = htmlspecialchars($row["product_img"]);
+        $result_product= $database->query_array("SELECT * FROM order_items where order_id = $order_id");
+        while($row = mysqli_fetch_array($result_product)) {
+            $product_id = htmlspecialchars($row["product_id"]);
+            $product_order = new Product();
+            $product_order->create_product($product_id);
+
+            $product_name = htmlspecialchars($product_order->product_name);
+            $product_img = htmlspecialchars($product_order->product_img);
+            $product_price = htmlspecialchars($row["price"]);
+            $product_size= htmlspecialchars($row["size"]);
+
 
             $products_container .= '
                 <div class="img_order_col flex-col">
 
                     <img src="./imgs/products/' . $product_name . '/' . $product_img . '" alt="' . $product_name . '" />
-                       <span class="text-center">' . $product_name . '</span>
+                       <span >' . $product_name . '</span>
+                        <span > size: ' . $product_size . '</span>
+                        <span > ' . $product_price . '£</span>
                 </div>';
         }
 
@@ -144,15 +126,19 @@ class Order {
                 <br>
                 <span>Transaction status:<br>' . htmlspecialchars($this->transaction_status) . '</span>
                 <br>
+                 <div>
+            <b>Total: <span>' . htmlspecialchars($this->transaction_amount) .htmlspecialchars($this->transaction_currency) .'</span></b>
+            </div>
                 <a href="account.php?show=orders&order=' . htmlspecialchars($this->order_id) . '">View full order details</a>
             </div>
-               <br>   <br>
-            <p >Products</p>
+
+
 
             <div class="products_orders_container">
 
                 ' . $products_container . '
             </div>
+
         </div>';
 
         return $order_user_template;

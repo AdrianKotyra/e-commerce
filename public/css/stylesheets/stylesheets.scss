@@ -1165,11 +1165,11 @@ $animationSpeed: 40s;
     display: grid;
     justify-content: center;
     gap: 10px;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   }
   a{
 
-    text-decoration: none;
+
     color: black;
   }
   margin: 10px;
@@ -1179,7 +1179,7 @@ $animationSpeed: 40s;
 
   .img_order_col {
     img{
-      margin: auto;
+
       object-fit: contain;
       width: 200px;
       height: 200px;

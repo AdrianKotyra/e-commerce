@@ -24,8 +24,7 @@
             $new_order = New Order();
             $new_order->order_info_by_order_id($order_id);
 
-            $list_of_products_ids = $new_order->list_od_products_ids;
-            echo  $new_order->get_user_order_cart($list_of_products_ids);
+            echo  $new_order->get_user_order_cart($order_id);
         }
 
 
