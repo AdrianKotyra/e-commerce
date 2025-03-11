@@ -136,8 +136,8 @@ try {
     $mail->isSMTP();
     $mail->Host       = 'smtp.mail.yahoo.com'; // SMTP server (e.g., smtp.gmail.com)
     $mail->SMTPAuth   = true;
-    $mail->Username   = 'adriankotyra@yahoo.com';
-    $mail->Password   = 'tdvledcbvthfvxzl';
+    $mail->Username   = '';
+    $mail->Password   = '';
     $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS; // Use TLS
     $mail->Port       = 587; // Port for TLS (465 for SSL)
 
