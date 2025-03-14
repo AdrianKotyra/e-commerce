@@ -16,7 +16,26 @@
     </div>
 
 </div>
+<div class="filter-col flex-row text-right">
+<form action="">
+            <div class="container-cat-filter flex-row ">
+                <span>sort by</span>
+                <i class="fa-solid fa-angle-down"></i>
+            </div>
 
+                <div class="filter-dropdown filter-dropdown-product inactive-dropdown-filter ">
+                    <div class="dropdown-content ">
+                    <?php      displayFiltersOrders()?>
+
+                        <button class="button-custom btn btn-primary btn-round">APPLY</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+
+
+</div>
 <div class="table-responsive table-custom">
         <table class="table ">
 
@@ -32,14 +51,7 @@
                 <th  class=" text-primary text-right">Delete</th>
             </thead>
 
-            <div class="input-group no-border">
-                <input type="text" value="" class="form-control searcher-order" placeholder="Search by order ...">
-                <div class="input-group-append">
-                    <div class="input-group-text">
-                    <i class="nc-icon nc-zoom-split"></i>
-                    </div>
-                </div>
-            </div>
+
 
             <tbody class="posts_table">
 

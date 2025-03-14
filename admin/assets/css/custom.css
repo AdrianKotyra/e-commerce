@@ -7,6 +7,37 @@
   margin: 10px 0;
 }
 
+.inactive-dropdown-filter {
+  display: none;
+}
+
+.active-dropdown-filter {
+  display: block !important;
+  animation: filterAnimForwards 0.2s forwards;
+}
+
+.filter-col {
+  cursor: pointer;
+  position: relative;
+}
+
+.filter-dropdown {
+  text-align: left;
+  display: none;
+  border: 1px solid rgba(0, 0, 0, 0.237);
+  padding: 10px;
+  z-index: 3;
+  top: 30px;
+  right: 0;
+  font-size: var(--very-small);
+  background-color: white;
+  position: absolute;
+}
+.filter-dropdown button {
+  margin: 0;
+  width: 100%;
+}
+
 .reply_msg {
   width: 100%;
   height: 300px;

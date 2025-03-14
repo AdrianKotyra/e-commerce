@@ -226,6 +226,50 @@ function delete_users(){
 
     }
 }
+function displayFiltersOrders(){
+    if(isset($_GET["filter"])) {
+        $filter = $_GET["filter"];
+    } else {
+        $filter = '';
+    }
+    $checked_amount_asc = $filter =="transaction_amount ASC"?  "checked" : '';
+    $checked_payer_asc = $filter =="payer_name ASC"?  "checked" : '';
+    $checked_date_asc = $filter =="transaction_time ASC"?  "checked" : '';
+    $checked_amount_desc = $filter =="transaction_amount DESC"?  "checked" : '';
+    $checked_payer_desc = $filter =="payer_name DESC"?  "checked" : '';
+    $checked_date_desc = $filter =="transaction_time DESC"?  "checked" : '';
+
+    $content = '
+    <p class="flex-row filter-radio"><input name="filter"'.$checked_amount_asc.' type="radio" value="transaction_amount ASC">Amount asc</p>
+    <p class="flex-row filter-radio"><input name="filter"'.$checked_amount_desc.' type="radio" value="transaction_amount DESC">Amount desc</p>
+    <p class="flex-row filter-radio"><input name="filter"'.$checked_payer_asc.' type="radio" value="payer_name ASC">Payer name A-Z</p>
+    <p class="flex-row filter-radio"><input name="filter"'.$checked_payer_desc.' type="radio" value="payer_name DESC">Payer name Z-A</p>
+    <p class="flex-row filter-radio"><input name="filter"'.$checked_date_asc.' type="radio" value="transaction_time ASC">Date asc</p>
+    <p class="flex-row filter-radio"><input name="filter"'.$checked_date_desc.' type="radio" value="transaction_time DESC">Date desc</p>';
+    echo $content;
+
+}
+function displayFiltersMessages(){
+    if(isset($_GET["filter"])) {
+        $filter = $_GET["filter"];
+    } else {
+        $filter = '';
+    }
+    $firstname_asc = $filter =="user_firstname ASC"?  "checked" : '';
+    $firstname_desc = $filter =="user_firstname DESC"?  "checked" : '';
+    $surname_asc = $filter =="user_lastname ASC"?  "checked" : '';
+    $surname_desc = $filter =="user_lastname DESC"?  "checked" : '';
+
+
+    $content = '
+    <p class="flex-row filter-radio"><input name="filter"'.$firstname_asc.' type="radio" value="user_firstname ASC">Firstname A-Z</p>
+    <p class="flex-row filter-radio"><input name="filter"'.$firstname_desc.' type="radio" value="user_firstname DESC">Firstname Z-A</p>
+    <p class="flex-row filter-radio"><input name="filter"'.$surname_asc.' type="radio" value="user_lastname ASC">Surname A-Z</p>
+    <p class="flex-row filter-radio"><input name="filter"'.$surname_desc.' type="radio" value="user_lastname DESC">Surname Z-A</p>';
+
+    echo $content;
+
+}
 
 function change_status_comments(){
     if(isset($_GET["change_status"])) {
@@ -437,7 +481,13 @@ function select_and_display_products() {
 function select_and_display_orders() {
     global $connection;
     global $product;
-    $query = "SELECT * FROM orders ";
+    if(isset($_GET["filter"])) {
+        $filter = $_GET["filter"];
+        $query = "SELECT * FROM orders order by $filter";
+    } else {
+        $query = "SELECT * FROM orders ";
+    }
+
 
     $select_users_query = mysqli_query($connection, $query);
     if (!$select_users_query) {
@@ -506,7 +556,13 @@ function select_and_display_orders() {
 function select_and_display_msgs() {
     global $connection;
     global $product;
-    $query = "SELECT * FROM messages order by status DESC";
+    if(isset($_GET["filter"])) {
+        $filter = $_GET["filter"];
+        $query = "SELECT * FROM messages order by $filter";
+    } else {
+        $query = "SELECT * FROM messages order by status DESC";
+    }
+
 
     $select_msgs_query = mysqli_query($connection, $query);
     if (!$select_msgs_query) {

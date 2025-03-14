@@ -929,6 +929,7 @@
   font-weight: 900;
   text-align: center;
   width: 20px;
+  height: 20px;
   font-size: 0.6rem;
   padding: 2px;
   border-radius: 50%;
@@ -3125,8 +3126,9 @@ footer .logo-normal {
     height: 99vh;
   }
   .basket-number {
-    font-size: 0.4rem;
+    font-size: 0.6rem;
     width: 16px;
+    height: 18px;
   }
   .logo-name {
     letter-spacing: 0px;
@@ -3153,7 +3155,7 @@ footer .logo-normal {
     position: fixed;
     height: 100vh;
     width: 100%;
-    z-index: 3;
+    z-index: 33;
   }
   .hidden-mobile-img-display {
     display: block;
