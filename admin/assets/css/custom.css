@@ -34,6 +34,7 @@
   position: absolute;
 }
 .filter-dropdown button {
+  cursor: pointer;
   margin: 0;
   width: 100%;
 }
