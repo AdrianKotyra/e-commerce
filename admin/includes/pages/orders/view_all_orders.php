@@ -1,3 +1,5 @@
+
+
 <div class="card-header">
     <h4 class="card-title"> All orders</h4>
 </div>
@@ -61,3 +63,4 @@
 
         </table>
     </div>
+<?php reset_status_new("orders");?>

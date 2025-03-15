@@ -17,21 +17,21 @@
 
 </div>
 <div class="filter-col flex-row text-right">
-<form action="">
-            <div class="container-cat-filter flex-row ">
-                <span>sort by</span>
-                <i class="fa-solid fa-angle-down"></i>
-            </div>
-
-                <div class="filter-dropdown filter-dropdown-product inactive-dropdown-filter ">
-                    <div class="dropdown-content ">
-                    <?php      displayFiltersMessages()?>
-
-                        <button class="button-custom btn btn-primary btn-round">APPLY</button>
-                    </div>
-                </div>
-            </form>
+    <form action="">
+        <div class="container-cat-filter flex-row ">
+            <span>sort by</span>
+            <i class="fa-solid fa-angle-down"></i>
         </div>
+
+        <div class="filter-dropdown filter-dropdown-product inactive-dropdown-filter ">
+            <div class="dropdown-content ">
+            <?php      displayFiltersMessages()?>
+
+                <button class="button-custom btn btn-primary btn-round">APPLY</button>
+            </div>
+        </div>
+    </form>
+
 
 
 
@@ -61,3 +61,4 @@
 
         </table>
     </div>
+<?php reset_status_new("messages");?>

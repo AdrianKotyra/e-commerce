@@ -1,7 +1,5 @@
 <?php  require_once("init.php");
 
-use PHPMailer\PHPMailer\PHPMailer;
-use PHPMailer\PHPMailer\Exception;
 function send_create_account_email($userName, $activation_code_generate, $email){
    $email_content =
 '

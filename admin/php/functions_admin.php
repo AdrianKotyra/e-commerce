@@ -1,6 +1,12 @@
 <?php
-    use PHPMailer\PHPMailer\PHPMailer;
-    use PHPMailer\PHPMailer\Exception;
+    function reset_status_new($column){
+        global $database;
+        $database->query_array("UPDATE $column SET data_status= 'old'");
+
+    }
+
+
+
     function sendReplyMsg($email, $username, $reply){
 
 
@@ -270,7 +276,90 @@ function displayFiltersMessages(){
     echo $content;
 
 }
+function displayFiltersPosts(){
+    if(isset($_GET["filter"])) {
+        $filter = $_GET["filter"];
+    } else {
+        $filter = '';
+    }
+    $post_date_asc = $filter =="post_date ASC"?  "checked" : '';
+    $post_date_desc = $filter =="post_date DESC"?  "checked" : '';
+    $post_header_asc = $filter =="post_header ASC"?  "checked" : '';
+    $post_header_desc = $filter =="post_header DESC"?  "checked" : '';
 
+
+
+    $content = '
+    <p class="flex-row filter-radio"><input name="filter"'.$post_date_asc.' type="radio" value="post_date ASC">Date asc</p>
+    <p class="flex-row filter-radio"><input name="filter"'.$post_date_desc.' type="radio" value="post_date DESC">Date desc</p>
+    <p class="flex-row filter-radio"><input name="filter"'.$post_header_asc.' type="radio" value="post_header ASC">Header A-Z</p>
+    <p class="flex-row filter-radio"><input name="filter"'.$post_header_desc.' type="radio" value="post_header DESC">Header Z-A</p>';
+
+
+    echo $content;
+
+}
+function displayFiltersComments(){
+    if(isset($_GET["filter"])) {
+        $filter = $_GET["filter"];
+    } else {
+        $filter = '';
+    }
+    $user_name_asc = $filter =="user_name ASC"?  "checked" : '';
+    $user_name_desc = $filter =="user_name DESC"?  "checked" : '';
+    $rating_asc = $filter =="stars_rating ASC"?  "checked" : '';
+    $rating_desc = $filter =="stars_rating DESC"?  "checked" : '';
+
+    $comment_date = $filter =="comment_date ASC"?  "checked" : '';
+    $comment_date = $filter =="comment_date DESC"?  "checked" : '';
+
+
+
+    $content = '
+    <p class="flex-row filter-radio"><input name="filter"'.$user_name_asc.' type="radio" value="user_name ASC">Username A-Z</p>
+    <p class="flex-row filter-radio"><input name="filter"'.$user_name_desc.' type="radio" value="user_name DESC">Username Z-A</p>
+    <p class="flex-row filter-radio"><input name="filter"'.$rating_asc.' type="radio" value="stars_rating ASC">Rating asc</p>
+    <p class="flex-row filter-radio"><input name="filter"'.$rating_desc.' type="radio" value="stars_rating DESC">Rating desc</p>
+    <p class="flex-row filter-radio"><input name="filter"'.$comment_date.' type="radio" value="comment_date ASC">Date asc</p>
+    <p class="flex-row filter-radio"><input name="filter"'.$comment_date.' type="radio" value="comment_date DESC">Date desc</p>';
+
+
+    echo $content;
+
+}
+function displayFiltersProducts(){
+    if(isset($_GET["filter"])) {
+        $filter = $_GET["filter"];
+    } else {
+        $filter = '';
+    }
+    $product_name_asc = $filter =="product_name ASC"?  "checked" : '';
+    $product_name_desc = $filter =="product_name DESC"?  "checked" : '';
+    $product_price_asc = $filter =="product_price ASC"?  "checked" : '';
+    $product_price_desc = $filter =="product_price DESC"?  "checked" : '';
+
+    $product_quantity_asc = $filter =="quantity_ASC"?  "checked" : '';
+    $product_quantity_desc = $filter =="quantity_DESC"?  "checked" : '';
+
+    $product_views_asc = $filter =="product_views ASC"?  "checked" : '';
+    $product_views_desc = $filter =="product_views DESC"?  "checked" : '';
+
+
+
+    $content = '
+    <p class="flex-row filter-radio"><input name="filter"'.$product_name_asc.' type="radio" value="product_name ASC">Product name A-Z</p>
+    <p class="flex-row filter-radio"><input name="filter"'.$product_name_desc.' type="radio" value="product_name DESC">Product name Z-A</p>
+    <p class="flex-row filter-radio"><input name="filter"'.$product_price_asc.' type="radio" value="product_price ASC">Price asc</p>
+    <p class="flex-row filter-radio"><input name="filter"'.$product_price_desc.' type="radio" value="product_price DESC">Price desc</p>
+    <p class="flex-row filter-radio"><input name="filter"'.$product_quantity_asc.' type="radio" value="quantity_ASC">Quantity asc</p>
+    <p class="flex-row filter-radio"><input name="filter"'.$product_quantity_desc.' type="radio" value="quantity_DESC">Quantity desc</p>
+    <p class="flex-row filter-radio"><input name="filter"'.$product_views_asc.' type="radio" value="product_views ASC">Views asc</p>
+    <p class="flex-row filter-radio"><input name="filter"'.$product_views_desc.' type="radio" value="product_views DESC">Views desc</p>';
+
+
+    echo $content;
+
+}
 function change_status_comments(){
     if(isset($_GET["change_status"])) {
         global $connection;
@@ -300,8 +389,13 @@ function change_status_comments(){
 function select_and_display_comments() {
     global $connection;
     global $product;
+    if(isset($_GET["filter"])) {
+        $filter = $_GET["filter"];
+        $query = "SELECT * from comments order by $filter";
+    } else {
+        $query = "SELECT * from comments order by approved DESC ";
+    }
 
-    $query = "SELECT * from comments order by approved DESC";
     $select_users_query = mysqli_query($connection, $query);
     if (!$select_users_query) {
         die("Query Failed: " . mysqli_error($connection));
@@ -309,11 +403,12 @@ function select_and_display_comments() {
     while($row = mysqli_fetch_assoc($select_users_query)) {
 
         $comment_id = $row["comment_id"];
+        $comment_date= $row["comment_date"];
         $user_comment = $row["user_comment"];
         $stars_rating= $row["stars_rating"];
         $stars_container= "";
         for ($i = 0; $i < $stars_rating; $i++) {
-            $stars_container .= '<i class="fa-solid fa-star main-color"></i>';
+            $stars_container .= '<i class="fa-solid fa-star"></i>';
         }
 
         $user_name= $row["user_name"];
@@ -333,6 +428,7 @@ function select_and_display_comments() {
         echo "<td>" . $user_name . "</td>";
         echo "<td > <a target='_blank' href='../../ecommerce/public/products.php?show=$product_id&category=$product_category'>$product_name </a></td>";
         echo "<td>" . $stars_container . "</td>";
+        echo "<td>" . $comment_date . "</td>";
         echo "<td>" . $approved . "</td>";
         echo "<td class='text-right'><span class='table-nav-link comment-id-link' data-comment-id=$comment_id>CHECK</span></td>";
         echo "<td class='text-right'><span class='change_status_button table-nav-link' data-link='comments.php?change_status={$comment_id}'>CHANGE</span></td>";
@@ -425,7 +521,63 @@ function select_and_display_product_stock() {
 function select_and_display_products() {
     global $connection;
     global $product;
-    $query = "SELECT * FROM products ORDER BY product_id DESC";
+
+    if(isset($_GET["filter"])) {
+        $filter = $_GET["filter"];
+        // USED AI TO GET DISERABLE QUERY ---
+        // NEEDED TO SUM UP PRODUCTS STOCKS FOR EACH PRODUCT ID IN
+        // RELATIVE DATA BASE rel_products_sizes
+        if($filter=="quantity_ASC") {
+            $query = ' SELECT
+            p.`product_id`,
+            p.`product_name`,
+            p.`product_img`,
+            p.`product_price`,
+            p.`product_img2`,
+            p.`product_img3`,
+            p.`product_img4`,
+            p.`product_desc`,
+            p.`product_views`,
+            SUM(r.`stock`) AS total_stock
+            FROM `products` p
+            JOIN `rel_products_sizes` r ON p.`product_id` = r.`prod_id`
+            GROUP BY p.`product_id`
+            ORDER BY total_stock
+            ';
+
+        }
+        elseif ($filter=="quantity_DESC") {
+        // USED AI TO GET DISERABLE QUERY ---
+        // NEEDED TO SUM UP PRODUCTS STOCKS FOR EACH PRODUCT ID IN
+        // RELATIVE DATA BASE rel_products_sizes
+            $query = ' SELECT
+            p.`product_id`,
+            p.`product_name`,
+            p.`product_img`,
+            p.`product_price`,
+            p.`product_img2`,
+            p.`product_img3`,
+            p.`product_img4`,
+            p.`product_desc`,
+            p.`product_views`,
+            SUM(r.`stock`) AS total_stock
+            FROM `products` p
+            JOIN `rel_products_sizes` r ON p.`product_id` = r.`prod_id`
+            GROUP BY p.`product_id`
+            ORDER BY total_stock DESC
+            ';
+
+        }
+        else {
+            $query = "SELECT * FROM products order by $filter";
+        }
+
+
+    } else {
+        $query = "SELECT * FROM products ORDER BY product_id DESC";
+    }
+
+
 
     $select_users_query = mysqli_query($connection, $query);
     if (!$select_users_query) {
@@ -437,12 +589,11 @@ function select_and_display_products() {
         $product_name = $row["product_name"];
         $product_img = $row["product_img"];
         $product_price = $row["product_price"];
-
-
+        $product_views = $row["product_views"];
         $product_category = Product::getproductCategory($product_id);
         $product_reviews_number = Product::get_product_reviews_number($product_id);
         $total_stock = Product::getproductTotalStock($product_id);
-
+        $avergage_rating = comment::get_average_rating_stars($product_id);
         // Loop through each column in the row
         echo "<td > $product_id</td>";
 
@@ -452,6 +603,8 @@ function select_and_display_products() {
         echo "<td > $product_price</td>";
         echo "<td > $product_category</td>";
         echo "<td > $total_stock</td>";
+        echo "<td > $product_views</td>";
+        echo "<td > $avergage_rating</td>";
         echo "<td > <span class='table-nav-link product_link' product_id= $product_id >$product_reviews_number</span></td>";
         echo "<td class='text-right'><a class='table-nav-link' href='products.php?source=show&product_id={$product_id}'>STOCK</a></td>";
         echo "<td class='text-right'><a class='table-nav-link'href='products.php?source=edit_product&product_id={$product_id}'>EDIT</a></td>";
@@ -515,8 +668,11 @@ function select_and_display_orders() {
         $shipping_postal_code = $row['shipping_postal_code'];
         $shipping_country = $row['shipping_country'];
 
-
+        $order_status = $row['data_status'];
+        // check order status if its new or old to add class bold
+        $new_order_status = $order_status=="new"? "new_data" : "old_data";
         // Loop through each column in the row
+        echo " <tr class='$new_order_status'>  ";
         echo "<td > $order_id</td>";
         echo "<td > $transaction_id</td>";
         echo "<td > $transaction_time </td>";
@@ -580,12 +736,16 @@ function select_and_display_msgs() {
         $msg_status = $row['status'];
         $msg_status_bold = $msg_status=='unreaded'? "<b> unreaded </b" : "readed";
 
-        // Loop through each column in the row
-        echo "<td > $msgs_id</td>";
-        echo "<td > $email</td>";
-        echo "<td > $user_firstname $user_lastname </td>";
-        echo "<td > $user_city</td>";
-        echo "<td class='status-td-$msgs_id' > $msg_status_bold</td>";
+        $order_status = $row['data_status'];
+        // check order status if its new or old to add class bold
+        $new_order_status = $order_status=="new"? "new_data" : "old_data";
+      // Loop through each column in the row
+        echo " <tr class='$new_order_status'>  ";
+        echo "<td >$msgs_id</td>";
+        echo "<td >$email</td>";  // Fixed missing space & incorrect tag
+        echo "<td >$user_firstname $user_lastname</td>";
+        echo "<td >$user_city</td>";
+        echo "<td class='status-td-$msgs_id'>$msg_status_bold</td>";
 
         echo "<td class='text-right'> <span class='table-nav-link msg_link' msg_id= $msgs_id >Check</span></td>";
         echo "<td class='text-right'><a class='table-nav-link'href='messages.php?source=reply&msg_id={$msgs_id}'>REPLY</a></td>";
@@ -1172,7 +1332,13 @@ function select_and_display_bookings() {
 function select_and_display_posts() {
     global $connection;
 
-    $query = "SELECT * from news";
+    if(isset($_GET["filter"])) {
+        $filter = $_GET["filter"];
+        $query = "SELECT * FROM news order by $filter";
+    } else {
+        $query = "SELECT * FROM news ";
+    }
+
     $select_genres_query = mysqli_query($connection, $query);
     while($row = mysqli_fetch_assoc($select_genres_query)) {
         $post_id = $row["id"];

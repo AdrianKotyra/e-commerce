@@ -64,7 +64,7 @@ class Comment {
         $number_of_ratings = mysqli_num_rows($result_comments);
 
         if($number_of_ratings==0) {
-           return "No reviews collected for this product yet";
+           return "No reviews";
         }
 
         else {

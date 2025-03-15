@@ -40,7 +40,19 @@
 <div class="modal-window-container">
 
 </div>
-
+<div class="body-mask"></div>
+<!-- --------------LOADER----------- -->
+<div class="loader">
+  <svg viewBox="0 0 200 200">
+    <circle cx="100" cy="100" r="50"></circle>
+  </svg>
+  <svg viewBox="0 0 200 200">
+    <circle cx="100" cy="100" r="50"></circle>
+  </svg>
+  <svg viewBox="0 0 200 200">
+    <circle cx="100" cy="100" r="50"></circle>
+  </svg>
+</div>
 <!-- Redirect if user not admin -->
 <?php if($session->signed_in!=true || $user->user_status!="admin") {
    header("Location: ../public/index.php");

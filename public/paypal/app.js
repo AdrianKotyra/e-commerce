@@ -32,6 +32,7 @@ function getTotal() {
 
                         },
                         onApprove: function (data, actions) {
+
                             // Handle when the payment is approved
                             return actions.order.capture().then(function (details) {
 
