@@ -72,3 +72,5 @@
 
         </table>
     </div>
+
+<?php reset_status_new("news");?>

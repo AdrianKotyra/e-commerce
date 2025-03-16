@@ -41,14 +41,12 @@ class Comment {
         global $database;
         $result_comments = $database->query_array("SELECT * FROM comments WHERE product_id = $product_id and approved = 'approved'");
         $rows = mysqli_num_rows($result_comments);
-        if($rows>=1) {
-            return  ' <div class="rating-reviews-counts">Based on
-            '.$rows. ' reviews
-            </div>';
-        }
-        else {
-            return;
-        }
+
+            return $rows;
+
+
+
+
 
 
     }

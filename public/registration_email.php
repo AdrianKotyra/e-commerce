@@ -32,11 +32,7 @@ if (!isset($_SESSION["create_acc_code"])) {
 
       <form action="" method="POST">
           <input type="text" class="form form-control" name="code" placeholder="Enter activation code" required>
-          <input type="hidden" name="firstname" value="<?php echo $_SESSION["create_acc_firstname"]; ?>">
-          <input type="hidden" name="lastname" value="<?php echo $_SESSION["create_acc_lastname"]; ?>">
-          <input type="hidden" name="email" value="<?php echo $_SESSION["create_acc_email"]; ?>">
-          <input type="hidden" name="password" value="<?php echo $_SESSION["create_acc_password"]; ?>">
-          <br>
+
           <button type="submit" name="create_account_activate" class="button-custom">Confirm</button>
       </form>
 
@@ -48,16 +44,21 @@ if (!isset($_SESSION["create_acc_code"])) {
 
   <?php if(isset($_POST["create_account_activate"])) {
 
-    $firstname = isset($_POST["firstname"]) ? $_POST["firstname"] : "";
-    $lastname = isset($_POST["lastname"]) ? $_POST["lastname"] : "";
-    $email = isset($_POST["email"]) ? $_POST["email"] : "";
-    $password = isset($_POST["password"]) ? $_POST["password"] : "";
+    $firstname=  $_SESSION["create_acc_firstname"];
+    $lastname =  $_SESSION["create_acc_lastname"];
+    $email = $_SESSION["create_acc_email"];
+    $password = $_SESSION["create_acc_password"];
 
     $query_email = "SELECT * from users where user_email = '$email'";
     $query_email_check = mysqli_query($connection, $query_email);
 
-    if(isset($_POST["code"]) && $_POST["code"]==$_SESSION["create_acc_code"] && mysqli_num_rows($query_email_check)==0) {
-
+    if(isset($_POST["code"])
+      && $_POST["code"]==$_SESSION["create_acc_code"]
+      && mysqli_num_rows($query_email_check)==0
+      && isset($_SESSION["create_acc_firstname"])
+      && isset($_SESSION["create_acc_lastname"])
+      && isset($_SESSION["create_acc_email"])
+      && isset($_SESSION["create_acc_password"])) {
 
 
 
@@ -90,6 +91,12 @@ if (!isset($_SESSION["create_acc_code"])) {
           provided code is incorrect
           </div>';
 
+      }
+      else {
+        echo
+        '<div class="alert alert-danger text-center" role="alert">
+          wrong data
+          </div>';
       }
 
 }

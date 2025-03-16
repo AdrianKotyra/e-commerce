@@ -678,8 +678,9 @@ function section_slider_products($type_products) {
                 '.$type_products.'
             </h3>
         </a>
-        <div class="container-section vetical-scroll-grab-class flex-row shopping-row">'
-            . displaySliderProducts($type_products) . '
+
+        <div class="card-slider">'
+        . displaySliderProducts($type_products) . '
         </div>
     </section>';
     echo $section;
@@ -693,7 +694,7 @@ function section_slider_trending() {
                 Trending
             </h3>
         </a>
-        <div class="container-section vetical-scroll-grab-class flex-row shopping-row">'
+        <div class="card-slider">'
             . displayTrendyProducts(8) . '
         </div>
     </section>';

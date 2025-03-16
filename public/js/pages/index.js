@@ -88,3 +88,46 @@ let mainSliderOptions = {
   },
 };
 let mainSlider = new Swiper('.main-slider', mainSliderOptions);
+
+
+
+
+// slider products
+$(document).ready(function() {
+  $('.card-slider').slick({
+    dots: false,
+    arrows: true,
+    slidesToShow: 5,
+    infinite: false,
+    prevArrow: '<button type="button" class="slick-prev"></button>',
+    nextArrow: '<button type="button" class="slick-next"></button>',
+    responsive: [
+      {
+        breakpoint: 1224,
+        settings: {
+          slidesToShow: 4
+        }
+      },
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 3
+        }
+      },
+      {
+        breakpoint: 800,
+        settings: {
+          slidesToShow: 3
+        }
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 2
+        }
+      }
+
+    ]
+
+  });
+});

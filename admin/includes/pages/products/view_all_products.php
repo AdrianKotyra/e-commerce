@@ -73,3 +73,4 @@
 
         </table>
     </div>
+<?php reset_status_new("products");?>

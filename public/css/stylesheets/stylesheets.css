@@ -680,7 +680,7 @@
 }
 
 .hidden-mobile-img-display {
-  display: none;
+  display: none !important;
 }
 
 .body-mask {
@@ -691,6 +691,183 @@
   position: fixed;
   background-color: rgba(0, 0, 0, 0.577);
   display: none;
+}
+
+.slick-track {
+  margin: 0 !important;
+}
+
+.card-slider {
+  position: relative;
+  max-width: 100%;
+  margin: 0 auto;
+  /* Custom images for arrows */
+  /** Main link */
+  /** Product title */
+  /** Product image */
+  /** Product description */
+  /** Floating "sale" badge */
+  /** Price */
+  /** Rating */
+  /** "30 reviews" link next to stars */
+  /** Hover state = add box shadow, underline the title */
+}
+.card-slider .slick-prev, .card-slider .slick-next {
+  border: none;
+  top: 40%;
+  width: 40px;
+  height: 40px;
+  z-index: 22;
+  position: absolute;
+}
+.card-slider .reviews-link {
+  opacity: 60%;
+}
+.card-slider .slick-prev {
+  left: 0;
+}
+.card-slider .slick-next {
+  right: 0;
+}
+.card-slider .slick-prev, .card-slider .slick-next {
+  background-size: contain;
+  background-repeat: no-repeat;
+  display: block;
+  width: 20px;
+  height: 20px;
+  background-position: center;
+}
+.card-slider .slick-prev {
+  left: 0;
+  background-image: url("https://cdn-icons-png.flaticon.com/512/271/271220.png"); /* Left arrow */
+}
+.card-slider .slick-next {
+  background-image: url("https://cdn-icons-png.flaticon.com/512/271/271228.png"); /* Right arrow */
+}
+.card-slider .slick-slide {
+  padding: 0 10px;
+}
+.card-slider .card {
+  position: relative;
+  display: flex !important;
+  flex-direction: column;
+  height: 250px;
+  border-radius: 3px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  background-color: white;
+  text-decoration: none;
+  color: rgba(0, 0, 0, 0.9);
+  transition: all 0.1s linear;
+}
+@media screen and (max-width: 600px) {
+  .card-slider .card {
+    height: auto;
+  }
+}
+.card-slider .card .main-link {
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+}
+.card-slider .card .main-link:focus {
+  outline: none;
+}
+.card-slider .card .main-link:focus .title {
+  outline: 3px dashed orange;
+  outline-offset: -4px;
+  color: royalblue;
+  text-decoration: underline;
+}
+.card-slider .card .title {
+  color: #000;
+  margin: 0;
+  padding: 10px 10px 5px 10px;
+  font-size: 16px;
+  font-weight: bold;
+}
+.card-slider .card .title:hover {
+  text-decoration: underline;
+}
+.card-slider .card .image {
+  /** Visually place the image above all other content (like the heading) in the parent flex container (.card). */
+  order: -1;
+  position: relative;
+  height: 100px;
+  padding: 2px;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.card-slider .card .image img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  filter: grayscale(0.5);
+  transition: all 0.3s ease-in-out;
+}
+.card-slider .card .image:hover img {
+  width: 110%;
+  height: 110%;
+}
+.card-slider .card .description {
+  margin: 7px 10px 15px 10px;
+  font-size: 14px;
+  opacity: 0.8;
+}
+.card-slider .card .badge {
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  z-index: 1;
+  padding: 5px 10px;
+  font-size: 12px;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: white;
+  background-color: rgb(200, 0, 0);
+}
+.card-slider .card .price {
+  padding-left: 10px;
+}
+.card-slider .card .price .new-price {
+  font-weight: bold;
+}
+.card-slider .card .price .original-price {
+  margin-left: 5px;
+  font-size: 14px;
+  font-style: italic;
+  opacity: 0.5;
+  text-decoration: line-through;
+}
+.card-slider .card .rating {
+  margin: 10px 0 15px 10px;
+  color: orange;
+  font-size: 12px;
+}
+.card-slider .card .rating .reviews-link {
+  color: rgba(0, 0, 0, 0.6);
+  margin-left: 5px;
+}
+.card-slider .card .rating .reviews-link:hover {
+  color: black;
+}
+.card-slider .card .rating .reviews-link:focus {
+  color: royalblue;
+  outline: 3px dotted royalblue;
+  outline-offset: 2px;
+}
+.card-slider .card:hover {
+  border-color: rgba(0, 0, 0, 0.4);
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.15);
+}
+.card-slider .card:hover .image img,
+.card-slider .card:focus .image img {
+  filter: grayscale(0);
+}
+.card-slider .card a:focus {
+  outline: none;
 }
 
 .body-mask-nav {
@@ -1622,7 +1799,7 @@ nav {
   background-color: white;
   bottom: 60px;
   width: 90%;
-  left: calc(50% - 5px);
+  left: 50%;
   transform: translate(-50%, 0%);
 }
 .hidden-prod-label .men-grid .size-item {
@@ -1650,12 +1827,12 @@ nav {
 }
 
 .clicked-active-label {
-  display: block !important;
+  display: block;
   animation: prod_label_animation-forwards_detailed 0.5s forwards;
 }
 
 .clicked-inactive-label {
-  display: block !important;
+  display: block;
   animation: prod_label_animation-backwards_detailed 0.5s forwards;
 }
 
@@ -2528,14 +2705,6 @@ section {
   font-size: var(--header-section-small);
 }
 
-.trending_section .shopping-column {
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  user-select: none;
-  width: 20vw;
-  margin-right: 10px;
-}
-
 .inactive-basket {
   display: flex;
   animation: hideBasket 0.5s forwards;
@@ -3059,16 +3228,6 @@ footer .logo-normal {
     min-width: 100%;
   }
 }
-@media (max-width: 1200px) {
-  .trending_section .shopping-column {
-    width: 25vw;
-  }
-}
-@media (max-width: 1000px) {
-  .trending_section .shopping-column {
-    width: 33vw;
-  }
-}
 @media screen and (max-width: 1024px) {
   .cart-shopping {
     width: 25px;
@@ -3121,10 +3280,6 @@ footer .logo-normal {
     margin-top: 25px;
     width: 100%;
   }
-  .hidden-prod-label-container {
-    overflow-y: scroll;
-    height: 99vh;
-  }
   .basket-number {
     font-size: 0.6rem;
     width: 16px;
@@ -3148,17 +3303,8 @@ footer .logo-normal {
   .layout-card {
     position: static;
   }
-  .clicked-active-label {
-    transform: translate(-50%, -50%);
-    top: 50%;
-    left: 50%;
-    position: fixed;
-    height: 100vh;
-    width: 100%;
-    z-index: 33;
-  }
   .hidden-mobile-img-display {
-    display: block;
+    display: block !important;
     margin-top: 100px;
   }
   .swiper-slide .content {
@@ -3334,6 +3480,12 @@ footer .logo-normal {
   }
 }
 @media screen and (max-width: 767px) {
+  .clicked-active-label {
+    display: none !important;
+  }
+  .clicked-inactive-label {
+    display: none !important;
+  }
   footer {
     padding: 9vh 0 6vh 0;
   }
@@ -3348,9 +3500,6 @@ footer .logo-normal {
   }
   .full-screen-news {
     display: none;
-  }
-  .trending_section .shopping-column {
-    width: 50vw;
   }
   .list_image {
     aspect-ratio: 2.6666666667;

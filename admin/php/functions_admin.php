@@ -449,7 +449,10 @@ function delete_comments(){
     }
 }
 function chart_cart_template($icon, $column_name, $link){
+    $new_data = get_new_data_count($column_name);
+    $new_data_display = $new_data!=0? '+' .$new_data. ' new': null;
     $number_records_col = get_row_count($column_name);
+
     $html = '<a class="col-lg-3 col-md-6 col-sm-6 chart-small" href="'.$link.'">
 
                 <div class="card card-stats">
@@ -469,8 +472,12 @@ function chart_cart_template($icon, $column_name, $link){
                         </div>
                     </div>
                     </div>
+                     <hr>
                     <div class="card-footer ">
-                    <hr>
+                    <div class="stats">
+                    <b>'. $new_data_display.'  </b>
+                    </div>
+
 
                 </div>
             </div>
@@ -638,7 +645,7 @@ function select_and_display_orders() {
         $filter = $_GET["filter"];
         $query = "SELECT * FROM orders order by $filter";
     } else {
-        $query = "SELECT * FROM orders ";
+        $query = "SELECT * FROM orders order by id desc";
     }
 
 
@@ -1508,7 +1515,14 @@ function select_and_display_forum_posts() {
 
 
 }
+function get_new_data_count($col_name){
+    global $connection;
+    $query = "SELECT * FROM $col_name where data_status = 'new'";
+    $select_all_records = mysqli_query($connection, $query);
+    $row_counts = mysqli_num_rows( $select_all_records);
 
+    return $row_counts;
+}
 function get_row_count($col_name){
     global $connection;
     $query = "SELECT * FROM $col_name";

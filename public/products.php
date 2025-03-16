@@ -118,9 +118,10 @@
 
 
                     </div>
-
-                    <?php echo comment::get_number_comments($product_id);  ?>
-
+                <div class="rating-reviews-counts">Based on
+                <?php echo comment::get_number_comments($product_id);  ?>
+                reviews
+                </div>
 
 
 

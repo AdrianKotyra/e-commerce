@@ -219,12 +219,18 @@ function clickOnPlusProdCart(){
 
 
       const label = cart.querySelector(".hidden-prod-label");
-
+      const labels = document.querySelectorAll(".clicked-active-label");
+      const plusMinuses = document.querySelectorAll(".add-prod-img i");
 
       if(label.classList.contains("clicked-active-label")) {
         label.classList.add("clicked-inactive-label");
         label.classList.remove("clicked-active-label");
-
+        labels.forEach(label=>{
+          label.classList.remove("clicked-active-label");
+        })
+        plusMinuses.forEach(label=>{
+          label.classList.remove("clicked-active-icon");
+        })
         iconSelectedImg.classList.add("clicked-inactive-icon");
         iconSelectedImg.classList.remove("clicked-active-icon");
 
@@ -232,7 +238,12 @@ function clickOnPlusProdCart(){
       else {
         label.classList.remove("clicked-inactive-label");
         label.classList.add("clicked-active-label");
-
+        labels.forEach(label=>{
+          label.classList.remove("clicked-active-label");
+        })
+        plusMinuses.forEach(label=>{
+          label.classList.remove("clicked-active-icon");
+        })
 
         iconSelectedImg.classList.add("clicked-active-icon");
         iconSelectedImg.classList.remove("clicked-inactive-icon");

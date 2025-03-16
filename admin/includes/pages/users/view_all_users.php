@@ -54,3 +54,4 @@
         </table>
     </div>
 </div>
+<?php reset_status_new("users");?>

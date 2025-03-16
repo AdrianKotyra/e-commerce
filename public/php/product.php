@@ -249,6 +249,9 @@ class Product {
         return  $product_template;
     }
     public function product_detailed_section_Template(){
+        global $comment;
+        $reviews_msg = comment::get_number_comments($this->product_id)!=0?
+        comment::get_number_comments($this->product_id). ' reviews' : "";
         $sizes_html = generate_sizes_html($this, "span");
         $chosen_grid= generate_product_grid_sizes($this);
         $category_message = '';
@@ -300,6 +303,17 @@ class Product {
                         <div class="add-prod-img">
                             <i class="fa-solid fa-plus"></i>
                         </div>
+                         <div class="rating flex-col">
+                        <div >
+                             '.comment::get_average_rating_stars($this->product_id).'
+                        </div>
+
+
+                        <span class="reviews-link">
+                        '.$reviews_msg.'
+                        </span>
+
+                    </div>
                     </div>
                 </div>
              </div>
@@ -309,7 +323,9 @@ class Product {
     }
 
     public function product_slider_Template(){
-
+        global $comment;
+        $reviews_msg = comment::get_number_comments($this->product_id)!=0?
+        comment::get_number_comments($this->product_id). ' reviews' : "";
         $sizes_html = generate_sizes_html($this, "span");
         $chosen_grid= generate_product_grid_sizes($this);
         $category_message = '';
@@ -344,12 +360,9 @@ class Product {
                     </a>
                     <div class="hidden-prod-label">
                         <div class="hidden-prod-label-container">
-                            <div class="hidden-mobile exit-mobile-label">
-                                <i class="fa-solid fa-xmark"></i>
 
-                            </div>
-                            <img class="hidden-mobile-img-display"src="./imgs/products/'.$this->product_name.'/'.$this->product_img.'" />
-                            <p class="hidden-mobile"> <b>'.$this->product_name.'</b> </p>
+
+
                             <p > <b>'.$message.'</b> </p>
                             <div class="sizes-grid-prod '.$chosen_grid.'">
                             '.$sizes_html.'
@@ -368,6 +381,18 @@ class Product {
                     <div class="add-prod-img">
                         <i class="fa-solid fa-plus"></i>
                     </div>
+                    <div class="rating flex-col">
+                        <div >
+                             '.comment::get_average_rating_stars($this->product_id).'
+                        </div>
+
+
+                        <span class="reviews-link">
+                        '.$reviews_msg.'
+                        </span>
+
+                    </div>
+
                 </div>
         </div>';
         return  $product_template;
