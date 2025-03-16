@@ -154,7 +154,7 @@ class Product {
 
         $product_template = '   <div class="similar-prod-col flex-row">
             <a class="similar-prod-link" href="products.php?show='.$this->product_id.'&category='.$this->product_category.'">
-                <img src="./imgs/products/'.$this->product_name.'/'.$this->product_img.'" />
+                <img loading="lazy" src="./imgs/products/'.$this->product_name.'/'.$this->product_img.'" />
             </a>
             <div class="similar-prod-desc">
                 <div class="prod-desc-similar-container">
@@ -213,7 +213,7 @@ class Product {
                 <div class="layout-card">
                    <a class="prod-link" href="products.php?show='.$this->product_id.'&category='.$this->product_category.'">
                         <div class="shopping-column">
-                            <img src="./imgs/products/'.$this->product_name.'/'.$this->product_img.'" />
+                            <img loading="lazy" src="./imgs/products/'.$this->product_name.'/'.$this->product_img.'" />
                         </div>
                     </a>
                       <div class="hidden-prod-label">
@@ -222,7 +222,7 @@ class Product {
                                 <i class="fa-solid fa-xmark"></i>
 
                             </div>
-                            <img class="hidden-mobile-img-display"src="./imgs/products/'.$this->product_name.'/'.$this->product_img.'" />
+                            <img loading="lazy" class="hidden-mobile-img-display"src="./imgs/products/'.$this->product_name.'/'.$this->product_img.'" />
                             <p class="hidden-mobile"> <b>'.$this->product_name.'</b> </p>
                             <p > <b>'.$message.'</b> </p>
                             <div class="sizes-grid-prod '.$chosen_grid.'">
@@ -281,7 +281,7 @@ class Product {
                     <div class="layout-card">
                             <a class="prod-link" href="products.php?show='.$this->product_id.'&category='.$this->product_category.'">
                                 <div class="shopping-column">
-                                    <img src="./imgs/products/'.$this->product_name.'/'.$this->product_img.'" />
+                                    <img loading="lazy" src="./imgs/products/'.$this->product_name.'/'.$this->product_img.'" />
                                 </div>
                             </a>
                             <div class="hidden-prod-label">
@@ -355,7 +355,7 @@ class Product {
                 <div class="layout-card">
                     <a class="card-prod-link" href="products.php?show='.$this->product_id.'&category='.$this->product_category.'">
                         <div class="shopping-column">
-                         <img src="./imgs/products/'.$this->product_name.'/'.$this->product_img.'" />
+                         <img loading="lazy" src="./imgs/products/'.$this->product_name.'/'.$this->product_img.'" />
                         </div>
                     </a>
                     <div class="hidden-prod-label">
@@ -416,7 +416,7 @@ class Product {
 
     <div class="added-prod-window-body">
       <div class="prod-info-window">
-        <img src="./imgs/products/'.$this->product_name.'/'.$this->product_img.'" alt="">
+        <img loading="lazy" src="./imgs/products/'.$this->product_name.'/'.$this->product_img.'" alt="">
         <div class="prod-info-container flex-col">
           <span> <b>'.$this->product_name.'</b></span>
           <span> £'.$prod_total.'</span>
@@ -450,7 +450,7 @@ class Product {
         $prod_total = $this->product_price*$quantity_basket;
         $product_template = '<div class="basket_product_template flex-row">
         <div class="product_img_container">
-            <img src="./imgs/products/'.$this->product_name.'/'.$this->product_img.'" />
+            <img loading="lazy" src="./imgs/products/'.$this->product_name.'/'.$this->product_img.'" />
         </div>
         <div class="prod-basket-desc col-row">
           <p class="prod-title-basket">'.$this->product_name.'</p>
@@ -481,7 +481,7 @@ class Product {
                         <div class="col-check-prod flex-row">
                             <div class="img-container">
                                 <span class="prod-quantity">'.$quantity_basket.'</span>
-                               <img src="./imgs/products/'.$this->product_name.'/'.$this->product_img.'" />
+                               <img loading="lazy" src="./imgs/products/'.$this->product_name.'/'.$this->product_img.'" />
                             </div>
                             <div class="prod-info-checkout flex-col">
                                 <span class="prod-name">'.$this->product_name.'</span>

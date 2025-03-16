@@ -1,3 +1,31 @@
+
+function ChangeUIColours() {
+  const urlParams = new URLSearchParams(window.location.search);
+
+  const getCategory =  urlParams.get('category');
+
+    if(getCategory=='female') {
+      document.documentElement.style.setProperty("--ui-main", "#6a1373");
+
+    }
+    else if(getCategory=='male') {
+      document.documentElement.style.setProperty("--ui-main", "#132773");
+
+    }
+    else if(getCategory=='unisex') {
+      document.documentElement.style.setProperty("--ui-main", "#386232");
+
+    }
+    else {
+      document.documentElement.style.setProperty("--ui-main", "#000000");
+
+    }
+}
+
+ChangeUIColours()
+
+
+
 // Main Slider
 let mainSliderSelector = '.main-slider',
     navSliderSelector = '.nav-slider',
@@ -98,36 +126,40 @@ $(document).ready(function() {
     dots: false,
     arrows: true,
     slidesToShow: 5,
+    slidesToScroll: 4, // Moves one slide at a time when using arrows
     infinite: false,
+    swipeToSlide: true, // Allows dragging multiple slides at once
     prevArrow: '<button type="button" class="slick-prev"></button>',
     nextArrow: '<button type="button" class="slick-next"></button>',
     responsive: [
       {
         breakpoint: 1224,
         settings: {
-          slidesToShow: 4
+          slidesToShow: 4,
+          slidesToScroll: 1
         }
       },
       {
         breakpoint: 1024,
         settings: {
-          slidesToShow: 3
+          slidesToShow: 3,
+          slidesToScroll: 1
         }
       },
       {
         breakpoint: 800,
         settings: {
-          slidesToShow: 3
+          slidesToShow: 3,
+          slidesToScroll: 1
         }
       },
       {
         breakpoint: 600,
         settings: {
-          slidesToShow: 2
+          slidesToShow: 2,
+          slidesToScroll: 1
         }
       }
-
     ]
-
   });
 });

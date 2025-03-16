@@ -632,13 +632,13 @@ function section_detailed_products($type_products) {
 
         $category = $_GET["category"];
 
-        $img_src = '<img src="./imgs/detailed_section/'.$type_products.'_'.$category.'.jpg" />';
+        $img_src = '<img loading="lazy" src="./imgs/detailed_section/'.$type_products.'_'.$category.'.jpg" />';
 
 
 
     }
     else {
-        $img_src = '<img src="./imgs/detailed_section/'.$type_products.'_mix.jpg" />';
+        $img_src = '<img loading="lazy" src="./imgs/detailed_section/'.$type_products.'_mix.jpg" />';
     }
 
     $section =

@@ -1,4 +1,5 @@
 :root {
+  --ui-main: #000000;
   --men-color: #acb5e6;
   --women-color: rgb(224, 193, 212);
   --uni-color: #90e185;
@@ -285,7 +286,7 @@
   animation: mobileNav 0.2s forwards;
   display: none;
   position: sticky;
-  top: 40px;
+  top: 50px;
   z-index: 3;
   background-color: white;
   height: 100vh;
@@ -358,7 +359,7 @@
   white-space: nowrap;
   cursor: pointer;
   text-decoration: none;
-  color: black;
+  color: rgb(255, 255, 255);
   font-size: var(--very-small);
 }
 
@@ -372,6 +373,7 @@
 }
 
 .logo-name {
+  color: white;
   white-space: nowrap;
   margin: auto;
   font-weight: 800;
@@ -717,7 +719,7 @@
   top: 40%;
   width: 40px;
   height: 40px;
-  z-index: 22;
+  z-index: 2;
   position: absolute;
 }
 .card-slider .reviews-link {
@@ -968,7 +970,7 @@
 }
 
 .basket-active {
-  background: black;
+  background: rgb(255, 255, 255);
 }
 
 .reviews-container-controller .reviews-container {
@@ -1107,10 +1109,9 @@
   text-align: center;
   width: 20px;
   height: 20px;
-  font-size: 0.6rem;
-  padding: 2px;
+  font-size: 0.8rem;
   border-radius: 50%;
-  color: white;
+  color: rgb(0, 0, 0);
   z-index: 2;
   right: -10px;
   top: -5px;
@@ -1151,6 +1152,9 @@
 .hamb-container {
   cursor: pointer;
   display: none;
+}
+.hamb-container .fa-solid {
+  color: white;
 }
 
 .card-prod-link,
@@ -1295,7 +1299,7 @@
 
 .login-nav-link {
   margin-right: 10px;
-  color: black;
+  color: rgb(255, 253, 253);
   text-decoration: none;
 }
 
@@ -1337,6 +1341,7 @@
 }
 
 .cart-shopping {
+  filter: invert(100%) sepia(91%) saturate(38%) hue-rotate(264deg) brightness(110%) contrast(110%);
   width: 30px;
   height: 30px;
 }
@@ -1391,6 +1396,7 @@
   display: none;
 }
 .user-container-profile i {
+  color: white;
   font-size: 1rem;
 }
 
@@ -1528,7 +1534,7 @@
   border: none;
   padding: 10px 20px;
   color: white;
-  background-color: black;
+  background-color: var(--ui-main);
 }
 
 .create-acc {
@@ -1969,15 +1975,18 @@ body {
 }
 
 .nav-extra {
-  transform: translateY(-20px);
   display: none;
-  padding: 20px 0;
+  transform: translateY(-20px);
   color: black;
   background-color: white;
 }
 .nav-extra hr {
   opacity: 20%;
   margin: 0 !important;
+}
+.nav-extra .nav-extra-top {
+  height: 20px;
+  background-color: var(--ui-main);
 }
 
 .nav-categories {
@@ -2583,7 +2592,7 @@ body {
 .search-box-nav span {
   font-size: 24px;
   vertical-align: -1px;
-  color: #9b9b9b;
+  color: #ffffff;
 }
 
 .search-trigger {
@@ -2627,7 +2636,7 @@ body {
   align-items: center;
   height: 100%;
   color: black;
-  background-color: WHITE;
+  background-color: var(--ui-main);
   justify-content: space-between;
 }
 
@@ -2731,7 +2740,7 @@ section {
 }
 
 footer {
-  background-color: #1a1a1a;
+  background-color: black;
   color: #f0f0f0;
   padding: 15vh 0;
   font-family: Arial, sans-serif;
@@ -3281,6 +3290,7 @@ footer .logo-normal {
     width: 100%;
   }
   .basket-number {
+    padding: 2px;
     font-size: 0.6rem;
     width: 16px;
     height: 18px;

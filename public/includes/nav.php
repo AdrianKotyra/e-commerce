@@ -1,7 +1,4 @@
-<div class="banner">
-    <span> Free standard UK shipping on orders over £70</span>
 
-</div>
 <nav>
 
     <?php
@@ -64,7 +61,11 @@
 
     </div>
 
-    <div class="nav-extra wrapper extra-nav-trigger">
+    <div class="nav-extra  extra-nav-trigger">
+        <div class="nav-extra-top">
+
+        </div>
+        <div class="wrapper">
         <hr>
         <div class="nav-extra-container men-extra-nav flex-col">
             <div class="flex-row nav-extra-content">
@@ -92,6 +93,7 @@
 
 
         </div>
+
 
         <div class="nav-extra-container female-extra-nav flex-col">
             <div class="flex-row nav-extra-content">
@@ -146,6 +148,7 @@
 
         </div>
 
+        </div>
     </div>
     <div class="searcher-mobile wrapper inactive-search-bar" id="search-box-nav">
 
