@@ -1,4 +1,15 @@
 <?php
+
+
+    // Load mailer
+    use PHPMailer\PHPMailer\PHPMailer;
+    use PHPMailer\PHPMailer\Exception;
+    require_once  '../public/vendor/autoload.php';
+    // Load the .env file
+    use Dotenv\Dotenv;
+    $dotenv = Dotenv::createImmutable("../public/php");
+    $dotenv->load();
+
     function reset_status_new($column){
         global $database;
         $database->query_array("UPDATE $column SET data_status= 'old'");
@@ -128,23 +139,22 @@
 
 
 
-
-        require '../public/composer/vendor/autoload.php'; // Load PHPMailer
-
         $mail = new PHPMailer(true);
+        $EMAIL_ENV = $_ENV['EMAIL'] ?? null;
+        $PASSWORD_ENV = $_ENV['PASS'] ?? null;
 
         try {
             // SMTP Settings
             $mail->isSMTP();
             $mail->Host       = 'smtp.mail.yahoo.com'; // SMTP server (e.g., smtp.gmail.com)
             $mail->SMTPAuth   = true;
-            $mail->Username   = '';
-            $mail->Password   = '';
+            $mail->Username   = $EMAIL_ENV;
+            $mail->Password   = $PASSWORD_ENV;
             $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS; // Use TLS
             $mail->Port       = 587; // Port for TLS (465 for SSL)
 
-            // Email Content
-            $mail->setFrom('adriankotyra@yahoo.com', 'H1-Top-Sneakers');
+        // Email Content
+            $mail->setFrom($EMAIL_ENV, 'H1-Top-Sneakers');
             $mail->addAddress($email, 'New Member');
             $mail->Subject = 'Message Reply';
             $mail->Body    = $email_content;

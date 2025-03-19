@@ -41,7 +41,7 @@ if(isset($_POST["reply"])) {
     $user_name = htmlspecialchars($_POST["user_name"]);
     $user_email = htmlspecialchars($_POST["user_email"]);
 
-
+    // send php mailer
     sendReplyMsg($user_email, $user_name, $reply);
 
     echo "<div class='alert alert-success col-lg-12 text-center mx-auto' role='alert'>

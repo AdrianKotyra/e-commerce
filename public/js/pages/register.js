@@ -53,14 +53,14 @@
         // initialise function on click
         const registerUserButtonMain = document.querySelector(".register-acc-trigger");
         registerUserButtonMain.addEventListener("click", (event)=>{
-            sendRegisterAjax()(event)
+            sendRegisterAjax()
         })
            // initialise function on enter
         document.addEventListener("keydown", (event)=>{
         if(event.key==="Enter") {
 
 
-            sendRegisterAjax()(event)
+            sendRegisterAjax()
         }
 
     })

@@ -6,19 +6,19 @@ function ChangeUIColours() {
 
     if(getCategory=='female') {
       document.documentElement.style.setProperty("--ui-main", "#6a1373");
-
+      document.documentElement.style.setProperty("--ui-main-text", "#ffffff");
     }
     else if(getCategory=='male') {
       document.documentElement.style.setProperty("--ui-main", "#132773");
-
+      document.documentElement.style.setProperty("--ui-main-text", "#ffffff");
     }
     else if(getCategory=='unisex') {
       document.documentElement.style.setProperty("--ui-main", "#386232");
-
+      document.documentElement.style.setProperty("--ui-main-text", "#ffffff");
     }
     else {
-      document.documentElement.style.setProperty("--ui-main", "#000000");
-
+      document.documentElement.style.setProperty("--ui-main", "#ffffff");
+      document.documentElement.style.setProperty("--ui-main-text", "#000000");
     }
 }
 

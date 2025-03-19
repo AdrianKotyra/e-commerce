@@ -1,20 +1,29 @@
 <?php
 
-// Database Connection Constants
-    define('DB_HOST','localhost');
-    define('DB_USER','root');
-    define('DB_PASS','');
-    define('DB_NAME','ecommerce');
-    $connection = mysqli_connect(DB_HOST, DB_USER, DB_PASS, DB_NAME );
+require_once __DIR__ . '/../vendor/autoload.php';
 
-    // data ONLINE------------------------------------------------ CMS-database
+use Dotenv\Dotenv;
+
+// Load the .env file
+$dotenv = Dotenv::createImmutable(__DIR__);
+$dotenv->load();
 
 
-    // define('DB_HOST','db5017116704.hosting-data.io');
-    // define('DB_USER','dbu4031834');
-    // define('DB_PASS','Finalproject123321');
-    // define('DB_NAME','dbs13764982');
-    // $connection = mysqli_connect(DB_HOST, DB_USER, DB_PASS, DB_NAME )
+$DB_USER = $_ENV['DB_USER'] ?? null;
+$DB_PASS = $_ENV['DB_PASS'] ?? null;
+$DB_HOST = $_ENV['DB_HOST'] ?? null;
+$DB_NAME = $_ENV['DB_NAME'] ?? null;
+
+
+
+
+define('DB_HOST',$DB_HOST);
+define('DB_USER',$DB_USER);
+define('DB_PASS',$DB_PASS);
+define('DB_NAME',$DB_NAME);
+$connection = mysqli_connect(DB_HOST, DB_USER, DB_PASS, DB_NAME );
+
+
 
 
 ?>

@@ -16,7 +16,7 @@
 <div class="info_order_col flex-col">
     <?php
 
-        $query = "SELECT id from orders where user_db_id =  $user_id  ";
+        $query = "SELECT id from orders where user_db_id =  $user_id order by id desc";
         $result_product = $database->query_array($query);
 
         while ($row = mysqli_fetch_array($result_product)) {

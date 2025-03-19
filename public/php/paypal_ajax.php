@@ -7,7 +7,6 @@ global $session;
 
 
 
-
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (!$connection) {
         die("Database connection failed: " . mysqli_connect_error());
@@ -78,7 +77,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     $item_stmt->execute();
                 }
 
-
+                send_invoice( $order_id,  $payer_email);
                 echo "1"; // Success
 
                 $item_stmt->close();

@@ -1,5 +1,7 @@
 :root {
-  --ui-main: #000000;
+  --white-filter:   invert(100%) sepia(91%) saturate(38%) hue-rotate(264deg) brightness(110%) contrast(110%);
+  --ui-main: #ffffff;
+  --ui-main-text : #000000;
   --men-color: #acb5e6;
   --women-color: rgb(224, 193, 212);
   --uni-color: #90e185;
@@ -364,7 +366,7 @@
   white-space: nowrap;
   cursor: pointer;
   text-decoration: none;
-  color: rgb(255, 255, 255);
+  color: var(--ui-main-text);
   font-size: var(--very-small);
 }
 .contact-hero-banner {
@@ -377,7 +379,7 @@
   }
 }
 .logo-name {
-  color: white;
+  color: var(--ui-main-text);
   white-space: nowrap;
   margin: auto;
   font-weight: 800;
@@ -998,7 +1000,7 @@ $animationSpeed: 40s;
   cursor: pointer;
 }
 .basket-active {
-  background: rgb(255, 255, 255);
+  background: rgb(0, 0, 0);
 }
 .reviews-container-controller {
   .reviews-container {
@@ -1142,7 +1144,7 @@ $animationSpeed: 40s;
   font-size: 0.8rem;
 
   border-radius: 50%;
-  color: rgb(0, 0, 0);
+  color: rgb(255, 255, 255);
 
   z-index: 2;
   right: -10px;
@@ -1175,7 +1177,7 @@ $animationSpeed: 40s;
   cursor: pointer;
   display: none;
   .fa-solid {
-    color: white
+    color: rgb(0, 0, 0)
   }
 }
 .card-prod-link,
@@ -1316,7 +1318,7 @@ $animationSpeed: 40s;
 }
 .login-nav-link {
   margin-right: 10px;
-  color: rgb(255, 253, 253);
+  color: var(--ui-main-text);
   text-decoration: none;
 }
 .event-section-container {
@@ -1356,8 +1358,8 @@ $animationSpeed: 40s;
   }
 }
 .cart-shopping {
-  filter: invert(100%) sepia(91%) saturate(38%) hue-rotate(264deg)
-  brightness(110%) contrast(110%);
+
+
   width: 30px;
   height: 30px;
 }
@@ -1416,7 +1418,7 @@ $animationSpeed: 40s;
 .user-container-profile {
   display: none;
   i{
-    color:white;
+    color:rgb(0, 0, 0);
     font-size: 1rem;
   }
 }
@@ -1547,10 +1549,10 @@ $animationSpeed: 40s;
   width: 120px;
   min-width: fit-content;
   font-size: var(--very-small);
-  border: none;
+
   padding: 10px 20px;
-  color: white;
-  background-color: var(--ui-main)
+  color: var(--ui-main);
+    background-color: var(--ui-main-text);
 }
 .create-acc {
   color: black;
@@ -2553,7 +2555,7 @@ body {
   span {
     font-size: 24px;
     vertical-align: -1px;
-    color: #ffffff;
+    color: #000000;
   }
 }
 .search-trigger {

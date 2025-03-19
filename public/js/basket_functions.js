@@ -292,13 +292,13 @@ function onBasket(){
 
 
 
-    setInterval(() => {
-      counter-=1;
-      counterContainer.textContent=counter;
-      if(counter==0){
-        window.location.href="index.php"
-      }
-    }, 1000);
+    // setInterval(() => {
+    //   counter-=1;
+    //   counterContainer.textContent=counter;
+    //   if(counter==0){
+    //     window.location.href="index.php"
+    //   }
+    // }, 1000);
 
 
     displayOffModal()
