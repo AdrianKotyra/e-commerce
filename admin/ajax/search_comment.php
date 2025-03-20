@@ -35,7 +35,7 @@ if(!empty($search_product) || $search_product!="") {
             $stars_rating= $row["stars_rating"];
             $stars_container= "";
             for ($i = 0; $i < $stars_rating; $i++) {
-                $stars_container .= '<i class="fa-solid fa-star main-color"></i>';
+                $stars_container .= '<i class="fa-solid fa-star "></i>';
             }
 
             $user_name= $row["user_name"];

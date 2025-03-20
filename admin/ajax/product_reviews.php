@@ -1,5 +1,5 @@
 <?php session_start() ?>
-<?php include "../php/functions_admin.php"?>
+
 <?php include "../../public/php/init.php"?>
 
 <?php

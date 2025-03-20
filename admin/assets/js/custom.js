@@ -409,7 +409,7 @@ function DropDownFilters() {
     const dropDowns = document.querySelectorAll(".filter-col");
 
     // Handle opening/closing dropdowns
-    dropDowns.forEach((dropdown) => {
+    dropDowns&&dropDowns.forEach((dropdown) => {
         dropdown.addEventListener("click", (event) => {
             // Prevent click from propagating to the document
             event.stopPropagation();

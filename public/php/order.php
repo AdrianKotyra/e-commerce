@@ -99,7 +99,7 @@ class Order {
             $product_img = htmlspecialchars($product_order->product_img);
             $product_price = htmlspecialchars($row["price"]);
             $product_size= htmlspecialchars($row["size"]);
-
+            $product_quantity = htmlspecialchars($row["quantity"]);
 
             $products_container .= '
                 <div class="img_order_col flex-col">
@@ -107,7 +107,8 @@ class Order {
                     <img src="./imgs/products/' . $product_name . '/' . $product_img . '" alt="' . $product_name . '" />
                        <span >' . $product_name . '</span>
                         <span > size: ' . $product_size . '</span>
-                        <span > ' . $product_price . '£</span>
+                        <span > price: ' . $product_price . '£</span>
+                           <span > quantity: ' . $product_quantity . '</span>
                 </div>';
         }
 

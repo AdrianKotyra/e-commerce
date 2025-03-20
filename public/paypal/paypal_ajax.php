@@ -79,9 +79,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 }
 
 
-                echo "1"; // Success
+              // if user is logged in send invoice on that email else send email on payer email in this case paypal email
+              $user_email =($session->signed_in == true) ?  $user->user_email :  $payer_email;
 
-                $item_stmt->close();
+              send_invoice($order_id, $user_email);
+              echo "1"; // Success
+
+              $item_stmt->close();
             }
 
 

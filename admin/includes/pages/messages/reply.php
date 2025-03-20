@@ -1,4 +1,4 @@
-<?php
+<?php require_once("./././php/functions_emails.php");
 if(isset($_GET["msg_id"])) {
     global $Post;
     $msg_id = $_GET["msg_id"];

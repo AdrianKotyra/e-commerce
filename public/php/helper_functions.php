@@ -1,4 +1,5 @@
 <?php  require_once("init.php");
+require_once("email_order.php");
 // Load mailer
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
@@ -164,6 +165,37 @@ try {
 }
 }
 
+
+function send_invoice($order_id, $email){
+
+ $email_content = email_order($order_id);
+ $EMAIL_ENV = $_ENV['EMAIL'] ?? null;
+ $PASSWORD_ENV = $_ENV['PASS'] ?? null;
+ $mail = new PHPMailer(true);
+
+ try {
+     // SMTP Settings
+     $mail->isSMTP();
+     $mail->Host       = 'smtp.mail.yahoo.com'; // SMTP server (e.g., smtp.gmail.com)
+     $mail->SMTPAuth   = true;
+     $mail->Username   = $EMAIL_ENV;
+     $mail->Password   = $PASSWORD_ENV;
+     $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS; // Use TLS
+     $mail->Port       = 587; // Port for TLS (465 for SSL)
+
+     // Email Content
+     $mail->setFrom($EMAIL_ENV, 'H1-Top-Sneakers');
+     $mail->addAddress($email, 'New Member');
+     $mail->Subject = 'Order confirmation';
+     $mail->Body    = $email_content;
+
+     $mail->isHTML(true);
+     $mail->send();
+
+ } catch (Exception $e) {
+     echo "Error: {$mail->ErrorInfo}";
+ }
+ }
 
 
 
