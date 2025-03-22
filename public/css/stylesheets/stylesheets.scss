@@ -6,6 +6,10 @@
   --ui-main: #ffffff;
   --ui-main-text : #000000;
 
+
+  --ui-main-text-nav : #000000;
+  --ui-main-nav:  #ffffff;
+
   --ui-filter :invert(0%) sepia(100%) saturate(0%) hue-rotate(13deg) brightness(95%) contrast(105%); //BLACK initiated
   --men-color: #acb5e6;
   --women-color: rgb(224, 193, 212);
@@ -371,7 +375,7 @@
   white-space: nowrap;
   cursor: pointer;
   text-decoration: none;
-  color: var(--ui-main-text);
+  color: var(--ui-main-tex-nav);
   font-size: var(--very-small);
 }
 .contact-hero-banner {
@@ -384,7 +388,7 @@
   }
 }
 .logo-name {
-  color: var(--ui-main-text);
+  color: var(--ui-main-text-nav);
   white-space: nowrap;
   margin: auto;
   font-weight: 800;
@@ -402,6 +406,7 @@
 .details-account-col {
   padding: 10px;
   label {
+    color: var(--ui-main-text);
     margin-bottom: 10px;
     text-transform: uppercase;
   }
@@ -1319,7 +1324,7 @@ $animationSpeed: 40s;
 }
 .login-nav-link {
   margin-right: 10px;
-  color: var(--ui-main-text);
+  color: var(--ui-main-text-nav);
   text-decoration: none;
 }
 .event-section-container {
@@ -1567,9 +1572,7 @@ $animationSpeed: 40s;
 }
 .user-account-header {
   padding-top: 50px;
-  .header-title {
 
-  }
 }
 .gender-icon {
   font-size: 1.2rem;
@@ -1681,6 +1684,7 @@ $animationSpeed: 40s;
   }
 }
 nav {
+  background-color: var(--ui-main-nav);
   -webkit-box-shadow: -1px 5px 15px -5px rgba(0,0,0,0.36);
   box-shadow: -1px 5px 15px -5px rgba(0,0,0,0.36);
   font-size: var(--very-small);
@@ -1818,7 +1822,7 @@ nav {
   color: white;
 }
 .nav-icon {
-  color: var(--ui-main-text) !important;
+  color: var(--ui-main-text-nav) !important;
 
 }
 .nav-icon-img {
@@ -1979,7 +1983,7 @@ body {
       margin-right: 16px;
       margin-top: 10px;
       opacity: 60%;
-      color: black;
+      color: var(--ui-main-text-nav);
       text-decoration: none;
     }
   }
@@ -1995,18 +1999,18 @@ body {
 .nav-extra {
   display: none;
   transform: translateY(-20px);
-  color: var(--ui-main-text);
-  background-color: var(--ui-main);
+  color: var(--ui-main-text-nav);
+  background-color: var(--ui-main-nav);
   hr {
     opacity: 20%;
     margin: 0 !important;
   }
   .nav-extra-top {
     height: 20px;;
-    background-color: var(--ui-main);
+
   }
   a{
-    color: var(--ui-main-text);
+    color: var(--ui-main-text-nav);
   }
 }
 .nav-categories {
@@ -2125,12 +2129,17 @@ body {
     margin-right: 16px;
   }
 }
+.user-account-header {
+
+  color: var(--ui-main-text) !important;
+
+}
 .container-cat-filter {
   cursor: pointer;
   justify-content: space-between;
   align-items: center;
   i {
-    color: rgba(0, 0, 0, 0.451);
+    color: var(--ui-main-text);
   }
   & > * {
     margin-right: 15px;
@@ -2164,6 +2173,9 @@ body {
   .card-product {
     height: 300px;
   }
+}
+.account-details {
+  color: black;
 }
 .grid-account-details {
   gap: 10px;
@@ -2629,8 +2641,8 @@ body {
   padding: 0 2%;
   align-items: center;
   height: 100%;
-  background-color: var(--ui-main) !important;
-  color: var(--ui-main-text)!important;
+  background-color: var(--ui-main-nav) !important;
+  color: var(--ui-main-text-nav)!important;
   justify-content: space-between;
 
 }
@@ -2831,12 +2843,13 @@ footer {
 }
 .settings_link {
   hr {
+    color: var(--ui-main-text);
     opacity: 15% !important;
   }
   a {
     font-weight: 600;
     text-decoration: none;
-    color: black;
+    color: var(--ui-main-text);
     display: block;
   }
 }
@@ -2871,6 +2884,7 @@ footer {
   }
 }
 .content-account-user {
+  color: var(--ui-main-text);
   width: 100%;
 }
 .backet-container {
@@ -3030,6 +3044,14 @@ footer {
   font-size: var(--very-small);
   background-color: white;
   position: absolute;
+  p{
+    color: black;
+
+  }
+  .button-custom {
+    background-color: black;
+    color: white;
+  }
 }
 .filter-dropdown-product {
   right: 0 !important;
@@ -3111,6 +3133,7 @@ footer {
     font-size: var(--medium);
   }
 }
+
 .swiper-slide {
   overflow: hidden;
   @extend %backface_visibility_hidden;
@@ -3194,6 +3217,7 @@ footer {
   .user-account-header {
 
     .header-title {
+      color: black;
       padding-left: 14%;
     padding-right:  14%;
     }
@@ -3755,6 +3779,8 @@ footer {
   --ui-filter:  invert(100%) sepia(91%) saturate(38%) hue-rotate(264deg) brightness(110%) contrast(110%);
   --ui-main: #000000;
   --ui-main-text : #fafafa;
+  --ui-main-nav: #000000;
+  --ui-main-text-nav: #ffffff;
 }
 
 

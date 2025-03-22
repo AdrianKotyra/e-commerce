@@ -1,5 +1,4 @@
 
-
 function bodyMaskOn(){
   const bodymask = document.querySelector(".body-mask");
   bodymask.style.display="block";

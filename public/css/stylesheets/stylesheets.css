@@ -4,6 +4,8 @@
   --white-filter: invert(100%) sepia(91%) saturate(38%) hue-rotate(264deg) brightness(110%) contrast(110%);
   --ui-main: #ffffff;
   --ui-main-text: #000000;
+  --ui-main-text-nav: #000000;
+  --ui-main-nav: #ffffff;
   --ui-filter:invert(0%) sepia(100%) saturate(0%) hue-rotate(13deg) brightness(95%) contrast(105%);
   --men-color: #acb5e6;
   --women-color: rgb(224, 193, 212);
@@ -364,7 +366,7 @@
   white-space: nowrap;
   cursor: pointer;
   text-decoration: none;
-  color: var(--ui-main-text);
+  color: var(--ui-main-tex-nav);
   font-size: var(--very-small);
 }
 
@@ -378,7 +380,7 @@
 }
 
 .logo-name {
-  color: var(--ui-main-text);
+  color: var(--ui-main-text-nav);
   white-space: nowrap;
   margin: auto;
   font-weight: 800;
@@ -396,6 +398,7 @@
   padding: 10px;
 }
 .details-account-col label {
+  color: var(--ui-main-text);
   margin-bottom: 10px;
   text-transform: uppercase;
 }
@@ -1300,7 +1303,7 @@
 
 .login-nav-link {
   margin-right: 10px;
-  color: var(--ui-main-text);
+  color: var(--ui-main-text-nav);
   text-decoration: none;
 }
 
@@ -1548,6 +1551,7 @@
 .user-account-header {
   padding-top: 50px;
 }
+
 .gender-icon {
   font-size: 1.2rem;
   color: white;
@@ -1667,6 +1671,7 @@
 }
 
 nav {
+  background-color: var(--ui-main-nav);
   box-shadow: -1px 5px 15px -5px rgba(0, 0, 0, 0.36);
   font-size: var(--very-small);
   z-index: 4;
@@ -1801,7 +1806,7 @@ nav {
 }
 
 .nav-icon {
-  color: var(--ui-main-text) !important;
+  color: var(--ui-main-text-nav) !important;
 }
 
 .nav-icon-img {
@@ -1984,7 +1989,7 @@ body {
   margin-right: 16px;
   margin-top: 10px;
   opacity: 60%;
-  color: black;
+  color: var(--ui-main-text-nav);
   text-decoration: none;
 }
 
@@ -2000,8 +2005,8 @@ body {
 .nav-extra {
   display: none;
   transform: translateY(-20px);
-  color: var(--ui-main-text);
-  background-color: var(--ui-main);
+  color: var(--ui-main-text-nav);
+  background-color: var(--ui-main-nav);
 }
 .nav-extra hr {
   opacity: 20%;
@@ -2009,10 +2014,9 @@ body {
 }
 .nav-extra .nav-extra-top {
   height: 20px;
-  background-color: var(--ui-main);
 }
 .nav-extra a {
-  color: var(--ui-main-text);
+  color: var(--ui-main-text-nav);
 }
 
 .nav-categories {
@@ -2132,13 +2136,17 @@ body {
   margin-right: 16px;
 }
 
+.user-account-header {
+  color: var(--ui-main-text) !important;
+}
+
 .container-cat-filter {
   cursor: pointer;
   justify-content: space-between;
   align-items: center;
 }
 .container-cat-filter i {
-  color: rgba(0, 0, 0, 0.451);
+  color: var(--ui-main-text);
 }
 .container-cat-filter > * {
   margin-right: 15px;
@@ -2172,6 +2180,10 @@ body {
 }
 .search-grid-products-container .card-product {
   height: 300px;
+}
+
+.account-details {
+  color: black;
 }
 
 .grid-account-details {
@@ -2662,8 +2674,8 @@ body {
   padding: 0 2%;
   align-items: center;
   height: 100%;
-  background-color: var(--ui-main) !important;
-  color: var(--ui-main-text) !important;
+  background-color: var(--ui-main-nav) !important;
+  color: var(--ui-main-text-nav) !important;
   justify-content: space-between;
 }
 
@@ -2874,12 +2886,13 @@ footer .logo-normal {
 }
 
 .settings_link hr {
+  color: var(--ui-main-text);
   opacity: 15% !important;
 }
 .settings_link a {
   font-weight: 600;
   text-decoration: none;
-  color: black;
+  color: var(--ui-main-text);
   display: block;
 }
 
@@ -2917,6 +2930,7 @@ footer .logo-normal {
 }
 
 .content-account-user {
+  color: var(--ui-main-text);
   width: 100%;
 }
 
@@ -3095,6 +3109,13 @@ footer .logo-normal {
   background-color: white;
   position: absolute;
 }
+.filter-dropdown p {
+  color: black;
+}
+.filter-dropdown .button-custom {
+  background-color: black;
+  color: white;
+}
 
 .filter-dropdown-product {
   right: 0 !important;
@@ -3254,6 +3275,7 @@ footer .logo-normal {
     padding-right: 7%;
   }
   .user-account-header .header-title {
+    color: black;
     padding-left: 14%;
     padding-right: 14%;
   }
@@ -3778,6 +3800,8 @@ footer .logo-normal {
   --ui-filter: invert(100%) sepia(91%) saturate(38%) hue-rotate(264deg) brightness(110%) contrast(110%);
   --ui-main: #000000;
   --ui-main-text: #fafafa;
+  --ui-main-nav: #000000;
+  --ui-main-text-nav: #ffffff;
 }
 
 /* Dark Mode Toggle */
