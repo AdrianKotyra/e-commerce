@@ -280,10 +280,13 @@ function select_and_display_comments() {
         $product_category = Product::getproductCategory($product_id);
         $approved= $row["approved"];
 
+        $order_status = $row['data_status'];
+        // check order status if its new or old to add class bold
+        $new_order_status = $order_status=="new"? "new_data" : "old_data";
 
 
 
-        echo "<tr>";
+        echo "<tr class='$new_order_status'>";
         echo "<td>" . $comment_id . "</td>";
         echo "<td>" . $user_name . "</td>";
         echo "<td > <a target='_blank' href='../../ecommerce/public/products.php?show=$product_id&category=$product_category'>$product_name </a></td>";

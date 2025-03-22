@@ -15,11 +15,9 @@ class Product {
 
     public $product_desc;
 
-
     public $product_category;
     public $product_sizes_list;
     public $product_availability;
-
 
     // Function to fetch product details from the database
     public static function increment_product_views($id) {
@@ -507,4 +505,31 @@ class Product {
 
 }
 
+
+class Product_month extends Product {
+    public $product_id;
+    public $description_1;
+    public $description_2;
+    public $header_1;
+    public $header_2;
+
+    public function GET_product_month_info() {
+        global $database;
+        $query = "SELECT * FROM product_year LIMIT 1"; // Fetch only one row
+        $result = $database->query_array($query);
+
+        if (!$result) {
+            die("Database query failed: " . $database->error);
+        }
+
+
+        if ($row = mysqli_fetch_assoc($result)) {
+            $this->product_id = $row['product_id'];
+            $this->description_1 = $row['description_1'];
+            $this->description_2 = $row['description_2'];
+            $this->header_1 = $row['header_1'];
+            $this->header_2 = $row['header_2'];
+        }
+    }
+}
 ?>

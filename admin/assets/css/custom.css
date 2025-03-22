@@ -7,6 +7,12 @@
   margin: 10px 0;
 }
 
+.grid-sneaker-month {
+  display: grid;
+  gap: 10px;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+}
+
 .new_data {
   background: #e7e6e6;
 }

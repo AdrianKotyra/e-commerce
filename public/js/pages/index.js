@@ -7,18 +7,23 @@ function ChangeUIColours() {
     if(getCategory=='female') {
       document.documentElement.style.setProperty("--ui-main", "#6a1373");
       document.documentElement.style.setProperty("--ui-main-text", "#ffffff");
+      document.documentElement.style.setProperty("--ui-filter", "invert(100%) sepia(91%) saturate(38%) hue-rotate(264deg) brightness(110%) contrast(110%)");
     }
     else if(getCategory=='male') {
-      document.documentElement.style.setProperty("--ui-main", "#132773");
+      document.documentElement.style.setProperty("--ui-main", "#4a5b98");
       document.documentElement.style.setProperty("--ui-main-text", "#ffffff");
+      document.documentElement.style.setProperty("--ui-filter", "invert(100%) sepia(91%) saturate(38%) hue-rotate(264deg) brightness(110%) contrast(110%)");
+
     }
     else if(getCategory=='unisex') {
-      document.documentElement.style.setProperty("--ui-main", "#386232");
+      document.documentElement.style.setProperty("--ui-main", "#50724b");
       document.documentElement.style.setProperty("--ui-main-text", "#ffffff");
+      document.documentElement.style.setProperty("--ui-filter", "invert(100%) sepia(91%) saturate(38%) hue-rotate(264deg) brightness(110%) contrast(110%)");
     }
     else {
       document.documentElement.style.setProperty("--ui-main", "#ffffff");
       document.documentElement.style.setProperty("--ui-main-text", "#000000");
+      document.documentElement.style.setProperty("--ui-filter", "invert(0%) sepia(100%) saturate(0%) hue-rotate(13deg) brightness(95%) contrast(105%)");
     }
 }
 

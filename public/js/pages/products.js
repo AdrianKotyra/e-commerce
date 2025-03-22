@@ -38,7 +38,7 @@ function GetCommentAjax(){
   function sendAjaxComment(stars_rating){
     const feedbackFormContainer = document.querySelector(".form-comment-add");
 
-    const alertContainer = document.querySelector(".alert-container");
+    const alertContainer = document.querySelector(".alert-comment");
     const userNameForm = document.querySelector(".userName").value;
     const userEmailForm = document.querySelector(".userEmail").value;
     const userFeedback = document.querySelector(".feedback-content").value;

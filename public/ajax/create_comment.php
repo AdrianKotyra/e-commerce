@@ -25,11 +25,14 @@
     if (strpbrk($userName, '0123456789')) {
         $errors[] = "Username can not include numbers";
     }
+    if (strpbrk($userName, '0123456789')) {
+        $errors[] = "Username can not include numbers";
+    }
 
 
-    if(strlen($userName)>=$max) {
+    if($rating>5 || $rating<=0 ) {
 
-        $errors[] = "Your username is too long, should be shorter than $max characters";
+        $errors[] = "invalid rating";
     }
 
 

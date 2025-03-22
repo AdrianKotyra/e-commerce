@@ -1,7 +1,12 @@
 :root {
+
+  --toggle-circle: #ffffff;
+  --toggle-bg: #475569;
   --white-filter:   invert(100%) sepia(91%) saturate(38%) hue-rotate(264deg) brightness(110%) contrast(110%);
   --ui-main: #ffffff;
   --ui-main-text : #000000;
+
+  --ui-filter :invert(0%) sepia(100%) saturate(0%) hue-rotate(13deg) brightness(95%) contrast(105%); //BLACK initiated
   --men-color: #acb5e6;
   --women-color: rgb(224, 193, 212);
   --uni-color: #90e185;
@@ -44,7 +49,7 @@
   }
   a{
     text-decoration: none;
-    color: black;
+    color: var(--ui-main-text);
   }
 }
 .account-created-window {
@@ -543,18 +548,10 @@ $animationSpeed: 40s;
 	margin: auto;
 	overflow:hidden;
 	position: relative;
-  padding-bottom: 5vh;
+  padding: 2vh;
 
 
-	&::before,
-	&::after {
-		@include white-gradient;
-		content: "";
-		height: 100px;
-		position: absolute;
-		width: 200px;
-		z-index: 2;
-	}
+
 
 	&::after {
 		right: 0;
@@ -961,7 +958,7 @@ $animationSpeed: 40s;
 
 .trending_section {
   .shopping-column {
-    height: 300px;
+    height: 260px;
   }
   a {
     text-decoration: none;
@@ -1038,6 +1035,7 @@ $animationSpeed: 40s;
     border-radius: 50%;
     width: 80px;
     height: 80px;
+    color: black
   }
   .comment-user-product-date {
     float: right;
@@ -1064,7 +1062,8 @@ $animationSpeed: 40s;
 }
 .searcher-mobile {
   position: sticky;
-  background-color: white;
+  background-color: var(--ui-main);
+  color: var(--ui-main-text);
   top: 40px;
   width: 100%;
 
@@ -1087,7 +1086,7 @@ $animationSpeed: 40s;
     font-size: 1.3rem;
   }
   .icon-mobile-search {
-    color: rgba(0, 0, 0, 0.308);
+    color:var(--ui-main-text);
     width: 10%;
     text-align: left;
     display: block;
@@ -1275,6 +1274,8 @@ $animationSpeed: 40s;
     font-size: var(--header-section-small)
   }
   .login-user{
+    background-color: black;
+    color: white;
     margin: 10px auto;
   }
 }
@@ -1504,7 +1505,7 @@ $animationSpeed: 40s;
     font-weight: 600;
     a {
       text-decoration: none;
-      color: black;
+      color: var(--ui-main-text);
     }
   }
 }
@@ -1525,8 +1526,8 @@ $animationSpeed: 40s;
     margin: 20px 0;
     border: none;
     padding: 10px 20px;
-    color: white;
-    background-color: black;
+   color: var(--ui-main);
+    background-color: var(--ui-main-text)
   }
   .accordion-item {
     border: none !important;
@@ -1537,8 +1538,11 @@ $animationSpeed: 40s;
   }
 }
 .accordion-button {
+  border-radius:0% !important;
+  margin-bottom: 10px;
   padding: 10px 0 !important;
   &:not(.collapsed) {
+
     background-color: rgba(0, 0, 0, 0) !important;
   }
 }
@@ -1552,7 +1556,7 @@ $animationSpeed: 40s;
 
   padding: 10px 20px;
   color: var(--ui-main);
-    background-color: var(--ui-main-text);
+  background-color: var(--ui-main-text);
 }
 .create-acc {
   color: black;
@@ -1625,10 +1629,12 @@ $animationSpeed: 40s;
   margin-top: 30px;
 }
 .section-header {
+
   font-weight: 800;
   text-align: center;
   font-size: var(--header-section-small);
   padding: 20px;
+  color: var(--ui-main-text)!important;
 }
 .alert {
   animation: fadein 0.4s forwards;
@@ -1688,7 +1694,7 @@ nav {
 .grid-prod {
   position: relative;
   .shopping-column {
-    height: 38vh !important;
+    height: 260px;
   }
   .shopping-card-desc {
     height: 50px;
@@ -1805,6 +1811,18 @@ nav {
     color: black !important;
     width: 100%;
   }
+
+}
+.checkout-button-basket{
+  background-color: black;
+  color: white;
+}
+.nav-icon {
+  color: var(--ui-main-text) !important;
+
+}
+.nav-icon-img {
+  filter: var(--ui-filter);
 }
 .hidden-prod-label {
   padding: 8px;
@@ -1885,11 +1903,19 @@ nav {
   left: 50% !important;
 }
 .newsletter-container {
+
   @include flexRow();
   margin: auto;
   max-width: 64rem;
   flex-direction: row;
   justify-content: space-between;
+
+   color: black !important;
+  .button-custom {
+    background-color: black;
+    color: white;
+  }
+
 }
 .nav_cats_container {
   flex: 1;
@@ -1917,6 +1943,9 @@ nav {
 body {
   font-family: Helvetica, Arial, "sans-serif";
   margin: 0;
+  background-color: var(--ui-main) !important;
+  color: var(--ui-main-text)!important;
+  transition: background 0.3s, color 0.3s;
 }
 .flex-row {
   display: flex;
@@ -1966,8 +1995,8 @@ body {
 .nav-extra {
   display: none;
   transform: translateY(-20px);
-  color: black;
-  background-color: white;
+  color: var(--ui-main-text);
+  background-color: var(--ui-main);
   hr {
     opacity: 20%;
     margin: 0 !important;
@@ -1975,6 +2004,9 @@ body {
   .nav-extra-top {
     height: 20px;;
     background-color: var(--ui-main);
+  }
+  a{
+    color: var(--ui-main-text);
   }
 }
 .nav-categories {
@@ -1989,7 +2021,7 @@ body {
   }
 }
 .product-section-container {
-  height: 100vh;
+  height: 700px;
   width: 100%;
 }
 .event-col {
@@ -2037,7 +2069,7 @@ body {
   gap: 10px;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  width: 35%;
+  width: 460px;
   height: 100%;
   img {
     height: 45vh;
@@ -2479,7 +2511,7 @@ body {
   font-size: var(--very-small);
   letter-spacing: -1px;
   a {
-    color: black;
+    color: var(--ui-main-text)
   }
 }
 .shipping-prod-desc {
@@ -2536,6 +2568,7 @@ body {
   flex-direction: column;
 }
 .search-box-nav {
+
   align-items: center;
   display: flex;
   flex-wrap: nowrap;
@@ -2592,12 +2625,14 @@ body {
   }
 }
 .nav_container {
+  transition: background 0.3s, color 0.3s;
   padding: 0 2%;
   align-items: center;
   height: 100%;
-  color: black;
-  background-color: var(--ui-main);
+  background-color: var(--ui-main) !important;
+  color: var(--ui-main-text)!important;
   justify-content: space-between;
+
 }
 .shopping-row {
   touch-action: pan-y;
@@ -3709,4 +3744,49 @@ footer {
   100% {
     transform: translatex(0);
   }
+}
+
+
+.dark-mode-container {
+
+}
+
+:has(#dark-mode-toggle:checked) {
+  --ui-filter:  invert(100%) sepia(91%) saturate(38%) hue-rotate(264deg) brightness(110%) contrast(110%);
+  --ui-main: #000000;
+  --ui-main-text : #fafafa;
+}
+
+
+
+/* Dark Mode Toggle */
+#dark-mode-toggle {
+  display: none;
+}
+
+.toggle {
+  display: inline-block;
+  width: 40px;
+  height: 20px;
+  background: var(--toggle-bg);
+  border-radius: 30px;
+  position: relative;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.toggle::before {
+  content: "";
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 14px;
+  height: 14px;
+  background: var(--toggle-circle);
+  border-radius: 50%;
+  transition: transform 0.3s;
+}
+
+#dark-mode-toggle:checked + .toggle::before {
+  transform: translateX(20px);
 }

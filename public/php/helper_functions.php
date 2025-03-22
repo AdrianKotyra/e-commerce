@@ -977,7 +977,7 @@ function login_User_link(){
     if ($session->signed_in===false) {
         echo '
             <a class="user-container-profile login-icon login-trigger">
-                <i class="fa-regular fa-user"></i>
+                <i class="fa-regular fa-user nav-icon"></i>
             </a>
             <div class="login-nav-link login-trigger">
                 <span class="login-nav">
@@ -991,7 +991,9 @@ function login_User_link(){
     }
     if ($session->signed_in===true && $user-> user_status=="admin") {
         echo '
-
+        <a href="../admin/dashboard.php" class="user-container-profile login-icon">
+            <i class="fa-regular fa-user nav-icon"></i>
+        </a>
         <a class="login-nav-link" href="../admin/dashboard.php">
             <span class="login-nav">
                 ADMIN
@@ -1004,7 +1006,7 @@ function login_User_link(){
     if ($session->signed_in===true && $user-> user_status=="member") {
         echo '
         <a href="account.php" class="user-container-profile login-icon">
-            <i class="fa-regular fa-user"></i>
+            <i class="fa-regular fa-user nav-icon"></i>
         </a>
         <a class="login-nav-link" href="account.php">
             <span class="login-nav">

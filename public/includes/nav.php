@@ -13,7 +13,7 @@
     <div class="nav_container flex-row wrapper">
         <div class="nav-categories nav-col flex-row">
             <div class="hamb-container">
-                <i class="fa-solid fa-bars"></i>
+                <i class="fa-solid fa-bars nav-icon"></i>
 
             </div>
             <div class="cats-nav-container-extra-nav flex-row extra-nav-trigger">
@@ -26,7 +26,7 @@
 
             <div class="search-box-nav ">
 
-                <span class="material-symbols-outlined search-trigger">search</span>
+                <span class="material-symbols-outlined search-trigger nav-icon">search</span>
 
 
             </div>
@@ -52,9 +52,13 @@
                     <?php if ($basket_number > 0) echo $basket_number; ?>
                 </span>
 
-                <img class="cart-shopping"src="./imgs/icons/cart.svg" alt="">
+                <img class="cart-shopping nav-icon-img"src="./imgs/icons/cart.svg" alt="">
             </div>
 
+        </div>
+        <div class="dark-mode-container">
+            <input type="checkbox" id="dark-mode-toggle" />
+            <label for="dark-mode-toggle" class="toggle"></label>
         </div>
 
 
@@ -158,7 +162,7 @@
                 <input type="search" name="search" placeholder="search product" >
 
             </form>
-            <i class="fa-solid fa-xmark close-search-nav"></i>
+            <i class="fa-solid fa-xmark close-search-nav nav-icon"></i>
         </div>
 
 

@@ -20,7 +20,7 @@
         <h5>£<span class="basket_total"><?php echo $basket->getTotal();?></span></h5>
       </div>
       <a href="check_out.php" class="checkout_basket">
-        <button class="button-custom">
+        <button class="button-custom checkout-button-basket">
         Proceed to Checkout
         </button>
       </a>
