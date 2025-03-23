@@ -31,6 +31,9 @@
                 }
                 switch($source) {
 
+                    case 'change_sneaker_month_id';
+                    include "includes/pages/sneaker_month/change_sneaker_approve.php";
+                    break;
 
                     case 'change_sneaker';
                     include "includes/pages/sneaker_month/change_sneaker.php";

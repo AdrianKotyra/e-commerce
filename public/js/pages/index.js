@@ -8,22 +8,25 @@ function ChangeUIColours() {
       document.documentElement.style.setProperty("--ui-main-nav", "#6a1373");
       document.documentElement.style.setProperty("--ui-main-text-nav", "#ffffff");
       document.documentElement.style.setProperty("--ui-filter", "invert(100%) sepia(91%) saturate(38%) hue-rotate(264deg) brightness(110%) contrast(110%)");
+      document.documentElement.style.setProperty("--ui-product-card", "#f7ebed;");
     }
     else if(getCategory=='male') {
       document.documentElement.style.setProperty("--ui-main-nav", "#4a5b98");
       document.documentElement.style.setProperty("--ui-main-text-nav", "#ffffff");
       document.documentElement.style.setProperty("--ui-filter", "invert(100%) sepia(91%) saturate(38%) hue-rotate(264deg) brightness(110%) contrast(110%)");
-
+      document.documentElement.style.setProperty("--ui-product-card", "#e9ebf1");
     }
     else if(getCategory=='unisex') {
       document.documentElement.style.setProperty("--ui-main-nav", "#50724b");
       document.documentElement.style.setProperty("--ui-main-text-nav", "#ffffff");
       document.documentElement.style.setProperty("--ui-filter", "invert(100%) sepia(91%) saturate(38%) hue-rotate(264deg) brightness(110%) contrast(110%)");
+      document.documentElement.style.setProperty("--ui-product-card", "#e5eee3");
     }
     else {
       document.documentElement.style.setProperty("--ui-main-nav", "#ffffff");
       document.documentElement.style.setProperty("--ui-main-text-nav", "#000000");
       document.documentElement.style.setProperty("--ui-filter", "invert(0%) sepia(100%) saturate(0%) hue-rotate(13deg) brightness(95%) contrast(105%)");
+      document.documentElement.style.setProperty("--ui-product-card", "#f7f3f3");
     }
 }
 

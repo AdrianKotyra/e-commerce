@@ -10,9 +10,12 @@
   --ui-main-text-nav : #000000;
   --ui-main-nav:  #ffffff;
 
+
+  --ui-product-card: #f7f3f3;
+  --ui-slider-filter :invert(0%) sepia(100%) saturate(0%) hue-rotate(13deg) brightness(95%) contrast(105%)
   --ui-filter :invert(0%) sepia(100%) saturate(0%) hue-rotate(13deg) brightness(95%) contrast(105%); //BLACK initiated
   --men-color: #acb5e6;
-  --women-color: rgb(224, 193, 212);
+  --women-color: #e0c1d4;
   --uni-color: #90e185;
   --light-gray: #f7f3f3;
   --very-small: 0.9rem;
@@ -29,8 +32,12 @@
 .sneaker_year_section {
 
   margin: auto;
+  img{
+    background-color: var(--ui-product-card);
+  }
 }
 .success-container {
+  color: #d8f0d4;
   display: none;
   align-items: center;
   justify-content: center;
@@ -516,9 +523,10 @@
   }
 }
 .newsletter {
+  background-color: var(--ui-product-card);
   font-size: var(--very-small);
   padding: 30px 0;
-  background-color: var(--light-gray);
+
 }
 .news_email {
   margin-bottom: 20px;
@@ -547,7 +555,7 @@ $animationSpeed: 40s;
 
 // Styling
 .slider {
-	background: white;
+	background: var(--ui-main);
 
 
 	margin: auto;
@@ -585,10 +593,12 @@ $animationSpeed: 40s;
       width: 120px;
       height: 50px;
       object-fit: contain;
+      filter: var(--ui-slider-filter);
     }
 	}
 }
 .sizes-grid-prod {
+  justify-content: center;
   height: 100%;
   display: grid;
 
@@ -671,12 +681,14 @@ $animationSpeed: 40s;
     width: 32px;
     height: 32px;
     border: 1px solid black;
-    opacity: 50%;
+
+    background-color: white;
+    color: black;
   }
   .available-size {
     border: 3px solid black;
     opacity: 100%;
-    font-weight: 900;
+
     cursor: pointer;
     background-color: var(--light-gray);
   }
@@ -1067,7 +1079,7 @@ $animationSpeed: 40s;
 }
 .searcher-mobile {
   position: sticky;
-  background-color: var(--ui-main);
+  background-color: var(--ui-main-nav);
   color: var(--ui-main-text);
   top: 40px;
   width: 100%;
@@ -1829,6 +1841,7 @@ nav {
   filter: var(--ui-filter);
 }
 .hidden-prod-label {
+  font-size: 0.8rem;
   padding: 8px;
   display: none;
   align-items: center;
@@ -1914,10 +1927,10 @@ nav {
   flex-direction: row;
   justify-content: space-between;
 
-   color: black !important;
+   color: var(--ui-main-text);
   .button-custom {
-    background-color: black;
-    color: white;
+    background-color: var(--ui-main-text);
+    color: var(--ui-main);
   }
 
 }
@@ -2109,7 +2122,7 @@ body {
 .news-section {
   a {
     text-decoration: none;
-    color: black;
+    color: var(--ui-main-text);
   }
 }
 .news-section-container {
@@ -2207,6 +2220,7 @@ body {
 .prod-size-similar {
   text-transform: uppercase;
   .size-item {
+    opacity: 50%;
     display: none;
   }
   .available-size {
@@ -2241,6 +2255,7 @@ body {
   }
 }
 .added-prod-window {
+  color: black;
   .exit-icon {
     transform: translateY(-10px);
     float: right;
@@ -2250,6 +2265,11 @@ body {
     font-size: 1.4rem;
     color: rgba(0, 0, 0, 0.3333333333);
     cursor: pointer;
+
+  }
+  .button-custom{
+    background-color: black;
+    color: white;
   }
   width: 900px;
   height: 300px;
@@ -2502,6 +2522,7 @@ body {
   background-color: var(--light-gray);
   width: 33%;
   img {
+    background-color: var(--ui-product-card);
     -o-object-fit: contain;
     object-fit: contain;
     width: 100%;
@@ -2556,7 +2577,7 @@ body {
 }
 .selected-size-products {
   background-color: black !important;
-  color: white;
+  color: white !important;
 }
 
 .choose-size-container {
@@ -2630,6 +2651,7 @@ body {
   grid-template-columns: repeat(2, 1fr);
   gap: 10px;
   img {
+    background-color: var(--ui-product-card);
     height: 36vw;
     -o-object-fit: contain;
     object-fit: contain;
@@ -2677,7 +2699,7 @@ body {
   position: absolute;
 }
 .shopping-column {
-  background-color: var(--light-gray);
+  background-color: var(--ui-product-card);
   height: 100%;
   img {
     -o-object-fit: contain;
@@ -3704,6 +3726,9 @@ footer {
     bottom: -20px;
     opacity: 0%;
   }
+  50% {
+    opacity: 0%;
+  }
   0% {
     bottom: 50px;
     opacity: 100%;
@@ -3777,10 +3802,12 @@ footer {
 
 :has(#dark-mode-toggle:checked) {
   --ui-filter:  invert(100%) sepia(91%) saturate(38%) hue-rotate(264deg) brightness(110%) contrast(110%);
-  --ui-main: #000000;
+  --ui-main: #1e1c1c;
   --ui-main-text : #fafafa;
   --ui-main-nav: #000000;
   --ui-main-text-nav: #ffffff;
+ --ui-product-card: #000000;
+ --ui-slider-filter: invert(100%) sepia(91%) saturate(38%) hue-rotate(264deg) brightness(110%) contrast(110%);
 }
 
 

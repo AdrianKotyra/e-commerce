@@ -452,3 +452,34 @@ function DropDownFilters() {
 
 
 DropDownFilters()
+
+
+
+// SEARCH product of month
+
+function searchProductMonth(){
+
+    const productsContainer = document.querySelector(".search-results-wrapper");
+    const productSearcheInput = document.querySelector(".searcher-product-year");
+
+
+    productSearcheInput&&productSearcheInput.addEventListener("keyup", function(){
+      const productSearcheInputValue = productSearcheInput.value;
+
+        SendDataAjax(productSearcheInputValue, "./ajax/GET_product_sneaker_month.php")
+        .then(data => {
+            productsContainer.innerHTML=data;
+
+
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+
+
+
+
+    })
+
+  }
+  searchProductMonth()

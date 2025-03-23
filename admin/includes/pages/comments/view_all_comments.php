@@ -20,9 +20,9 @@
     </div>
     <?php delete_comments()  ?>
 
-    <div class="filter-col flex-row text-right">
+    <div class="filter-col text-right">
         <form action="">
-            <div class="container-cat-filter flex-row ">
+            <div class="container-cat-filter  ">
                 <span>sort by</span>
                 <i class="fa-solid fa-angle-down"></i>
             </div>
