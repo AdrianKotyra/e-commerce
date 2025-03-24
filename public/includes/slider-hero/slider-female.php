@@ -1,18 +1,9 @@
 
 <div class="section latest_section" id="men">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-6">
-                    <div class="section-heading">
-                        <h2>Womens Latest</h2>
+    <h3 class="section-header">
+        Latest Women
+    </h3>
 
-                    </div>
-                </div>
-            </div>
-        </div>
-
-
-  </div>
 
 
 	<div class="swiper-container main-slider loading">

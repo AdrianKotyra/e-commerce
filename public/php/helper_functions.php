@@ -644,22 +644,21 @@ function generate_sizes_html($product_instance, $tag){
 
             if($product_instance->product_category =="female") {
             $chosen_cat_sizes_list = $all_sizes_women_list;
-            $available_size_color_class = "available-size-female";
+
             }
             else if($product_instance->product_category =="male") {
                 $chosen_cat_sizes_list = $all_sizes_men_list;
-                $available_size_color_class = "available-size-male";
+
             }
             else {
-
                 $chosen_cat_sizes_list = $all_sizes_men_list;
-                $available_size_color_class = "available-size-uni";
+
 
             }
              if (!empty($product_instance->product_sizes_list)) {
                  foreach ($chosen_cat_sizes_list as $size) {
                      // creating class to hightlight avilable sizes based on if size is in avilable sizes of product and then addings attributes
-                     $available_class = in_array($size, $product_instance->product_sizes_list)? "available-size $available_size_color_class " : '';
+                     $available_class = in_array($size, $product_instance->product_sizes_list)? "available-size " : '';
                      $available_attribute = in_array($size, $product_instance->product_sizes_list)? 'selected data-prod-id="' . $product_instance->product_id . '" data-prod-size="' . $size . '"'
                          : '';
                      $sizes_html .= '<'.$tag.' ' . $available_attribute . ' class="size-item ' . $available_class . '" value='.htmlspecialchars($size).'>' . htmlspecialchars($size) . '</'.$tag.'>';

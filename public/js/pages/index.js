@@ -34,22 +34,23 @@ ChangeUIColours()
 
 
 
-// Main Slider
+// Main Slider latest
 let mainSliderSelector = '.main-slider',
     navSliderSelector = '.nav-slider',
     interleaveOffset = 0.5;
 
 
-// Main Slider
+// Main Slider latest
 let mainSliderOptions = {
   loop: false,
   speed: 1000,
-  slidesPerView: 3, // Show 3 slides at a time
+  slidesPerView: 5, // Show 3 slides at a time
   spaceBetween: 10, // Adjust spacing between slides if needed
   autoplay: {
     delay: 3000,
     disableOnInteraction: false,
   },
+
   grabCursor: true,
   watchSlidesProgress: true,
   navigation: {
@@ -108,6 +109,7 @@ let mainSliderOptions = {
       });
     },
   },
+
 };
 
 let mainSlider = new Swiper('.main-slider', mainSliderOptions);

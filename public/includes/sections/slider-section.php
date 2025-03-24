@@ -1,6 +1,6 @@
 
 
-<section class="hero-section wrapper">
+<section class="hero-section">
 
     <div class="hero-container">
       <?php

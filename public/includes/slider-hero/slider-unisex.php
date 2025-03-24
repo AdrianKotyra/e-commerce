@@ -1,18 +1,11 @@
 
 <div class="section latest_section" id="men">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-6">
-                    <div class="section-heading">
-                        <h2>Latest</h2>
 
-                    </div>
-                </div>
-            </div>
-        </div>
+    <h3 class="section-header">
+        Latest
+    </h3>
 
 
-  </div>
 
 
 	<div class="swiper-container main-slider loading">

@@ -1,3 +1,4 @@
+
 <section class="news-section">
     <h3 class="section-header">
         <a href="news_all.php"> News</a>

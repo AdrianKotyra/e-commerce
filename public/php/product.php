@@ -183,6 +183,9 @@ class Product {
 
 
     public function product_category_card(){
+        global $comment;
+        $reviews_msg = comment::get_number_comments($this->product_id)!=0?
+        comment::get_number_comments($this->product_id). ' reviews' : "";
           // Generate the list of sizes as HTML
         $sizes_html = generate_sizes_html($this, "span");
         $chosen_grid= generate_product_grid_sizes($this);
@@ -190,61 +193,70 @@ class Product {
         $product_category = $this->product_category;
         $message = $this->product_availability? 'QUICK ADD TO CART' : "Out of stock";
         if(  $product_category == "female") {
-            $category_message ='     <div class="category-sex-label" style="background-color: #e0c1d4">
-            <i class="fa-solid fa-venus gender-icon"></i>
+            $category_message ='     <div class="category-sex-label" style="color: #e0c1d4">
+      WOMAN
             </div>';
         }
         else if ($product_category == "male") {
-            $category_message = '  <div class="category-sex-label" style="background-color:#acb5e6;">
-            <i class="fa-solid fa-mars gender-icon" ></i>
+            $category_message = '  <div class="category-sex-label" style="color:#acb5e6;">
+            MAN
             </div>';
         }
         else {
-            $category_message = ' <div class="category-sex-label"  style="background-color:#90e185">
-            <i class="fa-solid fa-venus-mars gender-icon" ></i>
+            $category_message = ' <div class="category-sex-label"  style="color:#90e185">
+            UNISEX
             </div>';
         }
 
+
         $product_template = '
-            <div class="flex-col card-product">
-             '.$category_message.'
-                <div class="layout-card">
-                   <a class="prod-link" href="products.php?show='.$this->product_id.'&category='.$this->product_category.'">
-                        <div class="shopping-column">
-                            <img loading="lazy" src="./imgs/products/'.$this->product_name.'/'.$this->product_img.'" />
-                        </div>
-                    </a>
-                      <div class="hidden-prod-label">
-                        <div class="hidden-prod-label-container">
-                            <div class="hidden-mobile exit-mobile-label">
-                                <i class="fa-solid fa-xmark"></i>
+        <div class="flex-col card-product">
+            '.$category_message.'
 
-                            </div>
-                            <img loading="lazy" class="hidden-mobile-img-display"src="./imgs/products/'.$this->product_name.'/'.$this->product_img.'" />
-                            <p class="hidden-mobile"> <b>'.$this->product_name.'</b> </p>
-                            <p > <b>'.$message.'</b> </p>
-                            <div class="sizes-grid-prod '.$chosen_grid.'">
-                            '.$sizes_html.'
-                            </div>
+            <div class="layout-card">
+                <a class="card-prod-link" href="products.php?show='.$this->product_id.'&category='.$this->product_category.'">
+                    <div class="shopping-column">
+                     <img loading="lazy" src="./imgs/products/'.$this->product_name.'/'.$this->product_img.'" />
+                    </div>
+                </a>
+                <div class="hidden-prod-label">
+                    <div class="hidden-prod-label-container">
 
+
+
+                        <p > <b>'.$message.'</b> </p>
+                        <div class="sizes-grid-prod '.$chosen_grid.'">
+                        '.$sizes_html.'
                         </div>
+
                     </div>
                 </div>
-
-                <div class="shopping-card-desc ">
-
-                    <span class="item-name item-desc">
-                        '.$this->product_name.'
-                    </span>
-                    <span class="item-price item-desc">
-                        £'.$this->product_price.'
-                    </span>
-                    <div class="add-prod-img">
-                        <i class="fa-solid fa-plus"></i>
-                    </div>
+            </div>
+            <div class="shopping-card-desc ">
+                <span class="item-name item-desc">
+            '.$this->product_name.'
+                </span>
+                <span class="item-price item-desc">
+                £'.$this->product_price.'
+                </span>
+                <div class="add-prod-img">
+                    <i class="fa-solid fa-plus"></i>
                 </div>
-        </div>';
-        return  $product_template;
+                <div class="rating flex-col">
+                    <div >
+                         '.comment::get_average_rating_stars($this->product_id).'
+                    </div>
+
+
+                    <span class="reviews-link">
+                    '.$reviews_msg.'
+                    </span>
+
+                </div>
+
+            </div>
+    </div>';
+    return  $product_template;
     }
     public function product_detailed_section_Template(){
         global $comment;
@@ -256,18 +268,18 @@ class Product {
         $product_category = $this->product_category;
         $message = $this->product_availability? 'QUICK ADD TO CART' : "Out of stock";
         if(  $product_category == "female") {
-            $category_message ='     <div class="category-sex-label" style="background-color: #e0c1d4">
-            <i class="fa-solid fa-venus gender-icon"></i>
+            $category_message ='     <div class="category-sex-label" style="color: #e0c1d4">
+      WOMAN
             </div>';
         }
         else if ($product_category == "male") {
-            $category_message = '  <div class="category-sex-label" style="background-color:#acb5e6;">
-            <i class="fa-solid fa-mars gender-icon" ></i>
+            $category_message = '  <div class="category-sex-label" style="color:#acb5e6;">
+            MAN
             </div>';
         }
         else {
-            $category_message = ' <div class="category-sex-label"  style="background-color:#90e185">
-            <i class="fa-solid fa-venus-mars gender-icon" ></i>
+            $category_message = ' <div class="category-sex-label"  style="color:#90e185">
+            UNISEX
             </div>';
         }
 
@@ -331,20 +343,21 @@ class Product {
         $product_category = $this->product_category;
 
         if(  $product_category == "female") {
-            $category_message ='     <div class="category-sex-label" style="background-color: #e0c1d4">
-            <i class="fa-solid fa-venus gender-icon"></i>
+            $category_message ='     <div class="category-sex-label" style="color: #e0c1d4">
+      WOMAN
             </div>';
         }
         else if ($product_category == "male") {
-            $category_message = '  <div class="category-sex-label" style="background-color:#acb5e6;">
-            <i class="fa-solid fa-mars gender-icon" ></i>
+            $category_message = '  <div class="category-sex-label" style="color:#acb5e6;">
+            MAN
             </div>';
         }
         else {
-            $category_message = ' <div class="category-sex-label"  style="background-color:#90e185">
-            <i class="fa-solid fa-venus-mars gender-icon" ></i>
+            $category_message = ' <div class="category-sex-label"  style="color:#90e185">
+            UNISEX
             </div>';
         }
+
 
         $product_template = '
             <div class="flex-col card-product">
