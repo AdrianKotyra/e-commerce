@@ -914,8 +914,71 @@ function displaySimilarProducts($type_products,  $limit, $prod_id_displated_prod
     return $output;
 
 }}
+// ----------------get newest products-------------------------------
+function displayNewest() {
+    global $connection;
+     $output = '';
 
 
+
+        $query = "SELECT product_id FROM products  order by product_id  DESC LIMIT 8  OFFSET 0";
+        $select_products = mysqli_query($connection, $query);
+
+        $new_list_products = [];
+        if (!$select_products) {
+            die("Query failed: " . mysqli_error($connection));
+        }
+
+
+        while ($product_row = mysqli_fetch_assoc($select_products)) {
+            $prod_id = $product_row["product_id"];
+
+            if(isset($_GET["category"]) && $_GET["category"]!="mixed"){
+                $category_products_ids = listenCategory();
+                // sort ids in desc order before checking if id in list
+                $sorted[] =  rsort($category_products_ids);
+                if (in_array($prod_id, $sorted)) {
+                    $product_new = new Product();
+                    $product_new->create_product($prod_id);
+                    $name = $product_new->product_name;
+                    $output .=
+                    '<div class="swiper-slide">
+                        <figure class="slide-bgimg" loading="lazy"></figure>
+                        <img loading="lazy" src="./imgs/products/'.$name.'/img1.png" />
+
+                        <div class="content">
+                            <a href="products.php?show='.$prod_id.'">
+                            <p class="title">'.$name.'</p>
+                            </a>
+
+
+                        </div>
+                    </div>';
+                }
+
+            } else {
+                $product_new = new Product();
+                $product_new->create_product($prod_id);
+                $name = $product_new->product_name;
+                $id = $product_new->product_id;
+                $output .= '<div class="swiper-slide">
+                <figure class="slide-bgimg" loading="lazy"></figure>
+                <img loading="lazy" src="./imgs/products/'.$name.'/img1.png" />
+
+                <div class="content">
+                    <a href="products.php?show='.$id.'">
+                    <p class="title">'.$name.'</p>
+                    </a>
+
+
+                </div>
+            </div>';
+
+            }
+    }
+    return $output;
+
+}
 // ------------------GET SLIDER PRODUCTS---------------------
 
 

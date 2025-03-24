@@ -93,6 +93,7 @@
                 <a href="news_all.php">Blog</a>
                 <a href="contact.php">Contact</a>
                 <a href="faq.php">FAQ</a>
+                <a href="about.php">About us</a>
             </div>
 
 
@@ -121,6 +122,7 @@
                 <a href="news_all.php">Blog</a>
                 <a href="contact.php">Contact</a>
                 <a href="faq.php">FAQ</a>
+                <a href="about.php">About us</a>
             </div>
 
 
@@ -147,6 +149,7 @@
                 <a href="news_all.php">Blog</a>
                 <a href="contact.php">Contact</a>
                 <a href="faq.php">FAQ</a>
+                <a href="about.php">About us</a>
             </div>
 
 

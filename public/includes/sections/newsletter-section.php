@@ -1,35 +1,49 @@
-<section class="newsletter">
-    <div class="newsletter-container ">
-        <div class="newsletter-desc">
-            <p> <b>Keep up to date and save 10% on your first orderp </b> </p>
-            <span>T&C Apply. View our Privacy Policy to find our how your data is handled.</span>
+<div class="subscribe">
+        <div class="wrapper">
+            <div class="row">
+                <div class="col-lg-8">
+                    <div class="section-heading">
+                        <h2>By Subscribing To Our Newsletter You Can Get 30% Off</h2>
 
-        </div>
-
-        <form action="" class="newsletter-form">
-            <div class="flex-col col">
-                <input  class="news_email"type="text" name="email" placeholder="enter your email">
-                <span> <b>Which products are you interested in? </b></span>
-            </div>
-
-            <div class="flex-row gender-col">
-                <div class="gender_container flex-row">
-                    <label>  <input type="radio" required="" name="Gender" value="Male">Male</label>
-                    <label>  <input type="radio" required="" name="Gender" value="Female">Female</label>
-                    <label>  <input type="radio" required="" name="Gender" value="Both">Both</label>
-
-
-
+                    </div>
+                    <form id="subscribe" action="" method="get">
+                        <div class="row">
+                          <div class="col-lg-5">
+                            <fieldset>
+                              <input name="name" type="text" id="name" placeholder="Your Name" required="">
+                            </fieldset>
+                          </div>
+                          <div class="col-lg-5">
+                            <fieldset>
+                              <input name="email" type="text" id="email" pattern="[^ @]*@[^ @]*" placeholder="Your Email Address" required="">
+                            </fieldset>
+                          </div>
+                          <div class="col-lg-2">
+                            <fieldset>
+                              <button type="submit" id="form-submit" class="main-dark-button"><i class="fa fa-paper-plane"></i></button>
+                            </fieldset>
+                          </div>
+                        </div>
+                    </form>
                 </div>
-
-                <button class="button-custom">SUBMIT</button>
+                <div class="col-lg-4">
+                    <div class="row">
+                        <div class="col-6">
+                            <ul>
+                                <li>Store Location:<br><span>24 Milton Rd E, Edinburgh EH15 2PQ</span></li>
+                                <li>Phone:<br><span>0131 669 4400</span></li>
+                                <li>Office Location:<br><span>24 Milton Rd E, Edinburgh EH15 2PQ</span></li>
+                            </ul>
+                        </div>
+                        <div class="col-6">
+                            <ul>
+                                <li>Work Hours:<br><span>08:30 AM - 8:30 PM Daily</span></li>
+                                <li>Email:<br><span>schools@edinburghcollege.ac.uk</span></li>
+                                <li>Social Media:<br><span><a href="#">Facebook</a>, <a href="#">Instagram</a>, <a href="#">Linkedin</a></span></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
             </div>
-
-
-
-        </form>
-
+        </div>
     </div>
-
-
-</section>
