@@ -52,7 +52,7 @@ class Post {
                     </div>
 
                 </div>
-                <img class="event-img"src="imgs/posts/'.$this->post_id.'/'.$this->post_banner.'" />
+                <img loading="lazy" class="event-img "src="imgs/posts/'.$this->post_id.'/'.$this->post_banner.'" />
             </div>
         </a>
             ';
@@ -65,7 +65,7 @@ class Post {
 
 
             $template_cart = '
-            <a class="read-more-post-cart"href="news.php?post='.$this->post_id.'">
+            <a class="read-more-post-cart "href="news.php?post='.$this->post_id.'">
                 <div class="event-col">
                     <div class="desc-news-col">
                         <p class="post-event-main-header">'.$this->post_header.'</p>
@@ -81,7 +81,7 @@ class Post {
                         </div>
 
                     </div>
-                    <img class="event-img"src="imgs/posts/'.$this->post_id.'/'.$this->post_banner.'" />
+                    <img loading="lazy" class="event-img "src="imgs/posts/'.$this->post_id.'/'.$this->post_banner.'" />
                 </div>
             </a>
                 ';

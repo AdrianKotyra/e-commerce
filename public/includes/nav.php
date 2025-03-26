@@ -25,8 +25,8 @@
 
 
             <div class="search-box-nav ">
+            <i class="fa-solid fa-magnifying-glass search-trigger nav-icon"></i>
 
-                <span class="material-symbols-outlined search-trigger nav-icon">search</span>
 
 
             </div>
@@ -160,7 +160,8 @@
     <div class="searcher-mobile wrapper inactive-search-bar" id="search-box-nav">
 
         <div class="searcher-mobile-container">
-            <span class="material-symbols-outlined icon-mobile-search">search</span>
+            <i class="fa-solid fa-magnifying-glass icon-mobile-search nav-icon"></i>
+
             <form action="search.php" method="GET" class="flex-row">
                 <input type="search" name="search" placeholder="search product" >
 

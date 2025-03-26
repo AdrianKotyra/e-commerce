@@ -1,3 +1,21 @@
+// ----------------GENERATE CONTENT WHEN VISIBLE TO IMPROVE PERFORMANCE-----------------
+
+const products_cards = document.querySelectorAll(".lazy-loading");
+
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {invisible_lazy
+            entry.target.document.querySelector(".")
+            entry.target.classList.add("visible_lazy");
+        }
+    });
+}, { threshold: 0.3 }); // Trigger when at least 50% of the element is visible
+
+products_cards.forEach(card => observer.observe(card));
+
+
+// ----------------------DISPLAY ON BLACK MASK---------------------
+
 
 function bodyMaskOn(){
   const bodymask = document.querySelector(".body-mask");
@@ -5,7 +23,7 @@ function bodyMaskOn(){
   document.body.style.overflowY = "hidden";
 }
 
-
+// ----------------------DISPLAY OFF BLACK MASK---------------------
 function bodyMaskOff(){
   const bodymask = document.querySelector(".body-mask");
   bodymask.style.display="none";
@@ -210,13 +228,14 @@ window.addEventListener("resize", ()=>{
   })
 
 })
+// ----------------------CLICK ON PLUS ICON SHOPPING PRODUCT CARD TO DISPLAY SIZES GRID---------------------
 function clickOnPlusProdCart(){
 
   const carts = document.querySelectorAll(".card-product")
   carts && carts.forEach(cart=>{
     const iconSelected = cart.querySelector(".add-prod-img");
     const iconSelectedImg = cart.querySelector(".add-prod-img i");
-    iconSelected.addEventListener("click", ()=>{
+    iconSelected&&iconSelected.addEventListener("click", ()=>{
 
 
       const label = cart.querySelector(".hidden-prod-label");
@@ -258,7 +277,7 @@ function clickOnPlusProdCart(){
 clickOnPlusProdCart()
 
 
-// -------------------------AJAX--------------------------------
+// -------------------------AJAX GENERAL--------------------------------
 
 function SendDataAjax(sendData, file) {
   return new Promise((resolve, reject) => {

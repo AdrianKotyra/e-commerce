@@ -5,6 +5,8 @@
     <?php include("includes/sections/hero-section.php") ?>
 
 
+
+
     <?php include("includes/sections/slider-section.php") ?>
     <?php section_slider_products("Hi-Top Sneakers") ?>
 
@@ -15,7 +17,7 @@
     <?php section_slider_products("Casual Sneakers") ?>
     <?php section_slider_products("Limited Edition Collectibles") ?>
 
-    <?php include("includes/sections/video-section.php") ?>
+
     <?php section_slider_products("Retro/Classic Sneakers") ?>
 
     <?php section_slider_trending() ?>

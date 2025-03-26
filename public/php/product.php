@@ -360,13 +360,13 @@ class Product {
 
 
         $product_template = '
-            <div class="flex-col card-product">
+            <div class="card-product ">
                 '.$category_message.'
 
-                <div class="layout-card">
+                <div class="layout-card ">
                     <a class="card-prod-link" href="products.php?show='.$this->product_id.'&category='.$this->product_category.'">
                         <div class="shopping-column">
-                         <img loading="lazy" src="./imgs/products/'.$this->product_name.'/'.$this->product_img.'" />
+                         <img loading="lazy"  src="./imgs/products/'.$this->product_name.'/'.$this->product_img.'" />
                         </div>
                     </a>
                     <div class="hidden-prod-label">

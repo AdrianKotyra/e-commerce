@@ -1,7 +1,7 @@
 <div class="subscribe">
         <div class="wrapper">
             <div class="row">
-                <div class="col-lg-8">
+                <div class="col-lg-6">
                     <div class="section-heading">
                         <h2>By Subscribing To Our Newsletter You Can Get 30% Off</h2>
 
@@ -26,7 +26,7 @@
                         </div>
                     </form>
                 </div>
-                <div class="col-lg-4">
+                <div class="col-lg-6">
                     <div class="row">
                         <div class="col-6">
                             <ul>

@@ -1,4 +1,7 @@
 
+
+
+
 function ChangeUIColours() {
   const urlParams = new URLSearchParams(window.location.search);
 
@@ -42,7 +45,7 @@ let mainSliderSelector = '.main-slider',
 
 // Main Slider latest
 let mainSliderOptions = {
-  loop: false,
+  loop: true,
   speed: 1000,
   slidesPerView: 5, // Show 3 slides at a time
   spaceBetween: 10, // Adjust spacing between slides if needed
@@ -123,9 +126,10 @@ $(document).ready(function() {
   $('.card-slider').slick({
     dots: false,
     arrows: true,
-    slidesToShow: 8,
+    loop: true,
+    slidesToShow: 7,
     slidesToScroll: 5, // Moves one slide at a time when using arrows
-    infinite: false,
+    infinite: true,
     swipeToSlide: true, // Allows dragging multiple slides at once
     prevArrow: '<button type="button" class="slick-prev"></button>',
     nextArrow: '<button type="button" class="slick-next"></button>',
@@ -133,14 +137,14 @@ $(document).ready(function() {
       {
         breakpoint: 1624,
         settings: {
-          slidesToShow: 6,
+          slidesToShow: 5,
           slidesToScroll: 4
         }
       },
       {
         breakpoint: 1224,
         settings: {
-          slidesToShow: 5,
+          slidesToShow: 4,
           slidesToScroll: 4
         }
       },

@@ -597,7 +597,7 @@ function displayDetailedProducts($type_products) {
             // GET ONLY 4 PRODUCTS by creating counter and incrementing counter
 
 
-            if(isset($_GET["category"]) && $_GET["category"]!="mixed"){
+            if (isset($_GET["category"]) && ($_GET["category"] == "female" || $_GET["category"] == "male" || $_GET["category"] == "unisex")) {
                 $category_products_ids = listenCategory();
 
                 if (in_array($prod_id, $category_products_ids) && $counter<=4) {
@@ -670,17 +670,17 @@ function generate_sizes_html($product_instance, $tag){
 // ------------------SECTION DETAILED PRODUCTS 5 IMAGES---------------------
 function section_detailed_products($type_products) {
 
-    if(isset($_GET["category"])) {
+    if (isset($_GET["category"]) && ($_GET["category"] == "female" || $_GET["category"] == "male" || $_GET["category"] == "unisex")) {
 
         $category = $_GET["category"];
 
-        $img_src = '<img loading="lazy" src="./imgs/detailed_section/'.$type_products.'_'.$category.'.jpg" />';
+        $img_src = '<img loading="lazy" src="./imgs/detailed_section/'.$type_products.'_'.$category.'.WEBP" />';
 
 
 
     }
     else {
-        $img_src = '<img loading="lazy" src="./imgs/detailed_section/'.$type_products.'_mix.jpg" />';
+        $img_src = '<img loading="lazy" src="./imgs/detailed_section/'.$type_products.'_mix.WEBP" />';
     }
 
     $section =
@@ -932,7 +932,7 @@ function displayNewest() {
         while ($product_row = mysqli_fetch_assoc($select_products)) {
             $prod_id = $product_row["product_id"];
 
-            if(isset($_GET["category"]) && $_GET["category"]!="mixed"){
+            if (isset($_GET["category"]) && ($_GET["category"] == "female" || $_GET["category"] == "male" || $_GET["category"] == "unisex")) {
                 $category_products_ids = listenCategory();
                 // sort ids in desc order before checking if id in list
                 $sorted[] =  rsort($category_products_ids);
@@ -943,7 +943,7 @@ function displayNewest() {
                     $output .=
                     '<div class="swiper-slide">
                         <figure class="slide-bgimg" loading="lazy"></figure>
-                        <img loading="lazy" src="./imgs/products/'.$name.'/img1.png" />
+                        <img loading="lazy" src="./imgs/products/'.$name.'/img1.WEBP" />
 
                         <div class="content">
                             <a href="products.php?show='.$prod_id.'">
@@ -962,7 +962,7 @@ function displayNewest() {
                 $id = $product_new->product_id;
                 $output .= '<div class="swiper-slide">
                 <figure class="slide-bgimg" loading="lazy"></figure>
-                <img loading="lazy" src="./imgs/products/'.$name.'/img1.png" />
+                <img loading="lazy" src="./imgs/products/'.$name.'/img1.WEBP" />
 
                 <div class="content">
                     <a href="products.php?show='.$id.'">
@@ -1013,21 +1013,21 @@ function displaySliderProducts($type_products) {
         while ($product_row = mysqli_fetch_assoc($select_products)) {
             $prod_id = $product_row["product_id"];
 
-            if(isset($_GET["category"]) && $_GET["category"]!="mixed"){
+            if (isset($_GET["category"]) && ($_GET["category"] == "female" || $_GET["category"] == "male" || $_GET["category"] == "unisex")) {
                 $category_products_ids = listenCategory();
 
                 if (in_array($prod_id, $category_products_ids)) {
                     $product_new = new Product();
                     $product_new->create_product($prod_id);
 
-                    $output.= $product_new->product_slider_Template();
+                    $output .= $product_new->product_slider_Template();
                 }
-
             } else {
                 $product_new = new Product();
                 $product_new->create_product($prod_id);
-                $output.= $product_new->product_slider_Template();
+                $output .= $product_new->product_slider_Template();
             }
+
     }
     return $output;
 
