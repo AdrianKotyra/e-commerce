@@ -65,6 +65,12 @@ $active_page =  basename($_SERVER['PHP_SELF']);
               <p>Sneaker of Month</p>
             </a>
           </li>
+          <li class="<?= $active_page == 'newsletters.php' ? 'active' : '' ?>">
+            <a href="newsletters.php">
+              <i class="nc-icon nc-single-copy-04"></i>
+              <p>Newsletter</p>
+            </a>
+          </li>
         </ul>
       </div>
 </div>

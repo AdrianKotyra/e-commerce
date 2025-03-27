@@ -73,41 +73,41 @@
 
                     <div class="details-account-col">
                         <label   for="first_name">Email </label>
-                        <input class="form-control email"  type="text" name="email" value="<?php echo  $user_email;?>">
+                        <input class="form-control email"  required pattern="[^ @]*@[^ @]*" type="text" name="email" value="<?php echo  $user_email;?>">
 
                     </div>
 
                     <div class="details-account-col">
                         <label   for="first_name">First name </label>
-                        <input class="form-control first_name"  type="text" name="first_name" value="<?php echo  $username;?>">
+                        <input class="form-control first_name"  required type="text" name="first_name" value="<?php echo  $username;?>">
 
                     </div>
 
                     <div class="details-account-col">
                         <label for="last_name">Last name </label>
-                        <input class="form-control last_name"  type="text" name="last_name" value="<?php echo  $lastname;?>">
+                        <input class="form-control last_name"  required type="text" name="last_name" value="<?php echo  $lastname;?>">
 
                     </div>
 
                     <div class="details-account-col">
                         <label  for="address">Address </label>
-                        <input class="form-control address"  type="text" name="address" value="<?php echo  $user_address;?>">
+                        <input class="form-control address"  required type="text" name="address" value="<?php echo  $user_address;?>">
 
                     </div>
 
 
                     <div class="details-account-col">
                         <label for="city">City</label>
-                        <input class="form-control city" type="text" name="city" value="<?php echo  $user_city;?>">
+                        <input class="form-control city" required type="text" name="city" value="<?php echo  $user_city;?>">
                     </div>
                     <div class="details-account-col">
                         <label  for="postal">Postal/ZIP code</label>
-                        <input class="form-control postal" type="text" name="postal" value="<?php echo  $user_postcode;?>">
+                        <input class="form-control postal" required type="text" name="postal" value="<?php echo  $user_postcode;?>">
                     </div>
 
                     <div class="details-account-col">
                     <label for="country">Country/region</label>
-                        <select id="country" name="country" class="form-control country">
+                        <select id="country" name="country" required class="form-control country">
                             <option value="<?php echo  $user_country;?>">
 
                             </option>
@@ -118,7 +118,7 @@
 
                     <div class="details-account-col">
                         <label  for="message">message</label> <Br>
-                        <textarea name="" id="" name="message" class="message"></textarea>
+                        <textarea name="" id="" required name="message" class="message"></textarea>
                     </div>
 
 

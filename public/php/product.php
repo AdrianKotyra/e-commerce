@@ -210,6 +210,8 @@ class Product {
 
 
         $product_template = '
+
+
         <div class="flex-col card-product">
             '.$category_message.'
 

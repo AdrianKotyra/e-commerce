@@ -45,6 +45,9 @@ include "php/init.php"?>
 </head>
 
 <body>
+<!-- --------------COOKIES----------- -->
+
+<?php include("includes/cookies.php") ?>
 
 <!-- --------------BLACK MASK----------- -->
 <div class="body-mask"></div>

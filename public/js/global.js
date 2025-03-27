@@ -1,3 +1,55 @@
+
+
+
+
+// Function to set a cookie
+function setCookie(name, value, days) {
+  let expires = "";
+  if (days) {
+      let date = new Date();
+      date.setTime(date.getTime() + days * 86400000);
+      expires = "; expires=" + date.toUTCString();
+  }
+  document.cookie = name + "=" + encodeURIComponent(value) + expires + "; path=/";
+}
+
+// ------------------COOKIES WINDOW AND FUNCTIONALITY-----------------------
+function cookies_window(){
+  const crossCookies = document.querySelector(".cross-cookies")
+  const acceptCookies = document.querySelector(".accept-cookies")
+  const cookiesWindow = document.querySelector(".cookies_window");
+
+  crossCookies&&crossCookies.addEventListener("click", ()=>{
+    setCookie("cookies", "not_accepted", 7);
+    cookiesWindow.style.display="none";
+    console.log(document.cookie);
+  })
+  acceptCookies&&acceptCookies.addEventListener("click", ()=>{
+    setCookie("cookies", "accepted", 7);
+    cookiesWindow.style.display="none";
+    console.log(document.cookie);
+
+  })
+}
+
+cookies_window()
+// get cookies name to check value
+function getCookie(name) {
+  let match = document.cookie.match(new RegExp("(^| )" + name + "=([^;]+)"));
+  return match ? decodeURIComponent(match[2]) : null;
+}
+// -----------------check if cookies are accepted or not to close window----------------------
+function checkCookieStatus() {
+  const cookiesWindow = document.querySelector(".cookies_window");
+  if (getCookie("cookies") === "accepted" || getCookie("cookies") === "not_accepted") {
+    cookiesWindow.classList.add("disabled_window")
+    console.log(getCookie("cookies"));
+  }
+
+}
+checkCookieStatus()
+
+
 // ----------------GENERATE CONTENT WHEN VISIBLE TO IMPROVE PERFORMANCE-----------------
 
 const products_cards = document.querySelectorAll(".lazy-loading");
@@ -196,7 +248,8 @@ function hoverProdCart(){
 hoverProdCart()
 
 function displayOffmobileAddproduct(){
-  const exitWindow = document.querySelectorAll(".exit-mobile-label");
+
+  exitWindow = document.querySelectorAll(".exit-mobile-label");
 
   exitWindow.forEach(exit=>{
     exit.addEventListener("click", ()=>{

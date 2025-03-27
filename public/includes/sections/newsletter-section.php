@@ -1,3 +1,5 @@
+
+
 <div class="subscribe">
         <div class="wrapper">
             <div class="row">
@@ -6,25 +8,26 @@
                         <h2>By Subscribing To Our Newsletter You Can Get 30% Off</h2>
 
                     </div>
-                    <form id="subscribe" action="" method="get">
+                    <form id="subscribe">
                         <div class="row">
                           <div class="col-lg-5">
-                            <fieldset>
-                              <input name="name" type="text" id="name" placeholder="Your Name" required="">
-                            </fieldset>
-                          </div>
+                            <fieldse>
+                              <input name="name" type="text" class="name_newsletter"  placeholder="Your Name" required="">
+                            </fieldse
+t>                          </div>
                           <div class="col-lg-5">
                             <fieldset>
-                              <input name="email" type="text" id="email" pattern="[^ @]*@[^ @]*" placeholder="Your Email Address" required="">
+                              <input name="email" type="text" class="email_newsletter"  pattern="[^ @]*@[^ @]*" placeholder="Your Email Address" required="">
                             </fieldset>
                           </div>
                           <div class="col-lg-2">
                             <fieldset>
-                              <button type="submit" id="form-submit" class="main-dark-button"><i class="fa fa-paper-plane"></i></button>
+                              <button  class="main-dark-button form-submit-newsletter"><i class="fa fa-paper-plane"></i></button>
                             </fieldset>
                           </div>
                         </div>
                     </form>
+                    <div class="subscribe_alert"></div>
                 </div>
                 <div class="col-lg-6">
                     <div class="row">

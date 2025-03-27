@@ -641,6 +641,59 @@ function select_and_display_msgs() {
 
 
 }}
+function select_and_display_newsletter() {
+
+    global $connection;
+    global $product;
+    if(isset($_GET["filter"])) {
+        $filter = $_GET["filter"];
+        $query = "SELECT * FROM newsletters order by $filter";
+    } else {
+        $query = "SELECT * FROM newsletters order by id DESC";
+    }
+
+
+    $select_msgs_query = mysqli_query($connection, $query);
+    if (!$select_msgs_query) {
+        die("Query Failed: " . mysqli_error($connection));
+    }
+    while($row = mysqli_fetch_assoc($select_msgs_query)) {
+        $id = $row['id'];
+        $user_email = $row['user_email'];
+        $user_name = $row['user_name'];
+
+        $newsletter_status = $row['data_status'];
+
+        // check order status if its new or old to add class bold
+        $new_order_status = $newsletter_status=="new"? "new_data" : "old_data";
+      // Loop through each column in the row
+        echo " <tr class='$new_order_status'>  ";
+        echo "<td >$id</td>";
+        echo "<td >$user_email</td>";  // Fixed missing space & incorrect tag
+        echo "<td >$user_name</td>";
+
+        echo "<td class='text-right'> <span class='table-nav-link delete_button' data-link='newsletters.php?delete_news=$id'> Delete </span></td>";
+        echo " </tr>  ";
+
+
+
+
+    }
+
+
+    if(isset($_GET["delete_news"])) {
+    global $connection;
+    $id = $_GET["delete_news"];
+
+    // delete order
+
+    $query = "DELETE from newsletters WHERE id={$id}";
+    $delete_news = mysqli_query($connection, $query);
+
+    echo '<script> window.location.href = "newsletters.php" </script>';
+
+
+}}
 function validate_staff() {
     $errors = [];
     $min = 3;

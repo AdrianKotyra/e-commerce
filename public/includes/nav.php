@@ -54,13 +54,40 @@
 
                 <img class="cart-shopping nav-icon-img"src="./imgs/icons/cart.svg" alt="">
             </div>
-
-        </div>
-        <div class="dark-mode-container">
+            <div class="dark-mode-container">
             <input type="checkbox" id="dark-mode-toggle" />
-            <label for="dark-mode-toggle" class="toggle"></label>
-        </div>
+            <label for="dark-mode-toggle"  class="toggle"></label>
+            </div>
+            <script>
 
+
+                function getCookie(name) {
+                    let match = document.cookie.match(new RegExp("(^| )" + name + "=([^;]+)"));
+                    return match ? decodeURIComponent(match[2]) : null;
+                    }
+                function check_status(){
+                    const inputDarkMode = document.querySelector("#dark-mode-toggle");
+                    if(getCookie("cookies") !== "accepted" ) {
+                    return;
+                    }
+                    else if(getCookie("darkmode") === "false") {
+
+                        inputDarkMode.checked = false;
+                    }
+                    else {
+
+                        inputDarkMode.checked = true;
+
+                        }
+
+                }
+                check_status()
+
+            </script>
+
+
+
+        </div>
 
 
     </div>

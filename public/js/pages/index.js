@@ -2,41 +2,6 @@
 
 
 
-function ChangeUIColours() {
-  const urlParams = new URLSearchParams(window.location.search);
-
-  const getCategory =  urlParams.get('category');
-
-    if(getCategory=='female') {
-      document.documentElement.style.setProperty("--ui-main-nav", "#6a1373");
-      document.documentElement.style.setProperty("--ui-main-text-nav", "#ffffff");
-      document.documentElement.style.setProperty("--ui-filter", "invert(100%) sepia(91%) saturate(38%) hue-rotate(264deg) brightness(110%) contrast(110%)");
-      document.documentElement.style.setProperty("--ui-product-card", "#f7ebed;");
-    }
-    else if(getCategory=='male') {
-      document.documentElement.style.setProperty("--ui-main-nav", "#4a5b98");
-      document.documentElement.style.setProperty("--ui-main-text-nav", "#ffffff");
-      document.documentElement.style.setProperty("--ui-filter", "invert(100%) sepia(91%) saturate(38%) hue-rotate(264deg) brightness(110%) contrast(110%)");
-      document.documentElement.style.setProperty("--ui-product-card", "#e9ebf1");
-    }
-    else if(getCategory=='unisex') {
-      document.documentElement.style.setProperty("--ui-main-nav", "#50724b");
-      document.documentElement.style.setProperty("--ui-main-text-nav", "#ffffff");
-      document.documentElement.style.setProperty("--ui-filter", "invert(100%) sepia(91%) saturate(38%) hue-rotate(264deg) brightness(110%) contrast(110%)");
-      document.documentElement.style.setProperty("--ui-product-card", "#e5eee3");
-    }
-    else {
-      document.documentElement.style.setProperty("--ui-main-nav", "#ffffff");
-      document.documentElement.style.setProperty("--ui-main-text-nav", "#000000");
-      document.documentElement.style.setProperty("--ui-filter", "invert(0%) sepia(100%) saturate(0%) hue-rotate(13deg) brightness(95%) contrast(105%)");
-      document.documentElement.style.setProperty("--ui-product-card", "#f7f3f3");
-    }
-}
-
-ChangeUIColours()
-
-
-
 // Main Slider latest
 let mainSliderSelector = '.main-slider',
     navSliderSelector = '.nav-slider',
@@ -172,3 +137,65 @@ $(document).ready(function() {
     ]
   });
 });
+
+
+// ----------------------NEWSLETTER---------------------
+
+function newsletterAJAX() {
+  function sendnewsletterAjax(event) {
+      event.preventDefault();
+
+      const alertContainer = document.querySelector(".subscribe_alert");
+      const subscribeContainer = document.querySelector(".subscribe");
+
+      // Get form values
+      const userNameForm = document.querySelector(".name_newsletter").value.trim();
+      const email = document.querySelector(".email_newsletter").value.trim();
+
+
+      // Validate required fields
+      if (!userNameForm || !email ) {
+          alertContainer.innerHTML = "<div class='alert alert-danger  text-center'>Please fill in all fields.</div>";
+          return;
+      }
+
+      // Create FormData object
+      const formData = new FormData();
+      formData.append('first_name', userNameForm);
+      formData.append('email', email);
+
+
+      // Send data via AJAX
+      fetch('./ajax/newsletter_msg.php', {
+          method: 'POST',
+          body: formData
+      })
+      .then(response => response.text())
+      .then(data => {
+          if (data.trim() === "1") {
+            subscribeContainer.innerHTML = `<div class="subscribted_alert_container">
+              <p class="section-heading h2" >Thank you for Subscribing</p>
+            </div>`;
+
+          } else {
+            alertContainer.innerHTML = data;
+          }
+      })
+      .catch(error => {
+          console.error('Error:', error);
+          alertContainer.innerHTML = "<div class='alert alert-danger  text-center'>Something went wrong. Please try again.</div>";
+      });
+  }
+
+  // Attach event listener to the submit button
+  const sendButton = document.querySelector(".form-submit-newsletter");
+  if (sendButton) {
+      sendButton.addEventListener("click", function(e) {
+          e.preventDefault();
+          sendnewsletterAjax(e);
+      });
+  }
+
+}
+
+newsletterAJAX();

@@ -58,5 +58,6 @@
     </footer>
 
 <script src="js/global.js"></script>
+<script src="js/UI_colours.js"></script>
 <script src="js/basket_functions.js"></script>
 <script src="js/login.js"></script>
