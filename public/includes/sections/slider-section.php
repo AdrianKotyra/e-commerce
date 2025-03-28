@@ -1,8 +1,8 @@
 
 
-<section class="hero-section">
+<section class="hero-section ">
 
-    <div class="hero-container">
+    <div class="hero-container wrapper">
       <?php
         if(isset($_GET["category"])){
           $category = $_GET["category"];

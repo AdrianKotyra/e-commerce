@@ -21,3 +21,23 @@
 </div>
 
 </div>
+
+<!-- if cookies are created dont display cookies window again -->
+<script>
+
+    function getCookie(name) {
+    let match = document.cookie.match(new RegExp("(^| )" + name + "=([^;]+)"));
+    return match ? decodeURIComponent(match[2]) : null;
+    }
+    function check_status(){
+    const inputDarkMode = document.querySelector(".cookies_container_main");
+    if(getCookie("cookies")){
+        inputDarkMode.style.display="none";
+    }
+
+
+}
+check_status()
+
+
+</script>

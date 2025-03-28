@@ -1,4 +1,12 @@
+<div class="banner-promo">
+    <span class="banner-text-1 inactive-promo">
+        Free shipping for order over 70£
+    </span>
+    <span class="banner-text-2 active-promo">
+       But now pay with Paypal
+    </span>
 
+</div>
 <nav>
 
     <?php
@@ -36,8 +44,10 @@
         </div>
 
         <div class="logo-nav nav-col">
-            <a href="index.php">
-                <p class="logo-name">H!-Top Sneakers </p>
+
+            <a href="index.php" class=" flex-row">
+            <img src="./imgs/icons/black-logo.png" alt="">
+                <p class="logo-name">I-Top Sneakers </p>
             </a>
 
         </div>
@@ -67,18 +77,17 @@
                     }
                 function check_status(){
                     const inputDarkMode = document.querySelector("#dark-mode-toggle");
-                    if(getCookie("cookies") !== "accepted" ) {
-                    return;
-                    }
-                    else if(getCookie("darkmode") === "false") {
 
-                        inputDarkMode.checked = false;
-                    }
-                    else {
+                    if (getCookie("darkmode") === "false") {
 
+                    inputDarkMode.checked = false;
+                    } else if (getCookie("darkmode") === "true") {
                         inputDarkMode.checked = true;
+                    }
 
-                        }
+
+
+
 
                 }
                 check_status()
@@ -121,6 +130,7 @@
                 <a href="contact.php">Contact</a>
                 <a href="faq.php">FAQ</a>
                 <a href="about.php">About us</a>
+                <a href="delivery_returns.php">Shipping & Returns</a>
             </div>
 
 
@@ -150,6 +160,7 @@
                 <a href="contact.php">Contact</a>
                 <a href="faq.php">FAQ</a>
                 <a href="about.php">About us</a>
+                <a href="delivery_returns.php">Shipping & Returns</a>
             </div>
 
 
@@ -177,6 +188,7 @@
                 <a href="contact.php">Contact</a>
                 <a href="faq.php">FAQ</a>
                 <a href="about.php">About us</a>
+                <a href="delivery_returns.php">Shipping & Returns</a>
             </div>
 
 

@@ -56,3 +56,7 @@ intersection(eventCol_1, triggerCol_1, "eventCol1 3s forwards")
 const eventCol_2  = document.querySelector(".event_col_2")
 const triggerCol_2 = document.querySelector(".trigger_col_2");
 intersection(eventCol_2, triggerCol_2, "eventCol2 3s forwards")
+
+const eventCol_3  = document.querySelector(".event_col_3")
+const triggerCol_3 = document.querySelector(".trigger_col_3");
+intersection(eventCol_3, triggerCol_3, "eventCol2 3s forwards")

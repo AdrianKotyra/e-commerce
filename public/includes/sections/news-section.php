@@ -1,5 +1,5 @@
 
-<section class="news-section">
+<section class="news-section wrapper">
     <h3 class="section-header">
         <a href="news_all.php"> News</a>
 

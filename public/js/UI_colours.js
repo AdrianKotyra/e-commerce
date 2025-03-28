@@ -96,7 +96,8 @@ function lightMode(){
         document.documentElement.style.setProperty("--ui-filter", "invert(100%) sepia(91%) saturate(38%) hue-rotate(264deg) brightness(110%) contrast(110%)");
 
       }
-      else {
+      if(!getCategory) {
+
         document.documentElement.style.setProperty("--ui-main-nav", "#ffffff");
         document.documentElement.style.setProperty("--ui-main-text-nav", "#000000");
         document.documentElement.style.setProperty("--ui-filter", "invert(0%) sepia(100%) saturate(0%) hue-rotate(13deg) brightness(95%) contrast(105%)");
@@ -116,42 +117,47 @@ function lightMode(){
 
 }
 
-function changeModes(){
-    const inputDarkMode = document.querySelector("#dark-mode-toggle");
-    inputDarkMode.addEventListener("change", ()=>{
-    if(inputDarkMode.checked) {
-        if(getCookie("cookies") == "accepted") {
-            setCookie("darkmode", "true", 7);
-        }
+function changeModes() {
+  const inputDarkMode = document.querySelector("#dark-mode-toggle");
 
+  inputDarkMode.addEventListener("change", () => {
+      if (inputDarkMode.checked) {
+
+        if (getCookie("cookies") === "accepted") {
+            setCookie("darkmode", "true", 7);
+            cookiesDarkMode()
+        }
         darkMode()
-    }
-    else {
-        if(getCookie("cookies") == "accepted") {
+
+      }
+      else {
+        if (getCookie("cookies") === "accepted") {  // Fix: Check "accepted" instead of "not_accepted"
             setCookie("darkmode", "false", 7);
+            cookiesDarkMode()
         }
         lightMode()
-    }
-})
+
+      }
+  });
 }
 
+
 changeModes()
-
+lightMode()
 function cookiesDarkMode(){
-// if cookies are not accepted just return
-    if(getCookie("cookies") === "not_accepted") {
+
+  if(!getCookie("cookies")){
+    lightMode()
+  }
+  else {
+
+    if(getCookie("darkmode") === "false") {
         lightMode()
-
     }
-    else {
-
-        if(getCookie("darkmode") === "false") {
-            lightMode()
-        }
-        if(getCookie("darkmode") === "true") {
-            darkMode()
-        }
+    else if(getCookie("darkmode") === "true") {
+        darkMode()
     }
+  }
 
 
 

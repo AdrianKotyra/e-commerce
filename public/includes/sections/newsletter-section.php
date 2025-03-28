@@ -31,14 +31,14 @@ t>                          </div>
                 </div>
                 <div class="col-lg-6">
                     <div class="row">
-                        <div class="col-6">
+                        <div class="col-sm-6">
                             <ul>
                                 <li>Store Location:<br><span>24 Milton Rd E, Edinburgh EH15 2PQ</span></li>
                                 <li>Phone:<br><span>0131 669 4400</span></li>
                                 <li>Office Location:<br><span>24 Milton Rd E, Edinburgh EH15 2PQ</span></li>
                             </ul>
                         </div>
-                        <div class="col-6">
+                        <div class="col-sm-6">
                             <ul>
                                 <li>Work Hours:<br><span>08:30 AM - 8:30 PM Daily</span></li>
                                 <li>Email:<br><span>schools@edinburghcollege.ac.uk</span></li>

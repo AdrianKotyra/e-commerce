@@ -3,8 +3,9 @@
 
         <div class="hidden"></div>
         <div class="logo-nav nav-col">
-            <a href="index.php">
-                <p class="logo-name">H!-Top Sneakers </p>
+        <a href="index.php" class=" flex-row">
+            <img src="./imgs/icons/white-logo.png" alt="">
+                <span class="logo-name-checkout">I-Top Sneakers </span>
             </a>
 
         </div>

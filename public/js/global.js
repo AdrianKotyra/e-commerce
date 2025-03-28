@@ -1,7 +1,19 @@
 
+// ------------------BANNER PROMO-----------------------
 
-
-
+function setBanner(){
+  const textPromo_1 = document.querySelector(".banner-text-1");
+  const textPromo_2 = document.querySelector(".banner-text-2");
+  setInterval(() => {
+    textPromo_1.classList.replace("inactive-promo", "active-promo")
+    textPromo_2.classList.replace("active-promo", "inactive-promo")
+  }, 4000);
+  setInterval(() => {
+    textPromo_1.classList.replace("active-promo", "inactive-promo")
+    textPromo_2.classList.replace("inactive-promo", "active-promo")
+  }, 8000);
+}
+setBanner()
 // Function to set a cookie
 function setCookie(name, value, days) {
   let expires = "";
@@ -22,12 +34,12 @@ function cookies_window(){
   crossCookies&&crossCookies.addEventListener("click", ()=>{
     setCookie("cookies", "not_accepted", 7);
     cookiesWindow.style.display="none";
-    console.log(document.cookie);
+
   })
   acceptCookies&&acceptCookies.addEventListener("click", ()=>{
     setCookie("cookies", "accepted", 7);
     cookiesWindow.style.display="none";
-    console.log(document.cookie);
+
 
   })
 }
@@ -39,15 +51,7 @@ function getCookie(name) {
   return match ? decodeURIComponent(match[2]) : null;
 }
 // -----------------check if cookies are accepted or not to close window----------------------
-function checkCookieStatus() {
-  const cookiesWindow = document.querySelector(".cookies_window");
-  if (getCookie("cookies") === "accepted" || getCookie("cookies") === "not_accepted") {
-    cookiesWindow.classList.add("disabled_window")
-    console.log(getCookie("cookies"));
-  }
 
-}
-checkCookieStatus()
 
 
 // ----------------GENERATE CONTENT WHEN VISIBLE TO IMPROVE PERFORMANCE-----------------

@@ -12,18 +12,23 @@ let mainSliderSelector = '.main-slider',
 let mainSliderOptions = {
   loop: true,
   speed: 1000,
-  slidesPerView: 5, // Show 3 slides at a time
-  spaceBetween: 10, // Adjust spacing between slides if needed
+  slidesPerView: 5, // Default: Show 5 slides at a time
+  spaceBetween: 10,
   autoplay: {
     delay: 3000,
     disableOnInteraction: false,
   },
-
   grabCursor: true,
   watchSlidesProgress: true,
   navigation: {
     nextEl: '.swiper-button-next',
     prevEl: '.swiper-button-prev',
+  },
+  breakpoints: {
+    1200: { slidesPerView: 5 },
+    992: { slidesPerView: 4 },
+    768: { slidesPerView: 3 },
+    176: { slidesPerView: 2 },
   },
   on: {
     init: function () {
@@ -61,7 +66,7 @@ let mainSliderOptions = {
       swiper.slides.forEach((slide) => {
         let slideProgress = slide.progress;
         let innerOffset = 0;
-        let innerTranslate = slideProgress * innerOffset / 4;
+        let innerTranslate = (slideProgress * innerOffset) / 4;
         slide.querySelector('.slide-bgimg').style.transform = `translateX(${innerTranslate}px)`;
       });
     },
@@ -77,7 +82,6 @@ let mainSliderOptions = {
       });
     },
   },
-
 };
 
 let mainSlider = new Swiper('.main-slider', mainSliderOptions);

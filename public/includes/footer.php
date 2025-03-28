@@ -3,11 +3,11 @@
 <footer>
         <div class="wrapper">
             <div class="row">
-                <div class="col-lg-3">
+                <div class="col-lg-3 col-md-6">
                     <div class="first-item">
                         <div class="logo flex-row">
                             <img src="./imgs/icons/white-logo.png" alt="logo">
-                            <p>H!-Top Sneakers</p>
+                            <p>I-Top Sneakers</p>
                         </div>
                         <ul>
                             <li><a href="#">24 Milton Rd E, Edinburgh EH15 2PQ</a></li>
@@ -16,7 +16,7 @@
                         </ul>
                     </div>
                 </div>
-                <div class="col-lg-3">
+                <div class="col-lg-3 col-md-6">
                     <h4>Shopping &amp; Categories</h4>
                     <ul>
                         <li><a href="#">Men’s Shopping</a></li>
@@ -24,7 +24,7 @@
                         <li><a href="#">Uni-sex Shopping</a></li>
                     </ul>
                 </div>
-                <div class="col-lg-3">
+                <div class="col-lg-3 col-md-6">
                     <h4>Useful Links</h4>
                     <ul>
                         <li><a href="#">Homepage</a></li>
@@ -33,7 +33,7 @@
                         <li><a href="#">Contact Us</a></li>
                     </ul>
                 </div>
-                <div class="col-lg-3">
+                <div class="col-lg-3 col-md-6">
                     <h4>Help &amp; Information</h4>
                     <ul>
                         <li><a href="#">Help</a></li>

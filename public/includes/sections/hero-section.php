@@ -153,9 +153,7 @@
 		<div class="slide">
         <img loading="lazy" src="../public/imgs/companies/img (3).svg" height="100" width="250" alt="" />
 		</div>
-		<div class="slide">
-        <img loading="lazy" src="../public/imgs/companies/img (4).svg" height="100" width="250" alt="" />
-		</div>
+
 		<div class="slide">
         <img loading="lazy" src="../public/imgs/companies/img (5).svg" height="100" width="250" alt="" />
 		</div>
