@@ -80,22 +80,79 @@
     }
 
     if(empty($errors)) {
-        // create session for code and account details to pass it into verification page
-        $activation_code_generate = strtoupper(bin2hex(random_bytes(10 / 2)));
-        $_SESSION["create_acc_code"] = $activation_code_generate;
 
-        $_SESSION["create_acc_firstname"] = $user_firstname;
 
-        $_SESSION["create_acc_lastname"] = $user_lastname;
 
-        $_SESSION["create_acc_email"] = $user_email;
+        // Generate verification token and hashed password
+        $token = generateToken();
+        $hashedToken = hashToken($token);
+        $hashedPassword = password_hash($user_password, PASSWORD_BCRYPT);
+        $token_expiry =      date('Y-m-d H:i:s', strtotime('+30 minutes'));
+        // Generate a proper 6-digit activation code
+        $activation_code_generate = str_pad(random_int(100000, 999999), 6, '0', STR_PAD_LEFT);
 
-        $_SESSION["create_acc_password"] = $user_password;
-        send_create_account_email($user_firstname, $activation_code_generate, $user_email);
-        echo  trim('pass');
 
+        if(isset($user_email)) {
+            // Use prepared statements to prevent SQL injection
+            $query = "SELECT email FROM users_register WHERE email = ?";
+            $stmt = mysqli_prepare($connection, $query);
+            mysqli_stmt_bind_param($stmt, "s", $user_email);
+            mysqli_stmt_execute($stmt);
+            mysqli_stmt_store_result($stmt);
+
+            if(mysqli_stmt_num_rows($stmt) >= 1) {
+                // User exists, proceed to delete securely
+                $query_delete = "DELETE FROM users_register WHERE email = ?";
+                $stmt_delete = mysqli_prepare($connection, $query_delete);
+                mysqli_stmt_bind_param($stmt_delete, "s", $user_email);
+                mysqli_stmt_execute($stmt_delete);
+                // Close statements
+                mysqli_stmt_close($stmt);
+                mysqli_stmt_close($stmt_delete);
+
+            }
+
+
+
+            // Prepare SQL query
+            $query2 = "INSERT INTO users_register
+                (email, hash_password, firstname, surname, verification_token, token_expiry, verification_code, is_verified, created_at)
+                VALUES (?, ?, ?, ?, ?, ?, ?, 0, NOW())";
+
+            // Prepare the statement
+            $stmt = mysqli_prepare($connection, $query2);
+
+            // Bind parameters
+            mysqli_stmt_bind_param($stmt, "sssssss",
+                $user_email,
+                $hashedPassword,
+                $user_firstname,
+                $user_lastname,
+                $hashedToken,
+                $token_expiry,
+                $activation_code_generate
+            );
+
+        // Execute the query
+        mysqli_stmt_execute($stmt);
+
+        // Close statement
+        mysqli_stmt_close($stmt);
+
+        // Generate verification link
+        $verifyLink = "https://adriankotyraprojects.co.uk/websites/ecommerce/public/registration_email.php?token=$token&email=" . urlencode($user_email);
+
+        // Send email
+        send_create_account_email($user_firstname,  $verifyLink, $activation_code_generate, $user_email);
+
+        echo trim('pass');
 
     }
+
+}
+
+
+
 
 
 

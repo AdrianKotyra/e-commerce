@@ -8,7 +8,7 @@ require_once __DIR__ . '/../vendor/autoload.php';
 use Dotenv\Dotenv;
 $dotenv = Dotenv::createImmutable(__DIR__);
 $dotenv->load();
-function send_create_account_email($userName, $activation_code_generate, $email){
+function send_create_account_email($user_firstname,  $verifyLink, $activation_code_generate, $user_email){
 
 
 
@@ -114,11 +114,11 @@ function send_create_account_email($userName, $activation_code_generate, $email)
         <tbody>
           <tr>
             <td style="width: 596px; vertical-align: top; padding-left: 30px; padding-right: 30px; padding-top: 30px; padding-bottom: 40px;" width="596">
-              <h1 style="font-size: 20px; line-height: 24px;   padding: 10px; font-weight: 600; text-decoration: none; color: #000000;">'.$userName.' thank you for registering on our website! </h1>
+              <h1 style="font-size: 20px; line-height: 24px;   padding: 10px; font-weight: 600; text-decoration: none; color: #000000;">'.$user_firstname.' thank you for registering on our website! </h1>
               <p style="font-size: 19px; line-height:  24px;  padding: 10px; font-weight: 400; text-decoration: none; color: #919293;">To activate your account, please click the link below and enter the provided code:</p>
               <p style="font-size: 25px; line-height:  24px;   padding: 10px; font-weight: 800; text-decoration: none; color: #919293;">'.$activation_code_generate.'</p>
 
-              <a href="https://adriankotyraprojects.co.uk/websites/ecommerce/public/registration_email.php" target="_blank" style="background-color: #000000; font-size: 15px; line-height: 22px; font-weight: normal; text-decoration: none; padding: 12px 15px; color: #ffffff; border-radius: 5px; display: inline-block;">
+              <a href="'.$verifyLink.'" target="_blank" style="background-color: #000000; font-size: 15px; line-height: 22px; font-weight: normal; text-decoration: none; padding: 12px 15px; color: #ffffff; border-radius: 5px; display: inline-block;">
                 Activate account
               </a>
 
@@ -153,7 +153,7 @@ try {
 
     // Email Content
     $mail->setFrom($EMAIL_ENV, 'H1-Top-Sneakers');
-    $mail->addAddress($email, 'New Member');
+    $mail->addAddress($user_email, 'New Member');
     $mail->Subject = 'Account confirmation';
     $mail->Body    = $email_content;
 
@@ -165,6 +165,158 @@ try {
 }
 }
 
+function send_account_created($userName, $email){
+
+
+
+    $email_content =
+ '
+
+ <html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
+ <head>
+
+   <!--[if gte mso 9]>
+   <xml>
+     <o:OfficeDocumentSettings>
+       <o:AllowPNG/>
+       <o:PixelsPerInch>96</o:PixelsPerInch>
+     </o:OfficeDocumentSettings>
+   </xml>
+   <![endif]-->
+
+   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta name="x-apple-disable-message-reformatting">
+   <!--[if !mso]><!--><meta http-equiv="X-UA-Compatible" content="IE=edge"><!--<![endif]-->
+
+     <!-- Your title goes here -->
+     <title>Newsletter</title>
+     <!-- End title -->
+
+     <!-- Start stylesheet -->
+     <style type="text/css">
+       a,a[href],a:hover, a:link, a:visited {
+         /* This is the link colour */
+         text-decoration: none!important;
+         color: #0000EE;
+       }
+       .link {
+         text-decoration: underline!important;
+       }
+       p, p:visited {
+         /* Fallback paragraph style */
+         font-size:15px;
+         line-height:24px;
+
+         font-weight:300;
+         text-decoration:none;
+         color: #000000;
+       }
+       h1 {
+         /* Fallback heading style */
+         font-size:22px;
+         line-height:24px;
+
+         font-weight:normal;
+         text-decoration:none;
+         color: #000000;
+       }
+       .ExternalClass p, .ExternalClass span, .ExternalClass font, .ExternalClass td {line-height: 100%;}
+       .ExternalClass {width: 100%;}
+     </style>
+     <!-- End stylesheet -->
+
+ </head>
+
+ <body style="text-align: center; margin: 0; padding-top: 10px; padding-bottom: 10px; padding-left: 0; padding-right: 0; -webkit-text-size-adjust: 100%;background-color: #f2f4f6; color: #000000" align="center">
+
+   <!-- Fallback force center content -->
+   <div style="text-align: center;">
+
+     <!-- Email not displaying correctly -->
+     <table align="center" style="text-align: center; vertical-align: middle; width: 600px; max-width: 600px;" width="600">
+       <tbody>
+         <tr>
+           <td style="width: 596px; vertical-align: middle;" width="596">
+           </td>
+         </tr>
+       </tbody>
+     </table>
+     <!-- Email not displaying correctly -->
+
+     <!-- Start container for logo -->
+     <table align="center" style="text-align: center; vertical-align: top; width: 600px; max-width: 600px; background-color: #ffffff;" width="600">
+       <tbody>
+         <tr>
+           <td style="width: 596px; vertical-align: top; padding-left: 0; padding-right: 0; padding-top: 15px; padding-bottom: 15px;" width="596">
+             <p style="font-size: 28px; line-height: 24px;  font-weight: 800; text-decoration: none; color: #919293;">HI TOP-SNEAKERS</p>
+           </td>
+         </tr>
+       </tbody>
+     </table>
+     <!-- End container for logo -->
+
+     <!-- Hero image -->
+    <img
+     style="width: 600px; max-width: 600px; height: 350px; max-height: 350px; text-align: center; object-fit: cover;"
+     alt="Hero image"
+     src="https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+     align="center"
+     width="600"
+     height="350"
+     />
+
+     <!-- Start single column section -->
+     <table align="center" style="text-align: center; vertical-align: top; width: 600px; max-width: 600px; background-color: #ffffff;" width="600";>
+         <tbody>
+           <tr>
+             <td style="width: 596px; vertical-align: top; padding-left: 30px; padding-right: 30px; padding-top: 30px; padding-bottom: 40px;" width="596">
+               <h1 style="font-size: 20px; line-height: 24px;   padding: 10px; font-weight: 600; text-decoration: none; color: #000000;">'.$userName.' thank you for registering on our website! </h1>
+               <p style="font-size: 19px; line-height:  24px;  padding: 10px; font-weight: 400; text-decoration: none; color: #919293;">Your account has been create successfuly</p>
+
+
+             </td>
+           </tr>
+         </tbody>
+       </table>
+     <!-- End single column section -->
+
+   </div>
+ </body>
+ </html>
+ ';
+
+
+
+
+
+ $EMAIL_ENV = $_ENV['EMAIL'] ?? null;
+ $PASSWORD_ENV = $_ENV['PASS'] ?? null;
+ $mail = new PHPMailer(true);
+
+ try {
+     // SMTP Settings
+     $mail->isSMTP();
+     $mail->Host       = 'smtp.mail.yahoo.com'; // SMTP server (e.g., smtp.gmail.com)
+     $mail->SMTPAuth   = true;
+     $mail->Username   = $EMAIL_ENV;
+     $mail->Password   = $PASSWORD_ENV;
+     $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS; // Use TLS
+     $mail->Port       = 587; // Port for TLS (465 for SSL)
+
+     // Email Content
+     $mail->setFrom($EMAIL_ENV, 'H1-Top-Sneakers');
+     $mail->addAddress($email, 'New Member');
+     $mail->Subject = 'Account Created';
+     $mail->Body    = $email_content;
+
+     $mail->isHTML(true);
+     $mail->send();
+
+ } catch (Exception $e) {
+     echo "Error: {$mail->ErrorInfo}";
+ }
+ }
 
 function send_invoice($order_id, $email){
 
@@ -566,7 +718,13 @@ function displayCategoryProducts($type_products) {
 }
 
 
+function generateToken() {
+    return bin2hex(random_bytes(32)); // Secure random 64-character token
+}
 
+function hashToken($token) {
+    return hash('sha256', $token);
+}
 
 // ------------------GET 4 PRODUCTS OF DETAILED SECTION---------------------
 function displayDetailedProducts($type_products) {
@@ -714,7 +872,7 @@ function section_detailed_products($type_products) {
 // ------------------SECTION SLIDER---------------------
 function section_slider_products($type_products) {
     $section =
-    '<section class="trending_section">
+    '<section class="trending_section wrapper">
         <a href="category.php?type='.$type_products.'">
             <h3 class="section-header">
                 '.$type_products.'
@@ -730,7 +888,7 @@ function section_slider_products($type_products) {
 // ------------------SECTION SLIDER---------------------
 function section_slider_trending() {
     $section =
-    '<section class="trending_section">
+    '<section class="trending_section wrapper">
         <a href="category.php?type=Trending">
             <h3 class="section-header">
                 Trending
@@ -1090,7 +1248,6 @@ function account_update_details(){
     $max = 26;
 
     $user_id       =  $user->user_id;
-    $user_password =  $_POST['user_password'];
     $user_firstname = $_POST['first_name'];
     $user_lastname =  $_POST['last_name'];
     $user_email    =  $_POST['email'];
@@ -1158,7 +1315,6 @@ function account_update_details(){
         $query_update .= "user_email = '{$user_email}', ";
         $query_update .= "user_lastname = '{$user_lastname}', ";
         $query_update .= "user_firstname = '{$user_firstname}', ";
-        $query_update .= "user_password = '{$user_password}', ";
         $query_update .= "user_address = '{$user_address}', ";
         $query_update .= "user_country = '{$user_country}', ";
         $query_update .= "user_postcode = '{$user_postal}', ";

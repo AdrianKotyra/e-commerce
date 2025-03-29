@@ -16,7 +16,7 @@
 ?>
 
 <section class="checkout-section">
-    <div class="checkout_container wrapper-extra">
+    <div class="checkout_container wrapper">
         <div class="payment-col">
             <h3>Payment</h3>
             <div class="pay-pay-container">

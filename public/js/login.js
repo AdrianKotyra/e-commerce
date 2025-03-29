@@ -32,17 +32,13 @@
         .then(response => response.text())
         .then(data => {
           displayLoader()
-          if(data.trim()==="success-logged") {
+          if(data.trim()==="success-logged-user") {
 
             window.location.reload();
             return;
           }
-          if(data.trim()==="success-logged-checkout") {
 
-            window.location.href = `check_out.php`;
-            return;
-          }
-          if(data.trim()==="admin") {
+          if(data.trim()==="success-logged-admin") {
 
             window.location.href = `../admin/dashboard.php`;
             return;

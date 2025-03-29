@@ -42,7 +42,7 @@ class User {
                 //     $this-> user_status= "member";
                 // }
 
-                $this-> user_status= $user_email=="admin" &&  $user_password=="admin"? "admin" : "member";
+                $this-> user_status= $user_email=="admin" ? "admin" : "member";
                 $this-> user_city= $user_city;
                 $this-> user_postcode= $user_postcode;
                 $this-> user_address= $user_address;

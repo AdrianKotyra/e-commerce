@@ -3,17 +3,17 @@
   --toggle-circle: #ffffff;
   --toggle-bg: #475569;
   --white-filter:   invert(100%) sepia(91%) saturate(38%) hue-rotate(264deg) brightness(110%) contrast(110%);
-  --ui-main: #ffffff;
-  --ui-main-text : #000000;
+  // --ui-main: #ffffff;
+  // --ui-main-text : #000000;
 
 
-  --ui-main-text-nav : #000000;
-  --ui-main-nav:  #ffffff;
+  // --ui-main-text-nav : #000000;
+  // --ui-main-nav:  #ffffff;
 
 
-  --ui-product-card: #f6f6f6;
-  --ui-slider-filter :invert(0%) sepia(100%) saturate(0%) hue-rotate(13deg) brightness(95%) contrast(105%)
-  --ui-filter :invert(0%) sepia(100%) saturate(0%) hue-rotate(13deg) brightness(95%) contrast(105%); //BLACK initiated
+  // --ui-product-card: #f6f6f6;
+  // --ui-slider-filter :invert(0%) sepia(100%) saturate(0%) hue-rotate(13deg) brightness(95%) contrast(105%)
+  // --ui-filter :invert(0%) sepia(100%) saturate(0%) hue-rotate(13deg) brightness(95%) contrast(105%); //BLACK initiated
   --men-color: #acb5e6;
   --women-color: #e0c1d4;
   --uni-color: #90e185;
@@ -26,6 +26,38 @@
   --border: #e5e7eb;
   --medium: 1rem;
   --category-header: 52px;
+}
+.banner-promo {
+
+    position: relative;
+    font-size: 0.85rem;
+    height: 24px;
+    color: var(--ui-main-text);
+    text-align: center;
+    background-color: var(--ui-product-card);
+  span{
+    top: 50%;
+    left: 50%;
+    position: absolute;
+    transform: translate(-50%,-50%);
+    align-items: center;
+    justify-content: center;
+    display: flex;
+  }
+  .inactive-promo {
+    animation: bannerAnimationBack 0.3s forwards;
+
+
+  }
+  .active-promo {
+    animation: bannerAnimationForw 0.3s forwards;
+
+
+  }
+}
+.logo-nav img {
+  z-index: 2;
+  filter: var(--ui-filter);
 }
 .disabled_window {
   display: none;
@@ -214,6 +246,11 @@
 .sneaker_year_col {
   margin: 50px 0;
   img{
+    display: block;
+    margin: auto;
+    width: 100%;
+    max-width: 500px;
+
     object-fit: contain;
   }
   .section-header {
@@ -608,6 +645,10 @@
   height: 360px;
 }
 .logo-nav {
+  img {
+    height: 46px;
+  }
+  align-items: center;
   a {
     color: black;
     text-decoration: none;
@@ -615,6 +656,15 @@
 }
 .logo-name {
   color: var(--ui-main-text-nav);
+  white-space: nowrap;
+  margin: auto;
+  font-weight: 800;
+  letter-spacing: 0.3rem;
+  font-size: var(--header-section-small)!important;
+}
+.logo-name-checkout {
+
+  color:white;
   white-space: nowrap;
   margin: auto;
   font-weight: 800;
@@ -942,11 +992,12 @@ $animationSpeed: 40s;
   justify-content: center;
   height: 100%;
   display: grid;
+  gap: 4px;
 
   grid-template-columns: repeat(6, 1fr);
   span {
     margin: auto;
-    width: 32px;
+    width: 100%;
     height: 32px;
     display: flex;
     justify-content: center;
@@ -1224,7 +1275,7 @@ $animationSpeed: 40s;
   text-decoration: none;
 }
 .post-event-main-header {
-  font-size: var(--medium);
+  font-size: var(--header-section-small)
 }
 .products-sizes-grid {
   margin-bottom: 32px;
@@ -1501,13 +1552,15 @@ $animationSpeed: 40s;
   }
 }
 .img-container-event {
-  background-color: var(--light-gray);
+
   width: 50%;
   img {
+    display: block;
+    margin: auto;
     -o-object-fit: contain;
     object-fit: contain;
-    width: 100%;
-    height: 100%;
+    max-width: 500px;
+    height: 300px;
   }
 }
 .header-basket {
@@ -1538,9 +1591,7 @@ $animationSpeed: 40s;
 
 .trending_section {
   padding: 0 40px;
-  .shopping-column {
-    height: 260px;
-  }
+
   a {
     text-decoration: none;
     color: black;
@@ -1827,6 +1878,8 @@ $animationSpeed: 40s;
   background-color: white;
 }
 .payment-col {
+
+  width: 100%;
   padding: 60px 20px;
 }
 
@@ -1835,8 +1888,8 @@ $animationSpeed: 40s;
 
   margin: 30px 0;
 
-
-  width: 100%;
+width: 100%;
+  max-width: 500px
 
 }
 .login {
@@ -1910,13 +1963,13 @@ $animationSpeed: 40s;
   justify-content: center;
   display: flex;
   flex-direction: row-reverse;
-  height: 80vh;
+
 }
-.event-section-container2 {
+.event-section-container2, .event-section-container3 {
   justify-content: center;
   display: flex;
   flex-direction: row;
-  height: 80vh;
+
 }
 .event_hero {
   video{
@@ -2462,9 +2515,9 @@ nav {
   img {
     width: 100%;
     height:  100%;
-    object-fit: cover;
+    object-fit: contain;
 
-    -o-object-fit: cover;
+    -o-object-fit: contain;
   }
 }
 .nav-mobile-container {
@@ -2891,6 +2944,8 @@ body {
   background-color: var(--light-gray);
 }
 .container-checkout-prods {
+  max-width: 500px;
+  width: 100%;
   .total-checkout-container {
     padding: 0 20px;
     position: relative;
@@ -2919,19 +2974,24 @@ body {
   h3{
     margin-bottom: 30px;
   }
+  .prod-info{
+    margin-left: 20px;
+  }
   .img-container {
+    border: 1px solid #e1d9d9;
     position: relative;
-    width: 64px;
-    height: 64px;
+    width:  94px;
+    height: 94px;
     .prod-quantity {
       position: absolute;
       top: 0;
       right: 0;
     }
+
     img {
       object-fit: contain;
-      width: 100%;
-      height: 100%;
+      width:  94px;
+    height:100%;
     }
   }
   .check_out_prod_col {
@@ -3018,6 +3078,7 @@ body {
   }
 }
 .checkout_container {
+  width: 100%;
   display: flex;
   flex-direction: row;
   min-height: 600px;
@@ -3082,6 +3143,7 @@ body {
   letter-spacing: -1px;
 }
 .category_bg {
+  object-fit: cover !important;
   filter: brightness(0.7);
   position: absolute;
   background-position: bottom;
@@ -3259,8 +3321,12 @@ body {
   position: absolute;
 }
 .shopping-column {
+  height: 220px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   background-color: var(--ui-product-card);
-  height: 100%;
+
   img {
     -o-object-fit: contain;
     object-fit: contain;
@@ -3269,7 +3335,7 @@ body {
     -moz-user-select: none !important;
     user-select: none !important;
     width: 100%;
-    height: 260px;
+    height: 100%;
   }
 }
 
@@ -3335,6 +3401,7 @@ footer .logo {
   color: white;
   font-size: 1.6rem;
   p{
+    text-wrap: nowrap;
     margin-top: 10px;
     font-weight: 600;
   }
@@ -3763,7 +3830,7 @@ footer .under-footer a:hover {
     width: 100%;
     padding-left: 5px;
     .swiper-slide {
-      background-color: var(--ui-product-card);
+
       color: black;
       cursor: pointer;
       opacity: 0.4;
@@ -4046,7 +4113,7 @@ section {
   }
   .prod-name,
   .prod-price {
-    text-align: center;
+
     line-height: 1.3rem;
   }
   .prod-category {
@@ -4070,16 +4137,10 @@ section {
   }
   .img-container-event {
     width: 100%;
-    height: 60vw;
+
   }
-  .event-section-container {
-    height: auto;
-    flex-direction: column !important;
-  }
-  .event-section-container2 {
-    height: auto;
-    flex-direction: column !important;
-  }
+
+
   .product-section-container {
     height: 60vw;
   }
@@ -4166,6 +4227,10 @@ section {
 }
 
 @media screen and (max-width: 991px) {
+  .subscribe ul {
+    margin: 0;
+    padding: 0;
+  }
   .thumb img {
     height: 60vw !important;
   }
@@ -4192,6 +4257,13 @@ section {
   }
 }
 @media screen and (max-width: 767px) {
+  .event-section-container {
+    flex-direction: column-reverse;
+  }
+  .event-section-container2, .event-section-container3 {
+    flex-direction: column-reverse;
+  }
+
   .section-sneaker-month img {
     height: 60vw;
   }
@@ -4209,7 +4281,7 @@ section {
     text-align: center;
   }
   footer {
-    text-align: center;
+
     .logo {
       justify-content: center;
     }
@@ -4251,6 +4323,7 @@ section {
 }
 
 @media (max-width: 900px) {
+
   .added-prod-window .prod-info-window .prod-info-container {
     margin-left: 0;
   }
@@ -4285,6 +4358,29 @@ section {
   }
 }
 @media screen and (max-width: 600px) {
+  :root {
+
+
+    --category-header: 22px;
+  }
+  .trending_section {
+    padding: 0 6px;
+  }
+  .card-slider .slick-next {
+    right: -6px;
+  }
+  .card-slider .slick-prev {
+    left: -6px;
+  }
+  .banner-promo span {
+    width: 100%;
+  }
+  .logo-nav p{
+    display: none;
+  }
+  .logo-nav img{
+    height: 36px;
+  }
   .added-prod-window {
     height: 100vh;
   }
@@ -4304,6 +4400,7 @@ section {
   }
 }
 @media screen and (max-width: 467px) {
+
   .added-prod-window .prod-info-window img {
     width: 100%;
   }
@@ -4312,6 +4409,32 @@ section {
   }
   .news-section-container {
     grid-template-columns: repeat(1, 1fr);
+  }
+}
+@keyframes bannerAnimationForw {
+  0% {
+    transform: translate(-60%,-50%);
+    opacity: 0%;
+  }
+  50%{
+    transform: translate(-50%,-50%);
+  }
+  100% {
+
+    opacity: 100%;
+  }
+}
+@keyframes bannerAnimationBack {
+  0% {
+    transform: translate(-50%,-50%);
+    opacity: 100%;
+  }
+  50%{
+    transform: translate(-60%,-50%);
+  }
+  100% {
+
+    opacity: 0%;
   }
 }
 @keyframes fadein {
@@ -4335,6 +4458,7 @@ section {
     opacity: 100%;
   }
 }
+
 @keyframes eventCol2 {
   0% {
     transform: translatex(16px);
@@ -4537,6 +4661,7 @@ section {
 .toggle {
   display: inline-block;
   width: 40px;
+  margin-left: 10px;
   height: 20px;
   background: var(--toggle-bg);
   border-radius: 30px;

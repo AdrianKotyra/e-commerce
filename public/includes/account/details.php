@@ -10,7 +10,6 @@ if (isset($_POST["update-account"])) {
     $user_email = $user->user_email;
     $user_lastname = $user->user_lastname;
     $user_firstname = $user->user_firstname;
-    $user_password =$user->user_password;
     $user_address = $user->user_address;
     $user_city = $user->user_city;
     $user_country = $user->user_country;
@@ -28,11 +27,7 @@ if (isset($_POST["update-account"])) {
             <input class="form-control"  type="text" name="email" value="<?php echo  $user_email;?>">
 
         </div>
-        <div class="details-account-col">
-            <label   for="user_password">passwprd </label>
-            <input class="form-control"  type="password" name="user_password" value="<?php echo  $user_password;?>">
 
-        </div>
         <div class="details-account-col">
             <label   for="first_name">First name </label>
             <input class="form-control"  type="text" name="first_name" value="<?php echo  $user_firstname;?>">

@@ -1,111 +1,92 @@
-<?php session_start(); ?>
-<?php include("includes/header.php") ?>
-
-<!-- if not code created in session back to main page -->
-<?php
-
-if (!isset($_SESSION["create_acc_code"])) {
-    header("Location: index.php");
-    exit;
-}
-?>
-
-
-
-
-
-
+<?php include("includes/header.php");?>
 
 
 <section class="register-section-email">
-  <?php
-  // if account created succesfull display off form
- if($_POST["code"] !== $_SESSION["create_acc_code"]) {
-  ?>
-      <h3>Activate account</h3>
-      <p>
-          <?php echo $_SESSION["create_acc_firstname"]; ?>, a registration email has been sent to
-          <b><?php echo $_SESSION["create_acc_email"]; ?></b>. <br>
-          It might take couple of minutes to recieve the link. <br>
-          Please activate your account by providing the code below:
-      </p>
 
-      <form action="" method="POST">
-          <input type="text" class="form form-control" name="code" placeholder="Enter activation code" required>
 
-          <button type="submit" name="create_account_activate" class="button-custom">Confirm</button>
-      </form>
-
-  <?php
-  }
-  ?>
+<?php
+if (isset($_POST['create_account_activate']) && isset($_GET['token']) && isset($_GET['email']) && isset($_POST['code'])) {
 
 
 
-  <?php if(isset($_POST["create_account_activate"])) {
+    global $connection;
 
-    $firstname=  $_SESSION["create_acc_firstname"];
-    $lastname =  $_SESSION["create_acc_lastname"];
-    $email = $_SESSION["create_acc_email"];
-    $password = $_SESSION["create_acc_password"];
+    $code  = $_POST['code'];
+    $email = $_GET['email'];
+    $token = $_GET['token'];
 
-    $query_email = "SELECT * from users where user_email = '$email'";
-    $query_email_check = mysqli_query($connection, $query_email);
+    // Fetch user from DB
+    $query = "SELECT id, firstname, surname, hash_password,  verification_token, token_expiry, 	verification_code, is_verified FROM users_register WHERE email = ?";
+    $stmt = mysqli_prepare($connection, $query);
+    mysqli_stmt_bind_param($stmt, "s", $email);
+    mysqli_stmt_execute($stmt);
+    $result = mysqli_stmt_get_result($stmt);
+    $user = mysqli_fetch_assoc($result);
+    $hash_password = $user["hash_password"];
+    $user_lastname = $user["surname"];
+    $user_firstname = $user["firstname"];
+    $user_email = $_GET['email'];
 
-    if(isset($_POST["code"])
-      && $_POST["code"]==$_SESSION["create_acc_code"]
-      && mysqli_num_rows($query_email_check)==0
-      && isset($_SESSION["create_acc_firstname"])
-      && isset($_SESSION["create_acc_lastname"])
-      && isset($_SESSION["create_acc_email"])
-      && isset($_SESSION["create_acc_password"])) {
-
-
-
-      $query = "INSERT INTO users (user_firstname, user_lastname, user_email, user_password ) ";
-      $query .= "VALUES('{$firstname}', '{$lastname}', '{$email}', '{$password}')";
-      $create_user_query = mysqli_query($connection, $query);
-        echo "<div class='account-created-window'>
-          <h3>Welcome $firstname, Your account has been successfully created.</h3> <br>
-          <br>
-            <div class='img-container'>
-               <a href='index.php'>continue</a>
-              <img src='https://images.unsplash.com/photo-1615440321519-dda3d4b5ccab?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'>
-            </div>
-
-
-          </div>
-      ";
+    if (!$user || $user['is_verified']) {
+        die("Invalid or already verified!");
 
     }
 
-    elseif(isset($_POST["code"]) && $_POST["code"]==$_SESSION["create_acc_code"] && mysqli_num_rows($query_email_check)>=1) {
-      echo '<div class="alert alert-danger text-center" role="alert">
-      Account with this email already is registered.
-      </div>';
+    // Check token and expiry
+    if ($code === $user['verification_code'] ) {
 
+      // Activate account
+      $update_query = "UPDATE users_register SET is_verified = 1, verification_token = NULL, token_expiry = NULL WHERE id = ?";
+      $update_stmt = mysqli_prepare($connection, $update_query);
+      mysqli_stmt_bind_param($update_stmt, "i", $user['id']);
+      mysqli_stmt_execute($update_stmt);
+
+      // create account
+      // Prepare SQL query
+      $query2 = "INSERT INTO users
+      (user_email, user_firstname, user_lastname, user_password)
+      VALUES (?, ?, ?, ?)";
+
+      // Prepare the statement
+      $stmt_create_account = mysqli_prepare($connection, $query2);
+
+      // Bind parameters
+      mysqli_stmt_bind_param($stmt_create_account, "ssss",
+      $user_email,
+      $user_firstname,
+      $user_lastname,
+      $hash_password,
+      );
+      mysqli_stmt_execute($stmt_create_account);
+
+
+      send_account_created( $user_firstname, $email);
+
+      echo "<div class='account-created-window'>
+              <h3>Welcome, Your account has been successfully created.</h3>
+              <br>
+              <div class='img-container'>
+                  <a href='index.php'>Continue</a>
+                  <img src='https://images.unsplash.com/photo-1615440321519-dda3d4b5ccab?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'>
+              </div>
+            </div>";
     }
-    elseif(isset($_POST["code"]) && $_POST["code"]!=$_SESSION["create_acc_code"] && mysqli_num_rows($query_email_check)==0) {
 
-      echo '<div class="alert alert-danger text-center" role="alert">
-          provided code is incorrect
-          </div>';
-
-      }
-      else {
-        echo
-        '<div class="alert alert-danger text-center" role="alert">
-          wrong data
-          </div>';
-      }
-
+    else {
+        echo "Invalid or expired verification link.";
+    }
 }
-  ?>
+else
+{
+  echo '<h3>Activate account</h3>
+    <form action="" method="POST">
+        <input type="text" class="form form-control" name="code" placeholder="Enter activation code" required>
+        <button type="submit" name="create_account_activate" class="button-custom">Confirm</button>
+    </form>';
+}
+?>
 
 </section>
 
-
 <script src="js/pages/register.js"></script>
-<?php include("includes/footer.php") ?>
-
-<?php
+<?php include("includes/footer.php"); ?>

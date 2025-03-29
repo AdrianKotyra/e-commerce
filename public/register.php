@@ -2,7 +2,8 @@
 
 <section class="register-section">
     <div class="reg-wrapper">
-        <form class="reg-form flex-col" action="registration_email.php" method="POST">
+
+        <form class="reg-form flex-col" action="" method="POST">
             <h1>Create account</h1>
 
             <div class="login-col flex-col">

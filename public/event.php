@@ -43,18 +43,26 @@
 
 </section>
 <section class="sneaker_year_section wrapper">
+
 <div class="event-section section  sneaker_year_col">
+<div class="event-section-container3">
+    <div class="img-container-event ">
+    <img  src="<?php echo htmlspecialchars('imgs/products/'.$product_name . '/' . $product_img1); ?> "/>
+    </div>
+    <div class="event-desc-container flex-col">
 
-<h3 class="section-header">
-<a  target="_blank" href="products.php?show=<?php echo $product_id;?>&category=<?php echo $product_category;?>">
-<?php echo   $product_name;?>
-</a>
+        <div class="event-desc-details event-page-col event_col_3">
 
-</h3>
-<div class="event-section-container">
+        <h3><b><?php echo $product_name;?></b></h3>
+        <p>  <?php echo $product_desc;?></p>
+        <span class="trigger_col_3"></span>
 
-<img  src="<?php echo htmlspecialchars('imgs/products/'.$product_name . '/' . $product_img1); ?> "/>
+        </div>
 
+
+    </div>
+
+</div>
 </div>
 
 

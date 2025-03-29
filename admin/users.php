@@ -32,6 +32,9 @@
                 case 'edit_user';
                 include "includes/pages/users/edit_users.php";
                 break;
+                case 'change_password';
+                include "includes/pages/users/change_password.php";
+                break;
 
 
                 default: include "includes/pages/users/view_all_users.php";

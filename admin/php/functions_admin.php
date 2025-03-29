@@ -90,6 +90,7 @@ function delete_users(){
 
 
 
+
     }
 }
 function displayFiltersOrders(){
@@ -798,7 +799,7 @@ function validate_user_registration() {
         $user_firstname= trim($_POST["user_firstname"]);
         $user_lastname= trim($_POST["user_lastname"]);
         $user_password= trim($_POST["user_password"]) ;
-
+        $hashedPassword = password_hash($user_password, PASSWORD_BCRYPT);
         $user_email =trim($_POST["user_email"]) ;
 
 
@@ -2049,15 +2050,6 @@ function edit_ticket_times(){
     }
 }
 
-// function delete_user(){
-//     global $connection;
-//     if(isset($_GET["delete_user"])) {
-//         $user_to_be_deleted = $_GET["delete_user"];
-//         $query = "DELETE from users WHERE user_id={$user_to_be_deleted}";
-//         $delete_user = mysqli_query($connection, $query);
-//         header("location: users.php");
-//     }
-// }
 
 
 ?>

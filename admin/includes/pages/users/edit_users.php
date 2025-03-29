@@ -13,7 +13,6 @@
 
         $user_firstname= trim($_POST["user_firstname"]);
         $user_lastname= trim($_POST["user_lastname"]);
-        $user_password= trim($_POST["user_password"]) ;
         $user_email =trim($_POST["user_email"]) ;
         $user_city= trim($_POST["user_city"]);
         $user_postcode= trim($_POST["user_postcode"]) ;
@@ -25,7 +24,6 @@
 
         $query_update = "UPDATE users SET ";
         $query_update .= "user_firstname = '{$user_firstname}', ";
-        $query_update .= "user_password = '{$user_password}', ";
         $query_update .= "user_lastname = '{$user_lastname}', ";
         $query_update .= "user_email = '{$user_email}', ";
         $query_update .= "user_city = '{$user_city}', ";
@@ -57,7 +55,7 @@
 
             $user_firstname= $row["user_firstname"];
             $user_lastname= $row["user_lastname"];
-            $user_password= $row["user_password"] ;
+
             $user_email =$row["user_email"] ;
             $user_city= $row["user_city"];
             $user_postcode=$row["user_postcode"] ;
@@ -87,10 +85,7 @@
         <label for="user_email">User Email</label>
         <input required type="text" class="form-control" name="user_email"  value="<?php echo $user_email;?>">
     </div>
-    <div class="form-group">
-        <label for="user_password">User password</label>
-        <input required type="text" class="form-control" name="user_password"  value="<?php echo $user_password;?>">
-    </div>
+
 
     <div class="form-group">
         <label for="user_address">User address</label>
@@ -114,9 +109,17 @@
 
 
 <div class="form-group">
-    <input class="btn btn-primary" type="submit" name="edit_user" value="edit user">
+    <input class="btn btn-primary" type="submit" name="edit_user" value="Update user details">
 </div>
 
 </form>
+<div class="form-group">
+    <a href="users.php?source=change_password&user_id=4">
+
+    <input class="btn btn-primary" type="submit" name="change_password" value="change password">
+
+    </a>
+
+</div>
 
 </div>
