@@ -28,7 +28,7 @@
   --category-header: 52px;
 }
 .banner-promo {
-
+    z-index: 4;
     position: relative;
     font-size: 0.85rem;
     height: 24px;
@@ -274,7 +274,7 @@
     margin: auto;
     a{
       z-index: 2;
-      font-size: var(--medium);
+      font-size: 1.6rem;
       text-align: center;
       color: white;
       position: absolute;
@@ -463,6 +463,7 @@
       background-color: var(--light-gray);
     }
     .cross-gruides {
+      color: black;
       cursor: pointer;
       position: absolute;
       right: 12px;
@@ -673,10 +674,11 @@
 }
 .account-info {
   .header-title-small {
+    color: var(--ui-main-text);
 
     padding: 16px;
     margin-bottom: 36px;
-    background-color: var(--light-gray);
+    background-color: var(--ui-product-card)
   }
 }
 .details-account-col {
@@ -695,7 +697,7 @@
   font-size: var(--header-section-small) !important;
 }
 .user-info-header {
-  background-color: var(--light-gray);
+  background-color: var(--ui-product-card);
   h2 {
     width: 80%;
     text-transform: uppercase;
@@ -1599,6 +1601,7 @@ $animationSpeed: 40s;
 }
 .table_guides {
   display: none;
+  color: black;
 }
 .table_guides_active {
   display: block !important;
@@ -2023,11 +2026,17 @@ width: 100%;
     height: 100px;
   }
   button {
-
+    color: white;
+    background-color: black;
     margin: 0  auto;
   }
 }
 .product_order_user_cart {
+  color: var(--ui-main-text);
+  margin: 10px;
+
+  padding: 10px;
+  background-color: var(--ui-product-card);
   .products_orders_container {
     display: grid;
     justify-content: center;
@@ -2037,12 +2046,9 @@ width: 100%;
   a{
 
 
-    color: black;
-  }
-  margin: 10px;
 
-  padding: 10px;
-  background-color: var(--light-gray);
+  }
+
 
   .img_order_col {
     img{
@@ -2198,7 +2204,10 @@ width: 100%;
 }
 .user-account-header {
   padding-top: 50px;
-
+  background-color: var(--ui-product-card) !important;
+   .header-title {
+    color: var(--ui-main-text);
+   }
 }
 .gender-icon {
   font-size: 1.2rem;
@@ -2787,6 +2796,29 @@ body {
 }
 .account-details {
   color: black;
+  .account-mobile-menu {
+    display: none;
+    padding: 12px ;
+
+    background-color: var(--ui-product-card);
+
+    h1{
+      margin: 0;
+      font-size: 1.2rem;
+      color: var(--ui-main-text);
+    }
+    .accordion-button {
+      width: 100%;
+      position: relative;
+    }
+    img{
+      filter: var(--ui-filter);
+      right: 0;
+      position: absolute;
+      width: 20px;
+      height: 20px;
+    }
+  }
 }
 .grid-account-details {
   gap: 10px;
@@ -3619,10 +3651,10 @@ footer .under-footer a:hover {
 }
 .grid-link-col {
   position: relative;
-  background-color: var(--light-gray);
+  background-color: var(--ui-product-card);
   height: 200px;
   a {
-    color: black;
+    color: var(--ui-main-text);
     text-decoration: none;
     position: absolute;
     text-align: center;
@@ -3872,6 +3904,7 @@ section {
   padding: 20px 0;
 }
 .register-section-email {
+  text-align: center;
   gap: 20px;
   flex-direction: column;
   width: 100%;
@@ -3880,8 +3913,14 @@ section {
   justify-content: center;
   align-items: center;
   display: flex;
+  .form-control {
+    text-align: center;
+  }
   p{
     font-size: var(--medium);
+  }
+  button {
+    margin-top: 20px;
   }
 }
 
@@ -3973,7 +4012,7 @@ section {
   .user-account-header {
 
     .header-title {
-      color: black;
+
       padding-left: 14%;
     padding-right:  14%;
     }
@@ -3990,6 +4029,15 @@ section {
   .section-sneaker-month img {
     height: 40vw;
   }
+  .header-title-small {
+    display: none;
+  }
+  .account-details {
+    .account-mobile-menu {
+      display: grid;
+    }
+  }
+
   .cart-shopping {
     width: 25px;
     height: 25px;
@@ -4257,6 +4305,17 @@ section {
   }
 }
 @media screen and (max-width: 767px) {
+  .grid-account-details {
+
+    grid-template-columns: repeat(1, 1fr);
+    .city-input {
+      flex-direction: column !important;
+
+    }
+    .city-input >* {
+      margin: 12px 0;
+    }
+  }
   .event-section-container {
     flex-direction: column-reverse;
   }

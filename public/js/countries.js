@@ -39,11 +39,14 @@ function populateCountries(countryElementId, userCountryAjax) {
 
 
     var countryElement = document.getElementById(countryElementId);
-    countryElement.length = 0;
-    countryElement.options[0] = new Option(`${userCountryAjax}`);
-    countryElement.selectedIndex = 0;
-    for (var i = 0; i < country_arr.length; i++) {
-        countryElement.options[countryElement.length] = new Option(country_arr[i], country_arr[i]);
+    if(countryElement) {
+        countryElement.length = 0;
+        countryElement.options[0] = new Option(`${userCountryAjax}`);
+        countryElement.selectedIndex = 0;
+        for (var i = 0; i < country_arr.length; i++) {
+            countryElement.options[countryElement.length] = new Option(country_arr[i], country_arr[i]);
+        }
+
     }
 
 }

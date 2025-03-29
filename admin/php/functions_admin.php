@@ -869,7 +869,7 @@ function validate_user_registration() {
         if(empty($errors)) {
 
             $query = "INSERT INTO users (user_firstname, user_lastname, user_email, user_password, user_address, user_country, user_postcode, user_city ) ";
-            $query .= "VALUES('{$user_firstname}', '{$user_lastname}', '{$user_email}', '{$user_password}', '{$user_address}', '{$user_country}', '{$user_postcode}', '{$user_city}')";
+            $query .= "VALUES('{$user_firstname}', '{$user_lastname}', '{$user_email}', '{$hashedPassword}', '{$user_address}', '{$user_country}', '{$user_postcode}', '{$user_city}')";
 
 
             $create_user_query = mysqli_query($connection, $query);

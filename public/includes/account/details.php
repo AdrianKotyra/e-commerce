@@ -1,4 +1,5 @@
 <?php
+
 if (isset($_POST["update-account"])) {
     $message = account_update_details();
 }
@@ -17,9 +18,9 @@ if (isset($_POST["update-account"])) {
 
 ?>
 
+    <?php echo nav_account("DETAILS")?>
 
-<section class="account-details account-info">
-    <h1 class="header-title-small" >MY DETAILS</h1>
+
     <form action="account.php?show=details" id="update-account-form" method="POST">
     <div class="grid-account-details">
         <div class="details-account-col">

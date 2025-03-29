@@ -717,6 +717,66 @@ function displayCategoryProducts($type_products) {
     return;
 }
 
+    function nav_account($section_name){
+    $account_navigation = '
+      <section class="account-details account-info">
+
+    <h1 class="header-title-small" >'.$section_name.'</h1>
+    <section class="account-details account-info">
+    <div class="accordion-item account-mobile-menu">
+            <h2 class="accordion-header" id="desc2">
+                <div class="accordion-button " type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                    <h1 class="header-title-small-mobile " >'.$section_name.'</h1>
+                    <img src="./imgs/icons/arrow-down-accordian.svg" alt="">
+                </div>
+            </h2>
+            <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="desc2" data-bs-parent="#accordionExample">
+                <div class="accordion-body faq-prod-desc">
+                <div class="grid-setting-links">
+                <div class="grid-link-col">
+                    <a href="account.php?show=orders">
+                        <div class="grid-link-icon">
+                        <i   i class="fa-regular fa-credit-card"></i>
+                        </div>
+                        <span> My Orders</span>
+                    </a>
+                </div>
+                <div class="grid-link-col">
+                    <a href="account.php?show=details">
+                        <div class="grid-link-icon">
+                            <i class="fa-regular fa-user"></i>
+                        </div>
+                        <span>My Details</span>
+                    </a>
+                </div>
+                <div class="grid-link-col">
+                    <a href="account.php?show=contact">
+                        <div class="grid-link-icon">
+                            <i class="fa-regular fa-comment"></i>
+                        </div>
+                        <span>Contact us</span>
+                    </a>
+                </div>
+                <div class="grid-link-col">
+                    <a href="account.php?show=faq">
+                        <div class="grid-link-icon">
+                            <i class="fa-regular fa-circle-question"></i>
+                        </div>
+                        <span>FAQ</span>
+                    </a>
+                </div>
+            </div>
+                </div>
+            </div>
+        </div>
+
+
+    </section>
+    ';
+    return $account_navigation;
+
+}
+
 
 function generateToken() {
     return bin2hex(random_bytes(32)); // Secure random 64-character token
