@@ -47,6 +47,7 @@ class Session{
 $session = new Session();
 if ($session->signed_in===true) {
     $user = new User();
+
     $user->create_user($session->user_id);
 
 

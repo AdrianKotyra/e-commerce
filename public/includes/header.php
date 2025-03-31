@@ -44,6 +44,7 @@ include "php/init.php"?>
     <script src="https://cdn.jsdelivr.net/npm/@accessible360/accessible-slick@1.0.1/slick/slick.min.js"></script>
 </head>
 
+
 <body>
 <!-- --------------COOKIES----------- -->
 
@@ -70,6 +71,8 @@ include "php/init.php"?>
 </div>
 <!-- --------------BASKET----------- -->
 <?php include("includes/basket-user.php") ?>
+<!-- --------------WISHLIST----------- -->
+<?php include("includes/wishlist-user.php") ?>
 <!-- --------------LOGIN----------- -->
 <?php include("includes/login-user.php") ?>
 <!-- --------------BLACK NAV FOR CHECKOUT----------- -->
@@ -80,12 +83,8 @@ include("includes/nav.php") : include("includes/nav_checkout.php");
 ?>
 <?php include("includes/nav-mobile.php") ?>
 
-<!-- <div class="mobile-quick-add">
-
-</div> -->
 
 
-</div>
 
 
 

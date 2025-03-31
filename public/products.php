@@ -22,6 +22,23 @@
 
         $sizes_html = generate_sizes_html($serch_product, "span");
         $chosen_grid= generate_product_grid_sizes($serch_product);
+
+        $wishlist_check = new wishlist();
+
+        $product_add_to_wishlist = $wishlist_check->check_if_product_added($product_id);
+
+        if($product_add_to_wishlist==1) {
+            $favorite_icon=  '
+            <img  class="prod-fav-label-added" src="./imgs/icons/heart-solid.svg">';
+
+        }
+        else {
+            $favorite_icon = '<img prod-id='.$product_id.' class="prod-fav-label" src="./imgs/icons/heart-regular.svg">';
+
+
+        }
+
+
 }
 
 
@@ -49,7 +66,12 @@
                 ?>
 
             </p>
-            <h1  class="prod-name"><?php echo  $product_name;?></h1>
+
+            <div class="product-page-container-title ">
+                <h1  class="prod-name"><?php echo  $product_name;?></h1>
+                <?php echo $favorite_icon;?>
+            </div>
+
             <span class="prod-price"><b>£<?php echo  $product_price;?></b></span>
             <span class="prod-desc"><?php echo  $product_desc;?></span>
             <div class="product-categories flex-row">

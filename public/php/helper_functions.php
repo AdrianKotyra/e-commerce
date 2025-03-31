@@ -1256,44 +1256,46 @@ function login_User_link(){
     global $user;
     if ($session->signed_in===false) {
         echo '
+        <div class="nav-link-wrapper">
             <a class="user-container-profile login-icon login-trigger">
+                <span class="login-nav-link login-trigger wide-screen-nav-link-desc">Log in</span>
                 <i class="fa-regular fa-user nav-icon"></i>
             </a>
-            <div class="login-nav-link login-trigger">
-                <span class="login-nav">
-                    LOG IN
-                </span>
-
-            </div>
 
 
-            ';
+        </div>';
     }
     if ($session->signed_in===true && $user-> user_status=="admin") {
         echo '
+        <div class="nav-link-wrapper">
         <a href="../admin/dashboard.php" class="user-container-profile login-icon">
             <i class="fa-regular fa-user nav-icon"></i>
         </a>
         <a class="login-nav-link" href="../admin/dashboard.php">
-            <span class="login-nav">
+            <span class="login-nav wide-screen-nav-link-desc">
                 ADMIN
             </span>
 
-        </a>';
+        </a>
+                </div>
+        ';
     }
 
 
     if ($session->signed_in===true && $user-> user_status=="member") {
         echo '
-        <a href="account.php" class="user-container-profile login-icon">
-            <i class="fa-regular fa-user nav-icon"></i>
-        </a>
+            <div class="nav-link-wrapper">
+
         <a class="login-nav-link" href="account.php">
-            <span class="login-nav">
+            <span class="login-nav wide-screen-nav-link-desc">
                 '.$user-> user_firstname.'
             </span>
 
-        </a>';
+        </a>
+           <a href="account.php" class="user-container-profile login-icon">
+            <i class="fa-regular fa-user nav-icon"></i>
+        </a>
+        </div>';
     }
 }
 

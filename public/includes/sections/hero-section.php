@@ -25,10 +25,10 @@
 
 
     ?>
-<div class="main-banner" id="top">
+<div class="main-banner wrapper" id="top">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-lg-6">
+                <div class="col-lg-6 ">
                     <div class="left-content">
                         <div class="thumb">
                             <div class="inner-content">
@@ -43,10 +43,10 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-6">
+                <div class="col-lg-6 col-md-12">
                     <div class="right-content">
                         <div class="row">
-                            <div class="col-lg-6">
+                            <div class="col-lg-6 col-md-6">
                                 <div class="right-first-image">
                                     <div class="thumb">
                                         <div class="inner-content ">
@@ -54,7 +54,7 @@
                                             <span>Best Sneakers For Women</span>
                                         </div>
                                         <a href="index.php?category=female">
-                                        <div class="category_hero_female hover-content  <?php if($cat== "female" ) { echo 'active_category'; } ?>">
+                                        <div class="category_hero_female hover-content ">
 
                                             <div class="inner">
                                                 <h4>Women</h4>
@@ -70,7 +70,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-lg-6">
+                            <div class="col-lg-6 col-md-6">
                                 <div class="right-first-image">
                                     <div class="thumb">
                                         <div class="inner-content">
@@ -78,7 +78,7 @@
                                             <span>Best Sneakers For Men</span>
                                         </div>
                                         <a href="index.php?category=male">
-                                        <div class="category_hero_man hover-content  <?php if($cat== "male" ) { echo 'active_category'; } ?>">
+                                        <div class="category_hero_man hover-content ">
                                             <div class="inner">
                                                 <h4>Men</h4>
                                                 <p>Best Sneakers For Men </p>
@@ -92,7 +92,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-lg-6">
+                            <div class="col-lg-6 col-md-6">
                                 <div class="right-first-image">
                                     <div class="thumb">
                                         <div class="inner-content">
@@ -100,7 +100,7 @@
                                             <span>Best Sneakers for men and women</span>
                                         </div>
                                         <a href="index.php?category=unisex">
-                                        <div class="category_hero_unisex hover-content  <?php if($cat== "unisex" ) { echo 'active_category'; } ?>">
+                                        <div class="category_hero_unisex hover-content  ">
                                             <div class="inner">
                                                 <h4>Unisex</h4>
                                                 <p>Best Sneakers for men and women</p>
@@ -114,7 +114,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-lg-6">
+                            <div class="col-lg-6 col-md-6">
                                 <div class="right-first-image">
                                     <div class="thumb">
                                         <div class="inner-content">
@@ -122,7 +122,7 @@
                                             <span>Best Sneakers for everyone</span>
                                         </div>
                                         <a href="index.php">
-                                        <div class="hover-content  <?php if($cat== "" ) { echo 'active_category'; } ?>">
+                                        <div class="hover-content  ">
                                             <div class="inner">
                                                 <h4>All</h4>
                                                 <p>Best Sneakers for everyone</p>
@@ -160,9 +160,7 @@
 		<div class="slide">
         <img loading="lazy" src="../public/imgs/companies/img (6).svg" height="100" width="250" alt="" />
 		</div>
-		<div class="slide">
-        <img loading="lazy" src="../public/imgs/companies/img (7).svg" height="100" width="250" alt="" />
-		</div>
+
 		<div class="slide">
         <img loading="lazy" src="../public/imgs/companies/img (8).svg" height="100" width="250" alt="" />
 		</div>

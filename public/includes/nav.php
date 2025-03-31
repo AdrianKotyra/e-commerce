@@ -54,10 +54,18 @@
 
         <div class="login-container nav-col flex-row">
 
-
+            <!-- LOGIN -->
             <?php login_User_link()?>
-            <div class="backet-container">
-            <?php $basket_number = $basket->getNumber(); ?>
+            <!-- WISHLIST -->
+
+            <div class="wish-list-nav nav-link-wrapper">
+                <span  class="wide-screen-nav-link-desc">Favorites</span>
+                <i class="fa-regular fa-heart"></i>
+            </div>
+            <!-- BASKET -->
+            <div class="backet-container nav-link-wrapper">
+                <span class="wide-screen-nav-link-desc">Shopping cart</span>
+                <?php $basket_number = $basket->getNumber(); ?>
                 <span class="basket-number <?php if ($basket_number > 0) echo 'basket-active'; ?>">
                     <?php if ($basket_number > 0) echo $basket_number; ?>
                 </span>
@@ -65,8 +73,8 @@
                 <img class="cart-shopping nav-icon-img"src="./imgs/icons/cart.svg" alt="">
             </div>
             <div class="dark-mode-container">
-            <input type="checkbox" id="dark-mode-toggle" />
-            <label for="dark-mode-toggle"  class="toggle"></label>
+                <input type="checkbox" id="dark-mode-toggle" />
+                <label for="dark-mode-toggle"  class="toggle"></label>
             </div>
             <script>
 
@@ -107,6 +115,8 @@
         </div>
         <div class="wrapper">
         <hr>
+        <!-- ---------------------men extra nav--------------------- -->
+
         <div class="nav-extra-container men-extra-nav flex-col">
             <div class="flex-row nav-extra-content">
                 <div class="nav_cats_container">
@@ -135,6 +145,7 @@
 
 
         </div>
+        <!-- ---------------------female extra nav--------------------- -->
 
 
         <div class="nav-extra-container female-extra-nav flex-col">
@@ -165,6 +176,8 @@
 
 
         </div>
+
+        <!-- ---------------------uni sex extra nav--------------------- -->
         <div class="nav-extra-container uni-extra-nav flex-col">
             <div class="flex-row nav-extra-content">
                 <div class="nav_cats_container">
@@ -196,20 +209,21 @@
 
         </div>
     </div>
-    <div class="searcher-mobile wrapper inactive-search-bar" id="search-box-nav">
 
-        <div class="searcher-mobile-container">
-            <i class="fa-solid fa-magnifying-glass icon-mobile-search nav-icon"></i>
-
-            <form action="search.php" method="GET" class="flex-row">
-                <input type="search" name="search" placeholder="search product" >
-
-            </form>
-            <i class="fa-solid fa-xmark close-search-nav nav-icon"></i>
-        </div>
-
-
-
-
-    </div>
 </nav>
+<div class="searcher-mobile  inactive-search-bar" id="search-box-nav">
+
+    <div class="searcher-mobile-container wrapper">
+        <i class="fa-solid fa-magnifying-glass icon-mobile-search nav-icon"></i>
+
+        <form action="search.php" method="GET" class="flex-row">
+            <input type="search" name="search" placeholder="search product" >
+
+        </form>
+        <i class="fa-solid fa-xmark close-search-nav nav-icon"></i>
+    </div>
+
+
+
+
+</div>

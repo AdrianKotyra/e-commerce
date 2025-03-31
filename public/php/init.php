@@ -11,6 +11,7 @@ require_once("session.php");
 require_once("post.php");
 require_once("comment.php");
 require_once("order.php");
+require_once("wishlist.php");
 require_once("helper_functions.php");
 require_once("config.php");
 

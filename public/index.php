@@ -1,6 +1,6 @@
 <?php include("includes/header.php") ?>
 
-<div class="sections">
+
 
     <?php include("includes/sections/hero-section.php") ?>
 

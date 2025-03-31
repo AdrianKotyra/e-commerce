@@ -30,7 +30,7 @@
             <hr>
             <a href="account.php?show=details">My Details</a>
             <hr>
-            <a href="account.php?show=contact">Contact us</a>
+            <a href="account.php?show=wishlist">My Wishlist</a>
             <hr>
             <a href="account.php?show=faq">FAQ</a>
             <hr>
@@ -66,7 +66,9 @@
                 case 'faq';
                 include "includes/account/faq.php";
                 break;
-
+                case 'wishlist';
+                include "includes/account/wishlist.php";
+                break;
                 default: include("includes/account/view_account.php");
                 break;
 
