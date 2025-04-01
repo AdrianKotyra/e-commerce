@@ -7,7 +7,7 @@
     </span>
 
 </div>
-<nav>
+<nav >
 
     <?php
         if(isset($_GET["category"])) {
@@ -18,103 +18,136 @@
 
 
     ?>
-    <div class="nav_container flex-row wrapper">
-        <div class="nav-categories nav-col flex-row">
-            <div class="hamb-container">
-                <i class="fa-solid fa-bars nav-icon"></i>
+    <div class="flex-col nav-top-container wrapper ">
+        <div class="nav_container flex-row">
+            <div class="nav-categories nav-col flex-row">
+                <div class="hamb-container">
+                    <i class="fa-solid fa-bars nav-icon"></i>
+
+                </div>
+                <div class="cats-nav-container-extra-nav flex-row extra-nav-trigger">
+                    <a id="cat_male"href="index.php?category=male" class="cat <?php if($cat== "male" ) { echo 'active_nav_link_male'; } ?>">MENS</a>
+                    <a id="cat_female"href="index.php?category=female" class="cat <?php if($cat== "female") { echo 'active_nav_link_female'; } ?>">WOMENS</a>
+                    <a id="cat_unisex"href="index.php?category=unisex" class="cat <?php if($cat== "unisex") { echo 'active_nav_link_unisex'; } ?>">UNISEX</a>
+                    <a id="cat_brands"href="search.php?search=&category=mixed&size=all&type=all&brand=all" class="cat">BRANDS</a>
+                </div>
+
+
+
+                <div class="search-box-nav ">
+                <i class="fa-solid fa-magnifying-glass search-trigger nav-icon"></i>
+
+
+
+                </div>
+
+
 
             </div>
-            <div class="cats-nav-container-extra-nav flex-row extra-nav-trigger">
-                <a id="cat_male"href="index.php?category=male" class="cat <?php if($cat== "male" ) { echo 'active_nav_link_male'; } ?>">MENS</a>
-                <a id="cat_female"href="index.php?category=female" class="cat <?php if($cat== "female") { echo 'active_nav_link_female'; } ?>">WOMENS</a>
-                <a id="cat_unisex"href="index.php?category=unisex" class="cat <?php if($cat== "unisex") { echo 'active_nav_link_unisex'; } ?>">UNISEX</a>
-            </div>
 
+            <div class="logo-nav nav-col">
 
-
-            <div class="search-box-nav ">
-            <i class="fa-solid fa-magnifying-glass search-trigger nav-icon"></i>
-
-
+                <a href="index.php" class=" flex-row">
+                <img src="./imgs/icons/black-logo.png" alt="">
+                    <p class="logo-name">I-Top Sneakers </p>
+                </a>
 
             </div>
 
+            <div class="login-container nav-col flex-row">
+
+                <!-- LOGIN -->
+                <?php login_User_link()?>
+                <!-- WISHLIST -->
+
+                <div class="wish-list-nav nav-link-wrapper">
+                    <span  class="wide-screen-nav-link-desc">Favorites</span>
+                    <i class="fa-regular fa-heart"></i>
+                </div>
+                <!-- BASKET -->
+                <div class="backet-container nav-link-wrapper">
+                    <span class="wide-screen-nav-link-desc">Shopping cart</span>
+                    <?php $basket_number = $basket->getNumber(); ?>
+                    <span class="basket-number <?php if ($basket_number > 0) echo 'basket-active'; ?>">
+                        <?php if ($basket_number > 0) echo $basket_number; ?>
+                    </span>
+
+                    <img class="cart-shopping nav-icon-img"src="./imgs/icons/cart.svg" alt="">
+                </div>
+                <div class="dark-mode-container">
+                    <input type="checkbox" id="dark-mode-toggle" />
+                    <label for="dark-mode-toggle"  class="toggle"></label>
+                </div>
+                <script>
 
 
-        </div>
+                    function getCookie(name) {
+                        let match = document.cookie.match(new RegExp("(^| )" + name + "=([^;]+)"));
+                        return match ? decodeURIComponent(match[2]) : null;
+                        }
+                    function check_status(){
+                        const inputDarkMode = document.querySelector("#dark-mode-toggle");
 
-        <div class="logo-nav nav-col">
+                        if (getCookie("darkmode") === "false") {
 
-            <a href="index.php" class=" flex-row">
-            <img src="./imgs/icons/black-logo.png" alt="">
-                <p class="logo-name">I-Top Sneakers </p>
-            </a>
-
-        </div>
-
-        <div class="login-container nav-col flex-row">
-
-            <!-- LOGIN -->
-            <?php login_User_link()?>
-            <!-- WISHLIST -->
-
-            <div class="wish-list-nav nav-link-wrapper">
-                <span  class="wide-screen-nav-link-desc">Favorites</span>
-                <i class="fa-regular fa-heart"></i>
-            </div>
-            <!-- BASKET -->
-            <div class="backet-container nav-link-wrapper">
-                <span class="wide-screen-nav-link-desc">Shopping cart</span>
-                <?php $basket_number = $basket->getNumber(); ?>
-                <span class="basket-number <?php if ($basket_number > 0) echo 'basket-active'; ?>">
-                    <?php if ($basket_number > 0) echo $basket_number; ?>
-                </span>
-
-                <img class="cart-shopping nav-icon-img"src="./imgs/icons/cart.svg" alt="">
-            </div>
-            <div class="dark-mode-container">
-                <input type="checkbox" id="dark-mode-toggle" />
-                <label for="dark-mode-toggle"  class="toggle"></label>
-            </div>
-            <script>
+                        inputDarkMode.checked = false;
+                        } else if (getCookie("darkmode") === "true") {
+                            inputDarkMode.checked = true;
+                        }
 
 
-                function getCookie(name) {
-                    let match = document.cookie.match(new RegExp("(^| )" + name + "=([^;]+)"));
-                    return match ? decodeURIComponent(match[2]) : null;
+
+
+
                     }
-                function check_status(){
-                    const inputDarkMode = document.querySelector("#dark-mode-toggle");
+                    check_status()
 
-                    if (getCookie("darkmode") === "false") {
-
-                    inputDarkMode.checked = false;
-                    } else if (getCookie("darkmode") === "true") {
-                        inputDarkMode.checked = true;
-                    }
+                </script>
 
 
 
-
-
-                }
-                check_status()
-
-            </script>
-
-
+            </div>
 
         </div>
+
 
 
     </div>
 
     <div class="nav-extra  extra-nav-trigger">
-        <div class="nav-extra-top">
 
-        </div>
         <div class="wrapper">
         <hr>
+          <!-- ---------------------men extra BRANDS--------------------- -->
+
+          <div class="nav-extra-container brand-extra-nav flex-col">
+            <div class="flex-row nav-extra-content">
+                    <div class="nav_cats_container">
+
+                        <span class="nav_cats_header">Shop by Brands</span>
+                        <div class="nav_cats_grid">
+                            <?php display_nav_brands()?>
+                        </div>
+                    </div>
+
+                    <div class="nav_cats_img">
+                        <p>
+                            Brands
+                        </p>
+                        <img src="./imgs/nav/brands/img1.jpg" alt="">
+                    </div>
+                </div>
+                <hr>
+                <div class="nav-extra-main-links flex-row">
+                    <a href="news_all.php">Blog</a>
+                    <a href="contact.php">Contact</a>
+                    <a href="faq.php">FAQ</a>
+                    <a href="about.php">About us</a>
+                    <a href="delivery_returns.php">Shipping & Returns</a>
+                </div>
+
+
+        </div>
         <!-- ---------------------men extra nav--------------------- -->
 
         <div class="nav-extra-container men-extra-nav flex-col">

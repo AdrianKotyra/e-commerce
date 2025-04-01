@@ -35,6 +35,13 @@
     else {
         $type = 'all';
     }
+    if(isset($_GET["brand"])) {
+        $brand_id = $_GET["brand"];
+
+    }
+    else {
+        $brand_id = 'all';
+    }
     #
 
 ?>
@@ -122,6 +129,22 @@
 
                 <div class="dropdown-content types-dropdown">
                     <?php echo get_products_types_select($type);?>
+                    <button type="submit" class="button-custom">APPLY</button>
+                </div>
+
+        </div>
+
+    </div>
+    <div class="filter-col flex-row">
+        <div class="container-cat-filter flex-row">
+            <span>Brands</span>
+            <i class="fa-solid fa-angle-down"></i>
+        </div>
+
+        <div class="filter-dropdown inactive-dropdown-filter">
+
+                <div class="dropdown-content">
+                    <?php echo displayBrandsSelect($brand_id);?>
                     <button type="submit" class="button-custom">APPLY</button>
                 </div>
 

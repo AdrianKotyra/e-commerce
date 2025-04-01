@@ -2,10 +2,13 @@
 if (isset($_POST['create_product'])) {
     global $connection;
 
-    $product_name  = $_POST['product_name'];
-    $product_price = $_POST['product_price'];
-    $product_desc  = $_POST['product_desc'];
-    $category  = $_POST['category'];
+
+
+    $product_name  = mysqli_real_escape_string($connection, $_POST['product_name']);
+    $product_price = mysqli_real_escape_string($connection, $_POST['product_price']);
+    $product_desc  = mysqli_real_escape_string($connection, $_POST['product_desc']);
+    $category      = mysqli_real_escape_string($connection, $_POST['category']);
+    $brand  = mysqli_real_escape_string($connection, $_POST['brand']);
     $types = $_POST['types'] ?? []; // Array of selected types
 
     // Paths for default image and product directory
@@ -60,7 +63,7 @@ if (isset($_POST['create_product'])) {
     }
 
     // Insert prodcut
-    if (!empty($types) && isset($_POST['category']) && isset($_POST['product_name'])&& isset($_POST['product_price'])&& isset($_POST['product_desc'])) {
+    if (!empty($types) && isset($_POST['category']) && isset($_POST['product_name'])&& isset($_POST['product_price'])&& isset($_POST['product_desc'])&& isset($_POST['brand']) ) {
     $query = "INSERT INTO products (product_name, product_price, product_img, product_img2, product_img3, product_img4, product_desc)
     VALUES ('$product_name', '$product_price', '$post_image1', '$post_image2', '$post_image3', '$post_image4', '$product_desc')";
     $create_product_query = mysqli_query($connection, $query);
@@ -78,11 +81,17 @@ if (isset($_POST['create_product'])) {
 
 
     // Insert types
-
     foreach ($types as $type_id) {
         $query3 = "INSERT INTO rel_types_products (type_id, product_id) VALUES ('$type_id', '$last_inserted_id')";
         mysqli_query($connection, $query3);
     }
+
+
+    // insert brand
+    $query3 = "INSERT INTO rel_products_brands (brand_id, product_id)
+    VALUES ('$brand', '$last_inserted_id')";
+
+    $create_brand_query = mysqli_query($connection, $query3);
 
     alert_text("Product has been added", "products.php");
 
@@ -91,7 +100,6 @@ if (isset($_POST['create_product'])) {
     else {
         alert_text_warning("Filled up all the fields");
     }
-
 
 
 
@@ -147,8 +155,14 @@ if (isset($_POST['create_product'])) {
         <option value="3" type="radio" name="category">unisex</option>
 
     </select>
-    </div>
 
+    </div>
+    <div class="form-group">
+        <select name="brand">
+            <?php display_admin_brands();?>
+
+        </select>
+    </div>
     <div class="form-group">
     <label for="Type">Type</label>
     <br>

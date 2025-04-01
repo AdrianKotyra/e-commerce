@@ -16,7 +16,7 @@
 
 <section class="section-sneaker-month wrapper" id="explore">
 
-            <div class="row">
+            <div class="row ">
                 <div class="col-lg-6">
                     <div class="left-content">
                         <h2>Sneaker of the month</h2>

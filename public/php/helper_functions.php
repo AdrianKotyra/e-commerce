@@ -515,6 +515,38 @@ function displaySizesSelect($sizeGET){
     return $sizes;
 }
 
+function displayBrandsSelect($brandGET) {
+    global $database;
+    $brands_selects = '';
+    $list_brands = [];
+
+    // Fetch all brands
+    $result_sizes = $database->query_array("SELECT * FROM brands ORDER BY id");
+
+    if ($result_sizes) {
+        foreach ($result_sizes as $row) {
+            $list_brands[] = [
+                "brand_id" => $row["id"],
+                "brand_name" => $row["brand_name"]
+            ];
+        }
+    }
+
+    // Default "all" option
+    $checked = ($brandGET == "all") ? "checked" : '';
+    $brands_selects .= '<p class="flex-row size-radio"><input ' . $checked . ' name="brand" type="radio" value="all">All</p>';
+
+    // Generate radio buttons for brands
+    foreach ($list_brands as $brand) {
+        $checked = ($brandGET == $brand["brand_id"]) ? "checked" : '';
+        $brands_selects .= '<p class="flex-row size-radio">
+                                <input ' . $checked . ' name="brand" type="radio" value="' . $brand["brand_id"] . '">' . htmlspecialchars($brand["brand_name"]) . '
+                            </p>';
+    }
+
+    return $brands_selects;
+}
+
 
 function displayFilters(){
     if(isset($_GET["filter"])) {
@@ -564,7 +596,13 @@ function displaySearchedProducts() {
                     $include_product = false;
                 }
             }
-
+            // Filter by brand if set
+            if (isset($_GET["brand"])&& $_GET["brand"] != "all" ){
+                $brands_products_ids = listBrands();
+                if (!in_array($prod_id, $brands_products_ids)) {
+                    $include_product = false;
+                }
+            }
             // Filter by type if set
             if ($include_product && isset($_GET["type"]) && $_GET["type"] != "all") {
                 $list_of_products_ids_in_type = get_Products_list_ids_by_type_name();
@@ -658,7 +696,13 @@ function displayCategoryProducts($type_products) {
                 }
             }
 
-
+            // Filter by brand if set
+            if (isset($_GET["brand"])&& $_GET["brand"] != "all" ){
+                $brands_products_ids = listBrands();
+                if (!in_array($prod_id, $brands_products_ids)) {
+                    $include_product = false;
+                }
+            }
             // Filter by size if set
             if ($include_product && isset($_GET["size"]) && $_GET["size"] != "all") {
                 $list_of_products_ids_in_size = get_Products_list_ids_by_size();
@@ -983,6 +1027,27 @@ function listenCategory(){
     }
     return  $prod_list_category;
 }
+
+// create list of products ids based on brands
+function listBrands(){
+
+    if(isset($_GET["brand"])){
+        global $connection;
+        $brand_id = $_GET["brand"];
+        $prod_list_brands = [];
+        $query_select_cat = "SELECT product_id FROM rel_products_brands WHERE brand_id = '$brand_id '";
+        $select_products_ids = mysqli_query($connection, $query_select_cat);
+        while ($row = mysqli_fetch_assoc($select_products_ids)) {
+            $product_id = $row["product_id"];
+
+            $prod_list_brands[]= $product_id;
+
+
+        }
+
+    }
+    return  $prod_list_brands;
+}
 // create list of products ids based on GET type
 function get_Products_list_ids_by_type_name() {
     if(isset($_GET["type"])) {
@@ -1158,10 +1223,11 @@ function displayNewest() {
                     $product_new = new Product();
                     $product_new->create_product($prod_id);
                     $name = $product_new->product_name;
+                    $img1 = $product_new->product_img;
                     $output .=
                     '<div class="swiper-slide">
                         <figure class="slide-bgimg" loading="lazy"></figure>
-                        <img loading="lazy" src="./imgs/products/'.$name.'/img1.WEBP" />
+                        <img loading="lazy" src="./imgs/products/'.$name.'/'.$img1.'" />
 
                         <div class="content">
                             <a href="products.php?show='.$prod_id.'">
@@ -1178,9 +1244,10 @@ function displayNewest() {
                 $product_new->create_product($prod_id);
                 $name = $product_new->product_name;
                 $id = $product_new->product_id;
+                $img1 = $product_new->product_img;
                 $output .= '<div class="swiper-slide">
                 <figure class="slide-bgimg" loading="lazy"></figure>
-                <img loading="lazy" src="./imgs/products/'.$name.'/img1.WEBP" />
+                <img loading="lazy" src="./imgs/products/'.$name.'/'.$img1.'" />
 
                 <div class="content">
                     <a href="products.php?show='.$id.'">
@@ -1251,6 +1318,27 @@ function displaySliderProducts($type_products) {
 
 }}
 
+function display_nav_brands(){
+    global $connection;
+    $query2 = "SELECT * FROM brands LIMIT 12 OFFSET 0";
+    $select_brands = mysqli_query($connection, $query2);
+
+
+    if (!$select_brands) {
+        die("Query failed: " . mysqli_error($connection));
+    }
+
+
+    while ($product_row = mysqli_fetch_assoc($select_brands)) {
+        $brand_name = $product_row["brand_name"];
+        $brand_id = $product_row["id"];
+        echo '<a href="search.php?search=&category=mixed&size=all&type=all&brand='.$brand_id.'"class="nav-brands-links">
+        '.$brand_name .'
+
+        </a>';
+    }
+
+}
 function login_User_link(){
     global $session;
     global $user;

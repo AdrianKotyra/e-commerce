@@ -39,6 +39,9 @@
         // add to wishlist
         // if user not logged in user session to store favorite products
         if ($session->signed_in===false) {
+            if (!isset($_SESSION["favorites"])) {
+                $_SESSION["favorites"] = [];
+            }
 
             $data = $_POST["data"];
             $data_prod_id = intval($data["productId"]);

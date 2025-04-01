@@ -96,10 +96,12 @@ function showExtraNav(){
   const bodymask = document.querySelector(".body-mask-nav");
   const mainExtraNav = document.querySelector(".nav-extra");
   const navContainers = document.querySelectorAll(".nav-extra-container");
+  const brandNav = document.querySelector(".brand-extra-nav");
   const menNav = document.querySelector(".men-extra-nav");
   const womenNav = document.querySelector(".female-extra-nav");
   const uniNav = document.querySelector(".uni-extra-nav");
 
+  const brandTrigger = document.querySelector("#cat_brands");
   const menTrigger = document.querySelector("#cat_male");
   const femaleTrigger = document.querySelector("#cat_female");
   const uniTrigger = document.querySelector("#cat_unisex");
@@ -128,7 +130,7 @@ function showExtraNav(){
 
     })
   }
-
+  displayExtraNavCategory(brandTrigger,brandNav )
   displayExtraNavCategory(menTrigger,menNav )
   displayExtraNavCategory(femaleTrigger,womenNav )
   displayExtraNavCategory(uniTrigger,uniNav )
@@ -148,30 +150,41 @@ function displayMobileNav(){
     const femaleSwitcher = document.querySelector(".femaleSwitch");
     const maleContainer = document.querySelector(".body-mobile-nav .male-cats");
     const femaleContainer = document.querySelector(".body-mobile-nav .female-cats ");
+
+    const uniContainer = document.querySelector(".body-mobile-nav .uni-cats");
+    const uniwitcher = document.querySelector(".uniSwitch");
+
     const allCatsSwitcher = document.querySelectorAll(".top-nav-gender-switcher span");
     const allCats = document.querySelectorAll(".mobile-cats");
 
-    maleSwitcher.addEventListener("click", ()=>{
+
+    function resetNav(){
       allCatsSwitcher.forEach(ele=>{
         ele.classList.remove("mobile-active-cat")
       })
       allCats.forEach(ele=>{
         ele.classList.remove("active-mobile-nav")
       })
+    }
+    maleSwitcher.addEventListener("click", ()=>{
+      resetNav()
       maleContainer.classList.add("active-mobile-nav");
       maleSwitcher.classList.add("mobile-active-cat");
     })
 
     femaleSwitcher.addEventListener("click", ()=>{
-      allCatsSwitcher.forEach(ele=>{
-        ele.classList.remove("mobile-active-cat")
-      })
-      allCats.forEach(ele=>{
-        ele.classList.remove("active-mobile-nav")
-      })
+      resetNav()
       femaleContainer.classList.add("active-mobile-nav");
 
       femaleSwitcher.classList.add("mobile-active-cat");
+    })
+
+    uniwitcher.addEventListener("click", ()=>{
+      resetNav()
+
+      uniContainer.classList.add("active-mobile-nav");
+
+      uniwitcher.classList.add("mobile-active-cat");
     })
   }
 
@@ -444,11 +457,13 @@ function searchNav(){
   const searchInput = document.querySelector(".searcher-mobile");
   const searchTrigger = document.querySelector(".search-trigger");
   const searchBox = document.querySelector(".search-box-nav")
+  const extraNav = document.querySelector(".nav-extra")
   const closeSearchIcon = document.querySelector(".close-search-nav")
   searchTrigger? searchTrigger.addEventListener("click", ()=>{
     if(searchInput.classList.contains("inactive-search-bar")) {
       searchInput.classList.remove("inactive-search-bar")
       searchInput.classList.add("active-search-bar")
+      extraNav.style.display="none";
     }
     else {
       searchInput.classList.add("inactive-search-bar")

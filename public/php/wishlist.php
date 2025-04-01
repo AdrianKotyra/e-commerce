@@ -137,7 +137,7 @@ class wishlist {
         global $user;
         global $session;
           // Check if the item already exists in the wishlist user logged off
-        if ($session->signed_in===false) {
+        if ($session->signed_in===false && isset($_SESSION["favorites"])) {
             $list_of_fav_prod_ids = $_SESSION["favorites"];
             if (!empty($list_of_fav_prod_ids) &&  in_array($prod_id, $list_of_fav_prod_ids)){
                 return true;
@@ -147,7 +147,7 @@ class wishlist {
                 return false;
             }
         }
-        else {
+        else if ($session->signed_in===true && isset($_SESSION["favorites"])) {
             $user_id = $user->user_id;
                 // Check if the item already exists in the wishlist user logged on
             $checkQuery = "SELECT id FROM wishlist WHERE product_id = ? AND user_id = ?";

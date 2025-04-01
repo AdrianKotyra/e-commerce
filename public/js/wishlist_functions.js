@@ -74,7 +74,7 @@ function onWishlist(){
   removeFromWishlist()
 
 
-  function displayModalWindowAddedProduct(data){
+  function displayModalWindowAddedProductWishlist(data){
     function displayOffModalWishlist(){
       const cross = document.querySelectorAll(".exit-modal");
       const crossBasket = document.querySelector(".exit-modal-go-wishlist");
@@ -94,7 +94,7 @@ function onWishlist(){
       });
       // display basket and off the modal
       crossBasket&&crossBasket.addEventListener("click", ()=>{
-        onBasket()
+        onWishlist()
       })
 
     }
@@ -128,7 +128,7 @@ function onWishlist(){
             SendDataAjax(data, "ajax/add_to_wishlist.php")
             .then(data => {
 
-              displayModalWindowAddedProduct(data)
+              displayModalWindowAddedProductWishlist(data)
               ReloadWishlistAjax()
 
             })

@@ -1,5 +1,6 @@
-<?php  header('Content-Type: application/json');?>
 <?php session_start()?>
+<?php  header('Content-Type: application/json');?>
+
 <?php include "../php/init.php"?>
 
 <?php

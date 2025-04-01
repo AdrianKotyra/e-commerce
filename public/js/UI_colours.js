@@ -7,19 +7,19 @@ function ChangeUIColours() {
 
     const getCategory =  urlParams.get('category');
 
-      if(getCategory=='female') {
+      if(getCategory=='female' && window.location.href.includes("index.php")) {
         document.documentElement.style.setProperty("--ui-main-nav", "#6a1373");
         document.documentElement.style.setProperty("--ui-main-text-nav", "#ffffff");
         document.documentElement.style.setProperty("--ui-filter", "invert(100%) sepia(91%) saturate(38%) hue-rotate(264deg) brightness(110%) contrast(110%)");
 
       }
-      if(getCategory=='male') {
+      if(getCategory=='male'  && window.location.href.includes("index.php")) {
         document.documentElement.style.setProperty("--ui-main-nav", "#4a5b98");
         document.documentElement.style.setProperty("--ui-main-text-nav", "#ffffff");
         document.documentElement.style.setProperty("--ui-filter", "invert(100%) sepia(91%) saturate(38%) hue-rotate(264deg) brightness(110%) contrast(110%)");
 
       }
-      if(getCategory=='unisex') {
+      if(getCategory=='unisex'  && window.location.href.includes("index.php")) {
         document.documentElement.style.setProperty("--ui-main-nav", "#50724b");
         document.documentElement.style.setProperty("--ui-main-text-nav", "#ffffff");
         document.documentElement.style.setProperty("--ui-filter", "invert(100%) sepia(91%) saturate(38%) hue-rotate(264deg) brightness(110%) contrast(110%)");
@@ -38,19 +38,19 @@ const urlParams = new URLSearchParams(window.location.search);
         document.documentElement.style.setProperty("--ui-filter", "invert(100%) sepia(91%) saturate(38%) hue-rotate(264deg) brightness(110%) contrast(110%)");
 
 
-        if(getCategory=='female') {
+        if(getCategory=='female'  && window.location.href.includes("index.php")) {
         document.documentElement.style.setProperty("--ui-main-nav", "#6a1373");
         document.documentElement.style.setProperty("--ui-main-text-nav", "#ffffff");
         document.documentElement.style.setProperty("--ui-filter", "invert(100%) sepia(91%) saturate(38%) hue-rotate(264deg) brightness(110%) contrast(110%)");
 
       }
-      else if(getCategory=='male') {
+      else if(getCategory=='male'  && window.location.href.includes("index.php")) {
         document.documentElement.style.setProperty("--ui-main-nav", "#4a5b98");
         document.documentElement.style.setProperty("--ui-main-text-nav", "#ffffff");
         document.documentElement.style.setProperty("--ui-filter", "invert(100%) sepia(91%) saturate(38%) hue-rotate(264deg) brightness(110%) contrast(110%)");
 
       }
-      else if(getCategory=='unisex') {
+      else if(getCategory=='unisex'  && window.location.href.includes("index.php")) {
         document.documentElement.style.setProperty("--ui-main-nav", "#50724b");
         document.documentElement.style.setProperty("--ui-main-text-nav", "#ffffff");
         document.documentElement.style.setProperty("--ui-filter", "invert(100%) sepia(91%) saturate(38%) hue-rotate(264deg) brightness(110%) contrast(110%)");
@@ -78,25 +78,25 @@ function lightMode(){
         const getCategory =  urlParams.get('category');
 
 
-        if(getCategory=='female') {
+        if(getCategory=='female'  && window.location.href.includes("index.php")) {
         document.documentElement.style.setProperty("--ui-main-nav", "#6a1373");
         document.documentElement.style.setProperty("--ui-main-text-nav", "#ffffff");
         document.documentElement.style.setProperty("--ui-filter", "invert(100%) sepia(91%) saturate(38%) hue-rotate(264deg) brightness(110%) contrast(110%)");
 
       }
-      else if(getCategory=='male') {
+      else if(getCategory=='male'  && window.location.href.includes("index.php")) {
         document.documentElement.style.setProperty("--ui-main-nav", "#4a5b98");
         document.documentElement.style.setProperty("--ui-main-text-nav", "#ffffff");
         document.documentElement.style.setProperty("--ui-filter", "invert(100%) sepia(91%) saturate(38%) hue-rotate(264deg) brightness(110%) contrast(110%)");
 
       }
-      else if(getCategory=='unisex') {
+      else if(getCategory=='unisex'  && window.location.href.includes("index.php")) {
         document.documentElement.style.setProperty("--ui-main-nav", "#50724b");
         document.documentElement.style.setProperty("--ui-main-text-nav", "#ffffff");
         document.documentElement.style.setProperty("--ui-filter", "invert(100%) sepia(91%) saturate(38%) hue-rotate(264deg) brightness(110%) contrast(110%)");
 
       }
-      if(!getCategory) {
+      else {
 
         document.documentElement.style.setProperty("--ui-main-nav", "#ffffff");
         document.documentElement.style.setProperty("--ui-main-text-nav", "#000000");
