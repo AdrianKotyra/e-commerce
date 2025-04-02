@@ -54,17 +54,31 @@ class wishlist {
     }
 
 
-    public static function getNumber() {
+    public static function getNumber_products() {
         global $connection;
+        global $user;
+        global $session;
+        // if user logged in check number items from database
+        if ($session->signed_in===true) {
+            $user_id = $user->user_id;
 
-        // Check if the item already exists in the wishlist
-        $checkQuery = "SELECT id FROM wishlist WHERE product_id = ? AND user_id = ?";
-        $stmt = $connection->prepare($checkQuery);
-        $stmt->bind_param("ii", $item_id, $user_id);
-        $stmt->execute();
-        $stmt->store_result();
+            $checkQuery = "SELECT id FROM wishlist WHERE user_id = ?";
+            $stmt = $connection->prepare($checkQuery);
+            $stmt->bind_param("i", $user_id);
+            $stmt->execute();
+            $stmt->store_result();
 
-        return $stmt->num_rows;
+            return $stmt->num_rows;
+        }
+        else if(isset($_SESSION["favorites"]) && $session->signed_in===false) {
+            $length = count($_SESSION["favorites"]);
+            return $length;
+
+
+
+
+        }
+
     }
 
     // -------------------create individual products to wishlist ------------------

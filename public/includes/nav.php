@@ -62,7 +62,12 @@
 
                 <div class="wish-list-nav nav-link-wrapper">
                     <span  class="wide-screen-nav-link-desc">Favorites</span>
-                    <i class="fa-regular fa-heart"></i>
+                    <?php
+                    global $wishlist;
+
+                    $number_items = wishlist::getNumber_products();
+                    echo   $number_items>=1? '<img  src="./imgs/icons/heart-solid.svg">' :   '<img src="./imgs/icons/heart-regular.svg">';
+                    ?>
                 </div>
                 <!-- BASKET -->
                 <div class="backet-container nav-link-wrapper">

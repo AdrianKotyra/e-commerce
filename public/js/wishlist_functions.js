@@ -119,8 +119,10 @@ function onWishlist(){
       label.addEventListener("click", ()=>{
         if(label.classList.contains("prod-fav-label")) {
 
-            label.src='./imgs/icons/heart-solid.svg';
-            label.classList.replace("prod-fav-label", "prod-fav-label-added");
+
+          // change icon of selected product
+          label.src='./imgs/icons/heart-solid.svg';
+          label.classList.replace("prod-fav-label", "prod-fav-label-added");
 
 
             const productId = label.getAttribute("prod-id");
@@ -146,18 +148,20 @@ function onWishlist(){
 
   // ---------------reloado basket products ajax-------------------
   function ReloadWishlistAjax(){
+    const wishlistIconTrigger = document.querySelector(".wish-list-nav img");
     const basketContainer = document.querySelector(".wishlist-body");
-    const basketNumber = document.querySelector(".basket-number");
     const dummydata= "";
     SendDataAjax(dummydata, "ajax/reload_wishlist.php")
     .then(data => {
-      const basket_reloaded = data;
+      const basket_reloaded = data.content;
+      const number_items = data.number;
 
-
-    //   number_items>0? basketNumber.classList.add("basket-active") : basketNumber.classList.remove("basket-active");
+      number_items>0? wishlistIconTrigger.src="./imgs/icons/heart-solid.svg" :
+      wishlistIconTrigger.src = ("./imgs/icons/heart-regular.svg");
 
     //   basketNumber.innerHTML=number_items;
       basketContainer.innerHTML=basket_reloaded;
+
       // when wishlist is reloaded initiate remove item function ajax
       removeFromWishlist()
 

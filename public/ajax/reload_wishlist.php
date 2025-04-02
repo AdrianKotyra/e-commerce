@@ -11,11 +11,17 @@
         $user_wishlist = new wishlist();
         $user_wishlist_content = $user_wishlist-> processUserWishlist("product_wishlist_Template");
         // $user_wishlist_number_products =  $user_wishlist->getNumber();
-
+        $amount_numbers_favorites = $user_wishlist->getNumber_products();
 
         // $data = [$user_wishlist, $user_wishlist_number_products];
+        $data_list = [
+
+            "content" => $user_wishlist_content,
+            "number" => $amount_numbers_favorites,
+
+        ];
 
 
-        echo json_encode($user_wishlist_content);
+        echo json_encode($data_list);
     }
 ?>
