@@ -5755,6 +5755,8 @@ html {
 }
 
 .product_stock_img {
+  -o-object-fit: contain;
+     object-fit: contain;
   width: 100px;
   height: 100px;
 }

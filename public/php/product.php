@@ -8,8 +8,9 @@ class Product {
     public $product_img_2;
     public $product_img_3;
     public $product_img_4;
-
-
+    public $brand_name;
+    public $brand_img;
+    public $brand_id;
     // list of types []
     public $product_type;
 
@@ -28,105 +29,35 @@ class Product {
         $increment_views = mysqli_query($connection, $query);
     }
     // I USED AI TO CREATE JOIN  FOR ALL QUERIES I CREATED BELOW TO IMPROVE PERFORMANCE BELOW IS MY VERSION OF THIS FUNCTION
-    public function create_product($id) {
-        if ($id) {
-            global $connection;
-
-            // Fetch all product details, including type names and category name in a single query
-            $query = "
-                SELECT
-                    p.product_id, p.product_name, p.product_img, p.product_img2, p.product_img3, p.product_img4,
-                    p.product_desc, p.product_price,
-                    t.type_name,
-                    c.cat_name
-                FROM products p
-                LEFT JOIN rel_types_products rtp ON p.product_id = rtp.product_id
-                LEFT JOIN types t ON rtp.type_id = t.id
-                LEFT JOIN rel_categories_products rcp ON p.product_id = rcp.prod_id
-                LEFT JOIN categories c ON rcp.cat_id = c.cat_id
-                WHERE p.product_id = ?
-            ";
-
-            // Use prepared statements for security
-            $stmt = mysqli_prepare($connection, $query);
-            mysqli_stmt_bind_param($stmt, "i", $id);
-            mysqli_stmt_execute($stmt);
-            $result = mysqli_stmt_get_result($stmt);
-
-            // Initialize arrays for storing multiple types
-            $this->product_type = [];
-
-            while ($row = mysqli_fetch_assoc($result)) {
-                $this->product_id = $row['product_id'];
-                $this->product_name = $row['product_name'];
-                $this->product_img = $row['product_img'];
-                $this->product_img_2 = $row['product_img2'];
-                $this->product_img_3 = $row['product_img3'];
-                $this->product_img_4 = $row['product_img4'];
-                $this->product_desc = $row['product_desc'];
-                $this->product_price = $row['product_price'];
-
-                if (!empty($row['type_name'])) {
-                    $this->product_type[] = $row['type_name'];
-                }
-                $this->product_category = $row['cat_name'] ?? null;
-            }
-
-            // Get product sizes with available stock using a single query
-            $query_sizes = "
-                SELECT s.size
-                FROM rel_products_sizes rps
-                JOIN sizes s ON rps.size_id = s.id
-                WHERE rps.prod_id = ? AND rps.stock > 0
-            ";
-
-            $stmt_sizes = mysqli_prepare($connection, $query_sizes);
-            mysqli_stmt_bind_param($stmt_sizes, "i", $id);
-            mysqli_stmt_execute($stmt_sizes);
-            $result_sizes = mysqli_stmt_get_result($stmt_sizes);
-
-            $product_sizes_list = [];
-            while ($size_row = mysqli_fetch_assoc($result_sizes)) {
-                $product_sizes_list[] = $size_row["size"];
-            }
-
-            $this->product_sizes_list = $product_sizes_list;
-            $this->product_availability = !empty($product_sizes_list);
-
-            // Close statements
-            mysqli_stmt_close($stmt);
-            mysqli_stmt_close($stmt_sizes);
-        }
-    }
-
-
     // public function create_product($id) {
     //     if ($id) {
-    //         global $database;
+    //         global $connection;
 
-    //         // get product type name
-    //         $result_product_type = $database->query_array("SELECT * FROM rel_types_products WHERE product_id = $id");
-    //         while ($row = mysqli_fetch_array($result_product_type)) {
-    //             $type_id = $row['type_id'];
-    //             $type_name = $database->query_array("SELECT * FROM types WHERE id = $type_id");
-    //             while ($row = mysqli_fetch_array($type_name)) {
-    //                 $this->product_type[] = $row['type_name'];
-    //             }
-    //         }
+    //         // Fetch all product details, including type names and category name in a single query
+    //         $query = "
+    //             SELECT
+    //                 p.product_id, p.product_name, p.product_img, p.product_img2, p.product_img3, p.product_img4,
+    //                 p.product_desc, p.product_price,
+    //                 t.type_name,
+    //                 c.cat_name
+    //             FROM products p
+    //             LEFT JOIN rel_types_products rtp ON p.product_id = rtp.product_id
+    //             LEFT JOIN types t ON rtp.type_id = t.id
+    //             LEFT JOIN rel_categories_products rcp ON p.product_id = rcp.prod_id
+    //             LEFT JOIN categories c ON rcp.cat_id = c.cat_id
+    //             WHERE p.product_id = ?
+    //         ";
 
-    //         // get product category name
-    //         $result_product_type = $database->query_array("SELECT * FROM rel_categories_products WHERE prod_id = $id");
-    //         while ($row = mysqli_fetch_array($result_product_type)) {
+    //         // Use prepared statements for security
+    //         $stmt = mysqli_prepare($connection, $query);
+    //         mysqli_stmt_bind_param($stmt, "i", $id);
+    //         mysqli_stmt_execute($stmt);
+    //         $result = mysqli_stmt_get_result($stmt);
 
-    //             $cat_id = $row['cat_id'];
-    //             $type_name = $database->query_array("SELECT * FROM categories WHERE cat_id = $cat_id");
-    //             while ($row = mysqli_fetch_array($type_name)) {
-    //                 $this->product_category = $row['cat_name'];
-    //             }
-    //         }
-    //         // get product info
-    //         $result = $database->query_array("SELECT * FROM products WHERE product_id = $id");
-    //         while ($row = mysqli_fetch_array($result)) {
+    //         // Initialize arrays for storing multiple types
+    //         $this->product_type = [];
+
+    //         while ($row = mysqli_fetch_assoc($result)) {
     //             $this->product_id = $row['product_id'];
     //             $this->product_name = $row['product_name'];
     //             $this->product_img = $row['product_img'];
@@ -136,41 +67,128 @@ class Product {
     //             $this->product_desc = $row['product_desc'];
     //             $this->product_price = $row['product_price'];
 
-    //             // $this->product_description = $row['product_description'];
-    //         }
-
-
-
-    //         // get product sizes
-    //         // create list of ids of sizes---------------
-    //         $result_sizes = $database->query_array("SELECT * FROM rel_products_sizes WHERE prod_id = $id and stock > 0");
-    //         while ($row = mysqli_fetch_array($result_sizes)) {
-
-    //             $list_sizes_id[] = $row["size_id"];
-    //         }
-    //         // create list of sizes based on ids---------------
-    //         if (!empty($list_sizes_id)) {
-    //             $sizes_ids_str = implode(",", $list_sizes_id);
-
-    //             // Query the sizes table to get the actual sizes
-    //             $result_actual_sizes = $database->query_array("SELECT * FROM sizes WHERE id IN ($sizes_ids_str)");
-
-    //             $product_sizes_list = [];
-    //             while ($size_row = mysqli_fetch_array($result_actual_sizes)) {
-    //                 $product_sizes_list[] = $size_row["size"];
+    //             if (!empty($row['type_name'])) {
+    //                 $this->product_type[] = $row['type_name'];
     //             }
-
-
-    //             $this->product_sizes_list = $product_sizes_list;
-    //             // if product has at least one stock > 1 in any size
-    //             $this->product_availability  = true;
-    //         } else {
-    //             $list_sizes_id = [];
-    //             $this->product_sizes_list = $list_sizes_id;
-    //             $this->product_availability  = false;
+    //             $this->product_category = $row['cat_name'] ?? null;
     //         }
+
+    //         // Get product sizes with available stock using a single query
+    //         $query_sizes = "
+    //             SELECT s.size
+    //             FROM rel_products_sizes rps
+    //             JOIN sizes s ON rps.size_id = s.id
+    //             WHERE rps.prod_id = ? AND rps.stock > 0
+    //         ";
+
+    //         $stmt_sizes = mysqli_prepare($connection, $query_sizes);
+    //         mysqli_stmt_bind_param($stmt_sizes, "i", $id);
+    //         mysqli_stmt_execute($stmt_sizes);
+    //         $result_sizes = mysqli_stmt_get_result($stmt_sizes);
+
+    //         $product_sizes_list = [];
+    //         while ($size_row = mysqli_fetch_assoc($result_sizes)) {
+    //             $product_sizes_list[] = $size_row["size"];
+    //         }
+
+    //         $this->product_sizes_list = $product_sizes_list;
+    //         $this->product_availability = !empty($product_sizes_list);
+
+    //         // Close statements
+    //         mysqli_stmt_close($stmt);
+    //         mysqli_stmt_close($stmt_sizes);
     //     }
     // }
+
+
+    public function create_product($id) {
+        if ($id) {
+            global $database;
+
+            // get product type name
+            $result_product_type = $database->query_array("SELECT * FROM rel_types_products WHERE product_id = $id");
+            while ($row = mysqli_fetch_array($result_product_type)) {
+                $type_id = $row['type_id'];
+                $type_name = $database->query_array("SELECT * FROM types WHERE id = $type_id");
+                while ($row = mysqli_fetch_array($type_name)) {
+                    $this->product_type[] = $row['type_name'];
+                }
+            }
+
+            // get product category name
+            $result_product_type = $database->query_array("SELECT * FROM rel_categories_products WHERE prod_id = $id");
+            while ($row = mysqli_fetch_array($result_product_type)) {
+
+                $cat_id = $row['cat_id'];
+                $type_name = $database->query_array("SELECT * FROM categories WHERE cat_id = $cat_id");
+                while ($row = mysqli_fetch_array($type_name)) {
+                    $this->product_category = $row['cat_name'];
+                }
+            }
+
+
+            // get product brand name
+            $result_product_brand = $database->query_array("SELECT brand_id FROM rel_products_brands WHERE product_id = $id");
+            while ($row = mysqli_fetch_array($result_product_brand)) {
+
+                $brand_id = $row['brand_id'];
+                $brand_name_query = $database->query_array("SELECT * FROM brands WHERE id = $brand_id");
+                while ($row = mysqli_fetch_array($brand_name_query)) {
+                    $this->brand_name = $row['brand_name'];
+                    $this->brand_img = $row['logo'];
+                    $this->brand_id = $row['id'];
+                }
+            }
+
+
+
+            // get product info
+            $result = $database->query_array("SELECT * FROM products WHERE product_id = $id");
+            while ($row = mysqli_fetch_array($result)) {
+                $this->product_id = $row['product_id'];
+                $this->product_name = $row['product_name'];
+                $this->product_img = $row['product_img'];
+                $this->product_img_2 = $row['product_img2'];
+                $this->product_img_3 = $row['product_img3'];
+                $this->product_img_4 = $row['product_img4'];
+                $this->product_desc = $row['product_desc'];
+                $this->product_price = $row['product_price'];
+
+                // $this->product_description = $row['product_description'];
+            }
+
+
+
+            // get product sizes
+            // create list of ids of sizes---------------
+            $result_sizes = $database->query_array("SELECT * FROM rel_products_sizes WHERE prod_id = $id and stock > 0");
+            while ($row = mysqli_fetch_array($result_sizes)) {
+
+                $list_sizes_id[] = $row["size_id"];
+            }
+            // create list of sizes based on ids---------------
+            if (!empty($list_sizes_id)) {
+                $sizes_ids_str = implode(",", $list_sizes_id);
+
+                // Query the sizes table to get the actual sizes
+                $result_actual_sizes = $database->query_array("SELECT * FROM sizes WHERE id IN ($sizes_ids_str)");
+
+                $product_sizes_list = [];
+                while ($size_row = mysqli_fetch_array($result_actual_sizes)) {
+                    $product_sizes_list[] = $size_row["size"];
+                }
+
+
+                $this->product_sizes_list = $product_sizes_list;
+                // if product has at least one stock > 1 in any size
+                $this->product_availability  = true;
+            } else {
+                $list_sizes_id = [];
+                $this->product_sizes_list = $list_sizes_id;
+                $this->product_availability  = false;
+            }
+        }
+    }
     public static function getproductCategory($id){
         global $database;
         // get product category name

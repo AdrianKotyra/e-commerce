@@ -15,7 +15,8 @@
         $product_img4 = $serch_product->product_img_4;
         $product_type = $serch_product->product_type;
         $product_desc = $serch_product->product_desc;
-
+        $product_brand_logo = $serch_product->brand_img;
+        $product_brand_id = $serch_product->brand_id;
         $product_category = $serch_product->product_category;
         $product_sizes = $serch_product->product_sizes_list;
         $product_availability = $serch_product->product_availability;
@@ -66,8 +67,11 @@
                 ?>
 
             </p>
-
+            <a href="search.php?search=&category=mixed&size=all&type=all&brand=<?php echo $product_brand_id;?>">
+                <img class="brand-products-img"src="./imgs/brands/<?php echo $product_brand_logo;?>" alt="">
+            </a>
             <div class="product-page-container-title ">
+
                 <h1  class="prod-name"><?php echo  $product_name;?></h1>
                 <?php echo $favorite_icon;?>
             </div>

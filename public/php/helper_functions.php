@@ -349,7 +349,35 @@ function send_invoice($order_id, $email){
  }
  }
 
+function display_brands_section(){
+    global $connection;
+    $query = "SELECT * FROM brands";
+    $select_brands = mysqli_query($connection, $query);
 
+    if (!$select_brands) {
+        die("Query failed: " . mysqli_error($connection));
+    }
+
+    while ($row = mysqli_fetch_assoc($select_brands)) {
+        $brand_name = $row["brand_name"];
+        $brand_id = $row["id"];
+        $logo_img = $row["logo"];
+
+        $logo_company_icon = '
+            <a href="search.php?search=&category=mixed&size=all&type=all&brand='.$brand_id.'">
+                <div class="brand-logo">
+                    <img src="./imgs/brands/'.$logo_img.'">
+
+
+                </div>
+            </a>
+
+        ';
+
+        echo $logo_company_icon;
+
+    }
+}
 
 function get_products_types_nav($category) {
     $type = isset($_GET["type"]) ? $_GET["type"] : '';
@@ -430,7 +458,7 @@ function generate_posts_allposts() {
 
 function generate_posts_main() {
     global $connection;
-    $query = "SELECT * FROM news ORDER BY id DESC LIMIT 3 OFFSET 0";
+    $query = "SELECT * FROM news ORDER BY id DESC LIMIT 4 OFFSET 0";
     $select_posts = mysqli_query($connection, $query);
     while ($row = mysqli_fetch_assoc($select_posts)) {
         $post_id = $row["id"];

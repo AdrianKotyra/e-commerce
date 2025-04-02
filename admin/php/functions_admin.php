@@ -36,6 +36,36 @@
         }
 
     }
+    function display_admin_brands_edit($product_id){
+        global $connection;
+        global $product;
+        $new_product = new Product();
+        $new_product->create_product($product_id);
+        $product_brand = $new_product->brand_name;
+        $product_brand_id  = $new_product->brand_id;
+        $query2 = "SELECT * FROM brands";
+        $select_brands = mysqli_query($connection, $query2);
+
+
+        if (!$select_brands) {
+            die("Query failed: " . mysqli_error($connection));
+        }
+
+        echo '   <option value="'.$product_brand_id.'" type="radio" name="brand">   '.$product_brand .'</option>';
+        while ($product_row = mysqli_fetch_assoc($select_brands)) {
+            $brand_name = $product_row["brand_name"];
+            $brand_id = $product_row["id"];
+            echo '
+                <option value="'.$brand_id.'" type="radio" name="brand">   '.$brand_name .'</option>
+
+
+
+
+
+            </option>';
+        }
+
+    }
 
 
 

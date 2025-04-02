@@ -4502,6 +4502,7 @@ html {
     font-size: 2rem;
 }
 .product_stock_img {
+  object-fit: contain;
     width: 100px;
     height: 100px;
 }

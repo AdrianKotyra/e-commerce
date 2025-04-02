@@ -22,9 +22,10 @@
 
     <?php section_slider_trending() ?>
 
+    <?php include("includes/sections/brands-section.php") ?>
     <?php include("includes/sections/news-section.php") ?>
     <?php include("includes/sections/newsletter-section.php") ?>
 
     <script src="js/pages/index.js"></script>
-    <?php include("includes/brands_slider.php") ?>
+
     <?php include("includes/footer.php") ?>

@@ -2,11 +2,11 @@
 if (isset($_POST['edit_product'])) {
     global $connection;
 
-    $product_id = $_GET["product_id"];
-    $new_product_name = $_POST['product_name']; // New name from form
-    $product_price = $_POST['product_price'];
-    $product_desc = $_POST['product_desc'];
-
+    $product_id = mysqli_real_escape_string($connection, $_GET["product_id"]);
+    $new_product_name = mysqli_real_escape_string($connection, $_POST['product_name']); // New name from form
+    $product_price = mysqli_real_escape_string($connection, $_POST['product_price']);
+    $product_desc = mysqli_real_escape_string($connection, $_POST['product_desc']);
+    $brand  = mysqli_real_escape_string($connection, $_POST['brand']);
     $types = $_POST['types'] ?? []; // Array of selected types
 
     // Paths
@@ -73,7 +73,13 @@ if (isset($_POST['edit_product'])) {
         $query3 = "INSERT INTO rel_types_products (type_id, product_id) VALUES ('$type_id', '$product_id')";
         mysqli_query($connection, $query3);
     }
+    // insert brand
+    $query4 = "UPDATE rel_products_brands
+    SET brand_id = '$brand'
+    WHERE product_id = '$product_id'";
 
+
+    $create_brand_query = mysqli_query($connection, $query4);
     alert_text("Product has been updated", "products.php");
 }
 ?>
@@ -146,7 +152,13 @@ if (isset($_POST['edit_product'])) {
     <label for="category">Category</label>
 
     </div>
+    <div class="form-group">
+        <select name="brand">
 
+            <?php display_admin_brands_edit($product_id);?>
+
+        </select>
+    </div>
     <div class="form-group">
     <label for="Type">Type</label>
     <br>
