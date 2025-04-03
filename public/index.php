@@ -1,7 +1,7 @@
 <?php include("includes/header.php") ?>
 
 
-
+    <?php include("includes/sections/slider-hero-section.php") ?>
     <?php include("includes/sections/hero-section.php") ?>
 
 
@@ -27,5 +27,5 @@
     <?php include("includes/sections/newsletter-section.php") ?>
 
     <script src="js/pages/index.js"></script>
-
+    <script src="js/jquery.flexslider-min.js"></script>
     <?php include("includes/footer.php") ?>

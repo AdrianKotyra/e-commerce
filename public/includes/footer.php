@@ -56,8 +56,13 @@
         </div>
     </footer>
 
+<!-- global inter pages -->
 <script src="js/global.js"></script>
+<!-- ui change colors -->
 <script src="js/UI_colours.js"></script>
+<!-- basket -->
 <script src="js/basket_functions.js"></script>
+<!-- wishlist -->
 <script src="js/wishlist_functions.js"></script>
+<!-- login js -->
 <script src="js/login.js"></script>

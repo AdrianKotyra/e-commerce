@@ -89,6 +89,26 @@ function bodyMaskOff(){
 Fancybox.bind("[data-fancybox]", {
 
 });
+// ---------------display off hovered links-------------------
+
+function displayOffHoveredLinks(){
+  const femaleTrigger = document.querySelector(".active-female-nav-hovered");
+  const maleTrigger = document.querySelector(".active-male-nav-hovered");
+  const uniTrigger = document.querySelector(".active-uni-nav-hovered");
+  const brandTrigger = document.querySelector(".active-brand-nav-hovered");
+  if(femaleTrigger&&femaleTrigger.classList.contains("female-trigger")) {
+    femaleTrigger.classList.remove("active-female-nav-hovered")
+  }
+  if(maleTrigger&&maleTrigger.classList.contains("male-trigger")) {
+    maleTrigger.classList.remove("active-male-nav-hovered")
+  }
+  if(uniTrigger&&uniTrigger.classList.contains("uni-trigger")) {
+    uniTrigger.classList.remove("active-uni-nav-hovered")
+  }
+  if(brandTrigger&&brandTrigger.classList.contains("brand-trigger")) {
+    brandTrigger.classList.remove("active-brand-nav-hovered")
+  }
+}
 
 // ---------------extra nav display-------------------
 function showExtraNav(){
@@ -107,17 +127,38 @@ function showExtraNav(){
   const uniTrigger = document.querySelector("#cat_unisex");
 
   function displayExtraNavOff(){
+
     document.addEventListener('mouseover', (event) => {
+
+
       const hoveredElement = event.target;
       if (!hoveredElement.closest('.extra-nav-trigger')) {
         mainExtraNav.style.display="none";
         bodymask.style.display="none";
+
+        displayOffHoveredLinks()
+
       }
     });
 
   }
   function displayExtraNavCategory(trigger, navToDisplay ){
+
     trigger&&trigger.addEventListener("mouseover", ()=>{
+      displayOffHoveredLinks()
+
+      if(trigger.classList.contains("female-trigger")) {
+        trigger.classList.add("active-female-nav-hovered")
+      }
+      if(trigger.classList.contains("male-trigger")) {
+        trigger.classList.add("active-male-nav-hovered")
+      }
+      if(trigger.classList.contains("uni-trigger")) {
+        trigger.classList.add("active-uni-nav-hovered")
+      }
+      if(trigger.classList.contains("brand-trigger")) {
+        trigger.classList.add("active-brand-nav-hovered")
+      }
       const searchInput = document.querySelector(".searcher-mobile");
       searchInput.classList.remove("active-search-bar")
       mainExtraNav.style.display="block";

@@ -1346,7 +1346,7 @@ function displaySliderProducts($type_products) {
 
 }}
 
-function display_nav_brands(){
+function display_nav_brands($category="mixed"){
     global $connection;
     $query2 = "SELECT * FROM brands LIMIT 12 OFFSET 0";
     $select_brands = mysqli_query($connection, $query2);
@@ -1360,7 +1360,7 @@ function display_nav_brands(){
     while ($product_row = mysqli_fetch_assoc($select_brands)) {
         $brand_name = $product_row["brand_name"];
         $brand_id = $product_row["id"];
-        echo '<a href="search.php?search=&category=mixed&size=all&type=all&brand='.$brand_id.'"class="nav-brands-links">
+        echo '<a href="search.php?search=&category='.$category.'&size=all&type=all&brand='.$brand_id.'"class="nav-brands-links">
         '.$brand_name .'
 
         </a>';

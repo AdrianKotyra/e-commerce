@@ -26,10 +26,10 @@
 
                 </div>
                 <div class="cats-nav-container-extra-nav flex-row extra-nav-trigger">
-                    <a id="cat_male"href="index.php?category=male" class="cat <?php if($cat== "male" ) { echo 'active_nav_link_male'; } ?>">MENS</a>
-                    <a id="cat_female"href="index.php?category=female" class="cat <?php if($cat== "female") { echo 'active_nav_link_female'; } ?>">WOMENS</a>
-                    <a id="cat_unisex"href="index.php?category=unisex" class="cat <?php if($cat== "unisex") { echo 'active_nav_link_unisex'; } ?>">UNISEX</a>
-                    <a id="cat_brands"href="search.php?search=&category=mixed&size=all&type=all&brand=all" class="cat">BRANDS</a>
+                    <a id="cat_male"href="index.php?category=male" class="male-trigger cat <?php if($cat== "male" ) { echo 'active_nav_link_male'; } ?>">MENS</a>
+                    <a id="cat_female"href="index.php?category=female" class="female-trigger cat <?php if($cat== "female") { echo 'active_nav_link_female'; } ?>">WOMENS</a>
+                    <a id="cat_unisex"href="index.php?category=unisex" class="uni-trigger cat <?php if($cat== "unisex") { echo 'active_nav_link_unisex'; } ?>">UNISEX</a>
+                    <a id="cat_brands"href="search.php?search=&category=mixed&size=all&type=all&brand=all" class="brand-trigger cat">BRANDS</a>
                 </div>
 
 
@@ -123,14 +123,14 @@
 
         <div class="wrapper">
         <hr>
-          <!-- ---------------------men extra BRANDS--------------------- -->
+          <!-- ---------------------BRANDS extra --------------------- -->
 
           <div class="nav-extra-container brand-extra-nav flex-col">
             <div class="flex-row nav-extra-content">
                     <div class="nav_cats_container">
 
                         <span class="nav_cats_header">Shop by Brands</span>
-                        <div class="nav_cats_grid">
+                        <div class="nav_brands_grid">
                             <?php display_nav_brands()?>
                         </div>
                     </div>
@@ -157,19 +157,29 @@
 
         <div class="nav-extra-container men-extra-nav flex-col">
             <div class="flex-row nav-extra-content">
-                <div class="nav_cats_container">
+                <div class="nav_cats_container flex-row">
+                    <div class="flex-row">
+                        <div class="cats-nav">
+                            <span class="nav_cats_header">Shop by category</span>
+                            <div class="nav_cats_grid">
 
-                    <span class="nav_cats_header">Shop by Mens category</span>
-                    <div class="nav_cats_grid">
-                        <?php get_products_types_nav('male')?>
+                                <?php get_products_types_nav('male')?>
+                            </div>
+                        </div>
+                        <div class="cats-nav">
+                            <span class="nav_cats_header">Shop by brands </span>
+                            <div class="nav_brands_grid">
+
+                            <?php display_nav_brands('male')?>
+                            </div>
+                        </div>
                     </div>
-                </div>
-
-                <div class="nav_cats_img">
-                    <p>
-                        Mens
-                    </p>
-                    <img src="./imgs/nav/men/men_nav.jpg" alt="">
+                    <div class="nav_cats_img">
+                        <p>
+                            Mens
+                        </p>
+                        <img src="./imgs/nav/men/men_nav.jpg" alt="">
+                    </div>
                 </div>
             </div>
             <hr>
@@ -184,23 +194,31 @@
 
         </div>
         <!-- ---------------------female extra nav--------------------- -->
-
-
         <div class="nav-extra-container female-extra-nav flex-col">
             <div class="flex-row nav-extra-content">
-                <div class="nav_cats_container">
+                <div class="nav_cats_container flex-row">
+                    <div class="flex-row">
+                        <div class="cats-nav">
+                            <span class="nav_cats_header">Shop by category</span>
+                            <div class="nav_cats_grid">
 
-                    <span class="nav_cats_header">Shop by Womens category</span>
-                    <div class="nav_cats_grid">
-                        <?php get_products_types_nav('female')?>
+                                <?php get_products_types_nav('female')?>
+                            </div>
+                        </div>
+                        <div class="cats-nav">
+                            <span class="nav_cats_header">Shop by brands </span>
+                            <div class="nav_brands_grid">
+
+                            <?php display_nav_brands('female')?>
+                            </div>
+                        </div>
                     </div>
-                </div>
-
-                <div class="nav_cats_img">
-                    <p>
-                        Womens
-                    </p>
-                    <img src="./imgs/nav/women/women.jpg" alt="">
+                    <div class="nav_cats_img">
+                        <p>
+                            Mens
+                        </p>
+                        <img src="./imgs/nav/women/women.jpg" alt="">
+                    </div>
                 </div>
             </div>
             <hr>
@@ -214,23 +232,35 @@
 
 
         </div>
+
+
 
         <!-- ---------------------uni sex extra nav--------------------- -->
         <div class="nav-extra-container uni-extra-nav flex-col">
             <div class="flex-row nav-extra-content">
-                <div class="nav_cats_container">
+                <div class="nav_cats_container flex-row">
+                    <div class="flex-row">
+                        <div class="cats-nav">
+                            <span class="nav_cats_header">Shop by category</span>
+                            <div class="nav_cats_grid">
 
-                    <span class="nav_cats_header">Shop by Unisex category</span>
-                    <div class="nav_cats_grid">
-                        <?php get_products_types_nav('unisex')?>
+                                <?php get_products_types_nav('unisex')?>
+                            </div>
+                        </div>
+                        <div class="cats-nav">
+                            <span class="nav_cats_header">Shop by brands </span>
+                            <div class="nav_brands_grid">
+
+                            <?php display_nav_brands('unisex')?>
+                            </div>
+                        </div>
                     </div>
-                </div>
-
-                <div class="nav_cats_img">
-                    <p>
-                    Unisex
-                    </p>
-                    <img src="./imgs/nav/uni/uni.jpg" alt="">
+                    <div class="nav_cats_img">
+                        <p>
+                            Mens
+                        </p>
+                        <img src="./imgs/nav/uni/uni.jpg" alt="">
+                    </div>
                 </div>
             </div>
             <hr>
@@ -245,7 +275,7 @@
 
         </div>
 
-        </div>
+
     </div>
 
 </nav>

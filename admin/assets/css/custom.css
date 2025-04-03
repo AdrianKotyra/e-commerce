@@ -191,8 +191,8 @@
   margin-top: 20px;
 }
 .message-container-feedback img {
-  -o-object-fit: cover;
-     object-fit: cover;
+  -o-object-fit: contain;
+     object-fit: contain;
   width: 120px;
   height: 120px;
   max-width: 100%;
