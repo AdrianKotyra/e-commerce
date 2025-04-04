@@ -30,9 +30,11 @@
     return match ? decodeURIComponent(match[2]) : null;
     }
     function check_status(){
-    const inputDarkMode = document.querySelector(".cookies_container_main");
+    const cookiesWindow = document.querySelector(".cookies_window");
     if(getCookie("cookies")){
-        inputDarkMode.style.display="none";
+        cookiesWindow.classList.add("inactive_cookies");
+    } else {
+        cookiesWindow.classList.replace("inactive_cookies", "active_cookies");
     }
 
 

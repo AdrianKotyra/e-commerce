@@ -702,14 +702,25 @@ function displayCategoryProducts($type_products) {
     global $connection;
     $output = '';
 
-    $query = "SELECT * FROM types WHERE type_name = '$type_products'";
+    // Secure Query Preparation
+    $type_products_safe = mysqli_real_escape_string($connection, $type_products);
+
+    // If type is "all", select all types
+    if ($type_products_safe == "all") {
+        $query = "SELECT * FROM types";
+    }
+    // Else select a specific type based on the name
+    else {
+        $query = "SELECT * FROM types WHERE type_name = '$type_products_safe'";
+    }
+
     $select_product_types = mysqli_query($connection, $query);
 
-
-    if ($row = mysqli_fetch_assoc($select_product_types)) {
+    while ($row = mysqli_fetch_assoc($select_product_types)) {
         $type_id = $row["id"];
-        // Retrieve related product IDs
-        $query2 = "SELECT * FROM rel_types_products WHERE type_id = $type_id ";
+
+        // Retrieve related product IDs based on type_id
+        $query2 = "SELECT product_id FROM rel_types_products WHERE type_id = $type_id";
         $select_products = mysqli_query($connection, $query2);
 
         while ($product_row = mysqli_fetch_assoc($select_products)) {
@@ -718,76 +729,67 @@ function displayCategoryProducts($type_products) {
 
             // Filter by category if set
             if (isset($_GET["category"]) && $_GET["category"] != "mixed") {
-                $category_products_ids = listenCategory();
+                $category_products_ids = listenCategory(); // Assuming listenCategory() fetches the category IDs
                 if (!in_array($prod_id, $category_products_ids)) {
                     $include_product = false;
                 }
             }
 
             // Filter by brand if set
-            if (isset($_GET["brand"])&& $_GET["brand"] != "all" ){
-                $brands_products_ids = listBrands();
+            if (isset($_GET["brand"]) && $_GET["brand"] != "all") {
+                $brands_products_ids = listBrands(); // Assuming listBrands() fetches brand IDs
                 if (!in_array($prod_id, $brands_products_ids)) {
                     $include_product = false;
                 }
             }
+
             // Filter by size if set
             if ($include_product && isset($_GET["size"]) && $_GET["size"] != "all") {
-                $list_of_products_ids_in_size = get_Products_list_ids_by_size();
+                $list_of_products_ids_in_size = get_Products_list_ids_by_size(); // Assuming this fetches size-related product IDs
                 if (!in_array($prod_id, $list_of_products_ids_in_size)) {
                     $include_product = false;
                 }
             }
-
-
 
             // Add product to the list if it passes filters
             if ($include_product) {
                 $list_products_ids[] = $prod_id;
             }
         }
+    }
 
-        // Display products
+    // Display products
 
-        // FILTER products
+    // FILTER products if filter is set
+    if (isset($_GET["filter"])) {
+        $filter_get = mysqli_real_escape_string($connection, $_GET["filter"]);
+        if (count($list_products_ids) > 0) {
+            $in_clause = "(" . implode(",", array_map("intval", $list_products_ids)) . ")";
+            $query3 = "SELECT product_id FROM products WHERE product_id IN $in_clause ORDER BY $filter_get";
+            $select_products_filtered = mysqli_query($connection, $query3);
 
-        if (isset($_GET["filter"])) {
-            $filter_get = $_GET["filter"];
-            if (is_array($list_products_ids) && count($list_products_ids) > 0) {
-                $in_clause = "(" . implode(",", array_map("intval", $list_products_ids)) . ")";
-                $query3 = "SELECT product_id FROM products WHERE product_id IN $in_clause ORDER BY $filter_get";
-                $select_products_filtered = mysqli_query($connection, $query3);
-
-                if ($select_products_filtered) {
-                    $output = '';
-                    while ($row = mysqli_fetch_assoc($select_products_filtered)) {
-                        $product_id_filtered = $row["product_id"];
-                        $product_new = new Product();
-                        $product_new->create_product($product_id_filtered);
-                        $output .= $product_new->product_category_card();
-                    }
+            if ($select_products_filtered) {
+                while ($row = mysqli_fetch_assoc($select_products_filtered)) {
+                    $product_id_filtered = $row["product_id"];
+                    $product_new = new Product();
+                    $product_new->create_product($product_id_filtered);
+                    $output .= $product_new->product_category_card();
                 }
-
             }
-
-
         }
-
-        else {
-            foreach ($list_products_ids as $product_id) {
+    }
+    // Else display all products without filtering
+    else {
+        foreach ($list_products_ids as $product_id) {
             $product_new = new Product();
             $product_new->create_product($product_id);
             $output .= $product_new->product_category_card();
-
-            }
-
         }
-
-        return $output;
     }
 
-    return;
+    return $output;
 }
+
 
     function nav_account($section_name){
     $account_navigation = '
@@ -1084,7 +1086,13 @@ function get_Products_list_ids_by_type_name() {
 
         $list_prod_ids = [];
         $type_products =  $_GET["type"];
-        $query = "SELECT * FROM types WHERE type_name = '$type_name'";
+        if( $type_name!="all") {
+            $query = "SELECT * FROM types WHERE type_name = '$type_name'";
+        }
+        else {
+            $query = "SELECT * FROM types";
+        }
+
         $select_product_types = mysqli_query($connection, $query);
 
         while ($product_row = mysqli_fetch_assoc($select_product_types)) {
@@ -1097,6 +1105,8 @@ function get_Products_list_ids_by_type_name() {
                 $list_prod_ids[] = $prod_id;
             }
         }
+
+
         }
 
         return  $list_prod_ids;
@@ -1362,6 +1372,29 @@ function display_nav_brands($category="mixed"){
         $brand_id = $product_row["id"];
         echo '<a href="search.php?search=&category='.$category.'&size=all&type=all&brand='.$brand_id.'"class="nav-brands-links">
         '.$brand_name .'
+
+        </a>';
+    }
+
+}
+function display_nav_cats(){
+    global $connection;
+    $query2 = "SELECT * FROM types";
+    $select_types = mysqli_query($connection, $query2);
+
+
+    if (!$select_types) {
+        die("Query failed: " . mysqli_error($connection));
+    }
+
+    echo '<a href="category.php?type=all&category=mixed&size=all&brand=all" class="nav-brands-links">
+    ALL';
+
+    while ($row = mysqli_fetch_assoc($select_types)) {
+        $type_name = $row["type_name"];
+        $type_id = $row["id"];
+        echo '<a href="category.php?type='.$type_name.'&category=mixed&size=all&brand=all" class="nav-brands-links">
+        '.$type_name .'
 
         </a>';
     }

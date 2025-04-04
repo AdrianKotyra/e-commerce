@@ -3,6 +3,7 @@
 <section class="hero-section">
     <div class="hero-container">
       <?php
+        // this is just to get hero image and header
         if(isset($_GET["type"]) ){
             $type = $_GET["type"];
             global $connection;
@@ -14,10 +15,12 @@
                     $type_name= $row["type_name"];
                 }
             }
-            else {
-                // if category not exist back to index
-                Header('Location: index.php');
+            else{
+                $type_name="all";
+                $type_img = "all.jpg";
             }
+
+
         }
 
          else {

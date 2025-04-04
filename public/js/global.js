@@ -27,21 +27,28 @@ function setCookie(name, value, days) {
 
 // ------------------COOKIES WINDOW AND FUNCTIONALITY-----------------------
 function cookies_window(){
+
   const crossCookies = document.querySelector(".cross-cookies")
   const acceptCookies = document.querySelector(".accept-cookies")
   const cookiesWindow = document.querySelector(".cookies_window");
+  setTimeout(() => {
+    cookiesWindow.classList.add("active_cookies");
+  if(cookiesWindow.classList.contains("active_cookies")) {
+    crossCookies&&crossCookies.addEventListener("click", ()=>{
+      setCookie("cookies", "not_accepted", 7);
+      cookiesWindow.style.display="none";
 
-  crossCookies&&crossCookies.addEventListener("click", ()=>{
-    setCookie("cookies", "not_accepted", 7);
-    cookiesWindow.style.display="none";
-
-  })
-  acceptCookies&&acceptCookies.addEventListener("click", ()=>{
-    setCookie("cookies", "accepted", 7);
-    cookiesWindow.style.display="none";
+    })
+    acceptCookies&&acceptCookies.addEventListener("click", ()=>{
+      setCookie("cookies", "accepted", 7);
+      cookiesWindow.style.display="none";
 
 
-  })
+    })
+  }
+  }, 1000);
+
+
 }
 
 cookies_window()
@@ -96,6 +103,7 @@ function displayOffHoveredLinks(){
   const maleTrigger = document.querySelector(".active-male-nav-hovered");
   const uniTrigger = document.querySelector(".active-uni-nav-hovered");
   const brandTrigger = document.querySelector(".active-brand-nav-hovered");
+  const catsTrigger = document.querySelector(".active-categories-nav-hovered");
   if(femaleTrigger&&femaleTrigger.classList.contains("female-trigger")) {
     femaleTrigger.classList.remove("active-female-nav-hovered")
   }
@@ -107,6 +115,9 @@ function displayOffHoveredLinks(){
   }
   if(brandTrigger&&brandTrigger.classList.contains("brand-trigger")) {
     brandTrigger.classList.remove("active-brand-nav-hovered")
+  }
+  if(catsTrigger&&catsTrigger.classList.contains("categories-trigger")) {
+    catsTrigger.classList.remove("active-categories-nav-hovered")
   }
 }
 
@@ -120,11 +131,13 @@ function showExtraNav(){
   const menNav = document.querySelector(".men-extra-nav");
   const womenNav = document.querySelector(".female-extra-nav");
   const uniNav = document.querySelector(".uni-extra-nav");
+  const categoriesNav = document.querySelector(".categories-extra-nav");
 
   const brandTrigger = document.querySelector("#cat_brands");
   const menTrigger = document.querySelector("#cat_male");
   const femaleTrigger = document.querySelector("#cat_female");
   const uniTrigger = document.querySelector("#cat_unisex");
+  const categoriesTrigger = document.querySelector("#cat_types");
 
   function displayExtraNavOff(){
 
@@ -159,6 +172,9 @@ function showExtraNav(){
       if(trigger.classList.contains("brand-trigger")) {
         trigger.classList.add("active-brand-nav-hovered")
       }
+      if(trigger.classList.contains("categories-trigger")) {
+        trigger.classList.add("active-categories-nav-hovered")
+      }
       const searchInput = document.querySelector(".searcher-mobile");
       searchInput.classList.remove("active-search-bar")
       mainExtraNav.style.display="block";
@@ -175,7 +191,7 @@ function showExtraNav(){
   displayExtraNavCategory(menTrigger,menNav )
   displayExtraNavCategory(femaleTrigger,womenNav )
   displayExtraNavCategory(uniTrigger,uniNav )
-
+  displayExtraNavCategory(categoriesTrigger,categoriesNav )
 
 
 }

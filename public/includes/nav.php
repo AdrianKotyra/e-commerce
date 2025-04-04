@@ -30,6 +30,7 @@
                     <a id="cat_female"href="index.php?category=female" class="female-trigger cat <?php if($cat== "female") { echo 'active_nav_link_female'; } ?>">WOMENS</a>
                     <a id="cat_unisex"href="index.php?category=unisex" class="uni-trigger cat <?php if($cat== "unisex") { echo 'active_nav_link_unisex'; } ?>">UNISEX</a>
                     <a id="cat_brands"href="search.php?search=&category=mixed&size=all&type=all&brand=all" class="brand-trigger cat">BRANDS</a>
+                    <a id="cat_types"href="search.php?search=&category=mixed&size=all&type=all&brand=all" class="categories-trigger cat">CATEGORIES</a>
                 </div>
 
 
@@ -127,29 +128,61 @@
 
           <div class="nav-extra-container brand-extra-nav flex-col">
             <div class="flex-row nav-extra-content">
-                    <div class="nav_cats_container">
+                <div class="nav_cats_container">
 
-                        <span class="nav_cats_header">Shop by Brands</span>
-                        <div class="nav_brands_grid">
-                            <?php display_nav_brands()?>
-                        </div>
-                    </div>
-
-                    <div class="nav_cats_img">
-                        <p>
-                            Brands
-                        </p>
-                        <img src="./imgs/nav/brands/img1.jpg" alt="">
+                    <span class="nav_cats_header">Shop by Brands</span>
+                    <div class="nav_brands_grid">
+                        <?php display_nav_brands()?>
                     </div>
                 </div>
-                <hr>
-                <div class="nav-extra-main-links flex-row">
-                    <a href="news_all.php">Blog</a>
-                    <a href="contact.php">Contact</a>
-                    <a href="faq.php">FAQ</a>
-                    <a href="about.php">About us</a>
-                    <a href="delivery_returns.php">Shipping & Returns</a>
+
+                <div class="nav_cats_img">
+                    <p>
+                        Brands
+                    </p>
+                    <img src="./imgs/nav/brands/img1.jpg" alt="">
                 </div>
+            </div>
+            <hr>
+            <div class="nav-extra-main-links flex-row">
+                <a href="news_all.php">Blog</a>
+                <a href="contact.php">Contact</a>
+                <a href="faq.php">FAQ</a>
+                <a href="about.php">About us</a>
+                <a href="delivery_returns.php">Shipping & Returns</a>
+            </div>
+
+
+        </div>
+
+
+          <!-- ---------------------CATEGORIES extra --------------------- -->
+
+          <div class="nav-extra-container categories-extra-nav flex-col">
+            <div class="flex-row nav-extra-content">
+                <div class="nav_cats_container">
+
+                    <span class="nav_cats_header">Shop by categories</span>
+                    <div class="nav_brands_grid">
+                        <?php display_nav_cats()?>
+                    </div>
+                </div>
+
+                <div class="nav_cats_img">
+                    <p>
+                        Categories
+                    </p>
+                    <img src="./imgs/nav/brands/img1.jpg" alt="">
+                </div>
+            </div>
+            <hr>
+            <div class="nav-extra-main-links flex-row">
+                <a href="news_all.php">Blog</a>
+                <a href="contact.php">Contact</a>
+                <a href="faq.php">FAQ</a>
+                <a href="about.php">About us</a>
+                <a href="delivery_returns.php">Shipping & Returns</a>
+            </div>
 
 
         </div>

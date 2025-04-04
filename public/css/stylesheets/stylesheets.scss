@@ -92,6 +92,8 @@ img {
   }
 }
 .cookies_window {
+  animation: cookiesWindow 0.5s forwards;
+  display: none;
   -webkit-box-shadow: 0px -1px 5px 0px rgba(0,0,0,0.75);
   -moz-box-shadow: 0px -1px 5px 0px rgba(0,0,0,0.75);
   box-shadow: 0px -1px 5px 0px rgba(0,0,0,0.75);
@@ -197,6 +199,7 @@ img {
 #explore img {
   width: 100%;
   overflow: hidden;
+  max-height: 600px;
 }
 
 #explore .leather {
@@ -506,10 +509,11 @@ img {
   }
 }
 .hero-section-main {
-  margin: 5px 0;
+  margin: 5px auto;
   overflow: hidden;
 
-  height: 90vh;
+  height: 70vh;
+  max-height: 700px;
   .hero-container{
     overflow: hidden;
     position: relative;
@@ -779,6 +783,10 @@ img {
   background-color: #000000;
   color: white !important;
 }
+.active-categories-nav-hovered{
+  background-color: #000000;
+  color: white !important;
+}
 .contact-hero-banner {
   margin-top: 60px;
   height: 360px;
@@ -848,12 +856,13 @@ img {
   top: 50%;
   transform: translate(-50%, -50%);
   p {
+
     text-shadow: -1px -1px 0 #0000008a, 1px -1px 0 #00000085, -1px 1px 0 #00000082, 1px 1px 0 #00000078;
     font-weight: 800;
     color: white;
     text-transform: uppercase;
     letter-spacing: 1.5;
-    font-size: var(--header-section-small);
+    font-size: var(--header-section)
   }
   button {
     border: none;
@@ -2436,7 +2445,7 @@ width: 100%;
   text-transform: uppercase;
   font-weight: 800;
   text-align: center;
-  font-size: var(--header-section-small);
+  font-size: var(--header-section);
   padding: 40px 0;
   color: var(--ui-main-text)!important;
 }
@@ -2892,6 +2901,10 @@ body {
   background-color: #000000;
   color: white;
 }
+.categories-extra-nav a:hover{
+  background-color: #000000;
+  color: white;
+}
 .nav-extra-content {
   width: 100%;
   justify-content: space-between;
@@ -3038,7 +3051,7 @@ body {
   }
 }
 .news-section-container {
-
+  max-height: 800px;
   height: 30vw;
   gap: 10px;
   display: grid;
@@ -3201,6 +3214,13 @@ body {
 .prod-size {
   font-size: var(--very-small);
   line-height: 0;
+}
+
+.active_cookies {
+  display: flex;
+}
+.inactive_cookies {
+  display: none;
 }
 .similar-prod-desc {
   display: flex;
@@ -4919,6 +4939,19 @@ section {
     grid-template-columns: repeat(1, 1fr);
   }
 }
+@keyframes cookiesWindow {
+  0% {
+    transform: translatey(30%);
+    opacity: 0%;
+  }
+  100%{
+    opacity: 100%;
+    transform: translate(0%);
+  }
+
+}
+
+
 @keyframes bannerAnimationForw {
   0% {
     transform: translate(-60%,-50%);
