@@ -46,6 +46,8 @@ function getTotal() {
                                 const payerCountry = details.payer.address.country_code;
 
                                 // shipping address details:
+                                const shippingInfo = details.purchase_units[0].shipping;
+                                const shippingName = shippingInfo.name.full_name;
                                 const shippingAddress = details.purchase_units[0].shipping.address;
                                 const shippingStreet = shippingAddress.address_line_1;
                                 const shippingCity = shippingAddress.admin_area_2;
@@ -78,7 +80,7 @@ function getTotal() {
                                         payer_id: payerID,
                                         payer_phone: payerPhone,
                                         payer_country: payerCountry,
-
+                                        shippingName: shippingName,
                                         shipping_street: shippingStreet,
                                         shipping_city: shippingCity,
                                         shipping_state: shippingState,
@@ -86,17 +88,14 @@ function getTotal() {
                                         shipping_country: shippingCountry
                                     },
                                     success: function(response) {
-                                        if (response == 1) {
-                                            displayModalTranscation(payerName);
-                                        } else {
-                                            alert('Failed to process payment');
-                                            console.log(response);
-                                        }
+
+                                        displayModalTranscation(payerName);
+
                                     }
                                 });
 
 
-                                displayModalTranscation(payerName);
+
                             });
                         },
 

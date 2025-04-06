@@ -120,7 +120,7 @@ function lightMode(){
 function changeModes() {
   const inputDarkMode = document.querySelector("#dark-mode-toggle");
 
-  inputDarkMode.addEventListener("change", () => {
+  inputDarkMode&&inputDarkMode.addEventListener("change", () => {
       if (inputDarkMode.checked) {
 
         if (getCookie("cookies") === "accepted") {

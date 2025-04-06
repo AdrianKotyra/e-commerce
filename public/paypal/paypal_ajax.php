@@ -36,7 +36,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $shipping_state = $_POST['shipping_state'] ?? '';
     $shipping_postal_code = $_POST['shipping_postal_code'] ?? '';
     $shipping_country = $_POST['shipping_country'] ?? '';
-
+    $shippingName = $_POST['shippingName'] ?? '';
     // Check if transaction already exists
     $check_sql = "SELECT transaction_id FROM orders WHERE transaction_id = ?";
     $stmt = $connection->prepare($check_sql);
@@ -49,14 +49,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $insert_sql = "INSERT INTO orders
             (user_db_id, transaction_id, transaction_status, transaction_amount, transaction_currency, transaction_time,
             payer_name, payer_email, payer_id, payer_phone, payer_country,
-            shipping_street, shipping_city, shipping_state, shipping_postal_code, shipping_country)
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            shipping_street, shipping_city, shipping_state, shipping_postal_code, shipping_country, shipping_name)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         $insert_stmt = $connection->prepare($insert_sql);
-        $insert_stmt->bind_param("isssssssssssssss",
+        $insert_stmt->bind_param("issssssssssssssss",
             $user_id, $transaction_id, $transaction_status, $transaction_amount, $transaction_currency, $transaction_time,
             $payer_name, $payer_email, $payer_id, $payer_phone, $payer_country,
-            $shipping_street, $shipping_city, $shipping_state, $shipping_postal_code, $shipping_country
+            $shipping_street, $shipping_city, $shipping_state, $shipping_postal_code, $shipping_country, $shippingName
         );
 
         if ($insert_stmt->execute()) {
@@ -90,8 +90,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
 
-        } else {
-            echo "Error: " . $insert_stmt->error; // Fix: Use correct error variable
         }
 
         $insert_stmt->close();

@@ -348,7 +348,98 @@ function send_invoice($order_id, $email){
      echo "Error: {$mail->ErrorInfo}";
  }
  }
+function galleryAboutImages(){
+    global $connection;
+    $query = "SELECT * FROM gallery limit 4 offset 0";
+    $select_brands = mysqli_query($connection, $query);
 
+    if (!$select_brands) {
+        die("Query failed: " . mysqli_error($connection));
+    }
+    $counter = 0;
+    while ($row = mysqli_fetch_assoc($select_brands)) {
+        $img_src = $row["img_src"];
+        $img_title = $row["img_title"];
+        $counter +=1;
+        $col_size = '';
+        if($counter==1){
+            $col_size = "col-lg-8";
+        }
+        if($counter==2){
+            $col_size = "col-lg-4";
+        }
+        if($counter==3){
+            $col_size = "col-lg-6";
+        }
+        if($counter==4){
+            $col_size = "col-lg-6";
+        }
+        $logo_company_icon = '
+
+            <div class="'.$col_size.' col-gallery-img">
+                <span class="gallery-img-desc">
+                    '.$img_title.'
+                </span>
+                <a href="gallery.php">
+                    <img src="./imgs/gallery/'.$img_src.'" alt="">
+                </a>
+            </div>
+
+        ';
+
+        echo $logo_company_icon;
+
+    }
+
+}
+function galleryMainImages(){
+    global $connection;
+    $query = "SELECT * FROM gallery ";
+    $select_brands = mysqli_query($connection, $query);
+
+    if (!$select_brands) {
+        die("Query failed: " . mysqli_error($connection));
+    }
+    $counter = 0;
+    while ($row = mysqli_fetch_assoc($select_brands)) {
+        $img_src = $row["img_src"];
+        $img_id = ["id"];
+        $img_title = $row["img_title"];
+        $counter +=1;
+        $col_size = '';
+        if($counter==1){
+            $col_size = "col-lg-8";
+        }
+        if($counter==2){
+            $col_size = "col-lg-4";
+        }
+        if($counter==3){
+            $col_size = "col-lg-6";
+        }
+        if($counter==4){
+            $col_size = "col-lg-6";
+        }
+        if($counter>4){
+            $col_size = "col-lg-4";
+        }
+        $logo_company_icon = '
+
+            <a href="./imgs/gallery/'.$img_src.'" class="'.$col_size.' col-gallery-img" data-fancybox="1" data-caption="'.$img_title.'" data-fancybox-index="1">
+                <span class="gallery-img-desc">
+                    '.$img_title.'
+                </span>
+
+                <img src="./imgs/gallery/'.$img_src.'" alt="">
+
+            </a>
+
+        ';
+
+        echo $logo_company_icon;
+
+    }
+
+}
 function display_brands_section(){
     global $connection;
     $query = "SELECT * FROM brands";

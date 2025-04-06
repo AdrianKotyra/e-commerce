@@ -4,14 +4,17 @@
 function setBanner(){
   const textPromo_1 = document.querySelector(".banner-text-1");
   const textPromo_2 = document.querySelector(".banner-text-2");
-  setInterval(() => {
-    textPromo_1.classList.replace("inactive-promo", "active-promo")
-    textPromo_2.classList.replace("active-promo", "inactive-promo")
-  }, 4000);
-  setInterval(() => {
-    textPromo_1.classList.replace("active-promo", "inactive-promo")
-    textPromo_2.classList.replace("inactive-promo", "active-promo")
-  }, 8000);
+  if(textPromo_1 && textPromo_2) {
+    setInterval(() => {
+      textPromo_1.classList.replace("inactive-promo", "active-promo")
+       textPromo_2.classList.replace("active-promo", "inactive-promo")
+     }, 4000);
+     setInterval(() => {
+       textPromo_1.classList.replace("active-promo", "inactive-promo")
+       textPromo_2.classList.replace("inactive-promo", "active-promo")
+     }, 8000);
+  }
+
 }
 setBanner()
 // Function to set a cookie

@@ -149,6 +149,7 @@
                 <a href="contact.php">Contact</a>
                 <a href="faq.php">FAQ</a>
                 <a href="about.php">About us</a>
+                <a href="gallery.php">Gallery</a>
                 <a href="delivery_returns.php">Shipping & Returns</a>
             </div>
 
@@ -181,6 +182,7 @@
                 <a href="contact.php">Contact</a>
                 <a href="faq.php">FAQ</a>
                 <a href="about.php">About us</a>
+                <a href="gallery.php">Gallery</a>
                 <a href="delivery_returns.php">Shipping & Returns</a>
             </div>
 
@@ -221,6 +223,7 @@
                 <a href="contact.php">Contact</a>
                 <a href="faq.php">FAQ</a>
                 <a href="about.php">About us</a>
+                <a href="gallery.php">Gallery</a>
                 <a href="delivery_returns.php">Shipping & Returns</a>
             </div>
 
@@ -260,6 +263,7 @@
                 <a href="contact.php">Contact</a>
                 <a href="faq.php">FAQ</a>
                 <a href="about.php">About us</a>
+                <a href="gallery.php">Gallery</a>
                 <a href="delivery_returns.php">Shipping & Returns</a>
             </div>
 
@@ -302,6 +306,7 @@
                 <a href="contact.php">Contact</a>
                 <a href="faq.php">FAQ</a>
                 <a href="about.php">About us</a>
+                <a href="gallery.php">Gallery</a>
                 <a href="delivery_returns.php">Shipping & Returns</a>
             </div>
 

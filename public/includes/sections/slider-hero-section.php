@@ -78,43 +78,7 @@
 
                 </div>
             </div>
-            <!--
-            <div class="swiper-slide">
-                <figure class="slide-bgimg" loading="lazy"></figure>
-                <img loading="lazy" src="./imgs/slider/slide (4).jpg" />
 
-                <div class="content">
-
-                    <p class="title">name</p>
-
-
-
-                </div>
-            </div>
-            <div class="swiper-slide">
-                <figure class="slide-bgimg" loading="lazy"></figure>
-                <img loading="lazy" src="./imgs/slider/slide (5).jpg" />
-
-                <div class="content">
-
-                    <p class="title">name</p>
-
-
-
-                </div>
-            </div>
-            <div class="swiper-slide">
-                <figure class="slide-bgimg" loading="lazy"></figure>
-                <img loading="lazy" src="./imgs/slider/slide (6).jpg" />
-
-                <div class="content">
-
-                    <p class="title">name</p>
-
-
-
-                </div>
-            </div> -->
         </div>
         </div>
 

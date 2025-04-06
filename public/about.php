@@ -92,6 +92,23 @@
             </div>
         </div>
     </section>
+    <section class="gallery">
+        <div class="wrapper">
+            <div class="col-lg-12 text-center">
+                    <div class="section-heading">
+                        <h2>Our Gallery</h2>
+                        <span>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eum ratione corporis repudiandae, animi nisi placeat, in error atque perspiciatis architecto, rem recusandae!</span>
+                    </div>
+            </div>
+
+
+
+            <div class="row">
+              <?php galleryAboutImages();?>
+            </div>
+        </div>
+
+    </section>
     <section class="our-services">
         <div class="wrapper">
             <div class="row">

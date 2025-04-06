@@ -26,8 +26,8 @@
         <h3 class="section-header">
             Let’s Start a Conversation
         </h3>
-        <div class="container-form-contact">
-            <div class="form-info-contact-container">
+        <div class="container-form-contact ">
+            <div class="form-info-contact-container ">
                 <div class="details-account-col">
                     <h3>Support</h3>
                     <span>schools@edinburghcollege.ac.uk</span>
@@ -40,9 +40,7 @@
                     <h3>Phone number</h3>
                     <span>0131 669 4400</span>
                 </div>
-                <div class="map-contact">
-                    <iframe class="iframe-map"src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2234.3195008059847!2d-3.101098923106368!3d55.943834073155536!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4887b9a7365fccff%3A0x52629bc613f4b94b!2sEdinburgh%20College!5e0!3m2!1spl!2suk!4v1740138654013!5m2!1spl!2suk"   style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-                </div>
+
 
             </div>
             <?php
@@ -134,9 +132,15 @@
             </div>
         </div>
     </div>
+
+
+
+
+    <div class="map-contact">
+        <iframe class="iframe-map"src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2234.3195008059847!2d-3.101098923106368!3d55.943834073155536!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4887b9a7365fccff%3A0x52629bc613f4b94b!2sEdinburgh%20College!5e0!3m2!1spl!2suk!4v1740138654013!5m2!1spl!2suk"   style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+
 </section>
-
-
 
 
 
