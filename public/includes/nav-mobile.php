@@ -1,5 +1,10 @@
 <div class="nav-mobile">
     <div class="nav-mobile-container ">
+        <div class="dark-mode-container dark-mode-mobile-screen">
+                    <input type="checkbox" id="dark-mode-toggle" />
+                    <label for="dark-mode-toggle"  class="toggle"></label>
+        </div>
+
         <div class="top-nav-gender-switcher flex-row">
             <span class="mobile-active-cat maleSwitch ">MENS</span>
             <span class="femaleSwitch">WOMENS</span>

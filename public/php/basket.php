@@ -1,11 +1,23 @@
 <?php
 
 class Basket {
+    public $delivery_option;
+    public $delivery_price;
+    public $discount_applied;
+
+
+    public function __construct() {
+        $this->discount_applied =  false;
+        $this->delivery_option =  $_SESSION['delivery_option'];
+        $this->delivery_price = $this->delivery_option == "standard"? 4.99 : 7.99;
+    }
 
 
     // Add an item to a user's basket
     public function addItem($item_id, $quantity, $price,  $productsize) {
         if (!isset($_SESSION['baskets'])) {
+
+
             $_SESSION['baskets'] = []; // Initialize basket for the user
         }
         // Create a unique key using product ID and size
@@ -53,15 +65,19 @@ class Basket {
     }
 
     // Get the total cost of all items in a user's basket
-    public static function getTotal() {
+    public function getTotal() {
+
         $total = 0;
         if (isset($_SESSION['baskets'])) {
-            foreach ($_SESSION['baskets']as $item=> $details) {
+            foreach ($_SESSION['baskets'] as $item => $details) {
                 $total += $details['quantity'] * $details['price'];
             }
         }
+
+        $this->discount_applied = $total>=150? true: false;
         return $total;
     }
+
     // Get the number of items
     public static function getNumber() {
         $number = 0;

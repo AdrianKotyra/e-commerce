@@ -106,7 +106,7 @@ class Comment {
         $comment_template = '
            <div class="comment-product-col ">
             <hr>
-            <div class="comment-product-col-container flex-row">
+            <div class="comment-product-col-container">
 
                 <div class="comment-user-col flex-row">
                     <div class="flex-col">

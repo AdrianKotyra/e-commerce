@@ -8,7 +8,7 @@
     $user_lastname = trim($_POST['userSurname']);
     $user_password = trim($_POST['userPassword']);
     $user_email = trim($_POST['userEmail']);
-
+    $accept_terms = trim($_POST['acceptTerms']);
 
 
 

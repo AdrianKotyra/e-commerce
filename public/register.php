@@ -36,6 +36,6 @@
 
 </section>
 
-
+<script src="js/global.js"></script>
 <script src="js/pages/register.js"></script>
 <?php include("includes/footer.php") ?>

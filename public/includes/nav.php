@@ -43,7 +43,6 @@
                 </div>
 
 
-
             </div>
 
             <div class="logo-nav nav-col">
@@ -80,7 +79,7 @@
 
                     <img class="cart-shopping nav-icon-img"src="./imgs/icons/cart.svg" alt="">
                 </div>
-                <div class="dark-mode-container">
+                <div class="dark-mode-container dark-mode-fs">
                     <input type="checkbox" id="dark-mode-toggle" />
                     <label for="dark-mode-toggle"  class="toggle"></label>
                 </div>
@@ -151,6 +150,7 @@
                 <a href="about.php">About us</a>
                 <a href="gallery.php">Gallery</a>
                 <a href="delivery_returns.php">Shipping & Returns</a>
+                <a href="terms_conditions.php">Terms & Conditions</a>
             </div>
 
 
@@ -184,6 +184,7 @@
                 <a href="about.php">About us</a>
                 <a href="gallery.php">Gallery</a>
                 <a href="delivery_returns.php">Shipping & Returns</a>
+                <a href="terms_conditions.php">Terms & Conditions</a>
             </div>
 
 
@@ -225,6 +226,7 @@
                 <a href="about.php">About us</a>
                 <a href="gallery.php">Gallery</a>
                 <a href="delivery_returns.php">Shipping & Returns</a>
+                <a href="terms_conditions.php">Terms & Conditions</a>
             </div>
 
 
@@ -265,6 +267,7 @@
                 <a href="about.php">About us</a>
                 <a href="gallery.php">Gallery</a>
                 <a href="delivery_returns.php">Shipping & Returns</a>
+                <a href="terms_conditions.php">Terms & Conditions</a>
             </div>
 
 
@@ -308,6 +311,7 @@
                 <a href="about.php">About us</a>
                 <a href="gallery.php">Gallery</a>
                 <a href="delivery_returns.php">Shipping & Returns</a>
+                <a href="terms_conditions.php">Terms & Conditions</a>
             </div>
 
 

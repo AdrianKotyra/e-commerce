@@ -26,8 +26,8 @@
 
     ?>
 <div class="main-banner wrapper" id="top">
-        <div class="container-fluid">
-            <div class="row">
+        <div class="container-fluid g-0">
+            <div class="row g-0">
                 <div class="col-lg-6 g-0 ">
                     <div class="left-content">
                         <div class="thumb">
@@ -45,8 +45,8 @@
                 </div>
                 <div class="col-lg-6 col-md-12 g-0">
                     <div class="right-content">
-                        <div class="row">
-                            <div class="col-lg-6 col-md-6 ">
+                        <div class="row g-0">
+                            <div class="col-lg-6 col-md-6 g-0">
                                 <div class="right-first-image">
                                     <div class="thumb">
                                         <div class="inner-content ">
@@ -70,7 +70,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-lg-6 col-md-6">
+                            <div class="col-lg-6 col-md-6 g-0">
                                 <div class="right-first-image">
                                     <div class="thumb">
                                         <div class="inner-content">
@@ -92,7 +92,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-lg-6 col-md-6">
+                            <div class="col-lg-6 col-md-6 g-0">
                                 <div class="right-first-image">
                                     <div class="thumb">
                                         <div class="inner-content">
@@ -114,7 +114,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-lg-6 col-md-6">
+                            <div class="col-lg-6 col-md-6 g-0">
                                 <div class="right-first-image">
                                     <div class="thumb">
                                         <div class="inner-content">

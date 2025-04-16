@@ -37,7 +37,7 @@ if(!empty($order_id) || $order_id!="") {
             $shipping_state = $row['shipping_state'];
             $shipping_postal_code = $row['shipping_postal_code'];
             $shipping_country = $row['shipping_country'];
-
+            $shipping_name = $row['shipping_name'];
 
 
             echo '  <div class="confirmationWindowModal">
@@ -46,6 +46,7 @@ if(!empty($order_id) || $order_id!="") {
             <div class="message-container-feedback">
               <div class="comment-container-view">
                     <h3 class="order_header"> Order details</h3>
+
                     <p>order status: <b> '.$transaction_status.'</b></p>
                     <p>transcation id: <b> '.$transaction_id.'</b></p>
                     <p>amount: <b> '.$transaction_amount.'</b></p>
@@ -53,13 +54,17 @@ if(!empty($order_id) || $order_id!="") {
                     <p>order time: <b> '.$transaction_time.'</b></p>
                     <p>payer id: <b> '.$payer_id.'</b></p>
                     <p>payer email: <b> '.$payer_email.'</b></p>
+                    <p>payer name: <b> '.$payer_name.'</b></p>
                     <p>phone: <b> '.$payer_phone.'</b></p>
+
                     <h3 class="order_header"> Shipping details</h3>
+                    <p>name reciever: <b> '.$shipping_name.'</b></p>
                     <p>country: <b> '.$payer_country.'</b></p>
                     <p>street: <b> '.$shipping_street.'</b></p>
                     <p>city: <b> '.$shipping_city.'</b></p>
                     <p>state: <b> '.$shipping_state.'</b></p>
                     <p>postal code: <b> '.$shipping_postal_code.'</b></p>
+
                     <h3 class="order_header"> Products details</h3>';
 
 

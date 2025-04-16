@@ -10,6 +10,15 @@
         <!-- BIG chart panel -->
         <div class="row">
           <div class="col-md-12">
+            <div class="card ">
+                <div class="card-header ">
+                  <h5 class="card-title">20 most purchased products </h5>
+
+                </div>
+
+                <div id="chart_div_products_order_counts"  style="width: 100%; height: 100%;"></div>
+
+              </div>
 
             <div class="card ">
               <div class="card-header ">

@@ -18,27 +18,26 @@
                 <div class="col-lg-3 col-md-6">
                     <h4>Shopping &amp; Categories</h4>
                     <ul>
-                        <li><a href="#">Men’s Shopping</a></li>
-                        <li><a href="#">Women’s Shopping</a></li>
-                        <li><a href="#">Uni-sex Shopping</a></li>
+                        <li><a href="index.php?category=male">Men’s Shopping</a></li>
+                        <li><a href="index.php?category=female">Women’s Shopping</a></li>
+                        <li><a href="index.php?category=unisex">Uni-sex Shopping</a></li>
                     </ul>
                 </div>
                 <div class="col-lg-3 col-md-6">
                     <h4>Useful Links</h4>
                     <ul>
-                        <li><a href="#">Homepage</a></li>
-                        <li><a href="#">About Us</a></li>
-                        <li><a href="#">Help</a></li>
-                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="index.php">Homepage</a></li>
+                        <li><a href="about.php">About Us</a></li>
+                        <li><a href="contact.php">Contact Us</a></li>
                     </ul>
                 </div>
                 <div class="col-lg-3 col-md-6">
                     <h4>Help &amp; Information</h4>
                     <ul>
-                        <li><a href="#">Help</a></li>
-                        <li><a href="#">FAQ's</a></li>
-                        <li><a href="#">Shipping</a></li>
-                        <li><a href="#">Tracking ID</a></li>
+                        <li><a href="terms_conditions.php">Terms and Conditions</a></li>
+                        <li><a href="faq.php">FAQ's</a></li>
+                        <li><a href="delivery_returns.php">Delivery and Returns</a></li>
+
                     </ul>
                 </div>
                 <div class="col-lg-12">

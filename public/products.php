@@ -4,43 +4,55 @@
     global $product;
     if(isset($_GET["show"])) {
         $product_id = $_GET["show"];
-        $serch_product = new Product();
-        $serch_product->create_product($product_id);
-        Product::increment_product_views($product_id);
-        $product_name = $serch_product->product_name;
-        $product_price= $serch_product->product_price;
-        $product_img1 = $serch_product->product_img;
-        $product_img2 = $serch_product->product_img_2;
-        $product_img3 = $serch_product->product_img_3;
-        $product_img4 = $serch_product->product_img_4;
-        $product_type = $serch_product->product_type;
-        $product_desc = $serch_product->product_desc;
-        $product_brand_logo = $serch_product->brand_img;
-        $product_brand_id = $serch_product->brand_id;
-        $product_category = $serch_product->product_category;
-        $product_sizes = $serch_product->product_sizes_list;
-        $product_availability = $serch_product->product_availability;
+        global $database;
 
-        $sizes_html = generate_sizes_html($serch_product, "span");
-        $chosen_grid= generate_product_grid_sizes($serch_product);
-
-        $wishlist_check = new wishlist();
-
-        $product_add_to_wishlist = $wishlist_check->check_if_product_added($product_id);
-
-        if($product_add_to_wishlist==1) {
-            $favorite_icon=  '
-            <img  class="prod-fav-label-added" src="./imgs/icons/heart-solid.svg">';
-
+        // back to home if product doesnt exists
+        $check_product = $database->query_array("SELECT * from products where product_id = $product_id");
+        if(mysqli_num_rows($check_product)==0) {
+            header("Location: index.php");
         }
         else {
-            $favorite_icon = '<img prod-id='.$product_id.' class="prod-fav-label" src="./imgs/icons/heart-regular.svg">';
+            $serch_product = new Product();
+            $serch_product->create_product($product_id);
+            Product::increment_product_views($product_id);
+            $product_name = $serch_product->product_name;
+            $product_price= $serch_product->product_price;
+            $product_img1 = $serch_product->product_img;
+            $product_img2 = $serch_product->product_img_2;
+            $product_img3 = $serch_product->product_img_3;
+            $product_img4 = $serch_product->product_img_4;
+            $product_type = $serch_product->product_type;
+            $product_desc = $serch_product->product_desc;
+            $product_brand_logo = $serch_product->brand_img;
+            $product_brand_id = $serch_product->brand_id;
+            $product_category = $serch_product->product_category;
+            $product_sizes = $serch_product->product_sizes_list;
+            $product_availability = $serch_product->product_availability;
+
+            $sizes_html = generate_sizes_html($serch_product, "span");
+            $chosen_grid= generate_product_grid_sizes($serch_product);
+
+            $wishlist_check = new wishlist();
+
+            $product_add_to_wishlist = $wishlist_check->check_if_product_added($product_id);
+
+            if($product_add_to_wishlist==1) {
+                $favorite_icon=  '
+                <img  class="prod-fav-label-added" src="./imgs/icons/heart-solid.svg">';
+
+            }
+            else {
+                $favorite_icon = '<img prod-id='.$product_id.' class="prod-fav-label" src="./imgs/icons/heart-regular.svg">';
 
 
+            }
         }
 
 
-}
+
+    } else {
+        header("Location: index.php");
+    }
 
 
 ?>

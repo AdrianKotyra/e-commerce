@@ -1,6 +1,6 @@
 <?php include("includes/header.php") ?>
 
-<section class="contact-hero-banner">
+<section class="contact-hero-banner animate-on-scroll">
     <div class="hero-container">
 
 
@@ -17,7 +17,7 @@
 
 </section>
 
-<div class="about-us">
+<div class="about-us animate-on-scroll">
         <div class="wrapper">
             <div class="row">
                 <div class="col-lg-6">
@@ -44,10 +44,10 @@
             </div>
         </div>
     </div>
-    <section class="our-team">
+    <section class="our-team animate-on-scroll">
         <div class="wrapper">
             <div class="row">
-                <div class="col-lg-12">
+                <div class="col-lg-12 ">
                     <div class="section-heading">
                         <h2>Our Amazing Team</h2>
                         <span>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eum ratione corporis repudiandae, animi nisi placeat, in error atque perspiciatis architecto, rem recusandae!</span>
@@ -92,7 +92,7 @@
             </div>
         </div>
     </section>
-    <section class="gallery">
+    <section class="gallery animate-on-scroll">
         <div class="wrapper">
             <div class="col-lg-12 text-center">
                     <div class="section-heading">
@@ -109,7 +109,7 @@
         </div>
 
     </section>
-    <section class="our-services">
+    <section class="our-services animate-on-scroll">
         <div class="wrapper">
             <div class="row">
                 <div class="col-lg-12">
@@ -148,3 +148,4 @@
 <?php include("includes/footer.php") ?>
 <script src="js/countries.js"></script>
 <script src="js/pages/contact.js"></script>
+<script src="js/animateOnScroll.js"></script>

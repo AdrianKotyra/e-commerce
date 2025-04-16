@@ -4,20 +4,27 @@
     <div class="hero-container">
       <?php
         if(isset($_GET["post"])){
-
             $post_id = $_GET["post"];
+            // back to home if post doesnt exists
+            $check_product = $database->query_array("SELECT * from news where id = $post_id");
+            if(mysqli_num_rows($check_product)==0) {
+                header("Location: index.php");
+            }
+            else {
+              $new_post = new Post();
+              $new_post->create_post($post_id);
+              $post_id= $new_post->post_id;
+              $post_date= $new_post->post_date;
+              $post_date_formated = format_date($post_date);
+              $post_header=$new_post->post_header;
+              $post_desc=$new_post->post_desc;
+              $post_img=$new_post->post_img;
+              $post_banner=$new_post->post_banner;
+              $post_sub_heading = $new_post->post_sub_heading;
+              $post_author = $new_post->post_author;
 
-            $new_post = new Post();
-            $new_post->create_post($post_id);
-            $post_id= $new_post->post_id;
-            $post_date= $new_post->post_date;
-            $post_date_formated = format_date($post_date);
-            $post_header=$new_post->post_header;
-            $post_desc=$new_post->post_desc;
-            $post_img=$new_post->post_img;
-            $post_banner=$new_post->post_banner;
-            $post_sub_heading = $new_post->post_sub_heading;
-            $post_author = $new_post->post_author;
+            }
+
 
 
         }

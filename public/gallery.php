@@ -45,3 +45,4 @@
 <?php include("includes/footer.php") ?>
 <script src="js/countries.js"></script>
 <script src="js/pages/contact.js"></script>
+<script src="js/animateOnScroll.js"></script>

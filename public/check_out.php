@@ -1,17 +1,19 @@
 <?php include("includes/header.php") ?>
 <?php
-    if(isset($user->user_id)) {
-        $user_id =  $user->user_id;
-        $user_email = $user->user_email;
-        $user_lastname = $user->user_lastname;
-        $user_firstname = $user->user_firstname;
-        $user_password =$user->user_password;
-        $user_address = $user->user_address;
-        $user_city = $user->user_city;
-        $user_country = $user->user_country;
-        $user_postcode = $user->user_postcode;
-    }
+    global $basket;
+    $discount_applied = $basket->discount_applied;
+    $checkout_products =  $basket->processUserBasket("product_checkout_Template");
+    $raw_total = $basket->getTotal() + $basket->delivery_price;
+    $user_total = $discount_applied == 1
+        ? round($raw_total * 0.85, 2)
+        : round($raw_total, 2);
 
+    $discounted_price =  round(($basket->getTotal() + $basket->delivery_price) * 15 / 100, 2);
+
+
+
+
+    $number_items = $basket->getNumberTotal();
 
 ?>
 
@@ -29,12 +31,7 @@
             </div>
         </div>
 
-        <?php
-            global $basket;
-            $checkout_products =  $basket->processUserBasket("product_checkout_Template");
-            $user_total = $basket->getTotal();
-            $number_items = $basket->getNumberTotal();
-        ?>
+
        <div class="container-prod-checkout flex-col">
 
             <div class="container-checkout-prods">
@@ -45,23 +42,91 @@
                         <?php echo $checkout_products;?>
                     </div>
                 </div>
+                <div class="delivery-container">
+                    <h4>Delivery &nbsp;</h4>
+
+                    <div class="delivery-col flex-row">
+                        <div class="delivery-col-info  flex-row">
+                            <input class="change_delivery" <?php echo $basket->delivery_option=="standard"?  'checked' : '';?> type="radio" id="html" name="delivery" value="standard">
+                            <div class="flex-col">
+                                <span class="name ">Standard Shipping</span>
+                                <span class="time ">5-10 days</span>
+                            </div>
+                        </div>
+                        <div class="delivery-col-price">
+                            £ 4.99
+                        </div>
+
+
+                    </div>
+
+                    <div class="delivery-col flex-row">
+                        <div class="delivery-col-info  flex-row">
+                            <input  class="change_delivery"  <?php echo $basket->delivery_option=="express"?  'checked' : '';?>  type="radio" id="html" name="delivery" value="express">
+                            <div class="flex-col">
+                                <span class="name">Express Shipping</span>
+                                <span class="time">2-3 days</span>
+                            </div>
+                        </div>
+                        <div class="delivery-col-price">
+                            £ 7.99
+                        </div>
+
+
+                    </div>
+
+
+                </div>
                 <div class="total-checkout-container">
 
-                    <div class="check_out_discout flex-row">
-                        <input  class="form-control"type="text" placeholder="Discount Code">
-                        <button>Apply</button>
-                    </div>
+
 
                     <span class="subtotal">Subtotal · <?php echo   $number_items; ?> items</span>
                     <div class="total flex-row">
 
+                    <h4>Products &nbsp;</h4>
+
+                    <h4>£ <span class="display_total"><?php echo $basket->getTotal();?></span ></h4>
+
+
+                    </div>
+                    <div class="total flex-row">
+
+                    <h4>Delivery &nbsp;</h4>
+
+                    <h4>£ <span class="display_total"><?php echo $basket->delivery_price;?></span ></h4>
+
+
+                    </div>
+                    <div class="total flex-row">
+
+
+                    <?php echo
+                    $discount_applied==1? ' <div class="total flex-row">
+                    <h4>Discount &nbsp;</h4>
+                    <h4><span class="display_total"> £ -'.$discounted_price.'</span ></h4>
+                    </div>' : '';
+
+
+
+                    ?>
+
+
+
+
+                    </div>
+                    <div class="total flex-row">
+
                         <h4>Total &nbsp;</h4>
 
-                        <h4>£<?php echo $user_total;?></h4>
+                        <h4>£ <span class="display_total"><?php echo $user_total;?></span ></h4>
                         <input class="hidden-input"type="text" name="total" id="total_amount" value=<?php echo $user_total;?>>
 
                     </div>
 
+
+                    <span><?php echo  $discount_applied==1? "Discount applied for purchases for over <b>£150 </b>(-15%)" : ""?></span>
+                    <br>
 
                 </div>
             </div>
@@ -93,4 +158,5 @@ $paypal_id = "AdD-sMw2qeU-LYOXjKBXZzlfnWT8t6uZCfu4oYctJ1xJ-nQpB1WozBcvKbkaM54-GD
 
 
 <?php include("includes/footer.php") ?>
+<script src="js/pages/checkout.js"></script>
 <script src="paypal/app.js"></script>

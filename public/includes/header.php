@@ -59,6 +59,8 @@ include "php/init.php"?>
 <!-- --------------MODAL WINDOW----------- -->
 <div class="modal-container">
 
+
+
 </div>
 <!-- --------------LOADER----------- -->
 <div class="loader">

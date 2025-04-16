@@ -17,7 +17,7 @@ function setBanner(){
 
 }
 setBanner()
-// Function to set a cookie
+// ------------------COOKIES WINDOW AND FUNCTIONALITY-----------------------
 function setCookie(name, value, days) {
   let expires = "";
   if (days) {
@@ -28,7 +28,7 @@ function setCookie(name, value, days) {
   document.cookie = name + "=" + encodeURIComponent(value) + expires + "; path=/";
 }
 
-// ------------------COOKIES WINDOW AND FUNCTIONALITY-----------------------
+
 function cookies_window(){
 
   const crossCookies = document.querySelector(".cross-cookies")

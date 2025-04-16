@@ -71,6 +71,12 @@ $active_page =  basename($_SERVER['PHP_SELF']);
               <p>Newsletter</p>
             </a>
           </li>
+          <li class="<?= $active_page == 'gallery.php' ? 'active' : '' ?>">
+            <a href="gallery.php">
+              <i class="nc-icon nc-atom"></i>
+              <p>Gallery</p>
+            </a>
+          </li>
         </ul>
       </div>
 </div>

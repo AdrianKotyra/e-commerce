@@ -46,8 +46,8 @@
                 <th>ttranscation id</th>
                 <th>date</th>
                 <th>amount</th>
-                <th>payer</th>
-
+                <th>payer email</th>
+                <th>payer name</th>
                 <th class=" text-primary text-right">info</th>
                 <th  class=" text-primary text-right">Edit</th>
                 <th  class=" text-primary text-right">Delete</th>

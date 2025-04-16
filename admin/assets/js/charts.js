@@ -1,13 +1,23 @@
 google.charts.load('current', {packages: ['corechart', 'bar']});
-google.charts.setOnLoadCallback(loadChartData);
-google.charts.setOnLoadCallback(loadChartDataStock);
-google.charts.setOnLoadCallback(loadChartDataGenders);
-google.charts.setOnLoadCallback(loadChartDataReviews);
+google.charts.setOnLoadCallback(initAllCharts);
 
+function initAllCharts() {
+    loadChartData();
+    loadChartDataStock();
+    loadChartDataGenders();
+    loadChartDataReviews();
+    loadChartDataProductsOrders();
+}
 function loadChartData() {
     fetch('ajax/get_products_views.php')
         .then(response => response.json())
         .then(data => drawChartviews(data))
+        .catch(error => console.error('Error loading view data:', error));
+}
+function loadChartDataProductsOrders() {
+    fetch('ajax/get_order_products_count.php')
+        .then(response => response.json())
+        .then(data => drawChartProductsCounts(data))
         .catch(error => console.error('Error loading view data:', error));
 }
 
@@ -51,7 +61,27 @@ function drawChartviews(dataArray) {
     var chart = new google.visualization.ColumnChart(document.getElementById('chart_div_views'));
     chart.draw(data, options);
 }
+function drawChartProductsCounts(dataArray) {
+    console.log("Products count dataArray:", dataArray); // Debug here
 
+    var data = new google.visualization.DataTable();
+    data.addColumn('string', 'Product');
+    data.addColumn('number', 'Purchased');
+    data.addRows(dataArray); // this line fails if dataArray is not valid
+
+    var options = {
+        title: 'Product Purchases',
+        hAxis: { title: 'Products', slantedText: true, slantedTextAngle: 45 },
+        vAxis: { title: 'Number of Purchases' },
+        bars: 'vertical',
+        height: 600,
+        series: { 0: { color: '#34b5b8' } },
+        animation: { "startup": true, duration: 1000, easing: 'out' }
+    };
+
+    var chart = new google.visualization.ColumnChart(document.getElementById('chart_div_products_order_counts'));
+    chart.draw(data, options);
+}
 function drawChartStock(dataArray) {
     var data = new google.visualization.DataTable();
     data.addColumn('string', 'Product');

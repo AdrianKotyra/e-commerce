@@ -419,12 +419,12 @@ function galleryMainImages(){
         if($counter==4){
             $col_size = "col-lg-6";
         }
-        if($counter>4){
-            $col_size = "col-lg-4";
+        if ($counter == 4) {
+            $counter = 0;
         }
         $logo_company_icon = '
 
-            <a href="./imgs/gallery/'.$img_src.'" class="'.$col_size.' col-gallery-img" data-fancybox="1" data-caption="'.$img_title.'" data-fancybox-index="1">
+            <a href="./imgs/gallery/'.$img_src.'" class="animate-on-scroll '.$col_size.' col-gallery-img" data-fancybox="1" data-caption="'.$img_title.'" data-fancybox-index="1">
                 <span class="gallery-img-desc">
                     '.$img_title.'
                 </span>

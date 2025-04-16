@@ -573,10 +573,11 @@ class Product {
 
 
         $html = '<div class="added-prod-window">
-    <div class="added-prod-window-top">
-      <div class="exit-icon exit-modal">
+          <div class="exit-icon exit-modal">
       <i class="fa-solid fa-xmark "></i>
       </div>
+    <div class="added-prod-window-top">
+
 
       <i class="fa-solid fa-check"></i>
       <span><b>Product has been added to your wishlist.</b></span>
@@ -606,7 +607,7 @@ class Product {
 
         $prod_total = $product_price*$quantity_basket;
         $total_items_in_basket = $basket::getNumber();
-        $total_price = $basket::getTotal();
+        $total_price = $basket->getTotal();
 
         $html = '<div class="added-prod-window">
     <div class="added-prod-window-top">

@@ -1,9 +1,8 @@
 
 
-getTotal()
 
 // first double check if total amount exists on the server if yes display paypal button
-
+getTotal()
 function getTotal() {
     return new Promise((resolve, reject) => {
         const data = "";

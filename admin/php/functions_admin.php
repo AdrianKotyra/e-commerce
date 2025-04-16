@@ -603,7 +603,7 @@ function select_and_display_orders() {
         echo "<td > $transaction_time </td>";
         echo "<td > $transaction_amount</td>";
         echo "<td > $payer_email</td>";
-
+        echo "<td > $payer_name</td>";
         echo "<td class='text-right'> <span class='table-nav-link order_link' order_id= $order_id >Check</span></td>";
         echo "<td class='text-right'><a class='table-nav-link'href='products.php?source=edit_order&order_id={$order_id}'>EDIT</a></td>";
         echo "<td class='text-right'> <span class='table-nav-link delete_button' data-link='orders.php?delete_order=$order_id'> Delete </span></td>";
@@ -1025,16 +1025,15 @@ function select_and_display_gallery() {
     $select_users_query = mysqli_query($connection, $query);
     while($row = mysqli_fetch_assoc($select_users_query)) {
         $image_id = $row["id"];
-        $image_name = $row["image_name"];
-        $image_title = $row["image_title"];
+        $image_name = $row["img_src"];
+        $image_title = $row["img_title"];
 
         echo"<tr>";
         echo "<td>$image_id</td>";
         echo "<td>$image_name</td>";
         echo "<td>$image_title</td>";
-        echo "<td><img class='table_img' width=100 height=100 src='../public/imgs/gallery_cinema/$image_name'></td>";
-        echo "<td><a href='gallery.php?source=edit_image&image_id={$image_id}'>EDIT</a></td>";
-        echo "<td > <span class='delete_button'  data-link='gallery.php?delete_image=$image_id'> Delete </span></td>";
+        echo "<td><img class='table_img' width=100 height=100 src='../public/imgs/gallery/$image_name'></td>";
+        echo "<td class='text-right'> <span class='delete_button '  data-link='gallery.php?delete_image=$image_id'> Delete </span></td>";
         // echo "<td><a href='movies.php?delete_movie={$movie_id}'>DELETE</a></td>";
         echo"</tr>";
     }
@@ -1045,9 +1044,9 @@ function select_and_display_gallery() {
         $query2 = "SELECT * from gallery WHERE id = $image_to_be_deleted";
         $delete_gallery_img = mysqli_query($connection, $query2);
         while($row = mysqli_fetch_assoc($delete_gallery_img)) {
-            $gallery_img = $row["image_name"];
+            $gallery_img = $row["img_title"];
 
-            $destination_img_upload = "../public/imgs/gallery_cinema/$gallery_img";
+            $destination_img_upload = "../public/imgs/gallery/$gallery_img";
 
             if (file_exists($destination_img_upload)) {
                 unlink($destination_img_upload);
