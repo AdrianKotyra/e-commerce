@@ -184,7 +184,7 @@ class Product {
 
         $product_template = '   <div class="similar-prod-col flex-row">
            '.$favorite_icon.'
-            <a class="similar-prod-link" href="products?show='.$this->product_id.'&category='.$this->product_category.'">
+            <a class="similar-prod-link" href="products.php?show='.$this->product_id.'&category='.$this->product_category.'">
                 <img loading="lazy" src="./imgs/products/'.$this->product_name.'/'.$this->product_img.'" />
             </a>
             <div class="similar-prod-desc">
@@ -268,7 +268,7 @@ class Product {
             '.$category_message.'
 
             <div class="layout-card">
-                <a class="card-prod-link" href="products?show='.$this->product_id.'&category='.$this->product_category.'">
+                <a class="card-prod-link" href="products.php?show='.$this->product_id.'&category='.$this->product_category.'">
                     <div class="shopping-column">
                      <img loading="lazy" src="./imgs/products/'.$this->product_name.'/'.$this->product_img.'" />
                     </div>
@@ -362,7 +362,7 @@ class Product {
 
                 '.$favorite_icon.'
                     <div class="layout-card">
-                            <a class="prod-link" href="products?show='.$this->product_id.'">
+                            <a class="prod-link" href="products.php?show='.$this->product_id.'">
                                 <div class="shopping-column">
                                     <img loading="lazy" src="./imgs/products/'.$this->product_name.'/'.$this->product_img.'" />
                                 </div>
@@ -454,7 +454,7 @@ class Product {
                 '.$category_message.'
 
                 <div class="layout-card ">
-                    <a class="card-prod-link" href="products?show='.$this->product_id.'">
+                    <a class="card-prod-link" href="products.php?show='.$this->product_id.'">
                         <div class="shopping-column">
                          <img loading="lazy"  src="./imgs/products/'.$this->product_name.'/'.$this->product_img.'" />
                         </div>
@@ -585,12 +585,12 @@ class Product {
         $prod_total = $this->product_price*$quantity_basket;
         $product_template = '<div class="basket_product_template flex-row">
         <div class="product_img_container">
-           <a href="products?show='.$this->product_id.'">
+           <a href="products.php?show='.$this->product_id.'">
             <img loading="lazy" src="./imgs/products/'.$this->product_name.'/'.$this->product_img.'" />
             </>
         </div>
         <div class="prod-basket-desc col-row">
-           <a href="products?show='.$this->product_id.'">
+           <a href="products.php?show='.$this->product_id.'">
           <p class="prod-title-basket">'.$this->product_name.'</p>
           </a>
           <p class="prod-size">Size: '.$size.'</p>
@@ -614,12 +614,12 @@ class Product {
     public function product_wishlist_Template(){
         $product_template = '<div class="wishlist_product_template flex-row">
         <div class="product_img_container">
-            <a href="products?show='.$this->product_id.'">
+            <a href="products.php?show='.$this->product_id.'">
                 <img loading="lazy" src="./imgs/products/'.$this->product_name.'/'.$this->product_img.'" />
             </a>
         </div>
         <div class="prod-basket-desc col-row">
-            <a href="products?show='.$this->product_id.'">
+            <a href="products.php?show='.$this->product_id.'">
                <p class="prod-title-basket">'.$this->product_name.'</p>
             </a>
         </div>

@@ -1,7 +1,7 @@
 <div class="grid-setting-links">
             <div class="grid-link-col">
 
-                <a href="account?show=orders">
+                <a href="account.php?show=orders">
                     <div class="grid-link-icon">
                     <i   class="fa-regular fa-credit-card"></i>
                     </div>
@@ -13,7 +13,7 @@
 
             <div class="grid-link-col">
 
-                <a href="account?show=wishlist">
+                <a href="account.php?show=wishlist">
                     <div class="grid-link-icon">
                         <i class="fa-regular fa-heart "></i>
                     </div>
@@ -25,7 +25,7 @@
 
 
             <div class="grid-link-col">
-                <a href="account?show=details">
+                <a href="account.php?show=details">
 
                     <div class="grid-link-icon">
                         <i class="fa-regular fa-user"></i>
@@ -39,7 +39,7 @@
 
             <div class="grid-link-col">
 
-                <a href="account?show=faq">
+                <a href="account.php?show=faq">
                     <div class="grid-link-icon">
                         <i class="fa-regular fa-circle-question"></i>
                     </div>
