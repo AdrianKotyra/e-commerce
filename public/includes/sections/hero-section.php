@@ -53,7 +53,7 @@
                                             <h4>Women</h4>
                                             <span>Best Sneakers For Women</span>
                                         </div>
-                                        <a href="index.php?category=female">
+                                        <a href="home?category=female">
                                         <div class="category_hero_female hover-content ">
 
                                             <div class="inner">
@@ -77,7 +77,7 @@
                                             <h4>Men</h4>
                                             <span>Best Sneakers For Men</span>
                                         </div>
-                                        <a href="index.php?category=male">
+                                        <a href="home?category=male">
                                         <div class="category_hero_man hover-content ">
                                             <div class="inner">
                                                 <h4>Men</h4>
@@ -99,7 +99,7 @@
                                             <h4>Unisex</h4>
                                             <span>Best Sneakers for men and women</span>
                                         </div>
-                                        <a href="index.php?category=unisex">
+                                        <a href="home?category=unisex">
                                         <div class="category_hero_unisex hover-content  ">
                                             <div class="inner">
                                                 <h4>Unisex</h4>
@@ -121,7 +121,7 @@
                                             <h4>All </h4>
                                             <span>Best Sneakers for everyone</span>
                                         </div>
-                                        <a href="index.php">
+                                        <a href="home">
                                         <div class="hover-content  ">
                                             <div class="inner">
                                                 <h4>All</h4>

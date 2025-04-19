@@ -208,11 +208,16 @@ function displayMobileNav(){
   function switchCategories(){
     const maleSwitcher = document.querySelector(".maleSwitch");
     const femaleSwitcher = document.querySelector(".femaleSwitch");
+    const uniwitcher = document.querySelector(".uniSwitch");
+    const brandswitcher = document.querySelector(".brandsSwitch");
+    const catsSwitcher = document.querySelector(".catsSwitch");
+
     const maleContainer = document.querySelector(".body-mobile-nav .male-cats");
     const femaleContainer = document.querySelector(".body-mobile-nav .female-cats ");
-
     const uniContainer = document.querySelector(".body-mobile-nav .uni-cats");
-    const uniwitcher = document.querySelector(".uniSwitch");
+    const brandsContainer = document.querySelector(".body-mobile-nav .brands-cats");
+    const catsContainer = document.querySelector(".body-mobile-nav .categories-cats");
+
 
     const allCatsSwitcher = document.querySelectorAll(".top-nav-gender-switcher span");
     const allCats = document.querySelectorAll(".mobile-cats");
@@ -245,6 +250,21 @@ function displayMobileNav(){
       uniContainer.classList.add("active-mobile-nav");
 
       uniwitcher.classList.add("mobile-active-cat");
+    })
+
+    brandswitcher.addEventListener("click", ()=>{
+      resetNav()
+
+      brandsContainer.classList.add("active-mobile-nav");
+
+      brandswitcher.classList.add("mobile-active-cat");
+    })
+    catsSwitcher.addEventListener("click", ()=>{
+      resetNav()
+
+      catsContainer.classList.add("active-mobile-nav");
+
+      catsSwitcher.classList.add("mobile-active-cat");
     })
   }
 

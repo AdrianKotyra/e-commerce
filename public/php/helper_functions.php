@@ -380,7 +380,7 @@ function galleryAboutImages(){
                 <span class="gallery-img-desc">
                     '.$img_title.'
                 </span>
-                <a href="gallery.php">
+                <a href="gallery">
                     <img src="./imgs/gallery/'.$img_src.'" alt="">
                 </a>
             </div>
@@ -455,7 +455,7 @@ function display_brands_section(){
         $logo_img = $row["logo"];
 
         $logo_company_icon = '
-            <a href="search.php?search=&category=mixed&size=all&type=all&brand='.$brand_id.'">
+            <a href="search?search=&category=mixed&size=all&type=all&brand='.$brand_id.'">
                 <div class="brand-logo">
                     <img src="./imgs/brands/'.$logo_img.'">
 
@@ -487,7 +487,7 @@ function get_products_types_nav($category) {
             ? "active-type-class-$category"
             : "";
 
-        echo '<a class="'.$class_active.'" href="category.php?type='.$type_names.'&category='.$category.'">
+        echo '<a class="'.$class_active.'" href="category?type='.$type_names.'&category='.$category.'">
             <span>'.$type_names.'</span>
         </a>';
     }
@@ -582,7 +582,7 @@ if(isset($_GET["logout"])) {
 function Redirect_Not_Logged_User() {
     global $session;
     if ($session->signed_in===false) {
-        Header('Location: index.php');
+        Header('Location: home');
     }
 
 
@@ -899,7 +899,7 @@ function displayCategoryProducts($type_products) {
                 <div class="accordion-body faq-prod-desc">
                 <div class="grid-setting-links">
                 <div class="grid-link-col">
-                    <a href="account.php?show=orders">
+                    <a href="account?show=orders">
                         <div class="grid-link-icon">
                         <i   i class="fa-regular fa-credit-card"></i>
                         </div>
@@ -907,7 +907,7 @@ function displayCategoryProducts($type_products) {
                     </a>
                 </div>
                 <div class="grid-link-col">
-                    <a href="account.php?show=details">
+                    <a href="account?show=details">
                         <div class="grid-link-icon">
                             <i class="fa-regular fa-user"></i>
                         </div>
@@ -915,7 +915,7 @@ function displayCategoryProducts($type_products) {
                     </a>
                 </div>
                 <div class="grid-link-col">
-                    <a href="account.php?show=contact">
+                    <a href="account?show=contact">
                         <div class="grid-link-icon">
                             <i class="fa-regular fa-comment"></i>
                         </div>
@@ -923,7 +923,7 @@ function displayCategoryProducts($type_products) {
                     </a>
                 </div>
                 <div class="grid-link-col">
-                    <a href="account.php?show=faq">
+                    <a href="account?show=faq">
                         <div class="grid-link-icon">
                             <i class="fa-regular fa-circle-question"></i>
                         </div>
@@ -1072,7 +1072,7 @@ function section_detailed_products($type_products) {
             <div class="prod-main-img">
                 '.$img_src.'
                 <span class="desc-main">
-                    <a href="category.php?type='.$type_products.'">
+                    <a href="category?type='.$type_products.'">
                         <p>'.$type_products.'</p>
 
                         <button class="button-custom-img">SHOP NOW</button>
@@ -1098,7 +1098,7 @@ function section_detailed_products($type_products) {
 function section_slider_products($type_products) {
     $section =
     '<section class="trending_section wrapper">
-        <a href="category.php?type='.$type_products.'">
+        <a href="category?type='.$type_products.'">
             <h3 class="section-header">
                 '.$type_products.'
             </h3>
@@ -1114,7 +1114,7 @@ function section_slider_products($type_products) {
 function section_slider_trending() {
     $section =
     '<section class="trending_section wrapper">
-        <a href="category.php?type=Trending">
+        <a href="category?type=Trending&category=mixed&size=all&type=all&brand=all&filter=product_views+DESC">
             <h3 class="section-header">
                 Trending
             </h3>
@@ -1359,7 +1359,7 @@ function displayNewest() {
                         <img loading="lazy" src="./imgs/products/'.$name.'/'.$img1.'" />
 
                         <div class="content">
-                            <a href="products.php?show='.$prod_id.'">
+                            <a href="products?show='.$prod_id.'">
                             <p class="title">'.$name.'</p>
                             </a>
 
@@ -1379,7 +1379,7 @@ function displayNewest() {
                 <img loading="lazy" src="./imgs/products/'.$name.'/'.$img1.'" />
 
                 <div class="content">
-                    <a href="products.php?show='.$id.'">
+                    <a href="products?show='.$id.'">
                     <p class="title">'.$name.'</p>
                     </a>
 
@@ -1461,7 +1461,7 @@ function display_nav_brands($category="mixed"){
     while ($product_row = mysqli_fetch_assoc($select_brands)) {
         $brand_name = $product_row["brand_name"];
         $brand_id = $product_row["id"];
-        echo '<a href="search.php?search=&category='.$category.'&size=all&type=all&brand='.$brand_id.'"class="nav-brands-links">
+        echo '<a href="search?search=&category='.$category.'&size=all&type=all&brand='.$brand_id.'"class="nav-brands-links">
         '.$brand_name .'
 
         </a>';
@@ -1478,13 +1478,13 @@ function display_nav_cats(){
         die("Query failed: " . mysqli_error($connection));
     }
 
-    echo '<a href="category.php?type=all&category=mixed&size=all&brand=all" class="nav-brands-links">
+    echo '<a href="category?type=all&category=mixed&size=all&brand=all" class="nav-brands-links">
     ALL';
 
     while ($row = mysqli_fetch_assoc($select_types)) {
         $type_name = $row["type_name"];
         $type_id = $row["id"];
-        echo '<a href="category.php?type='.$type_name.'&category=mixed&size=all&brand=all" class="nav-brands-links">
+        echo '<a href="category?type='.$type_name.'&category=mixed&size=all&brand=all" class="nav-brands-links">
         '.$type_name .'
 
         </a>';
@@ -1526,13 +1526,13 @@ function login_User_link(){
         echo '
             <div class="nav-link-wrapper">
 
-        <a class="login-nav-link" href="account.php">
+        <a class="login-nav-link" href="account">
             <span class="login-nav wide-screen-nav-link-desc">
                 '.$user-> user_firstname.'
             </span>
 
         </a>
-           <a href="account.php" class="user-container-profile login-icon">
+           <a href="account" class="user-container-profile login-icon">
             <i class="fa-regular fa-user nav-icon"></i>
         </a>
         </div>';

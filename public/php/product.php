@@ -28,77 +28,7 @@ class Product {
         $query = "UPDATE products SET product_views = product_views + 1 WHERE product_id = $id";
         $increment_views = mysqli_query($connection, $query);
     }
-    // I USED AI TO CREATE JOIN  FOR ALL QUERIES I CREATED BELOW TO IMPROVE PERFORMANCE BELOW IS MY VERSION OF THIS FUNCTION
-    // public function create_product($id) {
-    //     if ($id) {
-    //         global $connection;
 
-    //         // Fetch all product details, including type names and category name in a single query
-    //         $query = "
-    //             SELECT
-    //                 p.product_id, p.product_name, p.product_img, p.product_img2, p.product_img3, p.product_img4,
-    //                 p.product_desc, p.product_price,
-    //                 t.type_name,
-    //                 c.cat_name
-    //             FROM products p
-    //             LEFT JOIN rel_types_products rtp ON p.product_id = rtp.product_id
-    //             LEFT JOIN types t ON rtp.type_id = t.id
-    //             LEFT JOIN rel_categories_products rcp ON p.product_id = rcp.prod_id
-    //             LEFT JOIN categories c ON rcp.cat_id = c.cat_id
-    //             WHERE p.product_id = ?
-    //         ";
-
-    //         // Use prepared statements for security
-    //         $stmt = mysqli_prepare($connection, $query);
-    //         mysqli_stmt_bind_param($stmt, "i", $id);
-    //         mysqli_stmt_execute($stmt);
-    //         $result = mysqli_stmt_get_result($stmt);
-
-    //         // Initialize arrays for storing multiple types
-    //         $this->product_type = [];
-
-    //         while ($row = mysqli_fetch_assoc($result)) {
-    //             $this->product_id = $row['product_id'];
-    //             $this->product_name = $row['product_name'];
-    //             $this->product_img = $row['product_img'];
-    //             $this->product_img_2 = $row['product_img2'];
-    //             $this->product_img_3 = $row['product_img3'];
-    //             $this->product_img_4 = $row['product_img4'];
-    //             $this->product_desc = $row['product_desc'];
-    //             $this->product_price = $row['product_price'];
-
-    //             if (!empty($row['type_name'])) {
-    //                 $this->product_type[] = $row['type_name'];
-    //             }
-    //             $this->product_category = $row['cat_name'] ?? null;
-    //         }
-
-    //         // Get product sizes with available stock using a single query
-    //         $query_sizes = "
-    //             SELECT s.size
-    //             FROM rel_products_sizes rps
-    //             JOIN sizes s ON rps.size_id = s.id
-    //             WHERE rps.prod_id = ? AND rps.stock > 0
-    //         ";
-
-    //         $stmt_sizes = mysqli_prepare($connection, $query_sizes);
-    //         mysqli_stmt_bind_param($stmt_sizes, "i", $id);
-    //         mysqli_stmt_execute($stmt_sizes);
-    //         $result_sizes = mysqli_stmt_get_result($stmt_sizes);
-
-    //         $product_sizes_list = [];
-    //         while ($size_row = mysqli_fetch_assoc($result_sizes)) {
-    //             $product_sizes_list[] = $size_row["size"];
-    //         }
-
-    //         $this->product_sizes_list = $product_sizes_list;
-    //         $this->product_availability = !empty($product_sizes_list);
-
-    //         // Close statements
-    //         mysqli_stmt_close($stmt);
-    //         mysqli_stmt_close($stmt_sizes);
-    //     }
-    // }
 
 
     public function create_product($id) {
@@ -254,7 +184,7 @@ class Product {
 
         $product_template = '   <div class="similar-prod-col flex-row">
            '.$favorite_icon.'
-            <a class="similar-prod-link" href="products.php?show='.$this->product_id.'&category='.$this->product_category.'">
+            <a class="similar-prod-link" href="products?show='.$this->product_id.'&category='.$this->product_category.'">
                 <img loading="lazy" src="./imgs/products/'.$this->product_name.'/'.$this->product_img.'" />
             </a>
             <div class="similar-prod-desc">
@@ -338,7 +268,7 @@ class Product {
             '.$category_message.'
 
             <div class="layout-card">
-                <a class="card-prod-link" href="products.php?show='.$this->product_id.'&category='.$this->product_category.'">
+                <a class="card-prod-link" href="products?show='.$this->product_id.'&category='.$this->product_category.'">
                     <div class="shopping-column">
                      <img loading="lazy" src="./imgs/products/'.$this->product_name.'/'.$this->product_img.'" />
                     </div>
@@ -432,7 +362,7 @@ class Product {
 
                 '.$favorite_icon.'
                     <div class="layout-card">
-                            <a class="prod-link" href="products.php?show='.$this->product_id.'&category='.$this->product_category.'">
+                            <a class="prod-link" href="products?show='.$this->product_id.'">
                                 <div class="shopping-column">
                                     <img loading="lazy" src="./imgs/products/'.$this->product_name.'/'.$this->product_img.'" />
                                 </div>
@@ -524,7 +454,7 @@ class Product {
                 '.$category_message.'
 
                 <div class="layout-card ">
-                    <a class="card-prod-link" href="products.php?show='.$this->product_id.'&category='.$this->product_category.'">
+                    <a class="card-prod-link" href="products?show='.$this->product_id.'">
                         <div class="shopping-column">
                          <img loading="lazy"  src="./imgs/products/'.$this->product_name.'/'.$this->product_img.'" />
                         </div>
@@ -655,10 +585,14 @@ class Product {
         $prod_total = $this->product_price*$quantity_basket;
         $product_template = '<div class="basket_product_template flex-row">
         <div class="product_img_container">
+           <a href="products?show='.$this->product_id.'">
             <img loading="lazy" src="./imgs/products/'.$this->product_name.'/'.$this->product_img.'" />
+            </>
         </div>
         <div class="prod-basket-desc col-row">
+           <a href="products?show='.$this->product_id.'">
           <p class="prod-title-basket">'.$this->product_name.'</p>
+          </a>
           <p class="prod-size">Size: '.$size.'</p>
           <span class="prod-price-basket"><b>£'. $prod_total.'</b></span>
           <br>
@@ -680,11 +614,15 @@ class Product {
     public function product_wishlist_Template(){
         $product_template = '<div class="wishlist_product_template flex-row">
         <div class="product_img_container">
-            <img loading="lazy" src="./imgs/products/'.$this->product_name.'/'.$this->product_img.'" />
+            <a href="products?show='.$this->product_id.'">
+                <img loading="lazy" src="./imgs/products/'.$this->product_name.'/'.$this->product_img.'" />
+            </a>
         </div>
         <div class="prod-basket-desc col-row">
-          <p class="prod-title-basket">'.$this->product_name.'</p>
-
+            <a href="products?show='.$this->product_id.'">
+               <p class="prod-title-basket">'.$this->product_name.'</p>
+            </a>
+        </div>
 
           <br>
           <div class="prod-coontroller-basket flex-row">

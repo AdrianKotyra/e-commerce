@@ -26,7 +26,7 @@
                         <p>Stay ahead of the game and grab yours before it’s gone! Check back every month for fresh kicks that elevate your style.</p>
                         <p>Todays Sneaker of the month is  <b> <h4><?php echo $product_name;?></h4></b></p>
                         <div class="main-border-button">
-                            <a href="event.php">Discover More</a>
+                            <a href="bestsneaker">Discover More</a>
                         </div>
                     </div>
                 </div>

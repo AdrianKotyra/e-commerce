@@ -8,7 +8,7 @@ class Basket {
 
     public function __construct() {
         $this->discount_applied =  false;
-        $this->delivery_option =  $_SESSION['delivery_option'];
+        $this->delivery_option =  $_SESSION['delivery_option']?? "standard";
         $this->delivery_price = $this->delivery_option == "standard"? 4.99 : 7.99;
     }
 
@@ -77,6 +77,23 @@ class Basket {
         $this->discount_applied = $total>=150? true: false;
         return $total;
     }
+    // Get the total cost of all items in checkout after discount
+        public function getTotalCheckout() {
+
+            $raw_total = $this->getTotal() + $this->delivery_price;
+            $user_total = $this->discount_applied == 1
+                ? round($raw_total * 0.85, 2)
+                : round($raw_total, 2);
+
+            $discounted_price =  round(($this->getTotal() + $this->delivery_price) * 15 / 100, 2);
+            return  $user_total;
+        }
+        public function getDiscountedPrice() {
+
+
+            $discounted_price =  round(($this->getTotal() + $this->delivery_price) * 15 / 100, 2);
+            return  $discounted_price;
+        }
 
     // Get the number of items
     public static function getNumber() {

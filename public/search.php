@@ -50,7 +50,7 @@
         Your search for "<?php echo $searched;?>" revealed the following
     </div>
     <div class="search-container">
-        <form action="search.php" method="GET" class="search-form">
+        <form action="search" method="GET" class="search-form">
             <div class="search-input-container flex-row">
                 <input type="text" placeholder="Search" name="search">
 
@@ -80,7 +80,7 @@
             <i class="fa-solid fa-angle-down"></i>
         </div>
 
-        <form action="search.php" method="GET" >
+        <form action="search" method="GET" >
         <div class="filter-dropdown inactive-dropdown-filter">
 
 

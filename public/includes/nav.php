@@ -1,6 +1,6 @@
 <div class="banner-promo">
     <span class="banner-text-1 inactive-promo">
-        Free shipping for order over 70£
+        Free shipping for order over 150£
     </span>
     <span class="banner-text-2 active-promo">
        But now pay with Paypal
@@ -26,9 +26,9 @@
 
                 </div>
                 <div class="cats-nav-container-extra-nav flex-row extra-nav-trigger">
-                    <a id="cat_male"href="index.php?category=male" class="male-trigger cat <?php if($cat== "male" ) { echo 'active_nav_link_male'; } ?>">MENS</a>
-                    <a id="cat_female"href="index.php?category=female" class="female-trigger cat <?php if($cat== "female") { echo 'active_nav_link_female'; } ?>">WOMENS</a>
-                    <a id="cat_unisex"href="index.php?category=unisex" class="uni-trigger cat <?php if($cat== "unisex") { echo 'active_nav_link_unisex'; } ?>">UNISEX</a>
+                    <a id="cat_male"href="home?category=male" class="male-trigger cat <?php if($cat== "male" ) { echo 'active_nav_link_male'; } ?>">MENS</a>
+                    <a id="cat_female"href="home?category=female" class="female-trigger cat <?php if($cat== "female") { echo 'active_nav_link_female'; } ?>">WOMENS</a>
+                    <a id="cat_unisex"href="home?category=unisex" class="uni-trigger cat <?php if($cat== "unisex") { echo 'active_nav_link_unisex'; } ?>">UNISEX</a>
                     <a id="cat_brands"href="search.php?search=&category=mixed&size=all&type=all&brand=all" class="brand-trigger cat">BRANDS</a>
                     <a id="cat_types"href="search.php?search=&category=mixed&size=all&type=all&brand=all" class="categories-trigger cat">CATEGORIES</a>
                 </div>
@@ -47,7 +47,7 @@
 
             <div class="logo-nav nav-col">
 
-                <a href="index.php" class=" flex-row">
+                <a href="home" class=" flex-row">
                 <img src="./imgs/icons/black-logo.png" alt="">
                     <p class="logo-name">I-Top Sneakers </p>
                 </a>
@@ -144,13 +144,13 @@
             </div>
             <hr>
             <div class="nav-extra-main-links flex-row">
-                <a href="news_all.php">Blog</a>
-                <a href="contact.php">Contact</a>
-                <a href="faq.php">FAQ</a>
-                <a href="about.php">About us</a>
-                <a href="gallery.php">Gallery</a>
-                <a href="delivery_returns.php">Shipping & Returns</a>
-                <a href="terms_conditions.php">Terms & Conditions</a>
+                <a href="news">Blog</a>
+                <a href="contact">Contact</a>
+                <a href="faq">FAQ</a>
+                <a href="about">About us</a>
+                <a href="gallery">Gallery</a>
+                <a href="delivery">Shipping & Returns</a>
+                <a href="terms">Terms & Conditions</a>
             </div>
 
 
@@ -173,18 +173,18 @@
                     <p>
                         Categories
                     </p>
-                    <img src="./imgs/nav/brands/img1.jpg" alt="">
+                    <img src="./imgs/nav/cats/cats.jpg" alt="">
                 </div>
             </div>
             <hr>
             <div class="nav-extra-main-links flex-row">
-                <a href="news_all.php">Blog</a>
-                <a href="contact.php">Contact</a>
-                <a href="faq.php">FAQ</a>
-                <a href="about.php">About us</a>
-                <a href="gallery.php">Gallery</a>
-                <a href="delivery_returns.php">Shipping & Returns</a>
-                <a href="terms_conditions.php">Terms & Conditions</a>
+            <a href="news">Blog</a>
+                <a href="contact">Contact</a>
+                <a href="faq">FAQ</a>
+                <a href="about">About us</a>
+                <a href="gallery">Gallery</a>
+                <a href="delivery">Shipping & Returns</a>
+                <a href="terms">Terms & Conditions</a>
             </div>
 
 
@@ -220,13 +220,13 @@
             </div>
             <hr>
             <div class="nav-extra-main-links flex-row">
-                <a href="news_all.php">Blog</a>
-                <a href="contact.php">Contact</a>
-                <a href="faq.php">FAQ</a>
-                <a href="about.php">About us</a>
-                <a href="gallery.php">Gallery</a>
-                <a href="delivery_returns.php">Shipping & Returns</a>
-                <a href="terms_conditions.php">Terms & Conditions</a>
+                <a href="news">Blog</a>
+                <a href="contact">Contact</a>
+                <a href="faq">FAQ</a>
+                <a href="about">About us</a>
+                <a href="gallery">Gallery</a>
+                <a href="delivery">Shipping & Returns</a>
+                <a href="terms">Terms & Conditions</a>
             </div>
 
 
@@ -253,7 +253,7 @@
                     </div>
                     <div class="nav_cats_img">
                         <p>
-                            Mens
+                            Women
                         </p>
                         <img src="./imgs/nav/women/women.jpg" alt="">
                     </div>
@@ -261,13 +261,13 @@
             </div>
             <hr>
             <div class="nav-extra-main-links flex-row">
-                <a href="news_all.php">Blog</a>
-                <a href="contact.php">Contact</a>
-                <a href="faq.php">FAQ</a>
-                <a href="about.php">About us</a>
-                <a href="gallery.php">Gallery</a>
-                <a href="delivery_returns.php">Shipping & Returns</a>
-                <a href="terms_conditions.php">Terms & Conditions</a>
+                 <a href="news">Blog</a>
+                <a href="contact">Contact</a>
+                <a href="faq">FAQ</a>
+                <a href="about">About us</a>
+                <a href="gallery">Gallery</a>
+                <a href="delivery">Shipping & Returns</a>
+                <a href="terms">Terms & Conditions</a>
             </div>
 
 
@@ -297,7 +297,7 @@
                     </div>
                     <div class="nav_cats_img">
                         <p>
-                            Mens
+                            Unisex
                         </p>
                         <img src="./imgs/nav/uni/uni.jpg" alt="">
                     </div>
@@ -305,13 +305,13 @@
             </div>
             <hr>
             <div class="nav-extra-main-links flex-row">
-                <a href="news_all.php">Blog</a>
-                <a href="contact.php">Contact</a>
-                <a href="faq.php">FAQ</a>
-                <a href="about.php">About us</a>
-                <a href="gallery.php">Gallery</a>
-                <a href="delivery_returns.php">Shipping & Returns</a>
-                <a href="terms_conditions.php">Terms & Conditions</a>
+                <a href="news">Blog</a>
+                <a href="contact">Contact</a>
+                <a href="faq">FAQ</a>
+                <a href="about">About us</a>
+                <a href="gallery">Gallery</a>
+                <a href="delivery">Shipping & Returns</a>
+                <a href="terms">Terms & Conditions</a>
             </div>
 
 
@@ -326,7 +326,7 @@
     <div class="searcher-mobile-container wrapper">
         <i class="fa-solid fa-magnifying-glass icon-mobile-search nav-icon"></i>
 
-        <form action="search.php" method="GET" class="flex-row">
+        <form action="search" method="GET" class="flex-row">
             <input type="search" name="search" placeholder="search product" >
 
         </form>

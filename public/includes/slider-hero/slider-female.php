@@ -1,5 +1,5 @@
 
-<div class="section latest_section" id="men">
+<div class="section latest_section wrapper" id="men">
     <h3 class="section-header">
         Latest Women
     </h3>

@@ -24,17 +24,17 @@
     <div class="settion-section-container flex-row">
         <div class="settings_link">
 
-            <a href="account.php">View Account</a>
+            <a href="account">View Account</a>
             <hr>
-            <a href="account.php?show=orders">My Orders</a>
+            <a href="account?show=orders">My Orders</a>
             <hr>
-            <a href="account.php?show=details">My Details</a>
+            <a href="account?show=details">My Details</a>
             <hr>
-            <a href="account.php?show=wishlist">My Wishlist</a>
+            <a href="account?show=wishlist">My Wishlist</a>
             <hr>
-            <a href="account.php?show=faq">FAQ</a>
+            <a href="account?show=faq">FAQ</a>
             <hr>
-            <a href="account.php?logout">Log Out</a>
+            <a href="account?logout">Log Out</a>
             <hr>
 
         </div>

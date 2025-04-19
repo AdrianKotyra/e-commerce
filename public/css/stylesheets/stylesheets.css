@@ -110,6 +110,7 @@
 .cookies_window .container-cookies {
   display: flex;
   position: relative;
+  flex-direction: row;
   width: 100%;
   height: 100%;
 }
@@ -254,6 +255,16 @@
 }
 .sneaker_year_section img {
   background-color: var(--ui-product-card);
+}
+
+.products-slider {
+  height: 100%;
+}
+.products-slider .swiper-slide img {
+  -o-object-fit: contain;
+     object-fit: contain;
+  width: 80%;
+  height: 80%;
 }
 
 .success-container {
@@ -613,6 +624,23 @@ section .section-heading {
   margin-bottom: 15px;
   text-align: center;
   letter-spacing: 1.4rem;
+  text-transform: uppercase;
+  color: white;
+  z-index: 2;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  left: 50%;
+  top: 50%;
+}
+
+.post_header {
+  animation: sub_page_header_animation 0.3s forwards;
+  font-size: var(--header-section);
+  color: #fff;
+  font-weight: 700;
+  margin-bottom: 15px;
+  text-align: center;
+  letter-spacing: 1.2rem;
   text-transform: uppercase;
   color: white;
   z-index: 2;
@@ -984,7 +1012,6 @@ section .section-heading {
 
 .main-banner {
   margin-top: 10px;
-  padding-bottom: 30px;
 }
 .main-banner a {
   text-decoration: none;
@@ -2561,6 +2588,10 @@ section .section-heading {
 .basket_product_template, .wishlist_product_template {
   padding: 8px;
 }
+.basket_product_template a, .wishlist_product_template a {
+  text-decoration: none;
+  color: black;
+}
 .basket_product_template .product_img_container, .wishlist_product_template .product_img_container {
   margin-right: 8px;
   width: 25%;
@@ -2848,7 +2879,7 @@ nav .nav-top-container .brands-nav .nav-brands-links {
   position: relative;
 }
 .nav_cats_img img {
-  filter: brightness(0.8);
+  filter: brightness(0.6);
   -o-object-fit: cover;
      object-fit: cover;
   padding-bottom: 12px;
@@ -2864,7 +2895,7 @@ nav .nav-top-container .brands-nav .nav-brands-links {
   letter-spacing: 1rem;
   margin-left: 4px;
   font-weight: 600;
-  font-size: var(--medium);
+  font-size: 2rem;
   color: white;
   text-align: center;
 }
@@ -2938,11 +2969,13 @@ body {
   padding: 16px 0;
 }
 .nav-extra-container .nav-extra-main-links {
+  padding: 20px;
   display: flex;
-  gap: 10x;
 }
 .nav-extra-container .nav-extra-main-links a {
-  margin-right: 16px;
+  transform: translateX(-20px);
+  padding: 10px;
+  margin-right: 10px;
   margin-top: 10px;
   color: var(--ui-main-text-nav);
   text-decoration: none;
@@ -3396,9 +3429,20 @@ body {
   padding: 0 20px;
   position: relative;
 }
+.container-checkout-prods .total-checkout-container .total-sub {
+  margin: 0;
+  justify-content: space-between;
+}
+.container-checkout-prods .total-checkout-container .total-sub h4 {
+  opacity: 80%;
+  font-size: 1rem;
+}
 .container-checkout-prods .total-checkout-container .subtotal {
   display: block;
-  margin-top: 20px;
+  margin: 20px 0;
+}
+.container-checkout-prods .total-checkout-container .total h4 {
+  font-size: 1.4rem;
 }
 .container-checkout-prods .total-checkout-container .check_out_discout {
   margin-top: 12px;
@@ -4804,6 +4848,12 @@ section {
   }
 }
 @media screen and (max-width: 767px) {
+  .cookies_window {
+    height: 130px;
+  }
+  .cookies_window .container-cookies {
+    flex-direction: column;
+  }
   footer {
     text-align: center;
   }
@@ -4924,6 +4974,10 @@ section {
   }
 }
 @media screen and (max-width: 600px) {
+  .comment-product-col-container .comment-user-product-date {
+    float: left;
+    padding: 10px 0;
+  }
   .comment-product-col-container {
     flex-direction: column;
   }

@@ -9,6 +9,11 @@
             <span class="mobile-active-cat maleSwitch ">MENS</span>
             <span class="femaleSwitch">WOMENS</span>
             <span class="uniSwitch">UNISEX</span>
+
+        </div>
+        <div class="top-nav-gender-switcher flex-row">
+            <span class="brandsSwitch">BRANDS</span>
+            <span class="catsSwitch">CATEGORIES</span>
         </div>
         <div class="body-mobile-nav wrapper">
 
@@ -24,6 +29,14 @@
             <div class="uni-cats mobile-cats">
                 <h5>Unisex Categories</h5>
                 <?php get_products_types_nav('unisex')?>
+            </div>
+            <div class="brands-cats mobile-cats">
+                <h5>Brands</h5>
+                <?php display_nav_brands()?>
+            </div>
+            <div class="categories-cats mobile-cats">
+                <h5>Categories</h5>
+                <?php display_nav_cats()?>
             </div>
 
         </div>

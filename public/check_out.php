@@ -3,15 +3,8 @@
     global $basket;
     $discount_applied = $basket->discount_applied;
     $checkout_products =  $basket->processUserBasket("product_checkout_Template");
-    $raw_total = $basket->getTotal() + $basket->delivery_price;
-    $user_total = $discount_applied == 1
-        ? round($raw_total * 0.85, 2)
-        : round($raw_total, 2);
-
-    $discounted_price =  round(($basket->getTotal() + $basket->delivery_price) * 15 / 100, 2);
-
-
-
+    $user_total = $basket->getTotalCheckout();
+    $discounted_price= $basket->getDiscountedPrice();
 
     $number_items = $basket->getNumberTotal();
 
@@ -79,35 +72,25 @@
                 </div>
                 <div class="total-checkout-container">
 
-
-
                     <span class="subtotal">Subtotal · <?php echo   $number_items; ?> items</span>
-                    <div class="total flex-row">
 
+                    <div class="total-sub flex-row">
                     <h4>Products &nbsp;</h4>
-
                     <h4>£ <span class="display_total"><?php echo $basket->getTotal();?></span ></h4>
-
-
                     </div>
-                    <div class="total flex-row">
 
+
+                    <div class="total-sub flex-row">
                     <h4>Delivery &nbsp;</h4>
-
                     <h4>£ <span class="display_total"><?php echo $basket->delivery_price;?></span ></h4>
-
-
                     </div>
-                    <div class="total flex-row">
 
-
+                    <div class="total-sub flex-row">
                     <?php echo
-                    $discount_applied==1? ' <div class="total flex-row">
+                    $discount_applied==1? '
                     <h4>Discount &nbsp;</h4>
                     <h4><span class="display_total"> £ -'.$discounted_price.'</span ></h4>
-                    </div>' : '';
-
-
+                    ' : '';
 
                     ?>
 

@@ -389,105 +389,86 @@ function displayModalGuideSizes() {
 displayModalGuideSizes()
 
 
-class Slider {
-    constructor(slider) {
-        this.slider = slider;
-        this.display = slider.querySelector(".image-display");
-        this.navButtons = Array.from(slider.querySelectorAll(".nav-button"));
-        this.prevButton = slider.querySelector(".prev-button");
-        this.nextButton = slider.querySelector(".next-button");
-        this.sliderNavigation = slider.querySelector(".slider-navigation");
-        this.currentSlideIndex = 0;
-        this.preloadedImages = {};
+function LatestmainSliderProducts(){
+  let mainSliderSelector = '.products-slider',
+  navSliderSelector = '.nav-slider',
+  interleaveOffset = 0.5;
 
-        this.initialize();
+
+let mainSliderOptions = {
+loop: true,
+speed: 1000,
+slidesPerView: 1, // Default: Show 5 slides at a time
+spaceBetween: 10,
+autoplay: {
+  delay: 3000,
+  disableOnInteraction: false,
+},
+grabCursor: true,
+watchSlidesProgress: true,
+navigation: {
+  nextEl: '.swiper-button-next',
+  prevEl: '.swiper-button-prev',
+},
+
+on: {
+  init: function () {
+    let firstCaption = this.slides[0].querySelector('.caption');
+    if (firstCaption) {
+      firstCaption.classList.add('show');
     }
+  },
+  imagesReady: function () {
+    this.el.classList.remove('loading');
+    this.autoplay.start();
+  },
+  slideChangeTransitionEnd: function () {
+    let swiper = this;
+    let captions = swiper.el.querySelectorAll('.caption');
+    captions.forEach((caption) => caption.classList.remove('show'));
 
-    initialize() {
-        this.setupSlider();
-        this.preloadImages();
-        this.eventListeners();
+    let activeCaption = swiper.slides[swiper.activeIndex].querySelector('.caption');
+    if (activeCaption) {
+      setTimeout(() => activeCaption.classList.add('show'), 100);
     }
+  },
+  touchEnd: function () {
+    let swiper = this;
+    let captions = swiper.el.querySelectorAll('.caption');
+    captions.forEach((caption) => caption.classList.remove('show'));
 
-    setupSlider() {
-        this.showSlide(this.currentSlideIndex);
+    let activeCaption = swiper.slides[swiper.activeIndex].querySelector('.caption');
+    if (activeCaption) {
+      setTimeout(() => activeCaption.classList.add('show'), 100);
     }
+  },
+  progress: function () {
+    let swiper = this;
+    swiper.slides.forEach((slide) => {
+      let slideProgress = slide.progress;
+      let innerOffset = 0;
+      let innerTranslate = (slideProgress * innerOffset) / 4;
+      slide.querySelector('.slide-bgimg').style.transform = `translateX(${innerTranslate}px)`;
+    });
+  },
+  touchStart: function () {
+    let swiper = this;
+    swiper.slides.forEach((slide) => (slide.style.transition = ''));
+  },
+  setTransition: function (speed) {
+    let swiper = this;
+    swiper.slides.forEach((slide) => {
+      slide.style.transition = `${speed}ms`;
+      slide.querySelector('.slide-bgimg').style.transition = `${speed}ms`;
+    });
+  },
+},
+};
 
-    showSlide(index) {
-        this.currentSlideIndex = index;
-        const navButtonImg = this.navButtons[
-            this.currentSlideIndex
-        ].querySelector("img");
-        if (navButtonImg) {
-            const imgClone = navButtonImg.cloneNode();
-            this.display.replaceChildren(imgClone);
-        }
-        this.updateNavButtons();
-    }
+let mainSlider = new Swiper('.products-slider', mainSliderOptions);
 
-    updateNavButtons() {
-        this.navButtons.forEach((button, buttonIndex) => {
-            const isSelected = buttonIndex === this.currentSlideIndex;
-            button.setAttribute("aria-selected", isSelected);
-            if (isSelected) button.focus();
-        });
-    }
-
-    preloadImages() {
-        this.navButtons.forEach((button) => {
-            const imgElement = button.querySelector("img");
-            if (imgElement) {
-                const imgSrc = imgElement.src;
-                if (!this.preloadedImages[imgSrc]) {
-                    this.preloadedImages[imgSrc] = new Image();
-                    this.preloadedImages[imgSrc].src = imgSrc;
-                }
-            }
-        });
-    }
-
-    eventListeners() {
-        document.addEventListener("keydown", (event) => {
-            this.handleAction(event.key);
-        });
-
-        this.sliderNavigation.addEventListener("click", (event) => {
-            const targetButton = event.target.closest(".nav-button");
-            const index = targetButton
-                ? this.navButtons.indexOf(targetButton)
-                : -1;
-            if (index !== -1) {
-                this.showSlide(index);
-            }
-        });
-
-        this.prevButton.addEventListener("click", () =>
-            this.handleAction("prev")
-        );
-        this.nextButton.addEventListener("click", () =>
-            this.handleAction("next")
-        );
-    }
-
-    handleAction(action) {
-        if (action === "Home") {
-            this.currentSlideIndex = 0;
-        } else if (action === "End") {
-            this.currentSlideIndex = this.navButtons.length - 1;
-        } else if (action === "ArrowRight" || action === "next") {
-            this.currentSlideIndex =
-                (this.currentSlideIndex + 1) % this.navButtons.length;
-        } else if (action === "ArrowLeft" || action === "prev") {
-            this.currentSlideIndex =
-                (this.currentSlideIndex - 1 + this.navButtons.length) %
-                this.navButtons.length;
-        }
-
-        this.showSlide(this.currentSlideIndex);
-    }
 }
-
-const ImageSlider = new Slider(document.querySelector(".image-slider"));
+LatestmainSliderProducts()
 
 
 

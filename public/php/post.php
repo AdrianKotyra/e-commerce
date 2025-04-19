@@ -36,7 +36,7 @@ class Post {
 
         public function MainPostCart(){
         $template_cart = '
-        <a class="read-more-post-cart"href="news.php?post='.$this->post_id.'">
+        <a class="read-more-post-cart"href="post?post='.$this->post_id.'">
             <div class="event-col">
                 <div class="desc-news-col">
                     <p class="post-event-main-header">'.$this->post_header.'</p>
@@ -65,7 +65,7 @@ class Post {
 
 
             $template_cart = '
-            <a class="read-more-post-cart "href="news.php?post='.$this->post_id.'">
+            <a class="read-more-post-cart "href="post?post='.$this->post_id.'">
                 <div class="event-col">
                     <div class="desc-news-col">
                         <p class="post-event-main-header">'.$this->post_header.'</p>

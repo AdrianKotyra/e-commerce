@@ -1,12 +1,24 @@
 <?php
 
 if (isset($_POST["update-account"])) {
+    global $user;
     $message = account_update_details();
-}
-?>
+    $user_id =  $user->user_id;
+    $New_user = new User();
+    $New_user->create_user( $user_id);
+    $user_id =  $New_user->user_id;
+    $user_password =  $New_user->user_password;
+    $user_email = $New_user->user_email;
+    $user_lastname = $New_user->user_lastname;
+    $user_firstname = $New_user->user_firstname;
+    $user_address = $New_user->user_address;
+    $user_city = $New_user->user_city;
+    $user_country = $New_user->user_country;
+    $user_postcode = $New_user->user_postcode;
 
 
-<?php
+} else {
+    $user_password =  $user->user_password;
     $user_id =  $user->user_id;
     $user_email = $user->user_email;
     $user_lastname = $user->user_lastname;
@@ -16,12 +28,16 @@ if (isset($_POST["update-account"])) {
     $user_country = $user->user_country;
     $user_postcode = $user->user_postcode;
 
+}
 ?>
+
+
+
 
     <?php echo nav_account("DETAILS")?>
 
 
-    <form action="account.php?show=details" id="update-account-form" method="POST">
+    <form action="account?show=details" id="update-account-form" method="POST">
     <div class="grid-account-details">
         <div class="details-account-col">
             <label   for="first_name">Email </label>
