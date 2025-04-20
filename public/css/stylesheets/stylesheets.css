@@ -1010,6 +1010,10 @@ section .section-heading {
   margin-left: 20px;
 }
 
+.reminder_password {
+  cursor: pointer;
+}
+
 .main-banner {
   margin-top: 10px;
 }
@@ -1769,6 +1773,14 @@ section .section-heading {
   position: absolute;
 }
 
+.cross-reminder {
+  color: rgba(0, 0, 0, 0.3333333333);
+  font-size: 1.4rem;
+  top: 10px;
+  right: 10px;
+  position: absolute;
+}
+
 .body-basket {
   overflow-x: hidden;
   height: 80%;
@@ -2099,7 +2111,7 @@ section .section-heading {
   max-width: 500px;
 }
 
-.login {
+.login, .reminder {
   animation: showBasket 0.5s forwards;
   transition: 0.4s;
   display: none;
@@ -2114,13 +2126,37 @@ section .section-heading {
   color: black;
   background-color: white;
 }
-.login h1 {
+.login h1, .reminder h1 {
   font-size: var(--header-section-small);
 }
-.login .login-user {
+.login p, .reminder p {
+  text-align: center;
+  font-size: var(--medium);
+}
+.login .login-user, .reminder .login-user {
   background-color: black;
   color: white;
   margin: 10px auto;
+}
+
+.reminder h1 {
+  text-align: center;
+  font-size: var(--header-section);
+  padding-top: 40px;
+}
+.reminder .cancel-reminder {
+  cursor: pointer;
+}
+.reminder button {
+  margin: 0 auto;
+  text-align: center;
+}
+.reminder span {
+  text-align: center;
+}
+
+.reminder > * {
+  padding: 10px 0;
 }
 
 .hidden {

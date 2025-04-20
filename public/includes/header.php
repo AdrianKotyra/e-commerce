@@ -80,6 +80,9 @@ include "php/init.php"?>
 <?php include("includes/wishlist-user.php") ?>
 <!-- --------------LOGIN----------- -->
 <?php include("includes/login-user.php") ?>
+
+<!-- --------------REMINDER----------- -->
+<?php include("includes/reminder-user.php") ?>
 <!-- --------------BLACK NAV FOR CHECKOUT----------- -->
 <?php
 basename($_SERVER['PHP_SELF']) != "check_out.php"?

@@ -103,3 +103,89 @@ function showLogin(){
 
 }
 showLogin()
+
+
+
+
+
+
+
+
+
+
+
+
+
+// REGISTRATION  NEW USER  USING AJAX
+function remindPasswordUserAJAX(){
+  function sendReminderAjax(event){
+      event.preventDefault()
+      const alertReminder = document.querySelector(".alert-reminder")
+      const userEmailForm = document.querySelector(".email-reminder").value;
+      const formData = new FormData();
+      formData.append('userEmail', userEmailForm);
+      // Send data via AJAX
+      fetch('./ajax/remind_password_acc.php', {
+          method: 'POST',
+          body: formData
+      })
+      .then(response => response.text())
+      .then(data => {
+        alertReminder.innerHTML=data;
+      })
+      .catch(error => {
+          console.error('Error:', error);
+      })
+  }
+
+  // initialise function on click
+  const reminderButton = document.querySelector(".reminder-user");
+  reminderButton.addEventListener("click", (event)=>{
+    sendReminderAjax(event)
+  })
+
+    // initialise function on enter
+    document.addEventListener("keydown", (event)=>{
+      if(event.key==="Enter") {
+        sendReminderAjax(event)
+      }
+
+    })
+
+  }
+
+
+
+
+
+
+
+
+
+function showReminder(){
+  const reminderTrigger = document.querySelectorAll(".reminder_password");
+  const cancelREminder = document.querySelectorAll(".cancel-reminder");
+  const reminderContainer = document.querySelector(".reminder");
+  reminderTrigger.forEach(login=>{
+    login.addEventListener("click", ()=>{
+      reminderContainer.classList.remove("inactive-basket")
+      reminderContainer.classList.add("active-basket")
+      bodyMaskOn()
+      remindPasswordUserAJAX()
+
+    })
+  })
+
+
+
+  cancelREminder.forEach(ele=>{
+    ele.addEventListener("click", ()=>{
+
+      reminderContainer.classList.remove("active-basket")
+      reminderContainer.classList.add("inactive-basket")
+      bodyMaskOff()
+    })
+  })
+
+}
+showReminder()
