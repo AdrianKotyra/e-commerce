@@ -114,7 +114,7 @@
 
 </form>
 <div class="form-group">
-    <a href="users.php?source=change_password&user_id=4">
+    <a href="users.php?source=change_password&user_id=<?php echo $user_id_to_be_edited;?>">
 
     <input class="btn btn-primary" type="submit" name="change_password" value="change password">
 

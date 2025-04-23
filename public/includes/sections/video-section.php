@@ -1,5 +1,5 @@
 <section class="video-section ">
-    <div class="video-section-container  ">
+    <div class="video-section-container  wrapper">
 
         <?php
                if(isset($_GET["category"])) {
@@ -24,7 +24,7 @@
                 break;
 
 
-                default:   echo '  <video src="videos/all.mp4" type="video/mp4" autoplay preload="none" loop muted width="100%"height="100%" ></video>';
+                default:   echo '  <video src="videos/red.mp4" type="video/mp4" autoplay preload="none" loop muted width="100%"height="100%" ></video>';
                 break;
 
 
@@ -34,7 +34,7 @@
 
         <div class="desc-video">
             <h3>Retro/Classic Sneakers</h3>
-            <div class="flex-row">
+            <div class="desc-text">
                 <a href="category.php?type=Retro/Classic%20Sneakers&category=female">
                     <button>SHOP WOMENS</button>
                 </a>

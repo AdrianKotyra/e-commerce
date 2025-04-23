@@ -17,17 +17,21 @@
 <section class="section-sneaker-month wrapper" id="explore">
 
             <div class="row ">
+                <h3 class="section-header">
+                            <a href="event.php"> Sneaker of the Month</a>
+
+                        </h3>
                 <div class="col-lg-6">
                     <div class="left-content">
-                        <h2>Sneaker of the month</h2>
 
+                    <p>Todays Sneaker of the month is  <b> <h4><?php echo $product_name;?></h4></b></p>
                         <span>Step up your sneaker game with our Sneaker of the Month pick! Each month, we feature an exclusive sneaker that stands out for its design, comfort, and trend-setting style. </span>
                         <p>Whether it’s a limited-edition drop, a classic making a comeback, or the hottest new release, this sneaker is a must-have for collectors and casual wearers alike. </p>
                         <p>Stay ahead of the game and grab yours before it’s gone! Check back every month for fresh kicks that elevate your style.</p>
-                        <p>Todays Sneaker of the month is  <b> <h4><?php echo $product_name;?></h4></b></p>
-                        <div class="main-border-button">
-                            <a href="event.php">Discover More</a>
-                        </div>
+
+                        <a href="event.php"><div class="button-custom">
+                          Discover More
+                        </div></a>
                     </div>
                 </div>
                 <div class="col-lg-6">

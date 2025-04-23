@@ -9,7 +9,7 @@ class Basket {
     public function __construct() {
         $this->discount_applied =  false;
         $this->delivery_option =  $_SESSION['delivery_option']?? "standard";
-        $this->delivery_price = $this->delivery_option == "standard"? 4.99 : 7.99;
+        $this->delivery_price = $this->delivery_option == "standard"? .99 : 7.99;
     }
 
 
@@ -33,6 +33,24 @@ class Basket {
                 'id' => $item_id
             ];
         }
+    }
+
+    public function update_stock_items(){
+        global $database;
+        foreach ($_SESSION['baskets'] as $unique_key => $basket_item) {
+            $product_id = $basket_item['id'];
+            $quantity = $basket_item['quantity'];
+            $price = $basket_item['price'];
+            $size = $basket_item['size'];
+
+            $get_size_id= $database->query_array("SELECT id from sizes where size =  '$size'");
+            while($row = mysqli_fetch_array($get_size_id)) {
+                $size_id = $row["id"];
+                $UPDATE_STOCK= $database->query_array("UPDATE rel_products_sizes SET stock = stock - $quantity WHERE prod_id = $product_id AND size_id = $size_id");
+            }
+
+        }
+
     }
     // Decrement
     public function decrement_basket($item_id, $quantity, $price,  $productsize) {

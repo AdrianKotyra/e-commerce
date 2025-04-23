@@ -510,7 +510,7 @@ class Product {
 
 
       <i class="fa-solid fa-check"></i>
-      <span><b>Product has been added to your wishlist.</b></span>
+      <span class="header-modal-added"><b>Product has been added to your wishlist.</b></span>
     </div>
 
     <div class="added-prod-window-body wishlist_prod_window_added">
@@ -546,17 +546,19 @@ class Product {
       </div>
 
       <i class="fa-solid fa-check"></i>
-      <span><b>Product has been added to your basket.</b></span>
+      <span class="header-modal-added"><b>Product has been added to your basket.</b></span>
     </div>
 
     <div class="added-prod-window-body">
       <div class="prod-info-window">
         <img loading="lazy" src="./imgs/products/'.$this->product_name.'/'.$this->product_img.'" alt="">
-        <div class="prod-info-container flex-col">
-          <span> <b>'.$this->product_name.'</b></span>
-          <span> £'.$prod_total.'</span>
-          <span>size: '. $size.'</span>
-          <span>Quantity: '.$quantity_basket.'</span>
+        <div class="prod-info-container ">
+          <div class="prod-info-container-layout flex-col">
+                <span> <b>'.$this->product_name.'</b></span>
+                <span> £'.$prod_total.'</span>
+                <span>size: '. $size.'</span>
+                <span>Quantity: '.$quantity_basket.'</span>
+            </div>
         </div>
 
       </div>

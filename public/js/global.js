@@ -568,11 +568,11 @@ let loaderTimeout;
 
 function displayLoader() {
     // Set a timeout to display the loader after 1 second
-    loaderTimeout = setTimeout(() => {
+
         const loader = document.querySelector(".loader");
         loader.style.display = "block";
         bodyMaskOn();
-    }, 1000);
+
 }
 
 function offLoader() {

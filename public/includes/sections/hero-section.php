@@ -66,7 +66,7 @@
 
                                         </div>
                                         </a>
-                                        <img src="./imgs/hero_section/woman.WEBP">
+                                        <img src="./imgs/hero_section/woman2.WEBP">
                                     </div>
                                 </div>
                             </div>
@@ -88,7 +88,7 @@
                                             </div>
                                         </div>
                                         </a>
-                                        <img src="./imgs/hero_section/man.WEBP">
+                                        <img src="./imgs/hero_section/men.WEBP">
                                     </div>
                                 </div>
                             </div>
@@ -110,7 +110,7 @@
                                             </div>
                                         </div>
                                         </a>
-                                        <img src="./imgs/hero_section/uni.WEBP">
+                                        <img src="./imgs/hero_section/uni2.WEBP">
                                     </div>
                                 </div>
                             </div>
@@ -132,7 +132,7 @@
                                             </div>
                                         </div>
                                         </a>
-                                        <img src="./imgs/hero_section/all.WEBP">
+                                        <img src="./imgs/hero_section/all2.WEBP">
                                     </div>
                                 </div>
                             </div>

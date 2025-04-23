@@ -47,7 +47,7 @@
 <div class="event-section section  sneaker_year_col">
 <div class="event-section-container3">
     <div class="img-container-event ">
-    <img  src="<?php echo htmlspecialchars('imgs/products/'.$product_name . '/' . $product_img1); ?> "/>
+    <img  class="event_col_3_img" src="<?php echo htmlspecialchars('imgs/products/'.$product_name . '/' . $product_img1); ?> "/>
     </div>
     <div class="event-desc-container flex-col">
 
@@ -70,7 +70,7 @@
 <div class="event-section section  sneaker_year_col">
 <div class="event-section-container">
     <div class="img-container-event ">
-    <img  src="<?php echo htmlspecialchars('imgs/products/'.$product_name . '/' . $product_img2); ?> "/>
+    <img  class="event_col_1_img"  src="<?php echo htmlspecialchars('imgs/products/'.$product_name . '/' . $product_img2); ?> "/>
     </div>
     <div class="event-desc-container flex-col">
         <div class="event-desc-details event-page-col event_col_1">
@@ -89,7 +89,7 @@
 <div class="event-section section  sneaker_year_col">
 <div class="event-section-container2">
     <div class="img-container-event ">
-    <img  src="<?php echo htmlspecialchars('imgs/products/'.$product_name . '/' . $product_img3); ?> "/>
+    <img  class="event_col_2_img" src="<?php echo htmlspecialchars('imgs/products/'.$product_name . '/' . $product_img3); ?> "/>
     </div>
     <div class="event-desc-container flex-col">
 

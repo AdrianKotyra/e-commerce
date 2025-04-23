@@ -1,6 +1,6 @@
 <div class="basket-user">
     <div class="header-basket flex-row">
-      <span>MY CART</span>
+      <span><b>MY CART </b></span>
       <div class="cross-basket">
         <i class="fa-solid fa-xmark"></i>
       </div>

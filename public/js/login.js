@@ -124,6 +124,7 @@ function remindPasswordUserAJAX(){
       const userEmailForm = document.querySelector(".email-reminder").value;
       const formData = new FormData();
       formData.append('userEmail', userEmailForm);
+
       // Send data via AJAX
       fetch('./ajax/remind_password_acc.php', {
           method: 'POST',
@@ -131,6 +132,7 @@ function remindPasswordUserAJAX(){
       })
       .then(response => response.text())
       .then(data => {
+        offLoader()
         alertReminder.innerHTML=data;
       })
       .catch(error => {
@@ -141,6 +143,7 @@ function remindPasswordUserAJAX(){
   // initialise function on click
   const reminderButton = document.querySelector(".reminder-user");
   reminderButton.addEventListener("click", (event)=>{
+    displayLoader()
     sendReminderAjax(event)
   })
 

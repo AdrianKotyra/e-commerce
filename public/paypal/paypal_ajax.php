@@ -4,7 +4,7 @@
 global $connection;
 global $user;
 global $session;
-
+global  $basket;
 
 
 
@@ -77,7 +77,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     $item_stmt->bind_param("iiids", $order_id, $product_id, $quantity, $price, $size);
                     $item_stmt->execute();
                 }
-
+                // update stock
+              $basket->update_stock_items();
 
               // if user is logged in send invoice on that email else send email on payer email in this case paypal email
               $user_email =($session->signed_in == true) ?  $user->user_email :  $payer_email;

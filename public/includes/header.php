@@ -8,7 +8,8 @@ include "php/init.php"?>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0, target-densitydpi=device-dpi">
     <title>Hi-Top Sneakers</title>
 
     <!-- font awesome -->
