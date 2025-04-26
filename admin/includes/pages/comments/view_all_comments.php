@@ -71,11 +71,17 @@
 
             <tbody class="comments_table">
 
-                <?php select_and_display_comments();?>
+                <?php
+                  $per_page = 20;
+                select_and_display_comments($per_page);
+
+
+                ?>
 
             </tbody>
 
         </table>
+        <?php  pagination_links("comments",  $per_page);?>
     </div>
 </div>
 <?php reset_status_new("comments");?>

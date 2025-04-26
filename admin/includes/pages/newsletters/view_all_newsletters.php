@@ -50,10 +50,15 @@
 
             <tbody class="posts_table">
 
-            <?php select_and_display_newsletter()?>
+            <?php
+                $per_page = 20;
+            select_and_display_newsletter($per_page)
+
+            ?>
 
             </tbody>
 
         </table>
+        <?php  pagination_links("newsletters",  $per_page);?>
     </div>
 <?php reset_status_new("newsletters");?>

@@ -1698,6 +1698,62 @@ function displayNewest() {
     return $output;
 
 }
+
+// GET HERO SLIDER LIMITED PRODUCTS
+function displaySliderHeroProducts($type_products) {
+    global $connection;
+    $output = '';
+    // Sanitize and escape the category name to prevent SQL injection
+    $type_products = mysqli_real_escape_string($connection, $type_products);
+
+
+    // Retrieve the type ID
+    $query = "SELECT * FROM types WHERE type_name = '$type_products'";
+    $select_product_types = mysqli_query($connection, $query);
+
+    if (!$select_product_types) {
+        die("Query failed: " . mysqli_error($connection));
+    }
+
+    // Fetch category ID if it exists
+    if ($row = mysqli_fetch_assoc($select_product_types)) {
+        $type_id = $row["id"];
+
+        // Retrieve related product IDs
+        $query2 = "SELECT * FROM rel_types_products WHERE type_id = $type_id";
+        $select_products = mysqli_query($connection, $query2);
+
+
+        if (!$select_products) {
+            die("Query failed: " . mysqli_error($connection));
+        }
+
+
+        while ($product_row = mysqli_fetch_assoc($select_products)) {
+            $prod_id = $product_row["product_id"];
+
+            if (isset($_GET["category"]) && ($_GET["category"] == "female" || $_GET["category"] == "male" || $_GET["category"] == "unisex")) {
+                $category_products_ids = listenCategory();
+
+                if (in_array($prod_id, $category_products_ids)) {
+                    $product_new = new Product();
+                    $product_new->create_product($prod_id);
+
+                    $output .= $product_new->product_hero_slider();
+                }
+            } else {
+                $product_new = new Product();
+                $product_new->create_product($prod_id);
+                $output .= $product_new->product_hero_slider();
+            }
+
+    }
+    return $output;
+
+}}
+
+
+
 // ------------------GET SLIDER PRODUCTS---------------------
 
 

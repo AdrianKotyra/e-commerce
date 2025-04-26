@@ -25,7 +25,11 @@
 
         <div class="filter-dropdown filter-dropdown-product inactive-dropdown-filter ">
             <div class="dropdown-content ">
-            <?php      displayFiltersMessages()?>
+            <?php
+
+            displayFiltersMessages()
+
+            ?>
 
                 <button class="button-custom btn btn-primary btn-round">APPLY</button>
             </div>
@@ -54,11 +58,16 @@
 
 
             <tbody class="posts_table">
-            <?php select_and_display_msgs();?>
+            <?php
+              $per_page = 20;
+            select_and_display_msgs( $per_page);
+
+            ?>
 
 
             </tbody>
 
         </table>
+        <?php  pagination_links("messages",  $per_page);?>
     </div>
 <?php reset_status_new("messages");?>

@@ -139,7 +139,7 @@
                     <p>
                         Brands
                     </p>
-                    <img src="./imgs/nav/brands/img1.jpg" alt="">
+                    <img src="./imgs/nav/brands/img1.WEBP" alt="">
                 </div>
             </div>
             <hr>
@@ -173,7 +173,7 @@
                     <p>
                         Categories
                     </p>
-                    <img src="./imgs/nav/cats/cats.jpg" alt="">
+                    <img src="./imgs/nav/cats/cats.WEBP" alt="">
                 </div>
             </div>
             <hr>
@@ -214,7 +214,7 @@
                         <p>
                             Mens
                         </p>
-                        <img src="./imgs/nav/men/men_nav.jpg" alt="">
+                        <img src="./imgs/nav/men/men_nav.WEBP" alt="">
                     </div>
                 </div>
             </div>
@@ -255,7 +255,7 @@
                         <p>
                             Women
                         </p>
-                        <img src="./imgs/nav/women/women.jpg" alt="">
+                        <img src="./imgs/nav/women/women.WEBP" alt="">
                     </div>
                 </div>
             </div>
@@ -299,7 +299,7 @@
                         <p>
                             Unisex
                         </p>
-                        <img src="./imgs/nav/uni/uni.jpg" alt="">
+                        <img src="./imgs/nav/uni/uni.WEBP" alt="">
                     </div>
                 </div>
             </div>

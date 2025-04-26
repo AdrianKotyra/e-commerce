@@ -57,10 +57,15 @@
 
             <tbody class="posts_table">
 
-                <?php select_and_display_orders();?>
+                <?php
+                     $per_page = 20;
+                select_and_display_orders( $per_page);
+
+                ?>
 
             </tbody>
 
         </table>
+        <?php  pagination_links("orders",  $per_page);?>
     </div>
 <?php reset_status_new("orders");?>

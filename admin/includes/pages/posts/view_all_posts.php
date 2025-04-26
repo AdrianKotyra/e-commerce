@@ -66,11 +66,16 @@
 
             <tbody class="posts_table">
 
-                <?php select_and_display_posts();?>
+                <?php
+                $per_page = 20;
+                select_and_display_posts($per_page);
+
+                ?>
 
             </tbody>
 
         </table>
+        <?php  pagination_links("news",  $per_page);?>
     </div>
 
 <?php reset_status_new("news");?>

@@ -67,10 +67,16 @@
 
             <tbody class="products_table">
 
-                <?php select_and_display_products();?>
+                <?php
+                $per_page = 20;
+                select_and_display_products($per_page);
+                ?>
 
             </tbody>
 
+
         </table>
+
+        <?php  pagination_links("products",  $per_page);?>
     </div>
 <?php reset_status_new("products");?>

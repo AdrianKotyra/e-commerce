@@ -610,10 +610,13 @@ section {
       width: 100%;
 
         img{
+          width: 50%;
+          height: 60%;
 
+          object-fit: contain;
           position: absolute;
           right: 0;
-          top: 0;
+          top: 16%;
 
 
 
@@ -634,6 +637,7 @@ section {
 
           }
           span{
+            color: white;
             text-align: left;
             font-size: var(--header-section-small);
           }
@@ -1113,6 +1117,13 @@ section {
 }
 
 .main-banner .right-content .right-first-image .thumb {
+  &:hover {
+    img {
+      transition: 0.3s;
+      filter: brightness(0.8);
+    }
+  }
+  cursor: pointer;
   position: relative;
   text-align: center;
 }
@@ -1121,7 +1132,7 @@ section {
   width: 100%;
   overflow: hidden;
   height: calc(350px - 14px);
-  filter: brightness(0.8);
+  filter: brightness(0.6);
 
 }
 
@@ -1147,24 +1158,8 @@ section {
   font-style: italic;
 }
 
-.main-banner .right-content .right-first-image .thumb .hover-content {
-  position: absolute;
-  top: 15px;
-  right: 15px;
-  left: 15px;
-  bottom: 15px;
-  text-align: center;
-  background-color: rgba(42,42,42,.97);
-  opacity: 0;
-  visibility: hidden;
-  transition: all 0.5s;
-  z-index: 3;
-}
 
-.main-banner .right-content .right-first-image .thumb:hover .hover-content {
-  opacity: 1;
-  visibility: visible;
-}
+
 
 .main-banner .right-content .right-first-image .thumb .hover-content .inner {
   position: absolute;
@@ -3008,6 +3003,7 @@ nav {
 .nav_cats_img {
   position: relative;
   img {
+
     filter: brightness(0.6);
     object-fit: cover;
     padding-bottom: 12px;
@@ -4668,18 +4664,7 @@ section {
     width: 100vw;
   }
   .hero-section-main .hero-container {
-    .hero-section-main-slide_3 img{
-      transform: translate(0);
-      width: 100%;
-    }
-    .hero-section-main-slide_2 img{
-      transform: translate(0);
-      width: 100%;
-    }
-    .hero-section-main-slide_1 img{
-      transform: translate(0);
-      width: 100%;
-    }
+
   }
   .hero-section-main
 
@@ -4687,20 +4672,16 @@ section {
     margin: 20px 0;
 
     .hero-container .hero-section-main-slide {
+
       .content{
 
-        left: 50%;
-        top: 30%;
-        transform: translate(-50%, -30%);
-        width: 100%;
-        .title {
 
-          text-align: center;
+        a {
+          color: white !important;
+          text-decoration: none ;
+        }
 
-        }
-        span{
-          text-align: center;
-        }
+
         .swiper-container img{
           left: 50%!important;
           top: 50%!important;

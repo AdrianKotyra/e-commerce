@@ -86,10 +86,10 @@
     }
 
 
-    function select_and_display_users() {
+    function select_and_display_users($per_page) {
     global $connection;
-
-    $query = "SELECT * from users";
+    $start = pagination("users",  $per_page);
+    $query = "SELECT * from users LIMIT $per_page OFFSET $start";
     $select_users_query = mysqli_query($connection, $query);
     if (!$select_users_query) {
         die("Query Failed: " . mysqli_error($connection));
@@ -301,14 +301,14 @@ function change_status_comments(){
 
     }
 }
-function select_and_display_comments() {
+function select_and_display_comments( $per_page) {
     global $connection;
-    global $product;
+    $start = pagination("comments",  $per_page);
     if(isset($_GET["filter"])) {
         $filter = $_GET["filter"];
-        $query = "SELECT * from comments order by $filter";
+        $query = "SELECT * from comments order by $filter LIMIT $per_page OFFSET $start";
     } else {
-        $query = "SELECT * from comments order by approved DESC ";
+        $query = "SELECT * from comments order by approved DESC LIMIT $per_page OFFSET $start";
     }
 
     $select_users_query = mysqli_query($connection, $query);
@@ -443,9 +443,68 @@ function select_and_display_product_stock() {
     }
 
 }
-function select_and_display_products() {
+
+
+function pagination($col_name, $per_page){
     global $connection;
-    global $product;
+    $query_select_cols = "SELECT COUNT(*) as count FROM $col_name";
+    $result = mysqli_query($connection, $query_select_cols);
+    $row = mysqli_fetch_assoc($result);
+    $total_items = (int) $row['count'];
+    $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+    $totalPages = ceil($total_items / $per_page);
+    $page = max(1, min($totalPages, $page));
+    $start = ($page - 1) * $per_page;
+    return $start;
+
+}
+
+function pagination_links($col_name, $per_page){
+    global $connection;
+
+    $query_select_cols = "SELECT COUNT(*) as count FROM $col_name";
+    $result = mysqli_query($connection, $query_select_cols);
+    $row = mysqli_fetch_assoc($result);
+    $total_items = (int) $row['count'];
+    $totalPages = ceil($total_items / $per_page);
+
+    $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+
+    // Build the base URL without "page" parameter
+    $params = $_GET;
+    unset($params['page']); // remove old page param if exists
+    $base_url = basename($_SERVER['PHP_SELF']) . '?' . http_build_query($params);
+
+    if (!empty($params)) {
+        $base_url .= '&'; // if other params exist, add &
+    }
+
+    echo "<div class='pagination-container'>";
+    echo "<div class='pagination-container-pages'>";
+
+    for($i = 1; $i <= $totalPages; $i++) {
+        $pagination_link_class = $i == $page ? "active_link_pagination" : "";
+        echo '<a class="'.$pagination_link_class.'" href="'.$base_url.'page='.$i.'">'.$i.'</a> ';
+    }
+    echo "</div>";
+
+    if ($page > 1) {
+        echo '<a href="'.$base_url.'page=' . ($page - 1) . '">Prev</a> ';
+    }
+    if ($page < $totalPages) {
+        echo '<a href="'.$base_url.'page=' . ($page + 1) . '">Next</a>';
+    }
+
+    echo "</div>";
+}
+
+function select_and_display_products($per_page) {
+    global $connection;
+
+
+
+    $start = pagination("products",  $per_page);
+
 
     if(isset($_GET["filter"])) {
         $filter = $_GET["filter"];
@@ -467,7 +526,7 @@ function select_and_display_products() {
             FROM `products` p
             JOIN `rel_products_sizes` r ON p.`product_id` = r.`prod_id`
             GROUP BY p.`product_id`
-            ORDER BY total_stock
+            ORDER BY total_stock LIMIT '.$per_page.' OFFSET '.$start.'
             ';
 
         }
@@ -489,17 +548,17 @@ function select_and_display_products() {
             FROM `products` p
             JOIN `rel_products_sizes` r ON p.`product_id` = r.`prod_id`
             GROUP BY p.`product_id`
-            ORDER BY total_stock DESC
+            ORDER BY total_stock DESC LIMIT '.$per_page.' OFFSET '.$start.'
             ';
 
         }
         else {
-            $query = "SELECT * FROM products order by $filter";
+            $query = "SELECT * FROM products order by $filter LIMIT $per_page OFFSET $start";
         }
 
 
     } else {
-        $query = "SELECT * FROM products ORDER BY product_id DESC";
+        $query = "SELECT * FROM products ORDER BY product_id ASC LIMIT $per_page OFFSET $start ";
     }
 
 
@@ -556,14 +615,14 @@ function select_and_display_products() {
 
 }}
 
-function select_and_display_orders() {
+function select_and_display_orders($per_page) {
     global $connection;
-    global $product;
+    $start = pagination("orders",  $per_page);
     if(isset($_GET["filter"])) {
         $filter = $_GET["filter"];
-        $query = "SELECT * FROM orders order by $filter";
+        $query = "SELECT * FROM orders order by $filter LIMIT $per_page OFFSET $start";
     } else {
-        $query = "SELECT * FROM orders order by id desc";
+        $query = "SELECT * FROM orders order by id desc LIMIT $per_page OFFSET $start";
     }
 
 
@@ -634,14 +693,14 @@ function select_and_display_orders() {
 
 
 
-function select_and_display_msgs() {
+function select_and_display_msgs( $per_page) {
     global $connection;
-    global $product;
+    $start = pagination("orders",  $per_page);
     if(isset($_GET["filter"])) {
         $filter = $_GET["filter"];
-        $query = "SELECT * FROM messages order by $filter";
+        $query = "SELECT * FROM messages order by $filter LIMIT $per_page OFFSET $start";
     } else {
-        $query = "SELECT * FROM messages order by status DESC";
+        $query = "SELECT * FROM messages order by status DESC LIMIT $per_page OFFSET $start";
     }
 
 
@@ -696,15 +755,16 @@ function select_and_display_msgs() {
 
 
 }}
-function select_and_display_newsletter() {
+function select_and_display_newsletter($per_page) {
 
     global $connection;
-    global $product;
+    $start = pagination("newsletters",  $per_page);
+
     if(isset($_GET["filter"])) {
         $filter = $_GET["filter"];
-        $query = "SELECT * FROM newsletters order by $filter";
+        $query = "SELECT * FROM newsletters order by $filter LIMIT $per_page OFFSET $start";
     } else {
-        $query = "SELECT * FROM newsletters order by id DESC";
+        $query = "SELECT * FROM newsletters order by id DESC LIMIT $per_page OFFSET $start";
     }
 
 
@@ -1018,10 +1078,10 @@ function select_and_display_reviews() {
 
     }
 }
-function select_and_display_gallery() {
+function select_and_display_gallery($per_page) {
     global $connection;
-
-    $query = "SELECT * from gallery order by id desc";
+    $start = pagination("gallery",  $per_page);
+    $query = "SELECT * from gallery order by id desc LIMIT $per_page OFFSET $start";
     $select_users_query = mysqli_query($connection, $query);
     while($row = mysqli_fetch_assoc($select_users_query)) {
         $image_id = $row["id"];
@@ -1306,14 +1366,15 @@ function select_and_display_bookings() {
 
 
 }
-function select_and_display_posts() {
+function select_and_display_posts( $per_page) {
     global $connection;
 
+    $start = pagination("comments",  $per_page);
     if(isset($_GET["filter"])) {
         $filter = $_GET["filter"];
-        $query = "SELECT * FROM news order by $filter";
+        $query = "SELECT * FROM news order by $filter LIMIT $per_page OFFSET $start";
     } else {
-        $query = "SELECT * FROM news ";
+        $query = "SELECT * FROM news  LIMIT $per_page OFFSET $start";
     }
 
     $select_genres_query = mysqli_query($connection, $query);

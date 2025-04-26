@@ -80,7 +80,7 @@
             <i class="fa-solid fa-angle-down"></i>
         </div>
 
-        <form action="search" method="GET" >
+        <form action="search.php" method="GET" >
         <div class="filter-dropdown inactive-dropdown-filter">
 
 

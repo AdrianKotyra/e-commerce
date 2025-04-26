@@ -47,94 +47,69 @@
                     <div class="right-content">
                         <div class="row g-0">
                             <div class="col-lg-6 col-md-6 g-0">
+                            <a href="index.php?category=female">
                                 <div class="right-first-image">
                                     <div class="thumb">
                                         <div class="inner-content ">
                                             <h4>Women</h4>
-                                            <span>Best Sneakers For Women</span>
-                                        </div>
-                                        <a href="index.php?category=female">
-                                        <div class="category_hero_female hover-content ">
-
-                                            <div class="inner">
-                                                <h4>Women</h4>
-                                                <p>Best Sneakers For Women</p>
-                                                <div class="main-border-button">
-                                                   Discover More
-                                                </div>
-                                            </div>
 
                                         </div>
-                                        </a>
+
+
+
                                         <img src="./imgs/hero_section/woman2.WEBP">
                                     </div>
                                 </div>
+                            </a>
                             </div>
                             <div class="col-lg-6 col-md-6 g-0">
+                            <a href="index.php?category=male">
                                 <div class="right-first-image">
                                     <div class="thumb">
                                         <div class="inner-content">
                                             <h4>Men</h4>
-                                            <span>Best Sneakers For Men</span>
+
                                         </div>
-                                        <a href="index.php?category=male">
-                                        <div class="category_hero_man hover-content ">
-                                            <div class="inner">
-                                                <h4>Men</h4>
-                                                <p>Best Sneakers For Men </p>
-                                                <div class="main-border-button">
-                                                 Discover More
-                                                </div>
-                                            </div>
-                                        </div>
-                                        </a>
+
+
+
                                         <img src="./imgs/hero_section/men.WEBP">
                                     </div>
                                 </div>
+                            </a>
                             </div>
                             <div class="col-lg-6 col-md-6 g-0">
+                            <a href="index.php?category=unisex">
                                 <div class="right-first-image">
+
                                     <div class="thumb">
                                         <div class="inner-content">
                                             <h4>Unisex</h4>
-                                            <span>Best Sneakers for men and women</span>
+
                                         </div>
-                                        <a href="index.php?category=unisex">
-                                        <div class="category_hero_unisex hover-content  ">
-                                            <div class="inner">
-                                                <h4>Unisex</h4>
-                                                <p>Best Sneakers for men and women</p>
-                                                <div class="main-border-button">
-                                                  Discover More
-                                                </div>
-                                            </div>
-                                        </div>
-                                        </a>
+
+
+
                                         <img src="./imgs/hero_section/uni2.WEBP">
                                     </div>
                                 </div>
+                            </a>
                             </div>
                             <div class="col-lg-6 col-md-6 g-0">
+                            <a href="index.php">
                                 <div class="right-first-image">
                                     <div class="thumb">
                                         <div class="inner-content">
                                             <h4>All </h4>
-                                            <span>Best Sneakers for everyone</span>
+
                                         </div>
-                                        <a href="index.php">
-                                        <div class="hover-content  ">
-                                            <div class="inner">
-                                                <h4>All</h4>
-                                                <p>Best Sneakers for everyone</p>
-                                                <div class="main-border-button">
-                                                   Discover More
-                                                </div>
-                                            </div>
-                                        </div>
-                                        </a>
+
+
+
                                         <img src="./imgs/hero_section/all2.WEBP">
                                     </div>
                                 </div>
+                             </a>
                             </div>
                         </div>
                     </div>

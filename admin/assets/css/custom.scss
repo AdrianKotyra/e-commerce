@@ -7,6 +7,26 @@
 
 
 }
+.pagination-container {
+  text-align: center;
+  display: table;
+  margin: 20px auto ;
+  &>*{
+    margin: 10px;
+  }
+  .pagination-container-pages {
+    text-align: center;
+    display: block;
+    margin: 20px auto ;
+    &>*{
+      padding: 4px 8px;
+    }
+    .active_link_pagination {
+      background-color: black;
+      color: white;
+    }
+  }
+}
 .container-cat-filter {
   justify-content: right;
 }

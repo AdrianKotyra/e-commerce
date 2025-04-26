@@ -157,9 +157,9 @@ class Product {
     }
 
     // Function to return product stock availability
-    public function getStock() {
-        return $this->product_stock;
-    }
+    // public function getStock() {
+    //     return $this->product_stock;
+    // }
 
     // Function to return product name
     public function getName() {
@@ -403,6 +403,46 @@ class Product {
 
        ';
         return  $product_template;
+    }
+    public function product_hero_slider(){
+        if(isset($_GET["category"])){
+            $category = $_GET["category"];
+
+            if($category=="female") {
+                $bg_color ="#e0c1d4";
+                $category_title = "Womens";
+            }
+
+            if($category=="male") {
+                $bg_color = "#acb5e6";
+                $category_title = "Mens";
+            }
+
+            if($category=="unisex") {
+                $bg_color = "#90e185";
+                $category_title = "Unisex";
+            }
+
+            }
+            else {
+
+                $bg_color ="#b8b8b8";
+                $category_title = "";
+            }
+        $output = ' <div class="swiper-slide hero-section-main-slide" style="background: '. $bg_color.'">
+                <div class="content">
+                    <figure class="slide-bgimg" loading="lazy"></figure>
+                    <p class="title"><b>Limited Edition Sneaker '.$category_title.' Drops</b></p>
+                    <a href="products.php?show='.$this->product_id.'">
+                      <span >'.$this->product_name.'</span>
+                    </a>
+
+                </div>
+                <div class="content-slider-container">
+                    <img loading="lazy" src="./imgs/products/'.$this->product_name.'/'.$this->product_img.'" />
+                </div>
+            </div>';
+            return $output ;
     }
 
     public function product_slider_Template(){
@@ -686,9 +726,6 @@ class Product_month extends Product {
         $query = "SELECT * FROM product_year LIMIT 1"; // Fetch only one row
         $result = $database->query_array($query);
 
-        if (!$result) {
-            die("Database query failed: " . $database->error);
-        }
 
 
         if ($row = mysqli_fetch_assoc($result)) {
