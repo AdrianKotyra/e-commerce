@@ -244,17 +244,17 @@ class Product {
 
         $message = $this->product_availability? 'QUICK ADD TO CART' : "Out of stock";
         if(  $product_category == "female") {
-            $category_message ='     <div class="category-sex-label" style="color: #e0c1d4">
+            $category_message ='     <div class="category-sex-label" >
         WOMAN
             </div>';
         }
         else if ($product_category == "male") {
-            $category_message = '  <div class="category-sex-label" style="color:#acb5e6;">
+            $category_message = '  <div class="category-sex-label">
             MAN
             </div>';
         }
         else {
-            $category_message = ' <div class="category-sex-label"  style="color:#90e185">
+            $category_message = ' <div class="category-sex-label">
             UNISEX
             </div>';
         }
@@ -338,17 +338,17 @@ class Product {
 
         $message = $this->product_availability? 'QUICK ADD TO CART' : "Out of stock";
         if(  $product_category == "female") {
-            $category_message ='     <div class="category-sex-label" style="color: #e0c1d4">
+            $category_message ='     <div class="category-sex-label" >
       WOMAN
             </div>';
         }
         else if ($product_category == "male") {
-            $category_message = '  <div class="category-sex-label" style="color:#acb5e6;">
+            $category_message = '  <div class="category-sex-label">
             MAN
             </div>';
         }
         else {
-            $category_message = ' <div class="category-sex-label"  style="color:#90e185">
+            $category_message = ' <div class="category-sex-label">
             UNISEX
             </div>';
         }
@@ -471,17 +471,17 @@ class Product {
         }
 
         if(  $product_category == "female") {
-            $category_message ='     <div class="category-sex-label" style="color: #e0c1d4">
+            $category_message ='     <div class="category-sex-label">
       WOMAN
             </div>';
         }
         else if ($product_category == "male") {
-            $category_message = '  <div class="category-sex-label" style="color:#acb5e6;">
+            $category_message = '  <div class="category-sex-label">
             MAN
             </div>';
         }
         else {
-            $category_message = ' <div class="category-sex-label"  style="color:#90e185">
+            $category_message = ' <div class="category-sex-label" ">
             UNISEX
             </div>';
         }

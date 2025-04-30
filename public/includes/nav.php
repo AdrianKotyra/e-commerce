@@ -326,7 +326,7 @@
     <div class="searcher-mobile-container wrapper">
         <i class="fa-solid fa-magnifying-glass icon-mobile-search nav-icon"></i>
 
-        <form action="search" method="GET" class="flex-row">
+        <form action="search.php" method="GET" class="flex-row">
             <input type="search" name="search" placeholder="search product" >
 
         </form>

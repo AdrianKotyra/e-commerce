@@ -5,7 +5,7 @@
                 <div class="col-lg-3 col-md-6">
                     <div class="first-item">
                         <div class="logo flex-row">
-                            <img src="./imgs/icons/white-logo.png" alt="logo">
+                            <img src="./imgs/icons/black-logo.png" alt="logo">
                             <p>I-Top Sneakers</p>
                         </div>
                         <ul>

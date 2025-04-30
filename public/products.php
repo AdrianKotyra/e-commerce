@@ -217,10 +217,13 @@
         <div class="alert-container alert-comment">
 
         </div>
+        <?php
+        $per_page = 6;
+        $start = pagination_main_products("comments", $per_page);
+        ?>
 
-
-        <?php echo displayAllcomments($product_id);?>
-
+        <?php echo displayAllcomments($product_id, $start, $per_page);?>
+        <?php pagination_links_main_products("comments", $per_page,  $product_id)?>
 
 
 

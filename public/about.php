@@ -1,6 +1,6 @@
 <?php include("includes/header.php") ?>
 
-<section class="contact-hero-banner animate-on-scroll">
+<section class="contact-hero-banner ">
     <div class="hero-container">
 
 

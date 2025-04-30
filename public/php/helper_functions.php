@@ -798,16 +798,67 @@ function get_products_types_nav($category) {
         </a>';
     }
 }
+function pagination_main_products($col_name, $per_page){
+    global $connection;
+    $query_select_cols = "SELECT COUNT(*) as count FROM $col_name";
+    $result = mysqli_query($connection, $query_select_cols);
+    $row = mysqli_fetch_assoc($result);
+    $total_items = (int) $row['count'];
+    $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+    $totalPages = ceil($total_items / $per_page);
+    $page = max(1, min($totalPages, $page));
+    $start = ($page - 1) * $per_page;
+    return $start;
+
+}
+function pagination_links_main_products($col_name, $per_page, $prod_id){
+    global $connection;
+
+    $query_select_cols = "SELECT COUNT(*) as count FROM $col_name where product_id = $prod_id";
+    $result = mysqli_query($connection, $query_select_cols);
+    $row = mysqli_fetch_assoc($result);
+    $total_items = (int) $row['count'];
+    $totalPages = ceil($total_items / $per_page);
+
+    $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+
+    // Build the base URL without "page" parameter
+    $params = $_GET;
+    unset($params['page']); // remove old page param if exists
+    $base_url = basename($_SERVER['PHP_SELF']) . '?' . http_build_query($params);
+
+    if (!empty($params)) {
+        $base_url .= '&'; // if other params exist, add &
+    }
+
+    echo "<div class='pagination-container'>";
+    echo "<div class='pagination-container-pages'>";
+
+    for($i = 1; $i <= $totalPages; $i++) {
+        $pagination_link_class = $i == $page ? "active_link_pagination" : "";
+        echo '<a class="'.$pagination_link_class.'" href="'.$base_url.'page='.$i.'">'.$i.'</a> ';
+    }
+    echo "</div>";
+
+    if ($page > 1) {
+        echo '<a href="'.$base_url.'page=' . ($page - 1) . '">Prev</a> ';
+    }
+    if ($page < $totalPages) {
+        echo '<a href="'.$base_url.'page=' . ($page + 1) . '">Next</a>';
+    }
+
+    echo "</div>";
+}
 function format_date($originalDate){
 
     $formattedDate = date("F j, Y", strtotime($originalDate));
     return $formattedDate;
 }
 
-function displayAllcomments($product_id){
+function displayAllcomments($product_id, $start, $per_page){
     global $connection;
 
-    $query = "SELECT * FROM comments where product_id = $product_id AND approved = 'approved'";
+    $query = "SELECT * FROM comments where product_id = $product_id AND approved = 'approved' limit $per_page OFFSET $start";
     $select_comments = mysqli_query($connection, $query);
     if(mysqli_num_rows($select_comments)>=1) {
         while ($row = mysqli_fetch_assoc($select_comments)) {

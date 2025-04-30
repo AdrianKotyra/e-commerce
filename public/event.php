@@ -33,8 +33,8 @@
 <section class="hero-section event_hero">
     <div class="hero-container">
 
-      <h1 class="category_header">Sneaker of the Year</h1>
-      <video type="video/mp4" autoplay loop muted width="100%"height="100%"  src="./videos/sneaker_year/sneaker_year.mp4"></video>
+      <h1 class="category_header">Sneaker of the Month</h1>
+      <img class="category_bg"src="imgs/sneaker_month/close-up-basketball-shoes.jpg" alt="">
 
     </div>
 
