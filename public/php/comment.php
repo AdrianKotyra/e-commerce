@@ -98,6 +98,7 @@ class Comment {
 
     }
     function comment_cart(){
+        $comment_date_trimmed =  substr($this->comment_date, 0, 10);
         $stars_container = '';
         for ($i = 0; $i < $this->stars_rating; $i++) {
             $stars_container .= '<i class="fa-solid fa-star"></i>';
@@ -105,11 +106,11 @@ class Comment {
 
         $comment_template = '
            <div class="comment-product-col ">
-            <hr>
+
             <div class="comment-product-col-container">
 
                 <div class="comment-user-col flex-row">
-                    <div class="flex-col">
+                    <div class="flex-col comment-user-avatar-container">
                         <div class="user-avatar">
                               '.$this->user_name[0].'
                         </div>
@@ -124,7 +125,7 @@ class Comment {
                 </div>
                 <div class="comment-user-content">
                     <div class="comment-user-stars stars">
-                        '. $stars_container.'
+                        '.$stars_container.'
                     </div>
                     <div class="comment-user-product-name">
                         '.$this->product_name.'
@@ -134,12 +135,13 @@ class Comment {
 
                     </div>
                     <div class="comment-user-product-date">
-                        '.$this->comment_date.'
+                        '.$comment_date_trimmed.'
                     </div>
 
                 </div>
 
             </div>
+              <hr>
         </div>
         ';
         return $comment_template;

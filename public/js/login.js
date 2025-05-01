@@ -31,7 +31,7 @@
         })
         .then(response => response.text())
         .then(data => {
-          displayLoader()
+
           if(data.trim()==="success-logged-user") {
 
             window.location.reload();
@@ -44,7 +44,7 @@
             return;
           }
           else {
-            offLoader()
+
             alertContainer.innerHTML=data;
             return;
           }
@@ -54,9 +54,7 @@
         .catch(error => {
             console.error('Error:', error);
         })
-        .finally(() => {
-          offLoader()
-      });
+
     }
 
     // initialise function on click
@@ -79,18 +77,17 @@
 
 
 function showLogin(){
-  const loginTrigger = document.querySelectorAll(".login-trigger");
+  const loginTrigger = document.querySelector(".login-trigger");
   const crosslogin = document.querySelector(".cross-login")
-  loginTrigger.forEach(login=>{
-    login.addEventListener("click", ()=>{
+  loginTrigger.addEventListener("click", ()=>{
 
       const loginContainer = document.querySelector(".login");
       loginContainer.classList.remove("inactive-basket")
       loginContainer.classList.add("active-basket")
       bodyMaskOn()
       loginUserAJAX()
-    })
   })
+
 
 
 
@@ -166,11 +163,16 @@ function remindPasswordUserAJAX(){
 
 
 function showReminder(){
+  const loginContainer = document.querySelector(".login");
   const reminderTrigger = document.querySelectorAll(".reminder_password");
   const cancelREminder = document.querySelectorAll(".cancel-reminder");
   const reminderContainer = document.querySelector(".reminder");
   reminderTrigger.forEach(login=>{
     login.addEventListener("click", ()=>{
+
+      // off basket
+      loginContainer.classList.remove("active-basket")
+      loginContainer.classList.add("inactive-basket")
       reminderContainer.classList.remove("inactive-basket")
       reminderContainer.classList.add("active-basket")
       bodyMaskOn()
@@ -184,8 +186,13 @@ function showReminder(){
   cancelREminder.forEach(ele=>{
     ele.addEventListener("click", ()=>{
 
+    // off reminder
       reminderContainer.classList.remove("active-basket")
       reminderContainer.classList.add("inactive-basket")
+
+      // off basket
+      loginContainer.classList.remove("active-basket")
+      loginContainer.classList.add("inactive-basket")
       bodyMaskOff()
     })
   })

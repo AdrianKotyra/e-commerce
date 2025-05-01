@@ -224,9 +224,10 @@ function displayFiltersComments(){
     $user_name_desc = $filter =="user_name DESC"?  "checked" : '';
     $rating_asc = $filter =="stars_rating ASC"?  "checked" : '';
     $rating_desc = $filter =="stars_rating DESC"?  "checked" : '';
-
-    $comment_date = $filter =="comment_date ASC"?  "checked" : '';
-    $comment_date = $filter =="comment_date DESC"?  "checked" : '';
+    $status_desc = $filter =="approved DESC"?  "checked" : '';
+    $status_asc = $filter =="approved ASC"?  "checked" : '';
+    $comment_date_asc = $filter =="comment_date ASC"?  "checked" : '';
+    $comment_date_desc = $filter =="comment_date DESC"?  "checked" : '';
 
 
 
@@ -235,9 +236,10 @@ function displayFiltersComments(){
     <p class="flex-row filter-radio"><input name="filter"'.$user_name_desc.' type="radio" value="user_name DESC">Username Z-A</p>
     <p class="flex-row filter-radio"><input name="filter"'.$rating_asc.' type="radio" value="stars_rating ASC">Rating asc</p>
     <p class="flex-row filter-radio"><input name="filter"'.$rating_desc.' type="radio" value="stars_rating DESC">Rating desc</p>
-    <p class="flex-row filter-radio"><input name="filter"'.$comment_date.' type="radio" value="comment_date ASC">Date asc</p>
-    <p class="flex-row filter-radio"><input name="filter"'.$comment_date.' type="radio" value="comment_date DESC">Date desc</p>';
-
+    <p class="flex-row filter-radio"><input name="filter"'.$comment_date_asc.' type="radio" value="comment_date ASC">Date asc</p>
+    <p class="flex-row filter-radio"><input name="filter"'.$comment_date_desc.' type="radio" value="comment_date DESC">Date desc</p>
+    <p class="flex-row filter-radio"><input name="filter"'.$status_desc.' type="radio" value="approved DESC">Status desc</p>
+    <p class="flex-row filter-radio"><input name="filter"'.$status_asc.' type="radio" value="approved ASC">Status asc</p>';
 
     echo $content;
 
@@ -308,7 +310,7 @@ function select_and_display_comments( $per_page) {
         $filter = $_GET["filter"];
         $query = "SELECT * from comments order by $filter LIMIT $per_page OFFSET $start";
     } else {
-        $query = "SELECT * from comments order by approved DESC LIMIT $per_page OFFSET $start";
+        $query = "SELECT * from comments order by comment_id DESC LIMIT $per_page OFFSET $start";
     }
 
     $select_users_query = mysqli_query($connection, $query);

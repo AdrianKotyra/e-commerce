@@ -24,7 +24,7 @@
                 <div class="col-lg-6">
                     <div class="left-content">
 
-                    <p>Todays Sneaker of the month is  <b> <h4><?php echo $product_name;?></h4></b></p>
+                   <b> <h4><?php echo $product_name;?></h4></b>
                         <span>Step up your sneaker game with our Sneaker of the Month pick! Each month, we feature an exclusive sneaker that stands out for its design, comfort, and trend-setting style. </span>
                         <p>Whether it’s a limited-edition drop, a classic making a comeback, or the hottest new release, this sneaker is a must-have for collectors and casual wearers alike. </p>
                         <p>Stay ahead of the game and grab yours before it’s gone! Check back every month for fresh kicks that elevate your style.</p>

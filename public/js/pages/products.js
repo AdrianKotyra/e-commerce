@@ -106,6 +106,8 @@ function showAddReview(){
 
 
   triggerReviewForm.addEventListener("click", ()=>{
+
+    document.querySelector(".product-comments-section-container").scrollIntoView({ behavior: "smooth", block: "start" });
     const closeForm = document.querySelector(".cancel-feedback");
     reviewForm.classList.remove("inactive-comment-form");
     resetForm()

@@ -3,12 +3,12 @@
 <?php
     global $connection;
 
-    $userName = trim($_POST['userName']);
-    $userFeedback = trim($_POST['userFeedback']);
-    $userEmail = trim($_POST['userEmail']);
+    $userName = mysqli_real_escape_string($connection, trim($_POST['userName']));
+    $userFeedback = mysqli_real_escape_string($connection, trim($_POST['userFeedback']));
+    $userEmail = mysqli_real_escape_string($connection, trim($_POST['userEmail']));
     $productId = trim($_POST['productId']);
     $rating = trim($_POST['rating']);
-    $today = date("Y-m-d");
+    $today = date("Y-m-d H:i:s");
 
     $errors = [];
     $min = 3;

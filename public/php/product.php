@@ -184,7 +184,7 @@ class Product {
 
         $product_template = '   <div class="similar-prod-col flex-row">
            '.$favorite_icon.'
-            <a class="similar-prod-link" href="products.php?show='.$this->product_id.'&category='.$this->product_category.'">
+            <a class="similar-prod-link" href="products.php?show='.$this->product_id.'">
                 <img loading="lazy" src="./imgs/products/'.$this->product_name.'/'.$this->product_img.'" />
             </a>
             <div class="similar-prod-desc">

@@ -858,7 +858,7 @@ function format_date($originalDate){
 function displayAllcomments($product_id, $start, $per_page){
     global $connection;
 
-    $query = "SELECT * FROM comments where product_id = $product_id AND approved = 'approved' limit $per_page OFFSET $start";
+    $query = "SELECT * FROM comments where product_id = $product_id AND approved = 'approved' order by comment_date desc limit $per_page OFFSET $start ";
     $select_comments = mysqli_query($connection, $query);
     if(mysqli_num_rows($select_comments)>=1) {
         while ($row = mysqli_fetch_assoc($select_comments)) {
@@ -1483,27 +1483,31 @@ function section_slider_trending() {
     echo $section;
 }
 // create list of products ids based on GET category
-function listenCategory(){
-
+function listenCategory($product_category=null){
+    global $connection;
     if(isset($_GET["category"])){
-        global $connection;
-        $cat_name = $_GET["category"];
-        $prod_list_category = [];
-        $query_select_cat = "SELECT * FROM categories WHERE cat_name = '$cat_name '";
-        $select_cat = mysqli_query($connection, $query_select_cat);
-        while ($row = mysqli_fetch_assoc($select_cat)) {
-            $cat_id = $row["cat_id"];
-            $query_cat_id = "SELECT * FROM rel_categories_products WHERE cat_id = '$cat_id'";
-            $select_product_id = mysqli_query($connection, $query_cat_id);
-            while ($row = mysqli_fetch_assoc($select_product_id)) {
-                $prod_id = $row["prod_id"];
-                $prod_list_category[]= $prod_id;
-            }
 
+        $cat_name = $_GET["category"];
+    }
+    if($product_category!=null) {
+        $cat_name = $product_category;
+    }
+    $prod_list_category = [];
+    $query_select_cat = "SELECT * FROM categories WHERE cat_name = '$cat_name '";
+    $select_cat = mysqli_query($connection, $query_select_cat);
+    while ($row = mysqli_fetch_assoc($select_cat)) {
+        $cat_id = $row["cat_id"];
+        $query_cat_id = "SELECT * FROM rel_categories_products WHERE cat_id = '$cat_id'";
+        $select_product_id = mysqli_query($connection, $query_cat_id);
+        while ($row = mysqli_fetch_assoc($select_product_id)) {
+            $prod_id = $row["prod_id"];
+            $prod_list_category[]= $prod_id;
         }
 
     }
-    return  $prod_list_category;
+
+
+return  $prod_list_category;
 }
 
 // create list of products ids based on brands
@@ -1634,7 +1638,7 @@ function displaySimilarProducts($type_products,  $limit, $prod_id_displated_prod
     $counter = 1;
     // take_first_index_of_list_of_product_types
     $type_products_selected = $type_products[0];
-    print_r($type_products[0]);
+
     // Retrieve the type ID
     $query = "SELECT * FROM types WHERE type_name = '$type_products_selected'";
     $select_product_types = mysqli_query($connection, $query);
@@ -1656,28 +1660,31 @@ function displaySimilarProducts($type_products,  $limit, $prod_id_displated_prod
             die("Query failed: " . mysqli_error($connection));
         }
 
+        $product_new = new Product();
+        $product_new ->create_product($prod_id_displated_prod);
+        $product_category =    $product_new->product_category;
+
 
         while ($product_row = mysqli_fetch_assoc($select_products)) {
             $prod_id = $product_row["product_id"];
 
-            if(isset($_GET["category"]) && $_GET["category"]!="mixed"){
-                $category_products_ids = listenCategory();
+            $category_products_ids = listenCategory($product_category);
 
-                if (in_array($prod_id, $category_products_ids) &&  $counter<=$limit) {
-                    $counter+= 1;
-                    $product_new = new Product();
+            if (in_array($prod_id, $category_products_ids) &&  $counter<=$limit) {
+                $counter+= 1;
 
-                    // make sure products are different that the one displayed
 
-                    if($prod_id!=$prod_id_displated_prod) {
-                        $product_new->create_product($prod_id);
+                // make sure products are different that the one displayed
 
-                        $output.= $product_new->product_similar_card();
-                    }
+                if($prod_id!=$prod_id_displated_prod) {
+                    $product_new->create_product($prod_id);
 
+                    $output.= $product_new->product_similar_card();
                 }
 
             }
+
+
     }
     return $output;
 
