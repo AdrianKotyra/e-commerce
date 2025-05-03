@@ -34,6 +34,25 @@
   background-color: transparent !important;
   border: none !important;
 }
+.chosen_filters {
+  flex-wrap: wrap;
+  display: flex;
+  flex-direction: row;
+  margin-top: 20px;
+
+  .chosen_filter {
+    height: 40px;
+    display: flex;
+    align-items: center;
+    margin-right: 10px;
+    border: 1px solid rgba(0, 0, 0, 0.318);
+    color: white;
+    border-radius: 12px;
+    padding: 2px 20px;
+    background-color: black;
+  }
+}
+
 .dark-mode-mobile-screen {
   align-items: center;
   height: 40px;
@@ -287,6 +306,7 @@ img {
     }
 
     .header-event {
+      font-size: var(--category-header);
       margin-bottom: 40px;
       a {
         font-weight: 800;
@@ -619,6 +639,7 @@ section {
 }
 
 .hero-section-main {
+  padding: 0 !important;
   margin: 5px auto;
   overflow: hidden;
 
@@ -2651,7 +2672,7 @@ width: 100%;
 }
 .button-custom-img {
 
-
+  border-radius: 8px;
   background-color: #00000000 !important;
   padding: 10px 20px;
   color: white;
@@ -3414,6 +3435,7 @@ body {
   }
 }
 .search-grid-products-container {
+  padding-top: 30px;
   gap: 10px;
   display: grid;
   min-height: 40vh;
@@ -4254,7 +4276,18 @@ footer {
   color: #aaa;
 }
 .subscribe {
+
   margin-top: 90px;
+  .subscribe_container {
+    height: 300px;
+    position: relative;
+  }
+  img {
+    position: absolute;
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+  }
 }
 .subscribe form button {
   width: 44px;
@@ -4291,7 +4324,25 @@ footer {
   border: 1px solid #2a2a2a;
   color: #2a2a2a;
 }
+.newsletter-section {
+  margin-top: 60px;
+  margin-bottom: 60px;
+  .newsletter-section-container {
+    p{
+      font-size: var(--very-small);
+    }
 
+    height: 500px !important;
+    .form-submit-newsletter-container {
+      margin-top: 30px;
+    }
+    input {
+      padding: 10px 30px;
+    }
+  }
+
+
+}
 .settings-section {
   display: flex;
   justify-content: center;
@@ -4880,7 +4931,7 @@ section {
   }
   .sizes-grid-prod {
     margin: auto;
-    width: max-content;
+
     height: auto;
   }
   .layout-card {
@@ -5088,6 +5139,9 @@ section {
   }
 }
 @media screen and (max-width: 767px) {
+  .shopping-card-desc i {
+    display: none;
+  }
   .desc-video {
 
     .desc-text {
@@ -5731,6 +5785,7 @@ section {
   transform: translateX(20px);
 }
 .hero-section-main-top {
+  padding: 0 !important;
   height: 100vh;
   .img-container {
     position: relative;

@@ -29,6 +29,24 @@
   border: none !important;
 }
 
+.chosen_filters {
+  flex-wrap: wrap;
+  display: flex;
+  flex-direction: row;
+  margin-top: 20px;
+}
+.chosen_filters .chosen_filter {
+  height: 40px;
+  display: flex;
+  align-items: center;
+  margin-right: 10px;
+  border: 1px solid rgba(0, 0, 0, 0.318);
+  color: white;
+  border-radius: 12px;
+  padding: 2px 20px;
+  background-color: black;
+}
+
 .dark-mode-mobile-screen {
   align-items: center;
   height: 40px;
@@ -275,6 +293,7 @@
   margin-bottom: 40px;
 }
 .section-sneaker-month .section-sneaker-month-container .header-event {
+  font-size: var(--category-header);
   margin-bottom: 40px;
 }
 .section-sneaker-month .section-sneaker-month-container .header-event a {
@@ -581,6 +600,7 @@ section .section-heading {
 }
 
 .hero-section-main {
+  padding: 0 !important;
   margin: 5px auto;
   overflow: hidden;
   height: 400px;
@@ -2551,6 +2571,7 @@ section .section-heading {
 }
 
 .button-custom-img {
+  border-radius: 8px;
   background-color: rgba(0, 0, 0, 0) !important;
   padding: 10px 20px;
   color: white;
@@ -3308,6 +3329,7 @@ body {
 }
 
 .search-grid-products-container {
+  padding-top: 30px;
   gap: 10px;
   display: grid;
   min-height: 40vh;
@@ -4162,6 +4184,17 @@ footer ul li a {
 .subscribe {
   margin-top: 90px;
 }
+.subscribe .subscribe_container {
+  height: 300px;
+  position: relative;
+}
+.subscribe img {
+  position: absolute;
+  -o-object-fit: cover;
+     object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
 
 .subscribe form button {
   width: 44px;
@@ -4200,6 +4233,23 @@ footer ul li a {
   background-color: #fff;
   border: 1px solid #2a2a2a;
   color: #2a2a2a;
+}
+
+.newsletter-section {
+  margin-top: 60px;
+  margin-bottom: 60px;
+}
+.newsletter-section .newsletter-section-container {
+  height: 500px !important;
+}
+.newsletter-section .newsletter-section-container p {
+  font-size: var(--very-small);
+}
+.newsletter-section .newsletter-section-container .form-submit-newsletter-container {
+  margin-top: 30px;
+}
+.newsletter-section .newsletter-section-container input {
+  padding: 10px 30px;
 }
 
 .settings-section {
@@ -4739,8 +4789,6 @@ section {
   }
   .sizes-grid-prod {
     margin: auto;
-    width: -moz-max-content;
-    width: max-content;
     height: auto;
   }
   .layout-card {
@@ -4921,6 +4969,9 @@ section {
   }
 }
 @media screen and (max-width: 767px) {
+  .shopping-card-desc i {
+    display: none;
+  }
   .desc-video .desc-text {
     display: flex;
     flex-direction: column;
@@ -5481,6 +5532,7 @@ section {
 }
 
 .hero-section-main-top {
+  padding: 0 !important;
   height: 100vh;
 }
 .hero-section-main-top .img-container {

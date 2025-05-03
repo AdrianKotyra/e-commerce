@@ -1047,6 +1047,19 @@ function displayFilters(){
 }
 
 
+function getSearched_product_count(){
+    if (isset($_GET["search"])) {
+        global $connection;
+        $searched = $_GET["search"];
+
+
+        $query = "SELECT * FROM products WHERE product_name LIKE '%$searched%'";
+        $searched_products = mysqli_query($connection, $query);
+
+        $count_rows = mysqli_num_rows( $searched_products);
+        return $count_rows;
+    }
+}
 
 // ------------------DISPLAY searched PRODUCTS -----------------------------
 function displaySearchedProducts() {
@@ -1122,12 +1135,17 @@ function displaySearchedProducts() {
                 }
             }
 
+        } else {
+            $output= "No results";
         }
 
 
     }
 
     else {
+        if(empty($list_products_ids)) {
+            $output= "No results";
+        }
         foreach ($list_products_ids as $product_id) {
         $product_new = new Product();
         $product_new->create_product($product_id);
@@ -1224,15 +1242,23 @@ function displayCategoryProducts($type_products) {
                     $output .= $product_new->product_category_card();
                 }
             }
+        } else {
+            echo "no results";
         }
     }
     // Else display all products without filtering
     else {
-        foreach ($list_products_ids as $product_id) {
-            $product_new = new Product();
-            $product_new->create_product($product_id);
-            $output .= $product_new->product_category_card();
+        if(empty($list_products_ids)) {
+            echo "no results";
         }
+        else {
+            foreach ($list_products_ids as $product_id) {
+                $product_new = new Product();
+                $product_new->create_product($product_id);
+                $output .= $product_new->product_category_card();
+            }
+        }
+
     }
 
     return $output;

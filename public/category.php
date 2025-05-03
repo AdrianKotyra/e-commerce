@@ -177,7 +177,38 @@
 
     </div>
     </form>
+    <div class="chosen_filters wrapper">
+        <?php
 
+            if(isset($_GET['brand'])) {
+                $brand_id = $_GET['brand'];
+                global $database;
+
+                if($brand_id=="all") {
+                    $brand_name = "ALL BRANDS";
+
+                }
+                else {
+                    // Fetch all brands
+                    $result_sizes = $database->query_array("SELECT * FROM brands where id =  $brand_id");
+
+                    while ($row = mysqli_fetch_array($result_sizes)) {
+                        $brand_name = $row["brand_name"];
+                    }
+
+                }
+
+
+            }
+
+            echo isset($_GET['type']) ? "<span class='chosen_filter'> TYPE - " . htmlspecialchars($_GET['type']) . "</span>" : "";
+            echo isset($_GET['size']) ? "<span class='chosen_filter'>SIZE - " . htmlspecialchars($_GET['size']) . "</span>" : "";
+            echo isset($_GET['brand']) ? "<span class='chosen_filter'> " .  $brand_name . "</span>" : "";
+            echo isset($_GET['category']) ? "<span class='chosen_filter'> " . htmlspecialchars($_GET['category']) . "</span>" : "";
+
+
+        ?>
+    </div>
 
     <div class="search-grid-products-container wrapper">
 
