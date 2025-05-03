@@ -2,55 +2,36 @@
    $result = $database->query_array("SELECT * FROM product_year limit 1");
    while ($row = mysqli_fetch_array($result)) {
        $product_id = $row['product_id'];
-
-
        $serch_product = new Product();
        $serch_product->create_product($product_id);
        $product_name = $serch_product->product_name;
-
-       $product_img2 = $serch_product->product_img_2;
        $product_img1 = $serch_product->product_img;
-   }
+    }
+
 
 ?>
 
-<section class="section-sneaker-month wrapper" id="explore">
+<section class="section-sneaker-month wrapper" >
 
-            <div class="row ">
-                <h3 class="section-header">
-                            <a href="event.php"> Sneaker of the Month</a>
+    <div class="section-sneaker-month-container">
 
-                        </h3>
-                <div class="col-lg-6">
-                    <div class="left-content">
+        <img src="./imgs/sneaker_month/bg2.jpg" alt="">
+        <div class="container-text">
+            <h3 class="header-event">
+                <a href="event.php"> SNEAKER OF THE MONTH</a>
 
-                   <b> <h4><?php echo $product_name;?></h4></b>
-                        <span>Step up your sneaker game with our Sneaker of the Month pick! Each month, we feature an exclusive sneaker that stands out for its design, comfort, and trend-setting style. </span>
-                        <p>Whether it’s a limited-edition drop, a classic making a comeback, or the hottest new release, this sneaker is a must-have for collectors and casual wearers alike. </p>
-                        <p>Stay ahead of the game and grab yours before it’s gone! Check back every month for fresh kicks that elevate your style.</p>
-
-                        <a href="event.php"><div class="button-custom">
-                          Discover More
-                        </div></a>
-                    </div>
-                </div>
-                <div class="col-lg-6">
-
-                    <div class="right-content">
-                        <div class="row">
-
-                            <div class="col-lg-12">
-                                <div class="first-image">
-
-                                <img  loading="lazy" src="<?php echo 'imgs/products/'.$product_name.'/'.$product_img1.''?>">
-                                </div>
-                            </div>
-
-                        </div>
-
-                    </div>
-                </div>
-
-
+            </h3>
+            <p>This exclusive release combines cutting-edge design with premium materials, making it a must-have for sneaker lovers."</p>
+            <a href="event.php">
+            <button class="button-custom-img">SHOP NOW</button>
+            </a>
         </div>
-    </section>
+
+
+
+    </div>
+
+
+
+
+ </section>

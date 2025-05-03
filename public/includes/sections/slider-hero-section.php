@@ -1,6 +1,6 @@
 
 
-<section class="hero-section-main wrapper">
+<section class="hero-section-main ">
 
     <div class="hero-container">
 

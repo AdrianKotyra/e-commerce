@@ -28,6 +28,7 @@
   --medium: 0.9rem;
   --category-header: 52px;
 }
+
 .dropdown {
 
   background-color: transparent !important;
@@ -77,9 +78,7 @@ img {
 
   }
 }
-.favorites-active {
 
-}
 .logo-nav img {
   z-index: 2;
   filter: var(--ui-filter);
@@ -252,16 +251,62 @@ img {
   font-weight: 500;
 }
 .section-sneaker-month {
-  a{
-    color: black;
-    text-decoration: none;
+  .section-sneaker-month-container {
+
+    position: relative;
+    color: white;
+    background-repeat: no-repeat;
+    background-size: cover;
+    max-height: 800px;
+
+    height: 80vh;
+    width: 100%;
+    text-align: center;
+    img{
+      filter: brightness(60%);
+
+      height: 100%;
+      z-index: 1;
+      width:  100%;
+      object-fit: cover;
+    }
+    .container-text {
+      position: absolute;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+
+     left: 50%;
+     top: 50%;
+     transform: translate(-50%,-50%);
+     p{
+      text-transform: uppercase;
+      font-weight: 700;
+      margin-bottom: 40px;
+     }
+    }
+
+    .header-event {
+      margin-bottom: 40px;
+      a {
+        font-weight: 800;
+        text-decoration: none;
+        color: white;
+        font-size: var(--category-header);
+
+      }
+
+    }
+    button {
+      max-width: 200px;
+      margin: auto;
+    }
+
+
+
   }
 
-  img{
-    height: 30vw;
-    width: 100%;
-    object-fit: contain;
-  }
+
 }
 .filter-radio {
   white-space: nowrap;
@@ -4057,10 +4102,10 @@ body {
   animation: fadein 0.4s forwards;
 }
 footer {
-  color: var(--ui-main-text) !important;
+
   margin: 30px 0 0 0 ;
   padding: 60px 0px 30px 0px;
-  background-color: var(--ui-product-card);
+  background-color: black;
   ul{
     padding: 0;
 
@@ -4072,13 +4117,13 @@ footer {
   .logo {
     margin-bottom: 20px;
     align-items: center;
-    color: var(--ui-main-text);
+    color: white;
     font-size: 1.6rem;
     img {
       filter: var(--ui-filter);
     }
     p{
-      color: var(--ui-main-text);
+      color: white;
       text-wrap: nowrap;
       margin-top: 10px;
       font-weight: 600;
@@ -4094,7 +4139,7 @@ footer {
   h4 {
     letter-spacing: 0.5px;
     font-size: 16px;
-    color: var(--ui-main-text);
+    color: white;
     font-weight: 700;
     margin-bottom: 20px;
   }
@@ -4117,7 +4162,7 @@ footer {
   }
   ul li a {
     font-size: 14px;
-    color: var(--ui-main-text);
+    color: white;
     transition: all .3s;
   }
 
@@ -4619,6 +4664,7 @@ section {
   transform: translateX(-50px);
 }
 @media screen and (min-width: 1024px) {
+
   .settion-section-container {
     flex-direction: column ;
   }
@@ -4679,9 +4725,7 @@ section {
   }
 }
 @media screen and (max-width: 991px) {
-  #explore img {
-    float: unset;
-  }
+
   .main-banner .left-content .thumb img {
     padding-right: 0px;
 
@@ -4690,6 +4734,15 @@ section {
 }
 
 @media screen and (max-width: 1024px) {
+  .hero-slider {
+    .carousel-cell {
+      .inner {
+
+        text-align: center !important;
+        left: unset !important;
+      }
+    }
+  }
   .terms-and-condition{
     width: 100vw;
   }
@@ -4744,9 +4797,7 @@ section {
   .prod-main-img {
     height: 100%;
   }
-  .section-sneaker-month img {
-    height: 40vw;
-  }
+
   .header-title-small {
     display: none;
   }
@@ -4904,6 +4955,9 @@ section {
   }
 
   .product-section-container {
+    height: 60vw;
+  }
+  .section-sneaker-month-container {
     height: 60vw;
   }
   .prod-sub-imgs {
@@ -5087,9 +5141,7 @@ section {
     flex-direction: column-reverse;
   }
 
-  .section-sneaker-month img {
-    height: 60vw;
-  }
+
   section {
     padding: 12px 0;
   }
@@ -5292,6 +5344,13 @@ section {
   }
   .product-section-container {
     height: 90vw;
+  }
+
+  .section-sneaker-month-container {
+    height: 90vw !important;
+  }
+  .section-sneaker-month .section-sneaker-month-container .container-text {
+    width: 80%;
   }
   .main-banner {
     padding: 0;
@@ -5670,4 +5729,119 @@ section {
 
 #dark-mode-toggle:checked + .toggle::before {
   transform: translateX(20px);
+}
+.hero-section-main-top {
+  height: 100vh;
+  .img-container {
+    position: relative;
+    height: 100%;
+    right: 0;
+    top: 0;
+   position: absolute;
+    width: 100%;
+    img{
+      filter: brightness(0.8);
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+
+  }
+
+  .overlay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+
+  }
+
+  .hero-slider {
+    width: 100%;
+    height:  100%;
+    overflow: hidden;
+
+    .carousel-cell {
+      width: 100%;
+      height: 100%;
+
+
+      .inner {
+        position: relative;
+        top: 50%;
+        z-index: 2;
+        transform: translateY(-50%);
+        color: white;
+        text-align: left;
+        left: 10%;
+
+        .subtitle {
+
+          font-size: 2.2rem;
+          line-height: 1.2em;
+          font-weight: 200;
+          font-style: italic;
+          letter-spacing: 3px;
+          color: rgba(255,255,255,0.5);
+          margin-bottom: 5px;
+        }
+
+        .title {
+
+          font-size: 3rem;
+          line-height: 1.2em;
+          text-transform: uppercase;
+          letter-spacing: 3px;
+          margin-bottom: 40px;
+        }
+        .btn{
+          border: 1px solid #fff;
+          padding: 14px 18px;
+          text-transform: uppercase;
+
+          font-size: 0.8rem;
+          letter-spacing: 3px;
+          color: #fff;
+          text-decoration: none;
+          transition: all .2s ease;
+          &:hover{
+            background: #fff;
+            color: #000;
+          }
+        }
+      }
+    }
+
+    .flickity-prev-next-button {
+      width: 80px;
+      height: 80px;
+      background: transparent;
+      &:hover{
+        background: transparent;
+      }
+      .arrow{
+        fill: white;
+      }
+    }
+    .flickity-page-dots {
+      bottom: 30px;
+      .dot{
+        width: 30px;
+        height: 4px;
+        opacity: 1;
+        background: rgba(255,255,255,0.5);
+        border: 0 solid white;
+        border-radius: 0;
+        &.is-selected{
+          background: #ff0000;
+          border: 0 solid #ff0000;
+        }
+      }
+    }
+  }
+
 }

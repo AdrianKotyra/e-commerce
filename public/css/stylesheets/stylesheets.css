@@ -242,15 +242,50 @@
   font-weight: 500;
 }
 
-.section-sneaker-month a {
-  color: black;
-  text-decoration: none;
-}
-.section-sneaker-month img {
-  height: 30vw;
+.section-sneaker-month .section-sneaker-month-container {
+  position: relative;
+  color: white;
+  background-repeat: no-repeat;
+  background-size: cover;
+  max-height: 800px;
+  height: 80vh;
   width: 100%;
-  -o-object-fit: contain;
-     object-fit: contain;
+  text-align: center;
+}
+.section-sneaker-month .section-sneaker-month-container img {
+  filter: brightness(60%);
+  height: 100%;
+  z-index: 1;
+  width: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.section-sneaker-month .section-sneaker-month-container .container-text {
+  position: absolute;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+.section-sneaker-month .section-sneaker-month-container .container-text p {
+  text-transform: uppercase;
+  font-weight: 700;
+  margin-bottom: 40px;
+}
+.section-sneaker-month .section-sneaker-month-container .header-event {
+  margin-bottom: 40px;
+}
+.section-sneaker-month .section-sneaker-month-container .header-event a {
+  font-weight: 800;
+  text-decoration: none;
+  color: white;
+  font-size: var(--category-header);
+}
+.section-sneaker-month .section-sneaker-month-container button {
+  max-width: 200px;
+  margin: auto;
 }
 
 .filter-radio {
@@ -3977,10 +4012,9 @@ body {
 }
 
 footer {
-  color: var(--ui-main-text) !important;
   margin: 30px 0 0 0;
   padding: 60px 0px 30px 0px;
-  background-color: var(--ui-product-card);
+  background-color: black;
 }
 footer ul {
   padding: 0;
@@ -3991,14 +4025,14 @@ footer a {
 footer .logo {
   margin-bottom: 20px;
   align-items: center;
-  color: var(--ui-main-text);
+  color: white;
   font-size: 1.6rem;
 }
 footer .logo img {
   filter: var(--ui-filter);
 }
 footer .logo p {
-  color: var(--ui-main-text);
+  color: white;
   text-wrap: nowrap;
   margin-top: 10px;
   font-weight: 600;
@@ -4013,7 +4047,7 @@ footer ul li a:hover {
 footer h4 {
   letter-spacing: 0.5px;
   font-size: 16px;
-  color: var(--ui-main-text);
+  color: white;
   font-weight: 700;
   margin-bottom: 20px;
 }
@@ -4035,7 +4069,7 @@ footer .under-footer ul li a {
 }
 footer ul li a {
   font-size: 14px;
-  color: var(--ui-main-text);
+  color: white;
   transition: all 0.3s;
 }
 
@@ -4587,14 +4621,15 @@ section {
   }
 }
 @media screen and (max-width: 991px) {
-  #explore img {
-    float: unset;
-  }
   .main-banner .left-content .thumb img {
     padding-right: 0px;
   }
 }
 @media screen and (max-width: 1024px) {
+  .hero-slider .carousel-cell .inner {
+    text-align: center !important;
+    left: unset !important;
+  }
   .terms-and-condition {
     width: 100vw;
   }
@@ -4629,9 +4664,6 @@ section {
   }
   .prod-main-img {
     height: 100%;
-  }
-  .section-sneaker-month img {
-    height: 40vw;
   }
   .header-title-small {
     display: none;
@@ -4766,6 +4798,9 @@ section {
     text-align: center;
   }
   .product-section-container {
+    height: 60vw;
+  }
+  .section-sneaker-month-container {
     height: 60vw;
   }
   .prod-sub-imgs {
@@ -4925,9 +4960,6 @@ section {
   }
   .event-section-container2, .event-section-container3 {
     flex-direction: column-reverse;
-  }
-  .section-sneaker-month img {
-    height: 60vw;
   }
   section {
     padding: 12px 0;
@@ -5107,6 +5139,12 @@ section {
   }
   .product-section-container {
     height: 90vw;
+  }
+  .section-sneaker-month-container {
+    height: 90vw !important;
+  }
+  .section-sneaker-month .section-sneaker-month-container .container-text {
+    width: 80%;
   }
   .main-banner {
     padding: 0;
@@ -5440,4 +5478,106 @@ section {
 
 #dark-mode-toggle:checked + .toggle::before {
   transform: translateX(20px);
+}
+
+.hero-section-main-top {
+  height: 100vh;
+}
+.hero-section-main-top .img-container {
+  position: relative;
+  height: 100%;
+  right: 0;
+  top: 0;
+  position: absolute;
+  width: 100%;
+}
+.hero-section-main-top .img-container img {
+  filter: brightness(0.8);
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.hero-section-main-top .overlay {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+.hero-section-main-top .hero-slider {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+.hero-section-main-top .hero-slider .carousel-cell {
+  width: 100%;
+  height: 100%;
+}
+.hero-section-main-top .hero-slider .carousel-cell .inner {
+  position: relative;
+  top: 50%;
+  z-index: 2;
+  transform: translateY(-50%);
+  color: white;
+  text-align: left;
+  left: 10%;
+}
+.hero-section-main-top .hero-slider .carousel-cell .inner .subtitle {
+  font-size: 2.2rem;
+  line-height: 1.2em;
+  font-weight: 200;
+  font-style: italic;
+  letter-spacing: 3px;
+  color: rgba(255, 255, 255, 0.5);
+  margin-bottom: 5px;
+}
+.hero-section-main-top .hero-slider .carousel-cell .inner .title {
+  font-size: 3rem;
+  line-height: 1.2em;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  margin-bottom: 40px;
+}
+.hero-section-main-top .hero-slider .carousel-cell .inner .btn {
+  border: 1px solid #fff;
+  padding: 14px 18px;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  letter-spacing: 3px;
+  color: #fff;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+.hero-section-main-top .hero-slider .carousel-cell .inner .btn:hover {
+  background: #fff;
+  color: #000;
+}
+.hero-section-main-top .hero-slider .flickity-prev-next-button {
+  width: 80px;
+  height: 80px;
+  background: transparent;
+}
+.hero-section-main-top .hero-slider .flickity-prev-next-button:hover {
+  background: transparent;
+}
+.hero-section-main-top .hero-slider .flickity-prev-next-button .arrow {
+  fill: white;
+}
+.hero-section-main-top .hero-slider .flickity-page-dots {
+  bottom: 30px;
+}
+.hero-section-main-top .hero-slider .flickity-page-dots .dot {
+  width: 30px;
+  height: 4px;
+  opacity: 1;
+  background: rgba(255, 255, 255, 0.5);
+  border: 0 solid white;
+  border-radius: 0;
+}
+.hero-section-main-top .hero-slider .flickity-page-dots .dot.is-selected {
+  background: #ff0000;
+  border: 0 solid #ff0000;
 }/*# sourceMappingURL=stylesheets.css.map */

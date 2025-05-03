@@ -25,7 +25,7 @@
 
 
     ?>
-<div class="main-banner wrapper" id="top">
+<div class="main-banner " id="top">
         <div class="container-fluid g-0">
             <div class="row g-0">
                 <div class="col-lg-6 g-0 ">
