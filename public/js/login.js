@@ -77,16 +77,17 @@
 
 
 function showLogin(){
-  const loginTrigger = document.querySelector(".login-trigger");
+  const loginTrigger = document.querySelectorAll(".login-trigger");
   const crosslogin = document.querySelector(".cross-login")
-  loginTrigger.addEventListener("click", ()=>{
-
-      const loginContainer = document.querySelector(".login");
+  const loginContainer = document.querySelector(".login");
+  loginTrigger.forEach(element => {
+    element.addEventListener("click", ()=>{
       loginContainer.classList.remove("inactive-basket")
       loginContainer.classList.add("active-basket")
       bodyMaskOn()
       loginUserAJAX()
   })
+  });
 
 
 

@@ -761,7 +761,7 @@ function display_brands_section(){
         $logo_img = $row["logo"];
 
         $logo_company_icon = '
-            <a href="search.php?search=&category=mixed&size=all&type=all&brand='.$brand_id.'">
+            <a href="category.php?type=all&category=mixed&size=all&type=all&brand='.$brand_id.'">
                 <div class="brand-logo">
                     <img src="./imgs/brands/'.$logo_img.'">
 
@@ -1438,7 +1438,7 @@ function section_detailed_products($type_products) {
 
     if (isset($_GET["category"]) && ($_GET["category"] == "female" || $_GET["category"] == "male" || $_GET["category"] == "unisex")) {
 
-        $category = $_GET["category"];
+        $category = $_GET["category"]? $_GET["category"] : "";
 
         $img_src = '<img loading="lazy" src="./imgs/detailed_section/'.$type_products.'_'.$category.'.WEBP" />';
 
@@ -1448,14 +1448,19 @@ function section_detailed_products($type_products) {
     else {
         $img_src = '<img loading="lazy" src="./imgs/detailed_section/'.$type_products.'_mix.WEBP" />';
     }
-
+    if (isset($_GET["category"])){
+        $cat_link = '&category='.$_GET["category"].'&size=all&type=Outdoor+Shoes&brand=all';
+    }
+    else {
+        $cat_link = '';
+    }
     $section =
     '<section class="product-section">
         <div class="product-section-container flex-row wrapper">
             <div class="prod-main-img">
                 '.$img_src.'
                 <span class="desc-main">
-                    <a href="category.php?type='.$type_products.'">
+                    <a href="category.php?type='.$type_products.$cat_link.'">
                         <p>'.$type_products.'</p>
 
                         <button class="button-custom-img">SHOP NOW</button>
@@ -1479,9 +1484,15 @@ function section_detailed_products($type_products) {
 }
 // ------------------SECTION SLIDER---------------------
 function section_slider_products($type_products) {
+    if (isset($_GET["category"])){
+        $cat_link = '&category='.$_GET["category"].'&size=all&type='.$type_products.'&brand=all';
+    }
+    else {
+        $cat_link = '';
+    }
     $section =
     '<section class="trending_section wrapper">
-        <a href="category.php?type='.$type_products.'">
+        <a href="category.php?type='.$type_products.$cat_link.'">
             <h3 class="section-header">
                 '.$type_products.'
             </h3>
@@ -1495,9 +1506,15 @@ function section_slider_products($type_products) {
 }
 // ------------------SECTION SLIDER---------------------
 function section_slider_trending() {
+    if (isset($_GET["category"])){
+        $cat_link = '&category='.$_GET["category"].'&size=all&type=all&filter=product_views+DESC';
+    }
+    else {
+        $cat_link = '&category=mixed&size=all&type=all&brand=all&filter=product_views+DESC';
+    }
     $section =
     '<section class="trending_section wrapper">
-        <a href="category.php?type=Trending&category=mixed&size=all&type=all&brand=all&filter=product_views+DESC">
+        <a href="category.php?type=all'.$cat_link.'">
             <h3 class="section-header">
                 Trending
             </h3>
@@ -1907,7 +1924,7 @@ function display_nav_brands($category="mixed"){
     while ($product_row = mysqli_fetch_assoc($select_brands)) {
         $brand_name = $product_row["brand_name"];
         $brand_id = $product_row["id"];
-        echo '<a href="search.php?search=&category='.$category.'&size=all&type=all&brand='.$brand_id.'"class="nav-brands-links">
+        echo '<a href="  category.php?type=all&category='.$category.'&size=all&type=all&brand='.$brand_id.'"class="nav-brands-links">
         '.$brand_name .'
 
         </a>';

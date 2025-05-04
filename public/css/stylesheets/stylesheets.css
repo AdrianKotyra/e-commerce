@@ -915,6 +915,7 @@ section .section-heading {
 }
 
 .logo-name {
+  text-transform: uppercase;
   color: var(--ui-main-text-nav);
   white-space: nowrap;
   margin: auto;
@@ -2603,7 +2604,7 @@ section .section-heading {
 .section-header {
   text-transform: uppercase;
   font-weight: 800;
-  text-align: center;
+  text-align: left;
   font-size: var(--header-section);
   padding: 40px 0 10px 10px;
   color: var(--ui-main-text) !important;
