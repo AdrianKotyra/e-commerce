@@ -21,6 +21,8 @@ class Order {
     public $shipping_postal_code;
     public $shipping_country;
 
+    public $delivery_option;
+    public $discount_applied;
 
 
 
@@ -49,7 +51,8 @@ class Order {
             $this-> shipping_state = $row['shipping_state'];
             $this-> shipping_postal_code = $row['shipping_postal_code'];
             $this-> shipping_country = $row['shipping_country'];
-
+            $this-> delivery_option = $row['delivery_option'];
+            $this-> discount_applied = $row['discount_applied'];
 
         }
 
@@ -79,8 +82,8 @@ class Order {
             $this-> shipping_state = $row['shipping_state'];
             $this-> shipping_postal_code = $row['shipping_postal_code'];
             $this-> shipping_country = $row['shipping_country'];
-
-
+            $this-> delivery_option = $row['delivery_option'];
+            $this-> discount_applied = $row['discount_applied'];
         }
 
     }
@@ -89,6 +92,8 @@ class Order {
     public function get_user_order_cart($order_id) {
         global $database;
         $products_container = '';
+        $delivery_price = $this->delivery_option == "standard"? 4.99 : 7.99;
+        $discount_applied_msg = $this-> discount_applied == true? "Discount applied for purchases for over £150 (-15%)" : "";
         $result_product= $database->query_array("SELECT * FROM order_items where order_id = $order_id");
         while($row = mysqli_fetch_array($result_product)) {
             $product_id = htmlspecialchars($row["product_id"]);
@@ -107,7 +112,7 @@ class Order {
                     <img src="./imgs/products/' . $product_name . '/' . $product_img . '" alt="' . $product_name . '" />
                        <span >' . $product_name . '</span>
                         <span > size: ' . $product_size . '</span>
-                        <span > price: ' . $product_price . '£</span>
+                        <span > price: ' . $product_price .' '.htmlspecialchars($this->transaction_currency).'</span>
                            <span > quantity: ' . $product_quantity . '</span>
                 </div>';
         }
@@ -115,8 +120,10 @@ class Order {
         // Build the order template
         $order_user_template = '
         <div class="product_order_user_cart flex-col">
+          <span class="orders_account_date">' . htmlspecialchars($this->transaction_time) . '</span>
             <div class="info_order_col flex-col">
-               <span class="text-center"> <b>Order Number: ' . htmlspecialchars($this->order_id) . '</b></span>
+               <span class="text-center"> <b>Order Number: <br>' . htmlspecialchars($this->transaction_id) . '</b></span>
+
                 <p>Delivery address</p>
                 <span>' . htmlspecialchars($this->payer_name) . '</span>
                 <span>' . htmlspecialchars($this->shipping_city) . '</span>
@@ -125,12 +132,14 @@ class Order {
                 <span>' . htmlspecialchars($this->shipping_postal_code) . '</span>
                 <span>' . htmlspecialchars($this->shipping_country) . '</span>
                 <br>
-                <span>Transaction status:<br>' . htmlspecialchars($this->transaction_status) . '</span>
-                <br>
-                 <div>
-            <b>Total: <span>' . htmlspecialchars($this->transaction_amount) .htmlspecialchars($this->transaction_currency) .'</span></b>
+
+            <div>
+            <p>Delivery Option: <b>'. htmlspecialchars($this->delivery_option) .'</b></p>
+            <p>Delivery Price: <b>'. htmlspecialchars( $delivery_price).' '.htmlspecialchars($this->transaction_currency). '</b></p>
+           <p>'.$discount_applied_msg.'</p>
+            <b>Total: <span>' . htmlspecialchars($this->transaction_amount) .' '.htmlspecialchars($this->transaction_currency) .'</span></b>
             </div>
-                <a href="account.php?show=orders&order=' . htmlspecialchars($this->order_id) . '">View full order details</a>
+
             </div>
 
 

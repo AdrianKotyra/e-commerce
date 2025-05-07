@@ -9,7 +9,7 @@ class Basket {
     public function __construct() {
         $this->discount_applied =  false;
         $this->delivery_option =  $_SESSION['delivery_option']?? "standard";
-        $this->delivery_price = $this->delivery_option == "standard"? .99 : 7.99;
+        $this->delivery_price = $this->delivery_option == "standard"? 4.99 : 7.99;
     }
 
 
@@ -100,11 +100,11 @@ class Basket {
 
             $raw_total = $this->getTotal() + $this->delivery_price;
             $user_total = $this->discount_applied == 1
-                ? round($raw_total * 0.85, 2)
-                : round($raw_total, 2);
+                ? $raw_total * 0.85
+                : $raw_total;
 
-            $discounted_price =  round(($this->getTotal() + $this->delivery_price) * 15 / 100, 2);
-            return  $user_total;
+
+            return  round($user_total,2);
         }
         public function getDiscountedPrice() {
 

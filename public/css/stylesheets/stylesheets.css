@@ -69,9 +69,9 @@
   position: relative;
   font-size: 0.85rem;
   height: 24px;
-  color: var(--ui-main-text);
+  color: white;
   text-align: center;
-  background-color: var(--ui-product-card);
+  background-color: black;
 }
 .banner-promo span {
   top: 50%;
@@ -270,8 +270,16 @@
   width: 100%;
   text-align: center;
 }
+.section-sneaker-month .section-sneaker-month-container::before {
+  content: "";
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  z-index: 2;
+  opacity: 70%;
+  background: linear-gradient(to right, #232526, #414345);
+}
 .section-sneaker-month .section-sneaker-month-container img {
-  filter: brightness(60%);
   height: 100%;
   z-index: 1;
   width: 100%;
@@ -2347,10 +2355,19 @@ section .section-heading {
 }
 
 .product_order_user_cart {
+  position: relative;
   color: var(--ui-main-text);
   margin: 10px;
   padding: 10px;
   background-color: var(--ui-product-card);
+}
+.product_order_user_cart .orders_account_date {
+  padding: 6px;
+  font-size: 0.9rem;
+  opacity: 80%;
+  position: absolute;
+  top: 0;
+  right: 0;
 }
 .product_order_user_cart .products_orders_container {
   display: grid;
@@ -4254,6 +4271,7 @@ footer ul li a {
 }
 
 .settings-section {
+  margin-top: 24px;
   display: flex;
   justify-content: center;
 }

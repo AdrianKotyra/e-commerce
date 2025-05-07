@@ -4,7 +4,7 @@
 
 
 
-    if (isset($_GET["source"]) && $_GET["source"] == "change_sneaker_month_id" && isset($_GET["product_id"])) {
+    if (isset($_GET["source"]) && $_GET["source"] == "change_sneaker_month_id" && isset($_GET["product_id"]) && !isset($_GET["changed"])=="true") {
 
 
 
@@ -59,27 +59,31 @@
     ";
 
     echo '<h3 class="text-center"> Add additional information </h3>';
+
+
+    echo '
+    <form method="POST" class="flex-col form-sneaker-month" action="sneaker_month.php?source=change_sneaker_month_id&product_id=' . $product_id . '&changed=true">
+        <input name="product_id" type="hidden" value="' . $product_id . '">
+
+        <label for="header_1">Header 1</label>
+        <input name="header_1" type="text" class="form-control">
+
+        <label for="Description_1">Description 1</label>
+        <textarea name="Description_1" class="form-control"></textarea>
+
+        <label for="header_2">Header 2</label>
+        <input name="header_2" type="text" class="form-control">
+
+        <label for="Description_2">Description 2</label>
+        <textarea name="Description_2" class="form-control"></textarea>
+
+        <button class="btn btn-primary btn-round" name="submit_sneaker_month" type="submit">Submit</button>
+    </form>';
     }
 
-
-
 ?>
-<form method="POST" class="flex-col form-sneaker-month">
-    <input name="product_id"type="text" class="hidden_input" value='<?php echo $product_id;?>'>
-    <label for="header_1">Header 1</label>
-    <input name="header_1"type="text" class="form-control" >
-    <label for="Description_1">Description 1</label>
-    <textarea name="Description_1" type="text" class="form-control"> </textarea>
-    <label for="header_2">Header 2</label>
-    <input name="header_2"type="text" class="form-control" >
-    <label for="Description_2">Description 1</label>
-    <textarea name="Description_2" type="text" class="form-control" ></textarea>
-
-    <button class="btn btn-primary btn-round" name="submit_sneaker_month"type="submit">submit</button>
 
 
-
-</form>
 <!-- update sneaker of month details -->
 <?php
 

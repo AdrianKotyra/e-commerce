@@ -74,9 +74,9 @@ img {
     position: relative;
     font-size: 0.85rem;
     height: 24px;
-    color: var(--ui-main-text);
+    color: white;
     text-align: center;
-    background-color: var(--ui-product-card);
+    background-color: black;
   span{
     top: 50%;
     left: 50%;
@@ -281,8 +281,16 @@ img {
     height: 80vh;
     width: 100%;
     text-align: center;
+    &::before {
+      content: "";
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      z-index: 2;
+      opacity: 70%;
+      background: linear-gradient(to right, #232526, #414345);
+    }
     img{
-      filter: brightness(60%);
 
       height: 100%;
       z-index: 1;
@@ -2453,11 +2461,20 @@ width: 100%;
   }
 }
 .product_order_user_cart {
+  position: relative;
   color: var(--ui-main-text);
   margin: 10px;
 
   padding: 10px;
   background-color: var(--ui-product-card);
+  .orders_account_date {
+    padding: 6px;
+    font-size: 0.9rem;
+    opacity: 80%;
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
   .products_orders_container {
     display: grid;
     justify-content: center;
@@ -4345,6 +4362,7 @@ footer {
 
 }
 .settings-section {
+  margin-top: 24px;
   display: flex;
   justify-content: center;
 }

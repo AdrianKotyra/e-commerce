@@ -1,4 +1,4 @@
-<section class="account-details account-info">
+<div class="account-details account-info">
 <?php
 error_reporting(E_ALL);  // Reports all errors
 ini_set('display_errors', 1);  // Displays errors on the screen
@@ -33,4 +33,4 @@ ini_set('display_errors', 1);  // Displays errors on the screen
 
 
 
-</section>
+</div>

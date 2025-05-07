@@ -17,9 +17,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $user_id = ($session->signed_in == true) ? $session->user_id : null;
 
     // Sanitize and fetch transaction details
+    $delivery_option = $basket->delivery_option?? '';
+    $transaction_amount = $basket->getTotalCheckout() ?? '';
+    $discount_applied = $basket->discount_applied ?? '';
+
     $transaction_id = $_POST['transaction_id'] ?? '';
     $transaction_status = $_POST['transaction_status'] ?? '';
-    $transaction_amount = $_POST['transaction_amount'] ?? '';
+
     $transaction_currency = $_POST['transaction_currency'] ?? '';
     $transaction_time = $_POST['transaction_time'] ?? '';
 
@@ -49,14 +53,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $insert_sql = "INSERT INTO orders
             (user_db_id, transaction_id, transaction_status, transaction_amount, transaction_currency, transaction_time,
             payer_name, payer_email, payer_id, payer_phone, payer_country,
-            shipping_street, shipping_city, shipping_state, shipping_postal_code, shipping_country, shipping_name)
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            shipping_street, shipping_city, shipping_state, shipping_postal_code, shipping_country, shipping_name, delivery_option, discount_applied)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         $insert_stmt = $connection->prepare($insert_sql);
-        $insert_stmt->bind_param("issssssssssssssss",
+        $insert_stmt->bind_param("issssssssssssssssss",
             $user_id, $transaction_id, $transaction_status, $transaction_amount, $transaction_currency, $transaction_time,
             $payer_name, $payer_email, $payer_id, $payer_phone, $payer_country,
-            $shipping_street, $shipping_city, $shipping_state, $shipping_postal_code, $shipping_country, $shippingName
+            $shipping_street, $shipping_city, $shipping_state, $shipping_postal_code, $shipping_country, $shippingName, $delivery_option, $discount_applied
         );
 
         if ($insert_stmt->execute()) {

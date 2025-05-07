@@ -10,12 +10,8 @@
 
 
 
-        $raw_total = $basket->getTotal() + $basket->delivery_price;
-        $discount_applied = $basket->discount_applied;
-        $user_total = $discount_applied == 1
-            ? round($raw_total * 0.85, 2)
-            : round($raw_total, 2);
 
+        $user_total = $basket->getTotalCheckout();
 
 
 

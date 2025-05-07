@@ -602,17 +602,39 @@ function select_and_display_products($per_page) {
 
     }
 
+    if (isset($_GET["delete_product"])) {
+        global $connection;
 
-    if(isset($_GET["delete_product"])) {
-    global $connection;
-    $product_id = $_GET["delete_product"];
+        $product_id = (int) $_GET["delete_product"];
 
-    // delete product
+        // check if product is sneaker of month first
+        $query1 = "SELECT id from product_year where product_id = {$product_id}";
+        $check_query = mysqli_query($connection, $query1);
+
+        if(mysqli_num_rows($check_query)>=1) {
+            echo '<div class="alert alert-danger col-lg-12 text-center mx-auto" role="alert">
+                    Please change sneaker of month first before deleting this product
+                </div>';
+            return;
+        }
+
+        // Delete product and related data in one multi-query
+        $query2 = "
+            DELETE FROM products WHERE product_id = {$product_id};
+            DELETE FROM rel_products_brands WHERE product_id = {$product_id};
+            DELETE FROM rel_products_sizes WHERE prod_id = {$product_id};
+            DELETE FROM rel_types_products WHERE product_id = {$product_id};
+            DELETE FROM rel_categories_products WHERE prod_id = {$product_id};
+            DELETE FROM wishlist WHERE product_id = {$product_id};
+        ";
+
+        if (mysqli_multi_query($connection, $query2)) {
+            echo '<script> window.location.href = "products.php" </script>';
+        }
 
 
-    $query = "DELETE from products WHERE product_id={$product_id}";
-    $delete_product = mysqli_query($connection, $query);
-    echo '<script> window.location.href = "products.php" </script>';
+
+
 
 
 }}
@@ -648,11 +670,7 @@ function select_and_display_orders($per_page) {
         $payer_country = $row['payer_country'];
 
         // Sanitize and fetch shipping details
-        $shipping_street = $row['shipping_street'];
-        $shipping_city = $row['shipping_city'];
-        $shipping_state = $row['shipping_state'];
-        $shipping_postal_code = $row['shipping_postal_code'];
-        $shipping_country = $row['shipping_country'];
+
 
         $order_status = $row['data_status'];
         // check order status if its new or old to add class bold
@@ -682,13 +700,16 @@ function select_and_display_orders($per_page) {
 
     // delete order
 
-    $query = "DELETE from orders WHERE id={$order_id}";
-    $delete_order = mysqli_query($connection, $query);
 
-    // delete order_items
-    $query2 = "DELETE from order_items WHERE order_id={$order_id}";
-    $delete_order_items = mysqli_query($connection, $query2);
-    echo '<script> window.location.href = "orders.php" </script>';
+    $query = "DELETE from orders WHERE id={$order_id};
+    DELETE from order_items WHERE order_id={$order_id};";
+    if(mysqli_multi_query($connection, $query)) {
+        echo '<script> window.location.href = "orders.php" </script>';
+    }
+
+
+
+
 
 
 }}
@@ -1128,246 +1149,13 @@ function select_and_display_gallery($per_page) {
 
 
 }
-function select_and_display_top_rated_movies() {
-    $age_limit = user_logged_age_movies_selection();
-    global $connection;
-    global $database;
 
-    $age_limit = user_logged_age_movies_selection();
-            global $database;
-            global $connection;
-            $query = $database->query_array("
-                SELECT
-                    movies.age,
-                    movies.title,
-                    movies.description,
-                    movies.id,
-                    movies.poster,
-                    movies.trailer_link,
-                    movies.year,
-                    reviews.review_rating,
-                    reviews.movie_review_id
-                FROM movies
-                INNER JOIN reviews ON movies.id = reviews.movie_review_id
-                WHERE movies.age <= $age_limit
-                AND reviews.review_rating >= 8 LIMIT 10
 
 
-        ");
 
-        while ($row = mysqli_fetch_array($query)) {
-        $movie_rating = $row["review_rating"];
-        $movie_id = $row["id"];
-        $movie_title = $row["title"];
-        $movie_poster = $row["poster"];
 
-        $movie_age  = $row["age"];
-        echo"<tr>";
-        echo "<td>$movie_id</td>";
-        echo "<td>$movie_title</td>";
 
-        echo "<td> $movie_rating /10</td>";
-        echo "<td><img class='table_img' width=100 height=100 src='../public/$movie_poster'></td>";
-        echo "<td>$movie_age+</td>";
 
-        }
-
-}
-
-
-
-
-
-
-
-
-
-function select_and_display_most_movies() {
-    $age_limit = user_logged_age_movies_selection();
-    global $connection;
-    global $database;
-
-    $query1 = $database->query_array("SELECT * from movies_views order by views DESC LIMIT 10 offset 0");
-    while ($row = mysqli_fetch_array($query1)) {
-        $movie_id = $row["movie_id"];
-        $movie_views = $row["views"];
-        $query2 = $database->query_array("SELECT * from movies where id =  $movie_id and movies.age <= $age_limit");
-
-        while ($row = mysqli_fetch_array($query2)) {
-
-        $movie_id = $row["id"];
-        $movie_title = $row["title"];
-        $movie_poster = $row["poster"];
-
-        $movie_age  = $row["age"];
-        echo"<tr>";
-        echo "<td>$movie_id</td>";
-        echo "<td>$movie_title</td>";
-
-        echo "<td> $movie_views</td>";
-        echo "<td><img class='table_img' width=100 height=100 src='../public/$movie_poster'></td>";
-        echo "<td>$movie_age+</td>";
-
-        }
-
-    }
-
-
-
-
-
-
-
-
-}
-
-function select_and_display_movies() {
-    global $connection;
-
-    $query = "SELECT * from movies order by id desc";
-    $select_users_query = mysqli_query($connection, $query);
-    while($row = mysqli_fetch_assoc($select_users_query)) {
-        $movie_id = $row["id"];
-        $movie_title = $row["title"];
-        $movie_poster = $row["poster"];
-        $movie_desc  = $row["description"];
-        $movie_trailer_link  = $row["trailer_link"];
-        $release_date  = $row["year"];
-        $movie_age  = $row["age"];
-        echo"<tr>";
-        echo "<td>$movie_id</td>";
-        echo "<td>$movie_title</td>";
-        echo "<td>$release_date</td>";
-        echo "<td>$movie_desc</td>";
-        echo "<td>$movie_trailer_link</td>";
-        echo "<td><img class='table_img' width=100 height=100 src='../public/$movie_poster'></td>";
-        echo "<td>$movie_age+</td>";
-        echo "<td><a href='movies.php?source=edit_movie&movie_id={$movie_id}'>EDIT</a></td>";
-        echo "<td > <span class='delete_button'  data-link='movies.php?delete_movie=$movie_id'> Delete </span></td>";
-        // echo "<td><a href='movies.php?delete_movie={$movie_id}'>DELETE</a></td>";
-        echo"</tr>";
-    }
-
-    if(isset($_GET["delete_movie"])) {
-        $movie_to_be_deleted = $_GET["delete_movie"];
-        // delete relational column before deleting movie
-        $query_delete_movie_genres = "DELETE from movies_genres WHERE movie_id={$movie_to_be_deleted}";
-        $delete_movie_genre = mysqli_query($connection, $query_delete_movie_genres);
-        // delete movie after deleting relational column
-
-        $query = "DELETE from movies WHERE id={$movie_to_be_deleted}";
-        $delete_movie = mysqli_query($connection, $query);
-
-        echo '<script> window.location.href = "movies.php" </script>';
-
-    }
-
-
-}
-function select_and_display_genres() {
-    global $connection;
-
-    $query = "SELECT * from genres";
-    $select_genres_query = mysqli_query($connection, $query);
-    while($row = mysqli_fetch_assoc($select_genres_query)) {
-        $genre_id = $row["id"];
-        $genre_name = $row["name"];
-        $genre_desc = $row["desc"];
-        $category_img = $row["category_img"];
-
-        echo"<tr>";
-        echo "<td>$genre_id</td>";
-        echo "<td>$genre_name</td>";
-        echo "<td>$genre_desc</td>";
-        echo "<td><img class='table_img' width=100 height=100 src='../public/$category_img'></td>";
-        echo "<td><a href='genres.php?source=edit_genre&genre_id={$genre_id}'>EDIT</a></td>";
-        echo "<td > <span class='delete_button'  data-link='genres.php?delete_genre=$genre_id'> Delete </span></td>";
-        // echo "<td><a href='genres.php?delete_genre={$genre_id}'>DELETE</a></td>";
-        echo"</tr>";
-    }
-
-    if(isset($_GET["delete_genre"])) {
-
-
-        $genre_to_be_deleted = $_GET["delete_genre"];
-
-
-
-        // delete user img
-        $query2 = "SELECT * from genres WHERE id = $genre_to_be_deleted";
-        $delete_genre_img = mysqli_query($connection, $query2);
-        while($row = mysqli_fetch_assoc($delete_genre_img)) {
-            $category_image = $row["category_img"];
-
-            $destination_img_upload = "../public/$category_image";
-            if (file_exists($destination_img_upload)) {
-                unlink($destination_img_upload);
-
-            }
-        }
-
-
-        $query = "DELETE from genres WHERE id={$genre_to_be_deleted}";
-        $delete_movie = mysqli_query($connection, $query);
-        echo '<script> window.location.href = "genres.php" </script>';
-
-    }
-
-
-}
-function select_and_display_bookings() {
-    global $connection;
-    global $database;
-    $query = "SELECT * from bookings";
-    $select_genres_query = mysqli_query($connection, $query);
-    while($row = mysqli_fetch_assoc($select_genres_query)) {
-        $id = $row["id"];
-        $ticket_id = $row["ticket_id"];
-        $date_bookings = $row["date_booking"];
-        $time_show = $row["time_show"];
-        $seat = $row["seat_number"];
-        $user_id = $row["user_id"];
-        $price = $row["ticket_price"];
-
-        $user_name_query = $database-> query_array("SELECT * from users where user_id = $user_id");
-        while($row = mysqli_fetch_assoc($user_name_query)) {
-            $user_firstname = $row["user_firstname"];
-            $user_lastname = $row["user_lastname"];
-        }
-        echo"<tr>";
-        echo "<td>$id</td>";
-        echo "<td>$ticket_id</td>";
-        echo "<td>$date_bookings</td>";
-        echo "<td>$time_show</td>";
-        echo "<td>$price</td>";
-        echo "<td>$seat</td>";
-        echo "<td>$user_id</td>";
-        echo "<td>$user_firstname $user_lastname</td>";
-
-
-
-
-        echo "<td > <span class='delete_button'  data-link='bookings.php?delete_bookings=$id'> Delete </span></td>";
-        // echo "<td><a href='genres.php?delete_genre={$genre_id}'>DELETE</a></td>";
-        echo"</tr>";
-    }
-
-    if(isset($_GET["delete_bookings"])) {
-
-
-        $id = $_GET["delete_bookings"];
-
-
-
-
-        $query = "DELETE from bookings WHERE id={$id}";
-        $delete_movie = mysqli_query($connection, $query);
-        echo '<script> window.location.href = "bookings.php" </script>';
-
-    }
-
-
-}
 function select_and_display_posts( $per_page) {
     global $connection;
 
@@ -1436,118 +1224,7 @@ function select_and_display_posts( $per_page) {
 
 
 }
-function select_and_display_staff() {
-    global $connection;
 
-    $query = "SELECT * from staff";
-    $select_genres_query = mysqli_query($connection, $query);
-    while($row = mysqli_fetch_assoc($select_genres_query)) {
-        $staff_id = $row["id"];
-        $staff_lastname = $row["staff_lastname"];
-        $staff_firstname = $row["staff_firstname"];
-        $staff_description = $row["staff_description"];
-        $staff_vocation = $row["staff_vocation"];
-        $staff_image = $row["staff_image"];
-
-
-        echo"<tr>";
-        echo "<td>$staff_id</td>";
-        echo "<td>$staff_firstname</td>";
-        echo "<td>$staff_lastname</td>";
-        echo "<td>$staff_description</td>";
-        echo "<td>$staff_vocation</td>";
-        echo "<td><img class='table_img' width=100 height=100 src='../public/imgs/staff_images/$staff_image'></td>";
-
-        echo "<td><a href='staff.php?source=edit_staff&staff_id={$staff_id}'>EDIT</a></td>";
-        // echo "<td><a href='posts.php?delete_post={$post_id}'>DELETE</a></td>";
-        echo "<td > <span class='delete_button'  data-link='staff.php?delete_staff=$staff_id'> Delete </span></td>";
-        echo"</tr>";
-    }
-
-    if(isset($_GET["delete_staff"])) {
-        $staff_to_be_deleted = $_GET["delete_staff"];
-        $query2 = "SELECT * from staff WHERE id = $staff_to_be_deleted";
-        $delete_staff_img = mysqli_query($connection, $query2);
-        while($row = mysqli_fetch_assoc($delete_staff_img)) {
-            $staff_img = $row["staff_image"];
-
-            $destination_img_upload = "../public/imgs/staff_images/$staff_img";
-
-            if (file_exists($destination_img_upload)) {
-                unlink($destination_img_upload);
-
-            }
-        }
-
-        // delete user record
-
-        $query = "DELETE from staff WHERE id={$staff_to_be_deleted}";
-        $delete_staff = mysqli_query($connection, $query);
-        echo '<script> window.location.href = "staff.php" </script>';
-
-    }
-
-
-}
-function select_and_display_forum_posts() {
-    global $connection;
-    global $database;
-    $query = $database->query_array("SELECT * from forum_posts");
-    while($row = mysqli_fetch_assoc($query)) {
-        $post_id = $row["id"];
-        $post_user_id = $row["post_user_id"];
-        $post_title = $row["post_title"];
-        $post_text = $row["post_text"];
-        $post_img = $row["post_img"];
-        $post_date = $row["post_date"];
-        $post_user_id = $row["post_user_id"];
-        $post_date = $row["post_date"];
-
-        $user_name_query = $database-> query_array("SELECT * from users where user_id = $post_user_id");
-        while($row = mysqli_fetch_assoc($user_name_query)) {
-            $user_firstname = $row["user_firstname"];
-            $user_lastname = $row["user_lastname"];
-        }
-        echo"<tr>";
-        echo "<td>$post_id</td>";
-        echo "<td>$post_title</td>";
-        echo "<td><p>$post_text</p></td>";
-        echo "<td> $user_firstname $user_lastname</td>";
-        echo "<td><img class='table_img' width=100 height=100 src='../public/$post_img'></td>";
-        echo "<td>$post_date</td>";
-
-        echo "<td><a href='forum.php?source=edit_post&post_id={$post_id}'>EDIT</a></td>";
-        // echo "<td><a href='posts.php?delete_post={$post_id}'>DELETE</a></td>";
-        echo "<td > <span class='delete_button'  data-link='forum.php?delete_post=$post_id'> Delete </span></td>";
-        echo"</tr>";
-    }
-
-    if(isset($_GET["delete_post"])) {
-            $post_to_be_deleted = $_GET["delete_post"];
-            // delete user img
-            $query2 = "SELECT * from forum_posts WHERE id = $post_to_be_deleted";
-            $delete_user_img = mysqli_query($connection, $query2);
-            while($row = mysqli_fetch_assoc($delete_user_img)) {
-                $user_img = $row["post_img"];
-
-                $destination_img_upload = $user_img;
-
-                if (file_exists($destination_img_upload)) {
-                    unlink($destination_img_upload);
-
-                }
-            }
-
-            // delete user record
-
-        $query = "DELETE from forum_posts WHERE id={$post_to_be_deleted}";
-        $delete_post = mysqli_query($connection, $query);
-        echo '<script> window.location.href = "forum.php" </script>';
-
-    }
-
-
-}
 function get_new_data_count($col_name){
     global $connection;
     $query = "SELECT * FROM $col_name where data_status = 'new'";

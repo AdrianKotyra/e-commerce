@@ -37,7 +37,7 @@ if (isset($_POST["update-account"])) {
     <?php echo nav_account("DETAILS")?>
 
 
-    <form action="account?show=details" id="update-account-form" method="POST">
+    <form action="account.php?show=details" id="update-account-form" method="POST">
     <div class="grid-account-details">
         <div class="details-account-col">
             <label   for="first_name">Email </label>

@@ -409,24 +409,25 @@ class Product {
             $category = $_GET["category"];
 
             if($category=="female") {
-                $bg_color ="#e0c1d4";
+                $bg_color ="linear-gradient(to right, #bb377d, #fbd3e9); ";
                 $category_title = "Womens";
             }
 
             if($category=="male") {
-                $bg_color = "#acb5e6";
+                $bg_color = "linear-gradient(to right, #000046, #1cb5e0)";
                 $category_title = "Mens";
             }
 
             if($category=="unisex") {
-                $bg_color = "#90e185";
+                $bg_color = "linear-gradient(to right, #56ab2f, #a8e063);";
+
                 $category_title = "Unisex";
             }
 
             }
             else {
 
-                $bg_color ="#b8b8b8";
+                $bg_color ="linear-gradient(to right, #232526, #414345)";
                 $category_title = "";
             }
         $output = ' <div class="swiper-slide hero-section-main-slide" style="background: '. $bg_color.'">

@@ -798,9 +798,9 @@ function get_products_types_nav($category) {
         </a>';
     }
 }
-function pagination_main_products($col_name, $per_page){
+function pagination_main_orders_account($col_name, $per_page, $user_id){
     global $connection;
-    $query_select_cols = "SELECT COUNT(*) as count FROM $col_name";
+    $query_select_cols = "SELECT COUNT(*) as count FROM $col_name where user_db_id =  $user_id";
     $result = mysqli_query($connection, $query_select_cols);
     $row = mysqli_fetch_assoc($result);
     $total_items = (int) $row['count'];
@@ -811,10 +811,10 @@ function pagination_main_products($col_name, $per_page){
     return $start;
 
 }
-function pagination_links_main_products($col_name, $per_page, $prod_id){
+function pagination_main_orders_account_links($col_name, $per_page, $user_id){
     global $connection;
 
-    $query_select_cols = "SELECT COUNT(*) as count FROM $col_name where product_id = $prod_id";
+    $query_select_cols = "SELECT COUNT(*) as count FROM $col_name where user_db_id =  $user_id";
     $result = mysqli_query($connection, $query_select_cols);
     $row = mysqli_fetch_assoc($result);
     $total_items = (int) $row['count'];
