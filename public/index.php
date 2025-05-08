@@ -6,6 +6,7 @@
     <?php include("includes/sections/slider-hero-section.php") ?>
 
 
+
     <?php include("includes/sections/slider-section.php") ?>
     <?php section_slider_products("Hi-Top Sneakers") ?>
 

@@ -197,11 +197,10 @@
                     }
                 }
             }
-
             echo isset($_GET['type']) ? "<span class='chosen_filter'> TYPE - " . htmlspecialchars($_GET['type']) . "</span>" : "";
             echo isset($_GET['size']) ? "<span class='chosen_filter'>SIZE - " . htmlspecialchars($_GET['size']) . "</span>" : "";
-            echo isset($_GET['brand']) ? "<span class='chosen_filter'> " .  $brand_name . "</span>" : "";
-            echo isset($_GET['category']) ? "<span class='chosen_filter'> " . htmlspecialchars($_GET['category']) . "</span>" : "";
+            echo isset($_GET['brand']) ? "<span class='chosen_filter'> BRAND - " .  $brand_name . "</span>" : "";
+            echo isset($_GET['category']) ? "<span class='chosen_filter'> SEX - " . htmlspecialchars($_GET['category']) . "</span>" : "";
             echo isset($_GET['search']) ? "<span class='chosen_filter'> SEARCHED - " . htmlspecialchars($_GET['search']) . "</span>" : "";
 
         ?>

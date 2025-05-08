@@ -108,12 +108,12 @@ class Order {
 
             $products_container .= '
                 <div class="img_order_col flex-col">
-
+                    <span class="quantity_product_cart"> ' . $product_quantity . '</span>
                     <img src="./imgs/products/' . $product_name . '/' . $product_img . '" alt="' . $product_name . '" />
-                       <span >' . $product_name . '</span>
-                        <span > size: ' . $product_size . '</span>
-                        <span > price: ' . $product_price .' '.htmlspecialchars($this->transaction_currency).'</span>
-                           <span > quantity: ' . $product_quantity . '</span>
+                    <span >' . $product_name . '</span>
+                    <span > size: ' . $product_size . '</span>
+                    <span > price: ' . $product_price .' '.htmlspecialchars($this->transaction_currency).'</span>
+
                 </div>';
         }
 

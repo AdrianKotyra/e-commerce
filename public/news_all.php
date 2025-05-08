@@ -30,7 +30,7 @@
             Your search for "<?php echo $searched;?>" revealed the following
         </div>
         <div class="search-container">
-            <form action="news" method="GET" class="search-form">
+            <form  method="GET" class="search-form">
                 <div class="search-input-container flex-row">
                     <input type="text" placeholder="Search" name="search">
 

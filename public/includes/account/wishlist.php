@@ -13,7 +13,9 @@ ini_set('display_errors', 1);  // Displays errors on the screen
             global $user;
             global $product;
             $user_id =  $user->user_id;
-            $query = "SELECT product_id from wishlist where user_id =  $user_id order by id desc";
+            $per_page = 8;
+            $start = pagination_main_wishlist_account("wishlist", $per_page,  $user_id);
+            $query = "SELECT product_id from wishlist where user_id =  $user_id order by id desc limit $per_page offset $start";
             $result_product = $database->query_array($query);
 
             while ($row = mysqli_fetch_array($result_product)) {
@@ -29,7 +31,7 @@ ini_set('display_errors', 1);  // Displays errors on the screen
 
 
     </div>
-
+    <?php  pagination_main_wishlist_account_links("wishlist", $per_page, $user_id);?>
 
 
 

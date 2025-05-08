@@ -219,7 +219,7 @@
         </div>
         <?php
         $per_page = 6;
-        $start = pagination_main_products("comments", $per_page);
+        $start = pagination_main_products("comments", $per_page, $product_id);
         ?>
 
         <?php echo displayAllcomments($product_id, $start, $per_page);?>

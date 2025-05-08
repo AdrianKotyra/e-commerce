@@ -38,22 +38,11 @@ class Post {
         $template_cart = '
         <a class="read-more-post-cart"href="news.php?post='.$this->post_id.'">
             <div class="event-col">
-                <div class="desc-news-col">
-                    <p class="post-event-main-header">'.$this->post_header.'</p>
-                    <div class="flex-row">
 
-                            <span >
-                                read more
-                            </span>
-
-                        <div class="img-container">
-                            <i class="fa-solid fa-chevron-right"></i>
-                        </div>
-                    </div>
-
-                </div>
                 <img loading="lazy" class="event-img "src="imgs/posts/'.$this->post_id.'/'.$this->post_banner.'" />
+                  <p class="post-event-main-header">'.$this->post_header.'</p>
             </div>
+
         </a>
             ';
             return $template_cart;
@@ -67,21 +56,8 @@ class Post {
             $template_cart = '
             <a class="read-more-post-cart "href="news.php?post='.$this->post_id.'">
                 <div class="event-col">
-                    <div class="desc-news-col">
-                        <p class="post-event-main-header">'.$this->post_header.'</p>
-                        <div class="flex-row">
-
-                                <span >
-                                    read more
-                                </span>
-
-                            <div class="img-container">
-                                <i class="fa-solid fa-chevron-right"></i>
-                            </div>
-                        </div>
-
-                    </div>
                     <img loading="lazy" class="event-img "src="imgs/posts/'.$this->post_id.'/'.$this->post_banner.'" />
+                      <p class="post-event-main-header">'.$this->post_header.'</p>
                 </div>
             </a>
                 ';

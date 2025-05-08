@@ -1,4 +1,16 @@
 <div class="hero-slider" data-carousel>
+<div class="carousel-cell">
+        <div class="overlay"></div>
+        <div class="inner">
+            <h3 class="subtitle">Season Highlights</h3>
+            <h2 class="title">Bold & Versatile</h2>
+            <a href="category.php?type=all&category=mixed&size=all&brand=all" class="btn">Discover</a>
+        </div>
+        <div class="img-container">
+            <img src="./imgs/hero-main/img4.webp" alt="Unisex Sneakers Slide 3">
+        </div>
+    </div>
+
     <div class="carousel-cell">
         <div class="overlay"></div>
         <div class="inner">
@@ -23,15 +35,5 @@
         </div>
     </div>
 
-    <div class="carousel-cell">
-        <div class="overlay"></div>
-        <div class="inner">
-            <h3 class="subtitle">Season Highlights</h3>
-            <h2 class="title">Bold & Versatile</h2>
-            <a href="category.php?type=all&category=mixed&size=all&brand=all" class="btn">Discover</a>
-        </div>
-        <div class="img-container">
-            <img src="./imgs/hero-main/img3.webp" alt="Unisex Sneakers Slide 3">
-        </div>
-    </div>
+
 </div>

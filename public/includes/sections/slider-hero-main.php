@@ -18,7 +18,9 @@ switch($source) {
     case 'female';
     include "./includes/slider-hero-main/slider-hero-main-woman.php";
     break;
-
+    case 'unisex';
+    include "./includes/slider-hero-main/slider-hero-main-unisex.php";
+    break;
 
     default: include "./includes/slider-hero-main/slider-hero-main-all.php";
     break;

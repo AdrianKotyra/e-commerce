@@ -798,6 +798,108 @@ function get_products_types_nav($category) {
         </a>';
     }
 }
+function pagination_main_products($col_name, $per_page, $product_id){
+    global $connection;
+    $query_select_cols = "SELECT COUNT(*) as count FROM $col_name where product_id = $product_id";
+    $result = mysqli_query($connection, $query_select_cols);
+    $row = mysqli_fetch_assoc($result);
+    $total_items = (int) $row['count'];
+    $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+    $totalPages = ceil($total_items / $per_page);
+    $page = max(1, min($totalPages, $page));
+    $start = ($page - 1) * $per_page;
+    return $start;
+
+}
+function pagination_links_main_products($col_name, $per_page, $product_id){
+    global $connection;
+
+    $query_select_cols = "SELECT COUNT(*) as count FROM $col_name where product_id = $product_id";
+    $result = mysqli_query($connection, $query_select_cols);
+    $row = mysqli_fetch_assoc($result);
+    $total_items = (int) $row['count'];
+    $totalPages = ceil($total_items / $per_page);
+
+    $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+
+    // Build the base URL without "page" parameter
+    $params = $_GET;
+    unset($params['page']); // remove old page param if exists
+    $base_url = basename($_SERVER['PHP_SELF']) . '?' . http_build_query($params);
+
+    if (!empty($params)) {
+        $base_url .= '&'; // if other params exist, add &
+    }
+
+    echo "<div class='pagination-container'>";
+    echo "<div class='pagination-container-pages'>";
+
+    for($i = 1; $i <= $totalPages; $i++) {
+        $pagination_link_class = $i == $page ? "active_link_pagination" : "";
+        echo '<a class="'.$pagination_link_class.'" href="'.$base_url.'page='.$i.'">'.$i.'</a> ';
+    }
+    echo "</div>";
+
+    if ($page > 1) {
+        echo '<a href="'.$base_url.'page=' . ($page - 1) . '">Prev</a> ';
+    }
+    if ($page < $totalPages) {
+        echo '<a href="'.$base_url.'page=' . ($page + 1) . '">Next</a>';
+    }
+
+    echo "</div>";
+}
+function pagination_main_wishlist_account($col_name, $per_page, $user_id){
+    global $connection;
+    $query_select_cols = "SELECT COUNT(*) as count FROM $col_name where user_id =  $user_id";
+    $result = mysqli_query($connection, $query_select_cols);
+    $row = mysqli_fetch_assoc($result);
+    $total_items = (int) $row['count'];
+    $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+    $totalPages = ceil($total_items / $per_page);
+    $page = max(1, min($totalPages, $page));
+    $start = ($page - 1) * $per_page;
+    return $start;
+
+}
+function pagination_main_wishlist_account_links($col_name, $per_page, $user_id){
+    global $connection;
+
+    $query_select_cols = "SELECT COUNT(*) as count FROM $col_name where user_id =  $user_id";
+    $result = mysqli_query($connection, $query_select_cols);
+    $row = mysqli_fetch_assoc($result);
+    $total_items = (int) $row['count'];
+    $totalPages = ceil($total_items / $per_page);
+
+    $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+
+    // Build the base URL without "page" parameter
+    $params = $_GET;
+    unset($params['page']); // remove old page param if exists
+    $base_url = basename($_SERVER['PHP_SELF']) . '?' . http_build_query($params);
+
+    if (!empty($params)) {
+        $base_url .= '&'; // if other params exist, add &
+    }
+
+    echo "<div class='pagination-container'>";
+    echo "<div class='pagination-container-pages'>";
+
+    for($i = 1; $i <= $totalPages; $i++) {
+        $pagination_link_class = $i == $page ? "active_link_pagination" : "";
+        echo '<a class="'.$pagination_link_class.'" href="'.$base_url.'page='.$i.'">'.$i.'</a> ';
+    }
+    echo "</div>";
+
+    if ($page > 1) {
+        echo '<a href="'.$base_url.'page=' . ($page - 1) . '">Prev</a> ';
+    }
+    if ($page < $totalPages) {
+        echo '<a href="'.$base_url.'page=' . ($page + 1) . '">Next</a>';
+    }
+
+    echo "</div>";
+}
 function pagination_main_orders_account($col_name, $per_page, $user_id){
     global $connection;
     $query_select_cols = "SELECT COUNT(*) as count FROM $col_name where user_db_id =  $user_id";
@@ -880,12 +982,18 @@ function generate_posts_allposts() {
         $searched = $_GET["search"];
         $query = "SELECT * FROM news  where post_header LIKE '%$searched%' order by id desc";
         $select_posts = mysqli_query($connection, $query);
-        while ($row = mysqli_fetch_assoc($select_posts)) {
-            $post_id = $row["id"];
-            $new_post = new Post();
-            $new_post->create_post($post_id);
-            echo $new_post->AllpostsCart();
+        if(mysqli_num_rows($select_posts)>=1) {
+            while ($row = mysqli_fetch_assoc($select_posts)) {
+                $post_id = $row["id"];
+                $new_post = new Post();
+                $new_post->create_post($post_id);
+                echo $new_post->AllpostsCart();
+            }
         }
+        else {
+            echo "No results";
+        }
+
 
     }
     else {
@@ -906,7 +1014,7 @@ function generate_posts_allposts() {
 
 function generate_posts_main() {
     global $connection;
-    $query = "SELECT * FROM news ORDER BY id DESC LIMIT 4 OFFSET 0";
+    $query = "SELECT * FROM news ORDER BY id DESC LIMIT 6 OFFSET 0";
     $select_posts = mysqli_query($connection, $query);
     while ($row = mysqli_fetch_assoc($select_posts)) {
         $post_id = $row["id"];
@@ -1219,7 +1327,9 @@ function displayCategoryProducts($type_products) {
 
             // Add product to the list if it passes filters
             if ($include_product) {
-                $list_products_ids[] = $prod_id;
+                if (!in_array($prod_id, $list_products_ids)) {
+                    $list_products_ids[] = $prod_id;
+                }
             }
         }
     }

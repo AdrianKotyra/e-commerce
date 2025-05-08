@@ -447,6 +447,7 @@ class Product {
     }
 
     public function product_slider_Template(){
+        global $wishlist;
         global $comment;
         $reviews_msg = comment::get_number_comments($this->product_id)!=0?
         comment::get_number_comments($this->product_id). ' reviews' : "";
@@ -458,6 +459,7 @@ class Product {
 
         // check if prod add to favorite already and then apply different heart icon
         $wishlist_check = new wishlist();
+
         $product_add_to_wishlist = $wishlist_check->check_if_product_added($this->product_id);
 
         if($product_add_to_wishlist==1) {
