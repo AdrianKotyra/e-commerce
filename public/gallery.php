@@ -25,7 +25,10 @@
             <div class="main-images-container">
                 <div class="row">
                 <?php
-                    galleryMainImages()
+                    $per_page = 10;
+                    $start = pagination_main_default("gallery", $per_page);
+                    galleryMainImages($per_page, $start);
+
 
                 ?>
 
@@ -36,6 +39,7 @@
             </div>
 
         </div>
+        <?php echo pagination_links_default("gallery", $per_page);?>
 
     </section>
 

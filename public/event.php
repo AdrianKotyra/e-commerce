@@ -36,6 +36,7 @@
       <h1 class="category_header">Sneaker of the Month</h1>
       <img class="category_bg"src="imgs/sneaker_month/close-up-basketball-shoes.jpg" alt="">
 
+
     </div>
 
 
@@ -108,6 +109,34 @@
 </div>
 
 </section>
+<section class="section-sneaker-month wrapper newsletter-section" >
+
+    <div class="section-sneaker-month-container">
+
+        <img src="./imgs/sneaker_month/order.webp" alt="">
+        <div class="container-text">
+            <h3 class="header-event">
+                ORDER NOW AND GET - 25%
+
+            </h3>
+            <p>Step up your style with our Sneaker of the Month! Each month, we feature a standout pair chosen for its design, comfort, and trend-setting appeal. For a limited time, enjoy an exclusive <b>25% off</b> when you order this featured sneaker. Don’t miss your chance to grab the hottest kicks at a special price—only while supplies last!</p>
+            <a href="products.php?show=<?php echo  $product_id;?>">
+                <button class="button-custom-img">ORDER NOW</button>
+            </a>
+
+
+
+        </div>
+
+
+
+    </div>
+
+
+
+
+ </section>
+
 <script src="./js/pages/event.js"></script>
 
 <?php include("includes/footer.php") ?>

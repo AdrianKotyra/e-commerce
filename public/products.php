@@ -17,6 +17,7 @@
             Product::increment_product_views($product_id);
             $product_name = $serch_product->product_name;
             $product_price= $serch_product->product_price;
+
             $product_img1 = $serch_product->product_img;
             $product_img2 = $serch_product->product_img_2;
             $product_img3 = $serch_product->product_img_3;
@@ -28,6 +29,9 @@
             $product_category = $serch_product->product_category;
             $product_sizes = $serch_product->product_sizes_list;
             $product_availability = $serch_product->product_availability;
+
+
+            $product_month = $serch_product->product_month;
 
             $sizes_html = generate_sizes_html($serch_product, "span");
             $chosen_grid= generate_product_grid_sizes($serch_product);
@@ -66,29 +70,38 @@
 
         <div class="product-info ">
 
-            <p  class="prod-category">
-                <a href="index.php?category=<?php echo $product_category;?>"> <?php echo  $product_category;?> </a>  >
+            <div  class="prod-category">
 
-                <?php
-                // echo all product types
-                foreach ($product_type as $type ) {
-                   echo ' <a href="category.php?type='.$type.'&category='.$product_category.'">
-                   '.$type.' /
-                    </a>';
-                }
+                <div>
+                    <a href="index.php?category=<?php echo $product_category;?>"> <?php echo  $product_category;?> </a>  |
+
+                        <?php
+                        // echo all product types
+                        foreach ($product_type as $type ) {
+                        echo ' <a href="category.php?type='.$type.'&category=mixed">
+                        '.$type.' |
+                            </a>';
+                        }
+                        ?>
+                </div>
+                <?php echo  $product_month==true? '  <img class="sneaker_month_badge" src="imgs/sneaker_month/SNEAKER_month_badge.png" alt="">' : "";
                 ?>
 
-            </p>
+            </div>
             <a href="search.php?search=&category=mixed&size=all&type=all&brand=<?php echo $product_brand_id;?>">
                 <img class="brand-products-img"src="./imgs/brands/<?php echo $product_brand_logo;?>" alt="">
             </a>
+
             <div class="product-page-container-title ">
 
                 <h1  class="prod-name"><?php echo  $product_name;?></h1>
+
                 <?php echo $favorite_icon;?>
             </div>
-
+            <!-- OLD PRICE IF SNEAKER OF THE MONTH -->
+            <span class="prod-price-original"><b><?php  echo $product_month == true ? '£'.round($product_price / 0.75,2) : ""; ?></b></span>
             <span class="prod-price"><b>£<?php echo  $product_price;?></b></span>
+
             <span class="prod-desc"><?php echo  $product_desc;?></span>
             <div class="product-categories flex-row">
                 <a  href="<?php echo htmlspecialchars('imgs/products/'.$product_name . '/' . $product_img1); ?> "data-fancybox="<?php echo $product_id;?>" data-caption="<?php echo $product_name;?>" data-fancybox-index=<?php echo $product_id;?>>

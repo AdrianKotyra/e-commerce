@@ -1,6 +1,6 @@
 
 function animateOnScroll() {
-
+    if(window.innerWidth>=1024) {
     const elements = document.querySelectorAll('.animate-on-scroll');
 
 
@@ -23,6 +23,8 @@ function animateOnScroll() {
         observer.observe(element);
     });
 }
-
-
-animateOnScroll();
+}
+animateOnScroll()
+window.addEventListener("resize", ()=>{
+    animateOnScroll();
+  })

@@ -2,33 +2,43 @@
 
 <section class="hero-section">
     <div class="hero-container">
-      <?php
-        // this is just to get hero image and header
-        if(isset($_GET["type"]) ){
-            $type = $_GET["type"];
-            global $connection;
+    <?php
+        global $connection;
 
-            $result_product_type =  secure_query_fetch_data("SELECT * FROM types WHERE type_name", $_GET["type"]);
-            if(mysqli_num_rows($result_product_type)>0) {
-                while ($row = mysqli_fetch_array($result_product_type)) {
-                    $type_img = $row["type_img"];
-                    $type_name= $row["type_name"];
-                }
+        // Redirect if neither type nor brand is set
+        if (!isset($_GET["brand"]) && !isset($_GET["type"])) {
+            header('Location: index.php');
+            exit;
+        }
+
+        // Defaults
+        $type_name = "all";
+        $type_img = "all.jpg";
+
+        // Case 1: Specific type provided
+        if (isset($_GET["type"]) && $_GET["type"] !== "all") {
+            $type = $_GET["type"];
+            $query = "SELECT * FROM types WHERE type_name =  '$type'";
+            $select_type = mysqli_query($connection, $query);
+            while ($row = mysqli_fetch_assoc($select_type)) {
+                $type_img = $row["type_img"];
+                $type_name = $row["type_name"];
             }
-            else{
-                $type_name="all";
+
+        }
+        // Case 2: Brand is provided and type is "all"
+        else if (isset($_GET["brand"]) && isset($_GET["type"]) && $_GET["type"] === "all") {
+            $brand_id = intval($_GET["brand"]);
+            $query2 = "SELECT * FROM brands WHERE id = $brand_id";
+            $select_brands = mysqli_query($connection, $query2);
+
+            if ($product_row = mysqli_fetch_assoc($select_brands)) {
+                $type_name = $product_row["brand_name"];
                 $type_img = "all.jpg";
             }
-
-
         }
+        ?>
 
-         else {
-            // if not selected category just back to index
-            Header('Location: index.php');
-        }
-
-      ?>
       <h1 class="category_header"><?php echo $type_name ;?></h1>
       <img class="category_bg"src="imgs/categories/<?php echo $type_img ;?>" alt="">
 
@@ -64,7 +74,12 @@
     else {
         $brand_id = 'all';
     }
-    #
+    if (isset($_GET["type"]) ) {
+        $type = $_GET["type"];
+    }
+    else {
+         $type = "all";
+    }
 
 ?>
 

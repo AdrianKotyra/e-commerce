@@ -34,7 +34,7 @@
         }
 
       ?>
-      <h1 class="category_header post_header">NEWS</h1>
+      <h1 class="category_header ">NEWS</h1>
       <img class="category_bg"src="imgs/posts/<?php echo $post_id."/".$post_banner ;?>" alt="">
 
     </div>
@@ -96,7 +96,16 @@
 <section class="more-posts wrapper">
   <h5>More posts</h5>
   <div class="grid-section-all-posts ">
-          <?php echo generate_posts_allposts();?>
+
+  <?php
+        $per_page = 8;
+        $start = pagination_main_default("news", $per_page);
+        echo generate_posts_allposts($start, $per_page );
+
+        ?>
+
+    </div>
+    <?php  pagination_links_default("news", $per_page);?>
 
   </div>
 

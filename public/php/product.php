@@ -13,12 +13,17 @@ class Product {
     public $brand_id;
     // list of types []
     public $product_type;
-
     public $product_desc;
-
     public $product_category;
     public $product_sizes_list;
     public $product_availability;
+
+    public $product_month;
+
+
+
+
+
 
     // Function to fetch product details from the database
     public static function increment_product_views($id) {
@@ -28,9 +33,81 @@ class Product {
         $query = "UPDATE products SET product_views = product_views + 1 WHERE product_id = $id";
         $increment_views = mysqli_query($connection, $query);
     }
+    // OPTIMSED VERSION CREATED WITH HELP OF AI TO CREATE PRODUCT USING JOIN TO AVOID MULTI QUERIES
+    // public function create_product($id) {
+    //     if (!$id) return;
 
+    //     global $database;
+    //     $id = intval($id); // sanitize
 
+    //     // Initialize defaults
+    //     $this->product_type = [];
+    //     $this->product_category = null;
+    //     $this->brand_name = null;
+    //     $this->brand_img = null;
+    //     $this->brand_id = null;
+    //     $this->product_availability = false;
 
+    //     // Get product with joined data
+    //     $product_data = $database->query_array("
+    //         SELECT
+    //             p.*,
+    //             b.id AS brand_id,
+    //             b.brand_name,
+    //             b.logo AS brand_img,
+    //             c.cat_name,
+    //             GROUP_CONCAT(DISTINCT t.type_name) AS type_names
+    //         FROM products p
+    //         LEFT JOIN rel_products_brands rb ON rb.product_id = p.product_id
+    //         LEFT JOIN brands b ON b.id = rb.brand_id
+    //         LEFT JOIN rel_categories_products rcp ON rcp.prod_id = p.product_id
+    //         LEFT JOIN categories c ON c.cat_id = rcp.cat_id
+    //         LEFT JOIN rel_types_products rtp ON rtp.product_id = p.product_id
+    //         LEFT JOIN types t ON t.id = rtp.type_id
+    //         WHERE p.product_id = $id
+    //         GROUP BY p.product_id
+    //     ");
+
+    //     if ($row = mysqli_fetch_array($product_data)) {
+    //         // Product core info
+    //         $this->product_id = $row['product_id'];
+    //         $this->product_name = $row['product_name'];
+    //         $this->product_img = $row['product_img'];
+    //         $this->product_img_2 = $row['product_img2'];
+    //         $this->product_img_3 = $row['product_img3'];
+    //         $this->product_img_4 = $row['product_img4'];
+    //         $this->product_desc = $row['product_desc'];
+    //         $this->product_price = $row['product_price'];
+
+    //         // Brand info
+    //         $this->brand_id = $row['brand_id'];
+    //         $this->brand_name = $row['brand_name'];
+    //         $this->brand_img = $row['brand_img'];
+
+    //         // Category
+    //         $this->product_category = $row['cat_name'];
+
+    //         // Product types (split by comma from GROUP_CONCAT)
+    //         $this->product_type = array_filter(array_map('trim', explode(',', $row['type_names'])));
+    //     }
+
+    //     // Get sizes with stock > 0
+    //     $sizes_data = $database->query_array("
+    //         SELECT s.size
+    //         FROM rel_products_sizes rps
+    //         JOIN sizes s ON s.id = rps.size_id
+    //         WHERE rps.prod_id = $id AND rps.stock > 0
+    //     ");
+
+    //     $this->product_sizes_list = [];
+    //     while ($size_row = mysqli_fetch_array($sizes_data)) {
+    //         $this->product_sizes_list[] = $size_row['size'];
+    //     }
+
+    //     $this->product_availability = !empty($this->product_sizes_list);
+    // }
+
+   // OLD VERSION OF CREATE PRODUCT USING MANY QUERIES
     public function create_product($id) {
         if ($id) {
             global $database;
@@ -55,6 +132,14 @@ class Product {
                     $this->product_category = $row['cat_name'];
                 }
             }
+
+
+            // check if product is product of month
+            $product_month = new Product_month();
+            $product_month->GET_product_month_info();
+            $product_month_id = $product_month->product_id;
+            $id == $product_month_id? $this->product_month = true : false;
+
 
 
             // get product brand name
@@ -84,7 +169,11 @@ class Product {
                 $this->product_desc = $row['product_desc'];
                 $this->product_price = $row['product_price'];
 
-                // $this->product_description = $row['product_description'];
+                $product_price_fetched = $row['product_price'];
+                $this->product_month==true? $this->product_price =  $product_price_fetched * 0.8 :  $product_price_fetched;
+
+
+
             }
 
 
@@ -119,6 +208,9 @@ class Product {
             }
         }
     }
+
+
+
     public static function getproductCategory($id){
         global $database;
         // get product category name

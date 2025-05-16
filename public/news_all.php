@@ -46,9 +46,16 @@
     </section>
     <h5>Our news</h5>
     <div class="grid-section-all-posts ">
-        <?php echo generate_posts_allposts();?>
+
+        <?php
+        $per_page = 8;
+        $start = pagination_main_default("news", $per_page);
+        echo generate_posts_allposts($start, $per_page );
+
+        ?>
 
     </div>
+    <?php  pagination_links_default("news", $per_page);?>
 </section>
 
 

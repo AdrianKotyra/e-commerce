@@ -21,7 +21,7 @@
                 <a href="event.php"> SNEAKER OF THE MONTH</a>
 
             </h3>
-            <p>This exclusive release combines cutting-edge design with premium materials, making it a must-have for sneaker lovers."</p>
+            <p>This exclusive release combines cutting-edge design with premium materials, making it a must-have for sneaker lovers. <Br> Get now with -25% off</p>
             <a href="event.php">
             <button class="button-custom-img">SHOP NOW</button>
             </a>

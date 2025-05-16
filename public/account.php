@@ -7,7 +7,7 @@
             <h2 class="desc-user header-title">
                 <?php
                     global $user;
-                    echo '<b>'.$user->user_firstname.'</b>, welcome to your account';
+                    echo '<b class="user_name_account_header">'.$user->user_firstname.'</b>,<br> welcome to your account';
                 ?>
             </h2>
         </div>
