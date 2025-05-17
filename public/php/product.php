@@ -170,7 +170,7 @@ class Product {
                 $this->product_price = $row['product_price'];
 
                 $product_price_fetched = $row['product_price'];
-                $this->product_month==true? $this->product_price =  $product_price_fetched * 0.8 :  $product_price_fetched;
+                $this->product_month==true? $this->product_price =  $product_price_fetched * 0.75 :  $product_price_fetched;
 
 
 
@@ -501,33 +501,37 @@ class Product {
             $category = $_GET["category"];
 
             if($category=="female") {
-                $bg_color ="linear-gradient(to right, #bb377d, #fbd3e9); ";
+                $bg_color ="#e0c1d4 ";
                 $category_title = "Womens";
+                $color ="white";
             }
 
             if($category=="male") {
-                $bg_color = "linear-gradient(to right, #000046, #1cb5e0)";
+                $bg_color = "#acb5e6";
                 $category_title = "Mens";
+                 $color ="white";
             }
 
             if($category=="unisex") {
-                $bg_color = "linear-gradient(to right, #56ab2f, #a8e063);";
-
+                $bg_color = "#90e185";
+                $color ="white";
                 $category_title = "Unisex";
             }
 
             }
             else {
 
-                $bg_color ="linear-gradient(to right, #232526, #414345)";
+                $bg_color ="var(--ui-product-card);";
+                $color ="var(--ui-main-text)";
                 $category_title = "";
             }
-        $output = ' <div class="swiper-slide hero-section-main-slide" style="background: '. $bg_color.'">
+                $output = '<div class="swiper-slide hero-section-main-slide" style="background: ' . $bg_color . '; color: ' . $color . ';">;
+
                 <div class="content">
                     <figure class="slide-bgimg" loading="lazy"></figure>
-                    <p class="title"><b>Limited Edition Sneaker '.$category_title.' Drops</b></p>
-                    <a href="products.php?show='.$this->product_id.'">
-                      <span >'.$this->product_name.'</span>
+                    <p style=" color: ' . $color . '" class="title"><b>Limited Edition Sneaker '.$category_title.' Drops</b></p>
+                    <a style=" color: ' . $color . '" href="products.php?show='.$this->product_id.'">
+                      <span style=" color: ' . $color . '" >'.$this->product_name.'</span>
                     </a>
 
                 </div>

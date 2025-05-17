@@ -1830,9 +1830,83 @@ function displayTrendyProducts($LIMIT) {
 
 
 
+// ----------display team grid---------
+function display_team($role) {
+    global $database;
+
+    $output = '';
+
+    $result_posts = $database->query_array("SELECT id FROM team WHERE role = '$role'");
+    while ($row = mysqli_fetch_array($result_posts)) {
+        $id_team_member = $row["id"];
+        $new_team_member = new Team_member();
+        $new_team_member->create_team($id_team_member);
+
+
+        $output.= $new_team_member->team_cart();
+    }
+    return $output;
+}
+
+  //    DISPLAY ALL ROLES FROM TEAM
+function display_all_teams(){
+      global $database;
+            $result_role = $database->query_array("SELECT DISTINCT role FROM team ");
+
+            while ($row = mysqli_fetch_array($result_role)) {
+
+                $role_name = $row["role"];
+                $team_members = display_team($role_name);
+
+                echo '
+                    <div class="team_section_role team_section_'.$role_name.'">
+                        <h2 class="about-header">'. $role_name.'</h2>
+                        <div class="team_section_grid">
+                            '.$team_members.'
+
+                        </div>
+                    </div>
+                ';
+
+
+            }
+}
+  //    DISPLAY TEAM MEMBER FROM ABOUT
+function display_all_teams_ABOUT(){
+        global $database;
+
+
+            $result_posts = $database->query_array("SELECT id FROM team order by id limit 6 offset 0 ");
+            while ($row = mysqli_fetch_array($result_posts)) {
+                $id_team_member = $row["id"];
+                $new_team_member = new Team_member();
+                $new_team_member->create_team($id_team_member);
+                $name_team_member = $new_team_member->name;
+                $lastname_team_member = $new_team_member->surname;
+                $img_team_member = $new_team_member->image;
+                $role_name = $new_team_member->role;
+                echo '
+                    <div class="col-lg-4 ">
+                    <div class="team-item">
+                        <div class="thumb">
+
+                            <img src="./imgs/'.$img_team_member.'">
+                        </div>
+                        <div class="down-content">
+                            <h4>'.$name_team_member.' '.$lastname_team_member.'</h4>
+                            <span>'.$role_name.'</span>
+                        </div>
+                    </div>
+                </div>
+                ';
+
+            }
 
 
 
+
+
+}
 // ------------------GET SLIDER PRODUCTS---------------------
 
 

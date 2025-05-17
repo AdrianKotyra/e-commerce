@@ -42,51 +42,19 @@
             </div>
         </div>
     </div>
-    <section class="our-team animate-on-scroll">
+    <section class="our-team animate-on-scroll ">
         <div class="wrapper">
             <div class="row">
                 <div class="col-lg-12 ">
-                    <div class="section-heading">
-                        <h2 class="about-header">Our Amazing Team</h2>
+                    <div class="section-heading ">
+                        <a href="team.php">
+                            <h2 class="about-header">Our Amazing Team</h2>
+                        </a>
+
                         <span class="about-paragraph">Our team is made up of passionate sneakerheads and industry insiders who live and breathe streetwear culture.</span>
                     </div>
                 </div>
-                <div class="col-lg-4">
-                    <div class="team-item">
-                        <div class="thumb">
-
-                            <img src="./imgs/about/person_1.jpg">
-                        </div>
-                        <div class="down-content">
-                            <h4>Ragnar Lodbrok</h4>
-                            <span>Product Caretaker</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4">
-                    <div class="team-item">
-                        <div class="thumb">
-
-                            <img src="./imgs/about/person_2.jpg">
-                        </div>
-                        <div class="down-content">
-                            <h4>Ragnar Lodbrok</h4>
-                            <span>Product Caretaker</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4">
-                    <div class="team-item">
-                        <div class="thumb">
-
-                            <img src="./imgs/about/person_3.jpg">
-                        </div>
-                        <div class="down-content">
-                            <h4>Ragnar Lodbrok</h4>
-                            <span>Product Caretaker</span>
-                        </div>
-                    </div>
-                </div>
+                    <?php display_all_teams_ABOUT();?>
             </div>
         </div>
     </section>
@@ -146,6 +114,6 @@
 
 <?php include("includes/sections/newsletter-section.php") ?>
 <?php include("includes/footer.php") ?>
-<script src="js/countries.js"></script>
-<script src="js/pages/contact.js"></script>
+
+
 <script src="js/animateOnScroll.js"></script>
