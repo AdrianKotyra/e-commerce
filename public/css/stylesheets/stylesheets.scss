@@ -25,12 +25,49 @@
   --icons: 1.2rem;
   --detailed-header :2rem;
   --border: #e5e7eb;
-  --medium: 0.9rem;
+  --medium: 1rem;
   --about-header: 33px;
   --category-header: 52px;
   --about-para: 1.2rem;
 }
+.auto_slider_container{
+  width: 100%;
+  display: flex;
+  margin: auto;
+  overflow: hidden;
+}
+.auto_slider{
+  padding: 0px;
+  margin: 0px;
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: rotation 30s linear infinite;
+}
+.auto_slider {
+  a{
 
+    padding: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 140px !important;
+    width: 100%;
+
+    margin: 0px 15px;
+
+    border-radius: 25px;
+     img{
+      filter: var(--ui-slider-filter);
+    width: 100%;
+    height: 60px;
+  }
+  }
+
+
+
+}
 .dropdown {
 
   background-color: transparent !important;
@@ -53,8 +90,8 @@
     height: 100%;
     position: absolute;
     z-index: 2;
-    opacity: 50%;
-    background: linear-gradient(to right, #232526, #414345);
+    opacity: 40%;
+    background: linear-gradient(to right, #000000, #000000);
     }
 
     img{
@@ -418,7 +455,7 @@ img {
       position: absolute;
       z-index: 2;
       opacity: 70%;
-      background: linear-gradient(to right, #232526, #414345);
+      background: linear-gradient(to right, #000000, #000000);
     }
     img{
 
@@ -783,8 +820,10 @@ section {
   height: 400px;
 
   .hero-container{
+
     overflow: hidden;
     position: relative;
+
     .hero-section-main-slide{
       display: flex;
       flex-direction: row;
@@ -860,7 +899,7 @@ section {
           span{
 
             text-align: left;
-            font-size: var(--header-section-small);
+            font-size: var(--about-header);
           }
         }
 
@@ -1356,11 +1395,13 @@ section {
 }
 
 .main-banner .right-content .right-first-image .thumb {
+  overflow: hidden;
 
   &:hover {
     img {
       transition: 0.3s;
-      filter: brightness(1);
+      transform: scale(1.1);
+      filter: brightness(1.2);
     }
   }
   cursor: pointer;
@@ -1380,6 +1421,7 @@ section {
 .main-banner .right-content .right-first-image .thumb img {
   width: 100%;
   overflow: hidden;
+  transition: 0.3s;
   height: calc(350px - 14px);
   filter: brightness(0.9);
 
@@ -1566,6 +1608,10 @@ $animationSpeed: 40s;
   color: white;
   background-color: var(--women-color) !important;
 }
+.team-item{
+        padding: 30px;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+  }
 .about-us {
   margin-top: 80px;
 
@@ -1676,26 +1722,28 @@ $animationSpeed: 40s;
 
       display: grid;
     justify-content: center;
-    gap: 10px;
+    gap: 40px;
     grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
 
 
     .team_cart {
-
+      padding: 30px;
+      box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
       overflow: hidden;
       display: flex;
       flex-direction: column;
       .team_cart_container {
         position: relative;
         .team_cart_image_cross {
+          filter: var(--ui-filter);
 
           display: none;
-          filter: var(--white-filter);
+
           width: 40px;
           height: 40px;
           position: absolute;
-          right: 10px;
-          top: 10px;
+          right: 0px;
+          top: 0px;
           z-index: 2;
           cursor: pointer;
       }
@@ -1707,13 +1755,14 @@ $animationSpeed: 40s;
       }
 
       .team_cart_bio {
-         overflow-y: scroll;
+        padding-top: 30px;
+           animation: fadeinCartInfo 0.4s forwards;
         height: 200px;
         display: none;
       }
        .active_team_hidden_info {
 
-      display: block;
+        display: block;
     }
       .team_cart_info {
         display: flex;
@@ -1721,8 +1770,9 @@ $animationSpeed: 40s;
         padding-top: 20px;
       }
       .team_cart_image_info {
-        width: 50px;
-        height: 50px;
+        filter: var(--ui-slider-filter);
+        width: 40px;
+        height: 40px;
 
         cursor: pointer;
       }
@@ -1747,21 +1797,40 @@ $animationSpeed: 40s;
 
     }
     .active_team_cart {
+      max-height: 800px;
+        overflow-y: scroll;
         padding: 20px;
         width: 60%;
         height: 100%;
-        background-color: white;
+        background-color:var(--ui-main);
 
         position: fixed;
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
         z-index: 223;
+        .team_cart_name {
+          font-size: var(--about-header) !important
+        }
+        .team_cart_image_info {
+          display: none;
+        }
         .team_cart_image{
-
+          object-fit: contain !important;
           width: 100%;
-          height: 400px !important;
-      }
+          height: 400px!important;
+        }
+        .team_cart_info {
+
+          text-align: center;
+        }
+        .team_cart_bio {
+          font-size: var(--header-section-small);
+        }
+        .team_cart_info_container{
+
+          justify-content: center !important;
+        }
     }
   }
 }
@@ -3375,7 +3444,19 @@ nav {
 .clicked-inactive-icon {
   animation: iconInactive 0.2s forwards;
 }
-.hero-container {
+.hero-container-subpage::before{
+   content: "";
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  z-index: 2;
+  opacity: 40%;
+  background: linear-gradient(to right, #000000, #000000);
+
+
+}
+
+ .hero-container {
   position: relative;
   -webkit-user-select: none;
   -moz-user-select: none;
@@ -3384,6 +3465,7 @@ nav {
   position: relative;
   width: 100%;
   height: 100%;
+
   img {
     width: 100%;
     height:  100%;
@@ -3679,8 +3761,20 @@ body {
   }
 }
 .read-more-post-cart {
+  position: relative;
   height: 340px;
+  &::before {
+       content: "";
+    width: 100%;
+
+    height: 280px;
+    position: absolute;
+    z-index: 2;
+    opacity: 40%;
+    background: black;
+    }
   img{
+
     height: 280px;
   }
 }
@@ -5911,6 +6005,17 @@ section {
     opacity: 0%;
   }
 }
+@keyframes fadeinCartInfo {
+
+  0% {
+    transform: translatey(-30px);
+    opacity: 0%;
+  }
+  100% {
+    transform: translatey(0px);
+    opacity: 100%;
+  }
+}
 @keyframes fadein {
   0% {
     opacity: 0%;
@@ -6143,6 +6248,14 @@ section {
   100% {
     transform: translatex(0);
   }
+}
+@keyframes rotation {
+ 0% {
+  transform:translateX(0)
+ }
+ 100% {
+  transform:translateX(-100%)
+ }
 }
 
 

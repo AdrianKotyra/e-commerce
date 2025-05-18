@@ -1,7 +1,7 @@
 <?php include("includes/header.php") ?>
 
 <section class="hero-section">
-    <div class="hero-container">
+    <div class="hero-container hero-container-subpage">
     <?php
         global $connection;
 

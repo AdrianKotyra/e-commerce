@@ -1,7 +1,7 @@
 <?php include("includes/header.php") ?>
 
 <section class="contact-hero-banner">
-    <div class="hero-container">
+    <div class="hero-container hero-container-subpage">
       <?php
         if(isset($_GET["post"])){
             $post_id = $_GET["post"];

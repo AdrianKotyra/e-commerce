@@ -1,7 +1,7 @@
 <?php include("includes/header.php") ?>
 
     <?php include("includes/sections/slider-hero-main.php") ?>
-
+    <?php include("includes/sections/brands-hero-section-slider.php") ?>
     <?php include("includes/sections/hero-section.php") ?>
     <?php include("includes/sections/slider-hero-section.php") ?>
 

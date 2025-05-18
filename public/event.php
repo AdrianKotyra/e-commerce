@@ -31,7 +31,7 @@
 
 ?>
 <section class="hero-section event_hero">
-    <div class="hero-container">
+    <div class="hero-container hero-container-subpage">
 
       <h1 class="category_header">Sneaker of the Month</h1>
       <img class="category_bg"src="imgs/sneaker_month/close-up-basketball-shoes.jpg" alt="">

@@ -10,7 +10,7 @@
 
     ?>
 <section class="contact-hero-banner">
-    <div class="hero-container">
+    <div class="hero-container hero-container-subpage">
 
 
 

@@ -35,7 +35,7 @@ class Team_member {
 
         $template_cart = '
         <div class="team_cart">
-                <div class="team_cart_container">
+                <div class="team_cart_container animate-on-scroll">
 
                     <img class="team_cart_image_cross" src="./imgs/icons/cross.svg">
                     <img class="team_cart_image" src="./imgs/' . $image . '" alt="' . $full_name . '" class="team_cart_img">

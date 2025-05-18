@@ -525,7 +525,7 @@ class Product {
                 $color ="var(--ui-main-text)";
                 $category_title = "";
             }
-                $output = '<div class="swiper-slide hero-section-main-slide" style="background: ' . $bg_color . '; color: ' . $color . ';">;
+                $output = '<div class="swiper-slide hero-section-main-slide" style="background: ' . $bg_color . '; color: ' . $color . ';">
 
                 <div class="content">
                     <figure class="slide-bgimg" loading="lazy"></figure>

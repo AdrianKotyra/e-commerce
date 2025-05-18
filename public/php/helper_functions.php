@@ -756,7 +756,6 @@ function display_brands_section(){
     }
 
     while ($row = mysqli_fetch_assoc($select_brands)) {
-        $brand_name = $row["brand_name"];
         $brand_id = $row["id"];
         $logo_img = $row["logo"];
 
@@ -1859,7 +1858,7 @@ function display_all_teams(){
                 $team_members = display_team($role_name);
 
                 echo '
-                    <div class="team_section_role team_section_'.$role_name.'">
+                    <div class="team_section_role team_section_'.$role_name.' ">
                         <h2 class="about-header">'. $role_name.'</h2>
                         <div class="team_section_grid">
                             '.$team_members.'

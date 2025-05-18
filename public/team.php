@@ -1,7 +1,7 @@
 <?php include("includes/header.php") ?>
 
 <section class="contact-hero-banner ">
-    <div class="hero-container">
+    <div class="hero-container hero-container-subpage">
 
 
 
@@ -35,3 +35,4 @@
 
 <?php include("includes/footer.php") ?>
 <script src="js/pages/team.js"></script>
+<script src="js/animateOnScroll.js"></script>

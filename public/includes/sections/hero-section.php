@@ -51,8 +51,8 @@
                                 <div class="right-first-image">
                                     <div class="thumb">
                                         <div class="inner-content ">
-                                            <h4>Women</h4>
-
+                                            <h4>Womens</h4>
+                                            <h4>Sneakers</h4>
                                         </div>
 
 
@@ -67,8 +67,8 @@
                                 <div class="right-first-image">
                                     <div class="thumb">
                                         <div class="inner-content">
-                                            <h4>Men</h4>
-
+                                            <h4>Mens</h4>
+                                            <h4>Sneakers</h4>
                                         </div>
 
 
@@ -85,7 +85,7 @@
                                     <div class="thumb">
                                         <div class="inner-content">
                                             <h4>Unisex</h4>
-
+                                            <h4>Sneakers</h4>
                                         </div>
 
 
@@ -101,7 +101,7 @@
                                     <div class="thumb">
                                         <div class="inner-content">
                                             <h4>All </h4>
-
+                                            <h4>Sneakers</h4>
                                         </div>
 
 

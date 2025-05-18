@@ -20,10 +20,43 @@
   --icons: 1.2rem;
   --detailed-header:2rem;
   --border: #e5e7eb;
-  --medium: 0.9rem;
+  --medium: 1rem;
   --about-header: 33px;
   --category-header: 52px;
   --about-para: 1.2rem;
+}
+
+.auto_slider_container {
+  width: 100%;
+  display: flex;
+  margin: auto;
+  overflow: hidden;
+}
+
+.auto_slider {
+  padding: 0px;
+  margin: 0px;
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: rotation 30s linear infinite;
+}
+
+.auto_slider a {
+  padding: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 140px !important;
+  width: 100%;
+  margin: 0px 15px;
+  border-radius: 25px;
+}
+.auto_slider a img {
+  filter: var(--ui-slider-filter);
+  width: 100%;
+  height: 60px;
 }
 
 .dropdown {
@@ -50,8 +83,8 @@
   height: 100%;
   position: absolute;
   z-index: 2;
-  opacity: 50%;
-  background: linear-gradient(to right, #232526, #414345);
+  opacity: 40%;
+  background: linear-gradient(to right, #000000, #000000);
 }
 .hero-section-main-top .img-container img {
   filter: brightness(0.8);
@@ -392,7 +425,7 @@
   position: absolute;
   z-index: 2;
   opacity: 70%;
-  background: linear-gradient(to right, #232526, #414345);
+  background: linear-gradient(to right, #000000, #000000);
 }
 .section-sneaker-month .section-sneaker-month-container img {
   height: 100%;
@@ -780,7 +813,7 @@ section .section-heading {
 }
 .hero-section-main .hero-container .swiper-container .content span {
   text-align: left;
-  font-size: var(--header-section-small);
+  font-size: var(--about-header);
 }
 
 .gallery a {
@@ -1277,13 +1310,15 @@ section .section-heading {
 }
 
 .main-banner .right-content .right-first-image .thumb {
+  overflow: hidden;
   cursor: pointer;
   position: relative;
   text-align: center;
 }
 .main-banner .right-content .right-first-image .thumb:hover img {
   transition: 0.3s;
-  filter: brightness(1);
+  transform: scale(1.1);
+  filter: brightness(1.2);
 }
 .main-banner .right-content .right-first-image .thumb::before {
   content: "";
@@ -1298,6 +1333,7 @@ section .section-heading {
 .main-banner .right-content .right-first-image .thumb img {
   width: 100%;
   overflow: hidden;
+  transition: 0.3s;
   height: 336px;
   filter: brightness(0.9);
 }
@@ -1470,6 +1506,11 @@ section .section-heading {
   background-color: var(--women-color) !important;
 }
 
+.team-item {
+  padding: 30px;
+  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+}
+
 .about-us {
   margin-top: 80px;
 }
@@ -1576,10 +1617,12 @@ section .section-heading {
 .team_section .team_section_grid {
   display: grid;
   justify-content: center;
-  gap: 10px;
+  gap: 40px;
   grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
 }
 .team_section .team_section_grid .team_cart {
+  padding: 30px;
+  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
   overflow: hidden;
   display: flex;
   flex-direction: column;
@@ -1588,13 +1631,13 @@ section .section-heading {
   position: relative;
 }
 .team_section .team_section_grid .team_cart .team_cart_container .team_cart_image_cross {
+  filter: var(--ui-filter);
   display: none;
-  filter: var(--white-filter);
   width: 40px;
   height: 40px;
   position: absolute;
-  right: 10px;
-  top: 10px;
+  right: 0px;
+  top: 0px;
   z-index: 2;
   cursor: pointer;
 }
@@ -1605,7 +1648,8 @@ section .section-heading {
   justify-content: space-between;
 }
 .team_section .team_section_grid .team_cart .team_cart_container .team_cart_bio {
-  overflow-y: scroll;
+  padding-top: 30px;
+  animation: fadeinCartInfo 0.4s forwards;
   height: 200px;
   display: none;
 }
@@ -1618,8 +1662,9 @@ section .section-heading {
   padding-top: 20px;
 }
 .team_section .team_section_grid .team_cart .team_cart_container .team_cart_image_info {
-  width: 50px;
-  height: 50px;
+  filter: var(--ui-slider-filter);
+  width: 40px;
+  height: 40px;
   cursor: pointer;
 }
 .team_section .team_section_grid .team_cart .team_cart_container .team_cart_image {
@@ -1638,19 +1683,38 @@ section .section-heading {
   opacity: 50% !important;
 }
 .team_section .team_section_grid .active_team_cart {
+  max-height: 800px;
+  overflow-y: scroll;
   padding: 20px;
   width: 60%;
   height: 100%;
-  background-color: white;
+  background-color: var(--ui-main);
   position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 223;
 }
+.team_section .team_section_grid .active_team_cart .team_cart_name {
+  font-size: var(--about-header) !important;
+}
+.team_section .team_section_grid .active_team_cart .team_cart_image_info {
+  display: none;
+}
 .team_section .team_section_grid .active_team_cart .team_cart_image {
+  -o-object-fit: contain !important;
+     object-fit: contain !important;
   width: 100%;
   height: 400px !important;
+}
+.team_section .team_section_grid .active_team_cart .team_cart_info {
+  text-align: center;
+}
+.team_section .team_section_grid .active_team_cart .team_cart_bio {
+  font-size: var(--header-section-small);
+}
+.team_section .team_section_grid .active_team_cart .team_cart_info_container {
+  justify-content: center !important;
 }
 
 .our-team .section-heading {
@@ -3224,6 +3288,16 @@ nav .nav-top-container .brands-nav .nav-brands-links {
   animation: iconInactive 0.2s forwards;
 }
 
+.hero-container-subpage::before {
+  content: "";
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  z-index: 2;
+  opacity: 40%;
+  background: linear-gradient(to right, #000000, #000000);
+}
+
 .hero-container {
   position: relative;
   -webkit-user-select: none;
@@ -3526,7 +3600,17 @@ body {
 }
 
 .read-more-post-cart {
+  position: relative;
   height: 340px;
+}
+.read-more-post-cart::before {
+  content: "";
+  width: 100%;
+  height: 280px;
+  position: absolute;
+  z-index: 2;
+  opacity: 40%;
+  background: black;
 }
 .read-more-post-cart img {
   height: 280px;
@@ -5620,6 +5704,16 @@ section {
     opacity: 0%;
   }
 }
+@keyframes fadeinCartInfo {
+  0% {
+    transform: translatey(-30px);
+    opacity: 0%;
+  }
+  100% {
+    transform: translatey(0px);
+    opacity: 100%;
+  }
+}
 @keyframes fadein {
   0% {
     opacity: 0%;
@@ -5838,6 +5932,14 @@ section {
   }
   100% {
     transform: translatex(0);
+  }
+}
+@keyframes rotation {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-100%);
   }
 }
 /* Dark Mode Toggle */
