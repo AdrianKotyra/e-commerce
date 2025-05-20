@@ -31,7 +31,7 @@
             <a href="category.php?type=all&category=female&size=all&type=all&brand=all" class="btn">Discover</a>
         </div>
         <div class="img-container">
-            <img src="./imgs/hero-main/uni/img3.webp" alt="Women's Sneakers Slide 3" style="object-position: bottom;">
+            <img src="./imgs/hero-main/uni/img1.webp" alt="Women's Sneakers Slide 3" style="object-position: bottom;">
         </div>
     </div>
 </div>

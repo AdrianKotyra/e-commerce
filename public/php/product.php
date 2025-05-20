@@ -501,19 +501,19 @@ class Product {
             $category = $_GET["category"];
 
             if($category=="female") {
-                $bg_color ="#e0c1d4 ";
+                $bg_color ="#6a1373 ";
                 $category_title = "Womens";
                 $color ="white";
             }
 
             if($category=="male") {
-                $bg_color = "#acb5e6";
+                $bg_color = "#4a5b98";
                 $category_title = "Mens";
                  $color ="white";
             }
 
             if($category=="unisex") {
-                $bg_color = "#90e185";
+                $bg_color = "#50724b";
                 $color ="white";
                 $category_title = "Unisex";
             }

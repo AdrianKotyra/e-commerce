@@ -33,13 +33,13 @@
         ?>
 
         <div class="desc-video">
-            <h3>Retro/Classic Sneakers</h3>
+            <h3>Sport Sneakers</h3>
             <div class="desc-text">
-                <a href="category.php?type=Retro/Classic%20Sneakers&category=female">
-                    <button>SHOP WOMENS</button>
+                <a href="category.php?type=Sports%20Shoes&category=female">
+                    <button class="button-custom-img" >SHOP WOMENS</button>
                 </a>
-               <a href="category.php?type=Retro/Classic%20Sneakers&category=male">
-                <button>SHOP MENS</button>
+               <a href="category.php?type=Sports%20Shoes&category=male">
+                <button  class="button-custom-img"  >SHOP MENS</button>
 
                </a>
 

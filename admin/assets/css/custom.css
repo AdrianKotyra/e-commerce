@@ -7,6 +7,27 @@
   margin: 10px 0;
 }
 
+.team_container {
+  padding: 5%;
+  height: 100%;
+  overflow-y: scroll;
+}
+.team_container img {
+  border-radius: 50%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  height: 200px;
+  width: 200px;
+  display: block;
+  margin: auto;
+}
+.team_container h2, .team_container h3 {
+  text-align: center;
+}
+.team_container h3 {
+  opacity: 60%;
+}
+
 .pagination-container {
   text-align: center;
   display: table;

@@ -77,6 +77,12 @@ $active_page =  basename($_SERVER['PHP_SELF']);
               <p>Gallery</p>
             </a>
           </li>
+          <li class="<?= $active_page == 'team.php' ? 'active' : '' ?>">
+            <a href="team.php">
+              <i class="nc-icon nc-single-02"></i>
+              <p>Team</p>
+            </a>
+          </li>
         </ul>
       </div>
 </div>

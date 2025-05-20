@@ -1,9 +1,9 @@
 <div class="banner-promo">
     <span class="banner-text-1 inactive-promo">
-        Free shipping for order over 150£
+        -15% for for order over 150£
     </span>
     <span class="banner-text-2 active-promo">
-       But now pay with Paypal
+       Buy now pay with Paypal
     </span>
 
 </div>

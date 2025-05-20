@@ -67,6 +67,33 @@
 
     }
 
+ function display_team_member_role_options($team_member_id=null){
+        global $connection;
+        if($team_member_id!=null) {
+             $team_member = New Team_member();
+            $team_member->create_team($team_member_id);
+            $team_member_role =  $team_member->role;
+            echo '   <option value="'.$team_member_role.'" type="radio" name="role">   '.$team_member_role .'</option>';
+        }
+
+
+        $query = "SELECT DISTINCT role from team ";
+        $select_role_query = mysqli_query($connection, $query);
+
+
+        while ($row = mysqli_fetch_assoc($select_role_query)) {
+            $role = $row["role"];
+            echo '
+                <option value="'.$role.'" type="radio" name="brand">   '.$role .'</option>
+
+
+
+
+
+            </option>';
+        }
+
+    }
 
 
     function check_record($table, $id_table_name, $id){
@@ -139,6 +166,56 @@ function delete_users(){
 
 
         $query = "DELETE from users WHERE user_id={$user_to_be_deleted}";
+        $delete_user_account = mysqli_query($connection, $query);
+
+
+
+
+
+    }
+}
+  function select_and_display_team($per_page) {
+    global $connection;
+    $start = pagination("team",  $per_page);
+    $query = "SELECT * from team order by id desc LIMIT $per_page OFFSET $start ";
+    $select_users_query = mysqli_query($connection, $query);
+    if (!$select_users_query) {
+        die("Query Failed: " . mysqli_error($connection));
+    }
+    while($row = mysqli_fetch_assoc($select_users_query)) {
+
+
+        $user_id = $row["id"];
+        $image= $row["image"];
+        $user_lastname= $row["surname"];
+        $role= $row["role"];
+        $user_firstname= $row["name"];
+        echo "<tr>";
+        echo "<td>" . $user_id . "</td>";
+
+        echo "<td>" . $user_firstname . "</td>";
+        echo "<td>" . $user_lastname . "</td>";
+        echo "<td>" . $role . "</td>";
+        echo "<td> <img class='table_img text-primary' width='100' height='100' src='../public/imgs/$image'></td>";
+        echo "<td class='text-right' > <span class='table-nav-link team_link' team_member_id= $user_id >check</span></td>";
+        echo "<td class='text-right'><a class='table-nav-link' href='team.php?source=edit_team_member&user_id={$user_id}'>EDIT</a></td>";
+        echo "<td class='text-right'> <span class='table-nav-link delete_button' data-link='team.php?delete_team_member=$user_id'> Delete </span></td>";
+        echo "</tr>";
+
+
+    }
+
+
+}
+function delete_team_member(){
+    if(isset($_GET["delete_team_member"])) {
+        global $connection;
+        $user_to_be_deleted = $_GET["delete_team_member"];
+
+        // delete user account
+
+
+        $query = "DELETE from team WHERE id={$user_to_be_deleted}";
         $delete_user_account = mysqli_query($connection, $query);
 
 
@@ -832,23 +909,23 @@ function select_and_display_newsletter($per_page) {
 
 
 }}
-function validate_staff() {
+function validate_team() {
     $errors = [];
     $min = 3;
     $max = 26;
 
-    if(isset($_POST['add_staff'])){
+    if(isset($_POST['create_team'])){
 
         global $connection;
 
-        $staff_firstname= trim($_POST["staff_firstname"]);
-        $staff_lastname= trim($_POST["staff_lastname"]);
-        $staff_vocation= trim($_POST["staff_vocation"]) ;
-        $staff_description= trim($_POST["staff_description"]) ;
-
-        $post_image        = $_FILES['image']['name'];
-        $post_image_temp   = $_FILES['image']['tmp_name'];
-        $destination_img_upload = "../public/imgs/staff_images/$post_image";
+        $staff_firstname= mysqli_real_escape_string($connection, trim($_POST["user_firstname"]));
+        $staff_lastname=  mysqli_real_escape_string($connection, trim($_POST["user_lastname"]));
+        $staff_description=  mysqli_real_escape_string($connection, trim($_POST["user_desc"])) ;
+        $staff_role=  mysqli_real_escape_string($connection, trim($_POST["role"])) ;
+        $post_image        = $_FILES['img']['name'];
+        $post_image_dir = "team/$post_image";
+        $post_image_temp   = $_FILES['img']['tmp_name'];
+        $destination_img_upload = "../public/imgs/team/$post_image";
 
 
 
@@ -878,14 +955,7 @@ function validate_staff() {
 
             $errors[] = "Staff lastname is too long, should be shorter than $max characters";
         }
-        if(strlen($staff_vocation)>=$max) {
 
-            $errors[] = "Staff vocation is too long, should be shorter than $max characters";
-        }
-        if(strlen($staff_vocation)<=$min) {
-
-            $errors[] = "Staff vocation is too short, should be longer than $min characters";
-        }
 
 
 
@@ -901,17 +971,19 @@ function validate_staff() {
         }
 
         if(empty($errors)) {
-            $status = "false";
 
             // if no uploaded image give it default image
             if($post_image ===""){
-                $post_image="default-avatar.jpg";
+                $post_image="/team/default/default.png";
+            }
+            else {
+                $post_image =  $post_image_dir;
             }
 
             move_uploaded_file($post_image_temp, $destination_img_upload );
 
-            $query = "INSERT INTO staff (staff_firstname, staff_lastname, staff_vocation, staff_description, staff_image) ";
-            $query .= "VALUES('{$staff_firstname}', '{$staff_lastname}', '{$staff_vocation}' , '{$staff_description}' , '{$post_image}' )";
+            $query = "INSERT INTO team (name, surname, description, image, role) ";
+            $query .= "VALUES('{$staff_firstname}', '{$staff_lastname}', '{$staff_description}', '{$post_image}', '{$staff_role}')";
 
 
 
@@ -919,7 +991,7 @@ function validate_staff() {
 
             if($create_staff_query) {
 
-                alert_text("Staff has been added", "staff.php");
+                alert_text("Team member has been added", "team.php");
             }
         }
     }

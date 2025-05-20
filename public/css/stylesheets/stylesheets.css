@@ -14,7 +14,7 @@
   --uni-color: #90e185;
   --light-gray: #f7f3f3;
   --very-small: 0.9rem;
-  --header-section: 1.2rem;
+  --header-section: 1.6rem;
   --header-section-small: 1.3rem;
   --extra-small: 0.8rem;
   --icons: 1.2rem;
@@ -1170,13 +1170,7 @@ section .section-heading {
   flex-direction: row;
 }
 .desc-video button {
-  padding: 10px 20px;
   margin: 20px;
-  width: 160px;
-  border: none;
-  color: white;
-  background-color: rgba(0, 0, 0, 0);
-  border: 2px solid white;
 }
 .desc-video .flex-row {
   justify-content: space-between;
@@ -1186,7 +1180,7 @@ section .section-heading {
   color: white;
   text-transform: uppercase;
   letter-spacing: 1.5;
-  font-size: var(--header-section-small);
+  font-size: var(--detailed-header);
 }
 
 .write-review-button {
@@ -1326,8 +1320,8 @@ section .section-heading {
   height: 100%;
   position: absolute;
   z-index: 2;
-  opacity: 30%;
-  background: linear-gradient(to right, #232526, #414345);
+  opacity: 40%;
+  background: black;
 }
 
 .main-banner .right-content .right-first-image .thumb img {
@@ -2719,7 +2713,7 @@ section .section-heading {
   font-size: 0.8rem !important;
   text-decoration: none;
   color: var(--ui-main-tex-nav);
-  font-weight: 600;
+  font-weight: 700;
 }
 
 .login {
@@ -2914,6 +2908,7 @@ section .section-heading {
 }
 
 .button-custom-img {
+  white-space: nowrap;
   border-radius: 8px;
   background-color: rgba(0, 0, 0, 0) !important;
   padding: 10px 20px;
@@ -3514,7 +3509,7 @@ body {
 }
 .nav-categories .cat {
   padding: 6px;
-  font-weight: 500;
+  font-weight: 700;
   font-size: 0.8rem;
   margin-right: 10px;
 }
@@ -3761,8 +3756,8 @@ body {
   height: 100%;
   position: absolute;
   z-index: 2;
-  opacity: 30%;
-  background: linear-gradient(to right, #232526, #414345);
+  opacity: 40%;
+  background: black;
 }
 .prod-main-img img {
   -o-object-fit: cover;
@@ -4323,7 +4318,7 @@ body {
 }
 
 .item-name {
-  font-weight: 600;
+  font-weight: 700;
 }
 
 .shopping-card-desc {

@@ -7,7 +7,7 @@
             <a href="category.php?type=all&category=female&size=all&type=all&brand=all" class="btn">Shop Now</a>
         </div>
         <div class="img-container">
-            <img src="./imgs/hero-main/woman/img1.webp" alt="Women's Sneakers Slide 1" style="object-position: bottom;">
+            <img src="./imgs/hero-main/woman/img2.webp" alt="Women's Sneakers Slide 1" style="object-position: bottom;">
         </div>
     </div>
 
@@ -19,7 +19,7 @@
             <a href="category.php?type=all&category=female&size=all&type=all&brand=all" class="btn">Explore</a>
         </div>
         <div class="img-container">
-            <img src="./imgs/hero-main/woman/img2.webp" alt="Women's Sneakers Slide 2" style="object-position: bottom;">
+            <img src="./imgs/hero-main/woman/img1.webp" alt="Women's Sneakers Slide 2" style="object-position: bottom;">
         </div>
     </div>
 

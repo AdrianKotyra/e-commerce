@@ -56,8 +56,38 @@ function searchUsersAdmin(){
     })
 
   }
-  searchUsersAdmin()
 
+searchUsersAdmin()
+// SEARCH TEAM MEMBER AJAX
+
+function searchTeamAdmin(){
+
+    const usersContainer = document.querySelector(".users_table");
+    const userSearcheInput = document.querySelector(".searcher-team");
+
+
+    userSearcheInput&&userSearcheInput.addEventListener("keyup", function(){
+      const userSearcheInputValue = userSearcheInput.value;
+
+        SendDataAjax(userSearcheInputValue, "./ajax/search_team.php")
+        .then(data => {
+            usersContainer.innerHTML=data;
+
+            createConfirmWindowDeleteRow()
+          createTeamMemberContentWindow()
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+
+
+
+
+    })
+
+  }
+
+searchTeamAdmin()
 
 // SEARCH comment AJAX
 
@@ -285,6 +315,37 @@ function createProductreviewsWindow(){
 }
 createProductreviewsWindow()
 
+function createTeamMemberContentWindow(){
+    const postButtons = document.querySelectorAll(".team_link")
+    const modalContainer = document.querySelector(".modal-window-container");
+
+    postButtons.forEach(button => {
+
+        button.addEventListener("click", ()=>{
+            const teamMemberId = button.getAttribute("team_member_id");
+            SendDataAjax(teamMemberId, "./ajax/team_content_modal.php")
+            .then(data => {
+                modalContainer.innerHTML=data;
+                expandWindowModal()
+                closeModal()
+
+
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+
+
+
+        })
+    });
+
+
+
+
+
+}
+createTeamMemberContentWindow()
 
 function createPostContentWindow(){
     const postButtons = document.querySelectorAll(".post_link")
