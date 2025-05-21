@@ -39,6 +39,7 @@ if(!empty($search_post) || $search_post!="") {
             $post_subheader_trimmed = substr($post_subheader, 0, 50);
 
             echo"<tr>";
+             echo "<th><input class='check' type='checkbox' data-id-name='id' data-row='news'  id= ".$post_id."></th>";
             echo "<td>$post_id</td>";
             echo "<td>$post_date</td>";
             echo "<td><a class='table-nav-link'  target='_blank' href='../public/news.php?post={$post_id}'>$post_header_trimmed</a></td>";
@@ -67,7 +68,8 @@ if(!empty($search_post) || $search_post!="") {
 
 
 } else {
-    select_and_display_posts();
+     $per_page =   100;
+    select_and_display_posts( $per_page);
 
 }
 

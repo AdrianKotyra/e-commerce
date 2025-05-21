@@ -34,6 +34,17 @@
         <table class="table">
 
             <thead class=" text-primary">
+                <th>
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Action
+                        </button>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item delete_all">Delete</a>
+
+                        </div>
+                    </div>
+                </th>
                 <th>id</th>
                 <th>Name</th>
                 <th>Surname</th>
@@ -60,3 +71,4 @@
         <?php  pagination_links("team",  $per_page);?>
     </div>
 </div>
+<?php reset_status_new("team");?>

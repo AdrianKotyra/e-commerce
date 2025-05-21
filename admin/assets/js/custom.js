@@ -1,4 +1,84 @@
 
+// CHECK FUNCTIONALITY WITH DELETE ALL SELECTED RECORDS
+function delete_check_table(){
+    const modalContainer = document.querySelector(".modal-window-container");
+    const confirmationModalLiteral = `
+     <div class="confirmationWindowModal">
+        <img class="cross_modal_admin exit-modal exit_modal_trigger"src="../public/imgs/icons/cross.svg" alt="">
+
+        <div class="buttons-message-container">
+            <p>Are you sure you want to delete this record?</p>
+            <div class="buttons-ok-cancel">
+                <button class="accept_button_delete_many btn btn-primary btn-round">OK</button>
+                <button class="exit-modal btn btn-primary btn-round exit_modal_trigger">Cancel</button>
+            </div>
+
+        </div>
+    </div>
+
+    `;
+    const button_trigger = document.querySelector(".delete_all");
+    const selectors = document.querySelectorAll(".check");
+    let letModal = false;
+
+
+    if(button_trigger) {
+
+
+        button_trigger.addEventListener("click",()=>{
+            // check if any is selected to trigger modal
+            selectors.forEach(selector=>{
+            if (selector.checked) {
+                letModal=true;
+            }})
+
+            // triggrer modal window if any selected
+            if (letModal === true) {
+            modalContainer.innerHTML = confirmationModalLiteral;
+            } else {
+            return;
+            }
+
+            closeModal()
+            const deleteAllButton = document.querySelector(".accept_button_delete_many");
+            // button to trigger delete record from modal add listener
+            deleteAllButton.addEventListener("click", ()=>{
+                let dataRow = "";
+                let idRowName = "";
+                let list_selected_ids = [];
+                const selectors = document.querySelectorAll(".check");
+
+                selectors.forEach(selector=>{
+                    if (selector.checked) {
+                        idRowName = selector.getAttribute("data-id-name");
+                        dataRow = selector.getAttribute("data-row");
+                        let selectedId = selector.getAttribute("id");
+                        list_selected_ids.push(selectedId);
+                    }
+
+
+
+                })
+
+                const data = {list_selected_ids: list_selected_ids, dataRow:dataRow, idRowName:idRowName};
+                SendDataAjax(data, "./ajax/delete_records.php")
+                .then(data => {
+                    location.reload();
+
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+            })
+
+        })
+    }
+
+
+}
+
+delete_check_table()
+
 // SEARCH PRODUCTS AJAX
 
 function searchProductAdmin(){

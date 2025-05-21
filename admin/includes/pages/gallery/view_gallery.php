@@ -39,6 +39,17 @@
         <table class="table ">
 
             <thead class=" text-primary">
+                 <th>
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Action
+                        </button>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item delete_all">Delete</a>
+
+                        </div>
+                    </div>
+                </th>
                 <th>id</th>
                 <th>img src</th>
                 <th>title</th>
@@ -62,4 +73,4 @@
         <?php  pagination_links("gallery",  $per_page);?>
     </div>
 
-<?php reset_status_new("news");?>
+<?php reset_status_new("gallery");?>

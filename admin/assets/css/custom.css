@@ -7,6 +7,10 @@
   margin: 10px 0;
 }
 
+.hidden {
+  visibility: hidden;
+}
+
 .team_container {
   padding: 5%;
   height: 100%;

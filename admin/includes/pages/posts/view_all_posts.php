@@ -42,6 +42,17 @@
         <table class="table ">
 
             <thead class=" text-primary">
+                <th>
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Action
+                        </button>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item delete_all">Delete</a>
+
+                        </div>
+                    </div>
+                </th>
                 <th>id</th>
                 <th>date</th>
                 <th>header</th>

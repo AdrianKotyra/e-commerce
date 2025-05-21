@@ -32,7 +32,7 @@ if(!empty($search_product) || $search_product!="") {
             $total_stock = Product::getproductTotalStock($product_id);
              // Loop through each column in the row
                 echo "<td > $product_id</td>";
-
+                 echo "<th><input class='check' type='checkbox' data-id-name='product_id' data-row='products'  id= ".$product_id."></th>";
                 echo "<td > <a target='_blank'  href='../../ecommerce/public/products.php?show=$product_id&category=$product_category'>$product_name </a></td>";
                 echo "<td><img src='../public/imgs/products/$product_name/$product_img'></td>";
 
@@ -58,7 +58,8 @@ if(!empty($search_product) || $search_product!="") {
 
 
 } else {
-    select_and_display_products();
+   $per_page =   100;
+    select_and_display_products( $per_page);
 
 }
 

@@ -7,14 +7,14 @@ function contactUserAJAX() {
         const contactContainer = document.querySelector(".contact-section-container");
         const successContainer = document.querySelector(".success-container");
         // Get form values
-        const userNameForm = document.querySelector(".first_name").value.trim();
-        const userSurnameForm = document.querySelector(".last_name").value.trim();
-        const email = document.querySelector(".email").value.trim();
-        const address = document.querySelector(".address").value.trim();
-        const city = document.querySelector(".city").value.trim();
-        const postal = document.querySelector(".postal").value.trim();
-        const country = document.querySelector(".country").value.trim();
-        const message = document.querySelector(".message").value.trim();
+        const userNameForm = document.querySelector("#send-contact-form .first_name").value.trim();
+        const userSurnameForm = document.querySelector("#send-contact-form .last_name").value.trim();
+        const email = document.querySelector("#send-contact-form .email").value.trim();
+        const address = document.querySelector("#send-contact-form .address").value.trim();
+        const city = document.querySelector("#send-contact-form .city").value.trim();
+        const postal = document.querySelector("#send-contact-form .postal").value.trim();
+        const country = document.querySelector("#send-contact-form .country").value.trim();
+        const message = document.querySelector("#send-contact-form .message").value.trim();
 
         // Validate required fields
         if (!userNameForm || !userSurnameForm || !email || !address || !city || !postal || !country || !message) {

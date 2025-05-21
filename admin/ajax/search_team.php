@@ -29,6 +29,7 @@ if(!empty($search_user) || $search_user!="") {
         $role= $row["role"];
         $user_firstname= $row["name"];
         echo "<tr>";
+        echo "<th><input class='check' type='checkbox' data-id-name='id' data-row='team'  id= ".$user_id."></th>";
         echo "<td>" . $user_id . "</td>";
 
         echo "<td>" . $user_firstname . "</td>";

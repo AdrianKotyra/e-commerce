@@ -137,7 +137,7 @@
         if( $user_email!="admin") {
 
             echo "<tr class='$new_order_status'>";
-
+            echo "<th><input class='check' type='checkbox' data-id-name='user_id' data-row='users'  id= ".$user_id."></th>";
 
             echo "<td>" . $user_id . "</td>";
 
@@ -191,6 +191,7 @@ function delete_users(){
         $role= $row["role"];
         $user_firstname= $row["name"];
         echo "<tr>";
+         echo "<th><input class='check' type='checkbox' data-id-name='id' data-row='team'  id= ".$user_id."></th>";
         echo "<td>" . $user_id . "</td>";
 
         echo "<td>" . $user_firstname . "</td>";
@@ -421,6 +422,7 @@ function select_and_display_comments( $per_page) {
 
 
         echo "<tr class='$new_order_status'>";
+         echo "<th><input class='check' type='checkbox' data-id-name='comment_id' data-row='comments'  id= ".$comment_id."></th>";
         echo "<td>" . $comment_id . "</td>";
         echo "<td>" . $user_name . "</td>";
         echo "<td > <a target='_blank' href='../../ecommerce/public/products.php?show=$product_id&category=$product_category'>$product_name </a></td>";
@@ -658,6 +660,7 @@ function select_and_display_products($per_page) {
         $total_stock = Product::getproductTotalStock($product_id);
         $avergage_rating = comment::get_average_rating_stars($product_id);
         // Loop through each column in the row
+        echo "<th><input class='check' type='checkbox' data-id-name='product_id' data-row='products'  id= ".$product_id."></th>";
         echo "<td > $product_id</td>";
 
         echo "<td > <a target='_blank'  href='../../ecommerce/public/products.php?show=$product_id&category=$product_category'>$product_name </a></td>";
@@ -754,6 +757,7 @@ function select_and_display_orders($per_page) {
         $new_order_status = $order_status=="new"? "new_data" : "old_data";
         // Loop through each column in the row
         echo " <tr class='$new_order_status'>  ";
+        echo "<th><input class='check' type='checkbox' data-id-name='id' data-row='orders'  id= ".$order_id."></th>";
         echo "<td > $order_id</td>";
         echo "<td > $transaction_id</td>";
         echo "<td > $transaction_time </td>";
@@ -825,6 +829,7 @@ function select_and_display_msgs( $per_page) {
         $new_order_status = $order_status=="new"? "new_data" : "old_data";
       // Loop through each column in the row
         echo " <tr class='$new_order_status'>  ";
+        echo "<th><input class='check' type='checkbox' data-id-name='id' data-row='messages'  id= ".$msgs_id."></th>";
         echo "<td >$msgs_id</td>";
         echo "<td >$email</td>";  // Fixed missing space & incorrect tag
         echo "<td >$user_firstname $user_lastname</td>";
@@ -883,6 +888,7 @@ function select_and_display_newsletter($per_page) {
         $new_order_status = $newsletter_status=="new"? "new_data" : "old_data";
       // Loop through each column in the row
         echo " <tr class='$new_order_status'>  ";
+         echo "<th><input class='check' type='checkbox' data-id-name='id' data-row='newsletters'  id= ".$id."></th>";
         echo "<td >$id</td>";
         echo "<td >$user_email</td>";  // Fixed missing space & incorrect tag
         echo "<td >$user_name</td>";
@@ -1184,6 +1190,7 @@ function select_and_display_gallery($per_page) {
         $image_title = $row["img_title"];
 
         echo"<tr>";
+        echo "<th><input class='check' type='checkbox' data-id-name='id' data-row='gallery'  id= ".$image_id."></th>";
         echo "<td>$image_id</td>";
         echo "<td>$image_name</td>";
         echo "<td>$image_title</td>";
@@ -1256,6 +1263,7 @@ function select_and_display_posts( $per_page) {
         $post_subheader_trimmed = substr($post_subheader, 0, 50);
 
         echo"<tr>";
+        echo "<th><input class='check' type='checkbox' data-id-name='id' data-row='news'  id= ".$post_id."></th>";
         echo "<td>$post_id</td>";
         echo "<td>$post_date</td>";
         echo "<td><a class='table-nav-link'  target='_blank' href='../public/news.php?post={$post_id}'>$post_header_trimmed</a></td>";

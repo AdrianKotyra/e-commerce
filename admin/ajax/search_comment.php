@@ -51,6 +51,7 @@ if(!empty($search_product) || $search_product!="") {
 
 
             echo "<tr>";
+             echo "<th><input class='check' type='checkbox' data-id-name='comment_id' data-row='comments'  id= ".$comment_id."></th>";
             echo "<td>" . $comment_id . "</td>";
             echo "<td>" . $user_name . "</td>";
             echo "<td > <a target='_blank'  href='../../ecommerce/public/products.php?show=$product_id&category=$product_category'>$product_name </a></td>";
@@ -75,7 +76,8 @@ if(!empty($search_product) || $search_product!="") {
 
 
 } else {
-    select_and_display_comments();
+    $per_page =   100;
+    select_and_display_comments( $per_page);
 
 }
 

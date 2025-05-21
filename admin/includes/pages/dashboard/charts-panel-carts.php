@@ -6,3 +6,5 @@
 <?php echo chart_cart_template("nc-icon nc-check-2","orders","orders.php");?>
 <?php echo chart_cart_template("nc-icon nc-email-85","messages","messages.php");?>
 <?php echo chart_cart_template("nc-icon nc-single-copy-04","newsletters","newsletters.php");?>
+<?php echo chart_cart_template("nc-icon nc-single-02","team","team.php");?>
+<?php echo chart_cart_template("nc-icon nc-atom","gallery","gallery.php");?>

@@ -42,8 +42,6 @@ if(!empty($msg_id) || $msg_id!="") {
             <div class="message-container-feedback">
               <div class="comment-container-view">
                 <h3 class="order_header"> Message details</h3>
-                <p>msg status: <b> '.$msg_status.'</b></p>
-                <p>msg id: <b> '.$msgs_id.'</b></p>
                 <p>From: <b> '.$email.'</b></p>
                 <p>name: <b> '.$user_firstname.' '.$user_lastname.'</b></p>
                 <p>Address: <b> '.$user_address.'</b></p>

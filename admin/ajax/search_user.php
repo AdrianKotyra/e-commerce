@@ -33,7 +33,7 @@ if(!empty($search_user) || $search_user!="") {
             if( $user_email!="admin") {
 
                 echo "<tr>";
-
+                echo "<th><input class='check' type='checkbox' data-id-name='user_id' data-row='users'  id= ".$user_id."></th>";
 
                 echo "<td>" . $user_id . "</td>";
 
@@ -59,8 +59,8 @@ if(!empty($search_user) || $search_user!="") {
 
 
 } else {
-    select_and_display_users();
-
+     $per_page =   100;
+    select_and_display_users($per_page);
 
 }
 
