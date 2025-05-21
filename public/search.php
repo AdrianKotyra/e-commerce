@@ -75,11 +75,11 @@
 
 <div class="filters flex-row ">
     <span class="filter_titler">FILTER</span>
+    <i class="fa-solid fa-sliders filter-icon"></i>
 
 
 
-
-    <div class="filter-col flex-row ">
+    <div class="filter-col filter-col-fs flex-row ">
         <div class="container-cat-filter flex-row">
             <span>Sex</span>
             <i class="fa-solid fa-angle-down"></i>
@@ -108,7 +108,7 @@
         </div>
 
     </div>
-    <div class="filter-col flex-row">
+    <div class="filter-col filter-col-fs flex-row">
         <div class="container-cat-filter flex-row">
             <span>Sizes</span>
             <i class="fa-solid fa-angle-down"></i>
@@ -124,7 +124,7 @@
         </div>
 
     </div>
-    <div class="filter-col flex-row">
+    <div class="filter-col filter-col-fs flex-row">
         <div class="container-cat-filter flex-row">
             <span>Types</span>
             <i class="fa-solid fa-angle-down"></i>
@@ -140,7 +140,7 @@
         </div>
 
     </div>
-    <div class="filter-col flex-row">
+    <div class="filter-col filter-col-fs flex-row">
         <div class="container-cat-filter flex-row">
             <span>Brands</span>
             <i class="fa-solid fa-angle-down"></i>
@@ -158,7 +158,7 @@
     </div>
 
     </div>
-    <div class="filter-col flex-row">
+    <div class="filter-col filter-col-fs flex-row">
             <div class="container-cat-filter flex-row">
                 <span>sort by</span>
                 <i class="fa-solid fa-angle-down"></i>
@@ -217,7 +217,7 @@
 
 
 
-
+<script src="js/pages/category_search_functions.js"></script>
 <script src="js/pages/search.js"></script>
 
 <?php include("includes/footer.php") ?>

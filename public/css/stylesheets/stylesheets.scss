@@ -202,10 +202,11 @@
 }
 
 .chosen_filters {
+  margin-bottom: 20px !important;
   flex-wrap: wrap;
   display: flex;
   flex-direction: row;
-  margin-top: 20px;
+  margin-top: 20px !important;;
 
   .chosen_filter {
     height: 40px;
@@ -1719,7 +1720,7 @@ $animationSpeed: 40s;
       display: grid;
     justify-content: center;
     gap: 40px;
-    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
 
 
     .team_cart {
@@ -1773,6 +1774,7 @@ $animationSpeed: 40s;
         cursor: pointer;
       }
       .team_cart_image{
+        border-radius: 12px;
         object-fit: cover;
         width: 100%;
            height: 300px;
@@ -1780,7 +1782,7 @@ $animationSpeed: 40s;
       }
       .team_cart_desc{
 
-        font-size: var(--header-section);
+        font-size: var(--header-section-small);
         color: var(--ui-main-text);
         font-weight: 700;
       }
@@ -1812,8 +1814,11 @@ $animationSpeed: 40s;
           display: none;
         }
         .team_cart_image{
+          width: auto !important;
+          display: block;
+          border-radius: 12px;
           object-fit: contain !important;
-          width: 100%;
+          margin: auto;
           height: 400px!important;
         }
         .team_cart_info {
@@ -1847,6 +1852,7 @@ $animationSpeed: 40s;
 }
 
 .our-team .team-item .thumb img {
+  border-radius: 12px;
   width: 100%;
   overflow: hidden;
   height: 400px;
@@ -2607,7 +2613,7 @@ $animationSpeed: 40s;
   }
 }
 
-.basket-user, .wishlist-user {
+.basket-user, .wishlist-user, .filter-modal-container {
   animation: showBasket 0.5s forwards;
   transition: 0.4s;
   display: none;
@@ -2622,6 +2628,17 @@ $animationSpeed: 40s;
   width: 500px;
   color: black;
   background-color: white;
+}
+.filter-modal-container {
+  .cross-filter {
+    position: absolute;
+    cursor: pointer;
+    right: 10px;
+    font-size: 1.6rem;
+  }
+  .filter-dropdown-product {
+    right: unset !important;
+  }
 }
 .payment-col {
 
@@ -3790,11 +3807,29 @@ body {
 .filter_titler {
   margin-right: 32px;
 }
+.filter-col-mobile {
+  padding: 10px 0;
+}
 .filter-container {
+  height: 50px;
+    background: white;
+    z-index: 3;
+    top: 65px;
+    position: sticky;
+    align-items: center;
   justify-content: space-between;
   margin-bottom: 12px;
   & > * {
     margin-right: 16px;
+  }
+
+  .filter-icon {
+
+    display: none;
+    cursor: pointer;
+    font-size: 1.6rem;
+
+    color: black;
   }
 }
 .user-account-header {
@@ -5242,6 +5277,17 @@ section {
 }
 
 @media screen and (max-width: 1024px) {
+   .chosen_filters, .filter-col-fs {
+    display: none;
+  }
+  .filter-container {
+    top: 50px;
+    .filter-icon{
+    display: block;
+  }
+  }
+
+
 
   .hero-slider {
     .carousel-cell {
@@ -5511,6 +5557,7 @@ section {
 
 /* Responsive design */
 @media (max-width: 768px) {
+
   .contact-section {
     .form-contact-container-box {
 
@@ -5696,7 +5743,7 @@ section {
   footer {
     padding: 9vh 0 6vh 0
   }
-  .basket-user, .wishlist-user {
+  .basket-user, .wishlist-user, .filter-modal-container {
     width: 100%;
   }
   .login {

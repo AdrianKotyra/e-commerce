@@ -86,6 +86,12 @@ include "php/init.php"?>
 <!-- --------------REMINDER----------- -->
 <?php include("includes/reminder-user.php") ?>
 <!-- --------------BLACK NAV FOR CHECKOUT----------- -->
+
+<!------------- FILTER MOBILE NAV ----------------->
+<?php include("includes/filter-mobile.php") ?>
+
+
+
 <?php
 basename($_SERVER['PHP_SELF']) != "check_out.php"?
 include("includes/nav.php") : include("includes/nav_checkout.php");

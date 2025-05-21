@@ -36,8 +36,8 @@ if(!empty($search_user) || $search_user!="") {
         echo "<td>" . $role . "</td>";
         echo "<td> <img class='table_img text-primary' width='100' height='100' src='../public/imgs/$image'></td>";
         echo "<td class='text-right' > <span class='table-nav-link team_link' team_member_id= $user_id >check</span></td>";
-        echo "<td class='text-right'><a class='table-nav-link' href='users.php?source=edit_user&user_id={$user_id}'>EDIT</a></td>";
-        echo "<td class='text-right'> <span class='table-nav-link delete_button' data-link='team.php?delete_user=$user_id'> Delete </span></td>";
+        echo "<td class='text-right'><a class='table-nav-link' href='team.php?source=edit_team_member&user_id={$user_id}'>EDIT</a></td>";
+        echo "<td class='text-right'> <span class='table-nav-link delete_button' data-link='team.php?delete_team_member=$user_id'> Delete </span></td>";
         echo "</tr>";
 
 
