@@ -93,6 +93,7 @@ function searchProductAdmin(){
         SendDataAjax(productSearcheInputValue, "./ajax/search_product.php")
         .then(data => {
             productsContainer.innerHTML=data;
+            delete_check_table()
             createConfirmWindowDeleteRow()
 
         })
@@ -123,6 +124,8 @@ function searchUsersAdmin(){
         SendDataAjax(userSearcheInputValue, "./ajax/search_user.php")
         .then(data => {
             usersContainer.innerHTML=data;
+
+            delete_check_table()
             createConfirmWindowDeleteRow()
 
         })
@@ -152,6 +155,7 @@ function searchTeamAdmin(){
         SendDataAjax(userSearcheInputValue, "./ajax/search_team.php")
         .then(data => {
             usersContainer.innerHTML=data;
+            delete_check_table()
 
             createConfirmWindowDeleteRow()
           createTeamMemberContentWindow()
@@ -183,6 +187,7 @@ function searchCommentAdmin(){
         SendDataAjax(productSearcheInputValue, "./ajax/search_comment.php")
         .then(data => {
             productsContainer.innerHTML=data;
+            delete_check_table()
             createConfirmWindowDeleteRow()
             changeStatusComments()
             createfeedbackWindow()
@@ -213,6 +218,7 @@ function searchPostAdmin(){
         SendDataAjax(productSearcheInputValue, "./ajax/search_post.php")
         .then(data => {
             postsContainer.innerHTML=data;
+            delete_check_table()
             createConfirmWindowDeleteRow()
             createPostContentWindow()
 

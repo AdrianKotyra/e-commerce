@@ -26,6 +26,7 @@ function onBasket(){
     const crossBasket = document.querySelector(".cross-basket")
     basketTrigger&&basketTrigger.addEventListener("click", ()=>{
       onBasket()
+
     })
 
 
@@ -226,16 +227,18 @@ function onBasket(){
     const basketContainer = document.querySelectorAll(".body-basket");
     const basketTotalContainer = document.querySelectorAll(".basket_total");
     const basketNumber = document.querySelector(".basket-number");
+    const footerBasket = document.querySelector(".footer-basket");
     const dummydata= "";
     SendDataAjax(dummydata, "ajax/reload_basket.php")
     .then(data => {
       const basket_reloaded = data[0];
       const total_reloaded = data[1];
       const number_items = data[2];
-
+      const button_checkout_literal = data[3];
 
       number_items>0? basketNumber.classList.add("basket-active") : basketNumber.classList.remove("basket-active");
 
+      footerBasket.innerHTML=button_checkout_literal;
       basketNumber.innerHTML=number_items;
       basketContainer.forEach(ele=>{ele.innerHTML=basket_reloaded;})
       basketTotalContainer.forEach(ele=>{ele.innerHTML=total_reloaded;})

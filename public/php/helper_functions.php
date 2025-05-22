@@ -1610,7 +1610,7 @@ function section_detailed_products($type_products) {
         $img_src = '<img loading="lazy" src="./imgs/detailed_section/'.$type_products.'_mix.WEBP" />';
     }
     if (isset($_GET["category"])){
-        $cat_link = '&category='.$_GET["category"].'&size=all&type=Outdoor+Shoes&brand=all';
+        $cat_link = '&category='.$_GET["category"].'&size=all&brand=all';
     }
     else {
         $cat_link = '';

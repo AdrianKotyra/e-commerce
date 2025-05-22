@@ -33,81 +33,8 @@ class Product {
         $query = "UPDATE products SET product_views = product_views + 1 WHERE product_id = $id";
         $increment_views = mysqli_query($connection, $query);
     }
-    // OPTIMSED VERSION CREATED WITH HELP OF AI TO CREATE PRODUCT USING JOIN TO AVOID MULTI QUERIES
-    // public function create_product($id) {
-    //     if (!$id) return;
 
-    //     global $database;
-    //     $id = intval($id); // sanitize
 
-    //     // Initialize defaults
-    //     $this->product_type = [];
-    //     $this->product_category = null;
-    //     $this->brand_name = null;
-    //     $this->brand_img = null;
-    //     $this->brand_id = null;
-    //     $this->product_availability = false;
-
-    //     // Get product with joined data
-    //     $product_data = $database->query_array("
-    //         SELECT
-    //             p.*,
-    //             b.id AS brand_id,
-    //             b.brand_name,
-    //             b.logo AS brand_img,
-    //             c.cat_name,
-    //             GROUP_CONCAT(DISTINCT t.type_name) AS type_names
-    //         FROM products p
-    //         LEFT JOIN rel_products_brands rb ON rb.product_id = p.product_id
-    //         LEFT JOIN brands b ON b.id = rb.brand_id
-    //         LEFT JOIN rel_categories_products rcp ON rcp.prod_id = p.product_id
-    //         LEFT JOIN categories c ON c.cat_id = rcp.cat_id
-    //         LEFT JOIN rel_types_products rtp ON rtp.product_id = p.product_id
-    //         LEFT JOIN types t ON t.id = rtp.type_id
-    //         WHERE p.product_id = $id
-    //         GROUP BY p.product_id
-    //     ");
-
-    //     if ($row = mysqli_fetch_array($product_data)) {
-    //         // Product core info
-    //         $this->product_id = $row['product_id'];
-    //         $this->product_name = $row['product_name'];
-    //         $this->product_img = $row['product_img'];
-    //         $this->product_img_2 = $row['product_img2'];
-    //         $this->product_img_3 = $row['product_img3'];
-    //         $this->product_img_4 = $row['product_img4'];
-    //         $this->product_desc = $row['product_desc'];
-    //         $this->product_price = $row['product_price'];
-
-    //         // Brand info
-    //         $this->brand_id = $row['brand_id'];
-    //         $this->brand_name = $row['brand_name'];
-    //         $this->brand_img = $row['brand_img'];
-
-    //         // Category
-    //         $this->product_category = $row['cat_name'];
-
-    //         // Product types (split by comma from GROUP_CONCAT)
-    //         $this->product_type = array_filter(array_map('trim', explode(',', $row['type_names'])));
-    //     }
-
-    //     // Get sizes with stock > 0
-    //     $sizes_data = $database->query_array("
-    //         SELECT s.size
-    //         FROM rel_products_sizes rps
-    //         JOIN sizes s ON s.id = rps.size_id
-    //         WHERE rps.prod_id = $id AND rps.stock > 0
-    //     ");
-
-    //     $this->product_sizes_list = [];
-    //     while ($size_row = mysqli_fetch_array($sizes_data)) {
-    //         $this->product_sizes_list[] = $size_row['size'];
-    //     }
-
-    //     $this->product_availability = !empty($this->product_sizes_list);
-    // }
-
-   // OLD VERSION OF CREATE PRODUCT USING MANY QUERIES
     public function create_product($id) {
         if ($id) {
             global $database;
@@ -723,6 +650,7 @@ class Product {
     return  $html;
     }
     public function product_basket_Template($quantity_basket, $size){
+
         $prod_total = $this->product_price*$quantity_basket;
         $product_template = '<div class="basket_product_template flex-row">
         <div class="product_img_container">

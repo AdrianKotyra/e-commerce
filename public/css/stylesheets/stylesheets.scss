@@ -1977,8 +1977,11 @@ $animationSpeed: 40s;
   text-decoration: none;
 }
 .post-event-main-header {
-  color: var(--ui-main-text);
+  color: var(--ui-main-text-nav);
+  padding: 10px;
+
   font-weight: 700;
+  background-color: var(--ui-main-nav);
   font-size: var(--header-section-small)
 }
 .modal-container .sizes_guide {
@@ -3775,7 +3778,7 @@ body {
 }
 .read-more-post-cart {
   position: relative;
-  height: 340px;
+  height: 360px;
   &::before {
        content: "";
     width: 100%;

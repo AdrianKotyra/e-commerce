@@ -1861,8 +1861,10 @@ section .section-heading {
 }
 
 .post-event-main-header {
-  color: var(--ui-main-text);
+  color: var(--ui-main-text-nav);
+  padding: 10px;
   font-weight: 700;
+  background-color: var(--ui-main-nav);
   font-size: var(--header-section-small);
 }
 
@@ -3612,7 +3614,7 @@ body {
 
 .read-more-post-cart {
   position: relative;
-  height: 340px;
+  height: 360px;
 }
 .read-more-post-cart::before {
   content: "";

@@ -157,23 +157,50 @@
 }
 
 
-function delete_users(){
-    if(isset($_GET["delete_user"])) {
+function delete_users() {
+    if (isset($_GET["delete_user"])) {
         global $connection;
-        $user_to_be_deleted = $_GET["delete_user"];
+        $user_to_be_deleted = (int) $_GET["delete_user"];
 
-        // delete user account
-
-
-        $query = "DELETE from users WHERE user_id={$user_to_be_deleted}";
+        // Step 1: Delete user account
+        $query = "DELETE FROM users WHERE user_id = {$user_to_be_deleted}";
         $delete_user_account = mysqli_query($connection, $query);
 
+        if (!$delete_user_account) {
+            die("Error deleting user: " . mysqli_error($connection));
+        }
 
+        // Step 2: Select user's orders
+        $query2 = "SELECT * FROM orders WHERE user_db_id = {$user_to_be_deleted}";
+        $select_user_orders = mysqli_query($connection, $query2);
 
+        if (!$select_user_orders) {
+            die("Error fetching user orders: " . mysqli_error($connection));
+        }
+
+        // Step 3: Loop through orders and delete order + order items
+        while ($row = mysqli_fetch_assoc($select_user_orders)) {
+            $order_id = (int) $row["id"];
+
+            // Delete order
+            $query3 = "DELETE FROM orders WHERE id = {$order_id}";
+            $delete_user_orders = mysqli_query($connection, $query3);
+            if (!$delete_user_orders) {
+                die("Error deleting order (ID: $order_id): " . mysqli_error($connection));
+            }
+
+            // Delete order items
+            $query4 = "DELETE FROM order_items WHERE order_id = {$order_id}";
+            $delete_order_items = mysqli_query($connection, $query4);
+            if (!$delete_order_items) {
+                die("Error deleting order items (Order ID: $order_id): " . mysqli_error($connection));
+            }
+        }
 
 
     }
 }
+
   function select_and_display_team($per_page) {
     global $connection;
     $start = pagination("team",  $per_page);
@@ -706,7 +733,8 @@ function select_and_display_products($per_page) {
             DELETE FROM rel_types_products WHERE product_id = {$product_id};
             DELETE FROM rel_categories_products WHERE prod_id = {$product_id};
             DELETE FROM wishlist WHERE product_id = {$product_id};
-        ";
+            DELETE FROM comments WHERE product_id = {$product_id};"
+        ;
 
         if (mysqli_multi_query($connection, $query2)) {
             echo '<script> window.location.href = "products.php" </script>';

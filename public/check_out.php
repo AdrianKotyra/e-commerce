@@ -1,13 +1,17 @@
 <?php include("includes/header.php") ?>
 <?php
     global $basket;
+
     $discount_applied = $basket->discount_applied;
     $checkout_products =  $basket->processUserBasket("product_checkout_Template");
     $user_total = $basket->getTotalCheckout();
     $discounted_price= $basket->getDiscountedPrice();
 
     $number_items = $basket->getNumberTotal();
-
+    // return to home if not added items
+    if($number_items<=0) {
+        header("Location: index.php");
+    }
 ?>
 
 <section class="checkout-section">
