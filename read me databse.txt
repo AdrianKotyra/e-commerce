@@ -1,0 +1,11 @@
+- FOR LOCALHOST PLEASE NAME DB = "ecommerce" when importing database;
+
+- Website URL: https://adriankotyraprojects.co.uk/websites/ecommerce/public/index.php
+- FTP Access:  access904973212.webspace-data.io / u107801835 / PORT: 22 / college123£"!
+   DIRECTORY-- (/portfolio new/websites/ecommerce)
+- phpMyAdmin Access:  https://login.ionos.co.uk/password#  / adriankotyra@yahoo.com/ Nowylaptop123£"! (DATABASE - CMS ECOMM COLLEGE)
+- Admin Panel URL: https://adriankotyraprojects.co.uk/websites/ecommerce/admin/dashboard.php
+- Admin Panel Login Details: admin/admin
+
+
+

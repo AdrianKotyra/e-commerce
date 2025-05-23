@@ -1970,27 +1970,22 @@ function displaySimilarProducts($type_products,  $limit, $prod_id_displated_prod
 // ----------------get newest products-------------------------------
 function displayNewest() {
     global $connection;
-     $output = '';
+        $output = '';
+
+         if (isset($_GET["category"]) && ($_GET["category"] == "female" || $_GET["category"] == "male" || $_GET["category"] == "unisex")) {
+
+            $cat_name = $_GET["category"];
+            $query_select_cat = "SELECT * FROM categories WHERE cat_name = '$cat_name '";
+            $select_cat = mysqli_query($connection, $query_select_cat);
 
 
+            while ($product_row = mysqli_fetch_assoc($select_cat)) {
+                $cat_id = $product_row["cat_id"];
 
-        $query = "SELECT product_id FROM products  order by product_id  DESC LIMIT 8  OFFSET 0";
-        $select_products = mysqli_query($connection, $query);
-
-        $new_list_products = [];
-        if (!$select_products) {
-            die("Query failed: " . mysqli_error($connection));
-        }
-
-
-        while ($product_row = mysqli_fetch_assoc($select_products)) {
-            $prod_id = $product_row["product_id"];
-
-            if (isset($_GET["category"]) && ($_GET["category"] == "female" || $_GET["category"] == "male" || $_GET["category"] == "unisex")) {
-                $category_products_ids = listenCategory();
-                // sort ids in desc order before checking if id in list
-                $sorted[] =  rsort($category_products_ids);
-                if (in_array($prod_id, $sorted)) {
+                $query_select_prod = "SELECT * FROM rel_categories_products WHERE cat_id = '$cat_id ' order by id DESC LIMIT 8 OFFSET 0";
+                $select_prod = mysqli_query($connection, $query_select_prod);
+                while ($product_row = mysqli_fetch_assoc($select_prod)) {
+                    $prod_id = $product_row["prod_id"];
                     $product_new = new Product();
                     $product_new->create_product($prod_id);
                     $name = $product_new->product_name;
@@ -2008,11 +2003,21 @@ function displayNewest() {
 
                         </div>
                     </div>';
+
                 }
 
-            } else {
+
+
+
+            }
+        }
+        else {
+            $query_select_all_latest = "SELECT * FROM products order by product_id DESC LIMIT 8 OFFSET 0";
+            $select_latest = mysqli_query($connection, $query_select_all_latest);
+            while($row = mysqli_fetch_assoc($select_latest)){
+                $id = $row["product_id"];
                 $product_new = new Product();
-                $product_new->create_product($prod_id);
+                $product_new->create_product($id);
                 $name = $product_new->product_name;
                 $id = $product_new->product_id;
                 $img1 = $product_new->product_img;
@@ -2027,10 +2032,12 @@ function displayNewest() {
 
 
                 </div>
-            </div>';
-
+                </div>';
             }
-    }
+
+
+        }
+
     return $output;
 
 }
@@ -2248,15 +2255,13 @@ function account_update_details(){
     $max = 26;
 
     $user_id       =  $user->user_id;
-    $user_firstname = $_POST['first_name'];
-    $user_lastname =  $_POST['last_name'];
-    $user_email    =  $_POST['email'];
-
-
-    $user_postal =  $_POST['postal'];
-    $user_city =  $_POST['city'];
-    $user_address =  $_POST['address'];
-    $user_country =  $_POST['country'];
+    $user_firstname = mysqli_real_escape_string($connection, $_POST['first_name']);
+    $user_lastname = mysqli_real_escape_string($connection, $_POST['last_name']);
+    $user_email    = mysqli_real_escape_string($connection, $_POST['email']);
+    $user_postal   = mysqli_real_escape_string($connection, $_POST['postal']);
+    $user_city     = mysqli_real_escape_string($connection, $_POST['city']);
+    $user_address  = mysqli_real_escape_string($connection, $_POST['address']);
+    $user_country  = mysqli_real_escape_string($connection, $_POST['country']);
 
 
     if (!filter_var($user_email, FILTER_VALIDATE_EMAIL)) {
@@ -2271,10 +2276,7 @@ function account_update_details(){
 
         $errors[] = "Lastname can not include numbers";
     }
-    if(strlen($user_address)<=$min) {
 
-        $errors[] = "Users address is too short, should be longer than $min characters";
-    }
     if(strlen($user_firstname)<=$min) {
 
         $errors[] = "Users username is too short, should be longer than $min characters";
@@ -2311,26 +2313,49 @@ function account_update_details(){
         }
     } else {
 
-        $query_update = "UPDATE users SET ";
-        $query_update .= "user_email = '{$user_email}', ";
-        $query_update .= "user_lastname = '{$user_lastname}', ";
-        $query_update .= "user_firstname = '{$user_firstname}', ";
-        $query_update .= "user_address = '{$user_address}', ";
-        $query_update .= "user_country = '{$user_country}', ";
-        $query_update .= "user_postcode = '{$user_postal}', ";
-        $query_update .= "user_city = '{$user_city}' ";
-        $query_update .= "WHERE user_id = {$user_id}";
+       $query_update = "UPDATE users SET
+                    user_email = ?,
+                    user_lastname = ?,
+                    user_firstname = ?,
+                    user_address = ?,
+                    user_country = ?,
+                    user_postcode = ?,
+                    user_city = ?
+                WHERE user_id = ?";
 
+        // Prepare the statement
+        $stmt = $connection->prepare($query_update);
 
-        $update_user = mysqli_query($connection, $query_update);
-        if ($update_user) {
-            $message = '<div class="alert alert-success text-center" role="alert">
-            Details Updated
-            </div>';
-
+        // Check if the statement was prepared successfully
+        if ($stmt === false) {
+            $message = "Error preparing query: " . mysqli_error($connection);
         } else {
-            $message = "Error updating details: " . mysqli_error($connection);
+            // Bind the parameters (order matters)
+            $stmt->bind_param(
+                "ssssssss", // type of each parameter: s = string, i = integer
+                $user_email,
+                $user_lastname,
+                $user_firstname,
+                $user_address,
+                $user_country,
+                $user_postal,
+                $user_city,
+                $user_id
+            );
+
+            // Execute the prepared statement
+            if ($stmt->execute()) {
+                $message = '<div class="alert alert-success text-center" role="alert">
+                                Details Updated
+                            </div>';
+            } else {
+                $message = "Error updating details: " . mysqli_error($connection);
+            }
+
+            // Close the statement
+            $stmt->close();
         }
+
 
 
     }
