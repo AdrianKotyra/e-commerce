@@ -127,29 +127,29 @@ if (isset($_POST['create_product'])) {
 
     <div class="form-group">
         <label for="product_desc">Product description</label>
-        <input required type="text" class="form-control" name="product_desc">
+        <input  required type="text" class="form-control" name="product_desc">
     </div>
 
     <div class="form-group">
         <label for="product_img">Product image 1</label>
-        <input type="file" name="product_img">
+        <input required type="file" name="product_img">
     </div>
     <div class="form-group">
         <label for="product_img2">Product image 2</label>
-        <input type="file" name="product_img2">
+        <input required type="file" name="product_img2">
     </div>
     <div class="form-group">
         <label for="product_img3">Product image 3</label>
-        <input type="file" name="product_img3">
+        <input required type="file" name="product_img3">
     </div>
     <div class="form-group">
         <label for="product_img4">Product image 4</label>
-        <input type="file" name="product_img4">
+        <input required type="file" name="product_img4">
     </div>
     <div class="form-group">
     <label for="category">Category</label>
     <br>
-    <select name="category">
+    <select required name="category">
         <option value="1" type="radio" name="category">male</option>
         <option value="2" type="radio" name="category">female</option>
         <option value="3" type="radio" name="category">unisex</option>

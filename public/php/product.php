@@ -161,13 +161,31 @@ class Product {
     public static function getproductTotalStock($id){
         global $database;
         $total = 0;
-        // get product category name
+
         $result_product_type = $database->query_array("SELECT * FROM rel_products_sizes WHERE prod_id = $id");
         while ($row = mysqli_fetch_array($result_product_type)) {
 
             $stock = $row['stock'];
            $total+= $stock;
         }
+        return $total;
+    }
+      public static function getproductSizeTotalStock($prod_id, $prod_size){
+        global $database;
+        $result_size_id = $database->query_array("SELECT * FROM sizes WHERE size = $prod_size");
+        while ($row = mysqli_fetch_array($result_size_id)) {
+            $size_id = $row['id'];
+        }
+
+        $result_product_type = $database->query_array("SELECT * FROM rel_products_sizes WHERE prod_id = $prod_id and size_id = $size_id");
+        $total = 0;
+
+        while ($row = mysqli_fetch_array($result_product_type)) {
+
+            $stock = $row['stock'];
+            $total+= $stock;
+        }
+
         return $total;
     }
     // Function to return product price
@@ -355,7 +373,7 @@ class Product {
 
          }
 
-        $message = $this->product_availability? 'QUICK ADD TO CART' : "Out of stock";
+        $message = $this->product_availability? '<p> <b> QUICK ADD TO CART </b></p>' : "<p class='label_out_stock'> Out of stock </p>";
         if(  $product_category == "female") {
             $category_message ='     <div class="category-sex-label" >
       WOMAN
@@ -387,10 +405,13 @@ class Product {
                                 </div>
                             </a>
                             <div class="hidden-prod-label">
-                                <p> <b>QUICK ADD TO CART </b> </p>
-                                <div class="sizes-grid-prod '.$chosen_grid.'">
-                                '.$sizes_html.'
+                                <div class="hidden-prod-label-container">
+                                   '.$message.'
+                                    <div class="sizes-grid-prod '.$chosen_grid.'">
+                                    '.$sizes_html.'
+                                    </div>
                                 </div>
+
 
 
                             </div>

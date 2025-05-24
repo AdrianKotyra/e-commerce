@@ -13,7 +13,7 @@
         if (!isset($_POST["data"]["productId"], $_POST["data"]["productsize"])) {
             return;
         }
-
+        // checking if product and size with ids exit
         $data = $_POST["data"];
         $data_prod_id = intval($data["productId"]); // Ensure it's an integer
         $data_prod_size = $data["productsize"]; // Assuming it's a string
@@ -43,9 +43,6 @@
 
 
         $new_product = New Product();
-
-        // NEEED MORE VERIFICATION VALIDATION IF ID EXISTS WITH THIS SIZE !!!
-
 
         $new_product->create_product($data_prod_id);
         $product_price = $new_product->product_price;

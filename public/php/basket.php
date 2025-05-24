@@ -15,16 +15,27 @@ class Basket {
 
     // Add an item to a user's basket
     public function addItem($item_id, $quantity, $price,  $productsize) {
-        if (!isset($_SESSION['baskets'])) {
 
+
+
+
+        if (!isset($_SESSION['baskets'])) {
 
             $_SESSION['baskets'] = []; // Initialize basket for the user
         }
+
+
+
         // Create a unique key using product ID and size
         $unique_key = $item_id . '_' . $productsize;
 
         if (isset($_SESSION['baskets'][$unique_key])) {
-            $_SESSION['baskets'][$unique_key]['quantity'] += $quantity;
+            $total_stock = Product::getproductSizeTotalStock($item_id, $productsize);
+            //check if item stock is available
+            if($_SESSION['baskets'][$unique_key]['quantity']<$total_stock) {
+                $_SESSION['baskets'][$unique_key]['quantity'] += $quantity;
+            }
+
         } else {
             $_SESSION['baskets'][$unique_key] = [
                 'quantity' => $quantity,
